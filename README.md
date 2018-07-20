@@ -1,2 +1,2 @@
-# SchoolManagementSystem
-SMS - School Management System
+# LibraryManagementSystem
+LMS - Library Management System

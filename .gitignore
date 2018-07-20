@@ -49,3 +49,6 @@
 
 # .idea
 /.idea/
+
+# phpinfo
+public/phpinfo.php
