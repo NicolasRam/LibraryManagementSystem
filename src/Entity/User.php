@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @package App\Entity
  * @ORM\MappedSuperclass
- * // * @ORM\Entity( repositoryClass="App\Repository\UserRepository" )
+ * @ORM\Entity( repositoryClass="App\Repository\UserRepository" )
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap
  * (
@@ -39,8 +39,9 @@ class User implements UserInterface
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
@@ -76,52 +77,9 @@ class User implements UserInterface
      */
     private $roles;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\MicroBook", mappedBy="likedBy")
-     */
-    private $booksLiked;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MicroBook", mappedBy="user")
-     */
-    private $books;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="following")
-     */
-    private $followers;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="followers")
-     * @ORM\JoinTable(name="following",
-     *     joinColumns={
-     *         @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *     },
-     *     inverseJoinColumns={
-     *         @ORM\JoinColumn(name="following_user_id", referencedColumnName="id")
-     *     }
-     * )
-     */
-    private $following;
-
-    /**
-     * @ORM\Column(type="string", nullable=true, length=30)
-     */
-    private $confirmationToken;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $enabled;
-
     public function __construct()
     {
-        $this->books      = new ArrayCollection();
-        $this->followers  = new ArrayCollection();
-        $this->following  = new ArrayCollection();
-        $this->booksLiked = new ArrayCollection();
-        $this->roles      = [self::ROLE_USER];
-        $this->enabled    = FALSE;
+        $this->roles      = [self::ROLE_MEMBER];
     }
 
     public function getRoles()
@@ -157,26 +115,6 @@ class User implements UserInterface
 
     }
 
-    public function serialize()
-    {
-        return serialize(
-            [
-                $this->id,
-                $this->username,
-                $this->password,
-                $this->enabled,
-            ]
-        );
-    }
-
-    public function unserialize($serialized)
-    {
-        list(
-            $this->id, $this->username, $this->password, $this->enabled
-            )
-            = unserialize($serialized);
-    }
-
     /**
      * @return mixed
      */
@@ -191,30 +129,6 @@ class User implements UserInterface
     public function setEmail($email): void
     {
         $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFullName()
-    {
-        return $this->fullName;
-    }
-
-    /**
-     * @param mixed $fullName
-     */
-    public function setFullName($fullName): void
-    {
-        $this->fullName = $fullName;
-    }
-
-    /**
-     * @param mixed $username
-     */
-    public function setUsername($username): void
-    {
-        $this->username = $username;
     }
 
     /**
@@ -234,127 +148,51 @@ class User implements UserInterface
     }
 
     /**
-     * @return mixed
+     * @param mixed $id
+     *
+     * @return User
      */
-    public function getPlainPassword()
+    public function setId($id)
     {
-        return $this->plainPassword;
-    }
-
-    /**
-     * @param mixed $plainPassword
-     */
-    public function setPlainPassword($plainPassword): void
-    {
-        $this->plainPassword = $plainPassword;
+        $this->id = $id;
+        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getBooks()
+    public function getFirstName()
     {
-        return $this->books;
+        return $this->firstName;
     }
 
     /**
-     * @return Collection
+     * @param mixed $firstName
+     *
+     * @return User
      */
-    public function getFollowers()
+    public function setFirstName($firstName)
     {
-        return $this->followers;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getFollowing()
-    {
-        return $this->following;
-    }
-
-    public function follow(User $userToFollow)
-    {
-        if ($this->getFollowing()->contains($userToFollow)) {
-            return;
-        }
-
-        $this->getFollowing()->add($userToFollow);
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getBooksLiked()
-    {
-        return $this->booksLiked;
+        $this->firstName = $firstName;
+        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getConfirmationToken()
+    public function getLastName()
     {
-        return $this->confirmationToken;
+        return $this->lastName;
     }
 
     /**
-     * @param mixed $confirmationToken
+     * @param mixed $lastName
+     *
+     * @return User
      */
-    public function setConfirmationToken($confirmationToken): void
+    public function setLastName($lastName)
     {
-        $this->confirmationToken = $confirmationToken;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
-    }
-
-    /**
-     * @param mixed $enabled
-     */
-    public function setEnabled($enabled): void
-    {
-        $this->enabled = $enabled;
-    }
-
-    public function isAccountNonExpired()
-    {
-        return TRUE;
-    }
-
-    public function isAccountNonLocked()
-    {
-        return TRUE;
-    }
-
-    public function isCredentialsNonExpired()
-    {
-        return TRUE;
-    }
-
-    public function isEnabled()
-    {
-        return $this->enabled;
-    }
-
-    /**
-     * @return UserPreferences|null
-     */
-    public function getPreferences()
-    {
-        return $this->preferences;
-    }
-
-    /**
-     * @param mixed $preferences
-     */
-    public function setPreferences($preferences): void
-    {
-        $this->preferences = $preferences;
+        $this->lastName = $lastName;
+        return $this;
     }
 }
