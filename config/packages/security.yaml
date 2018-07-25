@@ -1,10 +1,14 @@
 security:
     encoders:
-        App\Entity\user: brcrypt
+        App\Entity\user: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
-        user_provider:
+        backend_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+        frontend_user_provider:
             entity:
                 class: App\Entity\User
                 property: email
@@ -12,24 +16,29 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            anonymous: true
-
-            # activate different ways to authenticate
-
-            # http_basic: true
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: true
-            # https://symfony.com/doc/current/security/form_login_setup.html
+        backend:
+            anonymous: ~
+            pattern: ^/backend
+            provider: backend_user_provider
             form_login:
-                login_path: user_login
-                check_path: user_login
+                login_path: backend_user_login
+                check_path: backend_user_login
+                username_parameter: backend_user_login[email]
+                password_parameter: backend_user_login[password]
+            logout:
+                path: /backend/logout
+                target: /backend
+        frontend:
+            pattern: ^/
+            anonymous: true
+            provider: frontend_user_provider
+            form_login:
+                login_path: frontend_user_login
+                check_path: frontend_user_login
                 username_parameter: app_login[email]
                 password_parameter: app_login[password]
-            provider: user_provider
             logout:
-                path: /deconnexion
+                path: /logout
                 target: /
 
     # Easy way to control access for large sections of your site
@@ -37,8 +46,13 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+
+    access_decision_manager:
+            strategy: unanimous
+            allow_if_all_abstain: false
 
     role_hierarchy:
         ROLE_LIBRARIAN: ROLE_MEMBER
         ROLE_ADMIN: ROLE_LIBRARIAN
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

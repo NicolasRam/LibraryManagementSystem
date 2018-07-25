@@ -16,18 +16,27 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * Class UserController
+ *
+ * @package App\Controller
+ *
+ * @Route( path="/backend" )
+ * Route( path="/backend/user" )
+ */
 class UserController extends Controller
 {
     /**
      * connection
      *
-     * @Route(
+     * Route(
      *     {
      *          "fr": "/connexion",
      *          "en": "/login"
      *      },
-     *     name="user_login"
+     *     name="backend_user_login"
      * )
+     * @Route( path="/login", name="backend_user_login" )
      *
      * @param Request             $request
      * @param AuthenticationUtils $authenticationUtils
@@ -43,7 +52,7 @@ class UserController extends Controller
          * @Todo add permission check
          */
         if ($this->getUser()) {
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('backend_home');
         }
 
         /**
@@ -56,7 +65,7 @@ class UserController extends Controller
          */
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        return $this->render('user/login.html.twig',
+        return $this->render('backend/user/login.html.twig',
             [
                 'form' => $form->createView(),
                 'error' => $error,
@@ -68,7 +77,7 @@ class UserController extends Controller
      * @Route({
      *     "fr": "/deconnexion",
      *     "en": "/logout"
-     * }, name="security_logout")
+     * }, name="backend_user_logout")
      */
     public function logout()
     {

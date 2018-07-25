@@ -44,7 +44,7 @@ class UserLoginType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'app_login';
+        return 'backend_user_login';
     }
 
 }

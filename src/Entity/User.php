@@ -77,9 +77,9 @@ class User implements UserInterface
      */
     private $roles;
 
-    public function __construct()
+    public function __construct( $roles = [self::ROLE_MEMBER] )
     {
-        $this->roles      = [self::ROLE_MEMBER];
+        $this->roles      = $roles;
     }
 
     public function getRoles()
@@ -107,7 +107,7 @@ class User implements UserInterface
 
     public function getUsername()
     {
-        return $this->username;
+        return $this->email;
     }
 
     public function eraseCredentials()

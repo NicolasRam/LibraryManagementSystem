@@ -10,7 +10,7 @@
 #    requirements:
 #        _locale: en|fr
 
-home:
+backend_home:
     path: /
 #    name : home
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
