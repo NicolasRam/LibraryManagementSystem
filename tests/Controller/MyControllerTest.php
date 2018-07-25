@@ -22,4 +22,20 @@ class MyControllerTest extends PantherTestCase
         );
         $this->assertEquals(1, $crawler->filter('h1')->count());
     }
+
+    public function testDocAction()
+    {
+        $client = static::createPantherClient();
+        $crawler = $client->request( 'GET', '/' );
+
+        sleep(2);
+
+        $link = $crawler->selectLink('How to create your first page in Symfony')->link();
+        $client->click($link);
+
+        sleep(2);
+
+        $this->assertEquals('', $crawler->filter('h1')->count());
+    }
+
 }
