@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/author")
+ * @Route("/backend/author")
  */
 class AuthorController extends Controller
 {
@@ -20,7 +20,7 @@ class AuthorController extends Controller
      */
     public function index(AuthorRepository $authorRepository): Response
     {
-        return $this->render('author/index.html.twig', ['authors' => $authorRepository->findAll()]);
+        return $this->render('backend/author/index.html.twig', ['authors' => $authorRepository->findAll()]);
     }
 
     /**
@@ -40,7 +40,7 @@ class AuthorController extends Controller
             return $this->redirectToRoute('author_index');
         }
 
-        return $this->render('author/new.html.twig', [
+        return $this->render('backend/author/new.html.twig', [
             'author' => $author,
             'form' => $form->createView(),
         ]);
@@ -51,7 +51,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author): Response
     {
-        return $this->render('author/show.html.twig', ['author' => $author]);
+        return $this->render('backend/author/show.html.twig', ['author' => $author]);
     }
 
     /**
@@ -68,7 +68,7 @@ class AuthorController extends Controller
             return $this->redirectToRoute('author_edit', ['id' => $author->getId()]);
         }
 
-        return $this->render('author/edit.html.twig', [
+        return $this->render('backend/author/edit.html.twig', [
             'author' => $author,
             'form' => $form->createView(),
         ]);

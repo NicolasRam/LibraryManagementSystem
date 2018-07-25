@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  # Lance un serveur web apache
+  web:
+    build: docker/apache2
+    ports:
+      - 8080:80
+    volumes:
+      - .:/usr/local/apache2/htdocs
+  # Lance un serveur PHP FPM qui sera lié sur apache
+  php:
+    build: docker/php
+    # Récupére les volumes définis sur web
+    volumes:
+      - .:/usr/local/apache2/htdocs
+  # Lance un serveur MySQL
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+  pma:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8081:80
+    links:
+      - db:db
