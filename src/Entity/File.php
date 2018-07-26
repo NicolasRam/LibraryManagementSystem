@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\FileRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="file_type", type="string")
- * @ORM\DiscriminatorMap({"image" = "Image"})
+ * @ORM\DiscriminatorMap({"file" = "File", "image" = "Image"})
  */
 class File
 {

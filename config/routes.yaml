@@ -10,9 +10,14 @@
 #    requirements:
 #        _locale: en|fr
 
-backend_home:
+fronten_home:
     path: /
-#    name : home
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: static/empty.html.twig
+
+backend_home:
+    path: /backend/
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: static/empty.html.twig
