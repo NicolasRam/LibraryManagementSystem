@@ -19,7 +19,7 @@
                                 <h3 class="m-form__heading-title">{{ 'form.section.title.details' | trans({}, 'form') }}</h3>
                             </div>
 
-                            {% if error %}
+                            {% if error is defined %}
                                 <div class="m-section__content">
                                     <div class="m-alert m-alert--outline alert alert-danger alert-dismissible fade show" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -31,8 +31,8 @@
                             {% endif %}
 
                             {% if form.firstName is defined %}
-                            <div class="form-group m-form__group row">
-                                <label class="col-xl-3 col-lg-3 col-form-label">* {{ form_label(form.firstName) }}:</label>
+                            <div class="form-group m-form__group row {% if form_errors(form.firstName) is not empty %}has-danger{% endif %} {% if form_errors(form.firstName) is not empty %}has-success{% endif %}">
+                                <label class="col-xl-3 col-lg-3 col-form-label">{% if form.firstName.vars.required %}* {% endif %}{{ form_label(form.firstName) }}:</label>
 
                                 <div class="col-xl-9 col-lg-9">
                                     {{
@@ -47,10 +47,13 @@
                                         }
                                     )
                                     }}
-                                    {% if false %}
-                                    <input type="text" name="name" class="form-control m-input" placeholder="" value="Nick Stone">
 
-                                    <span class="m-form__help">Please enter your first and last names</span>
+                                    {% if form.firstName.vars.errors|length > 0 %}
+                                        <span class="m-form__help text-danger">
+                                            {% for error in form.firstName.vars.errors %}
+                                                {{ error.message }}
+                                            {% endfor %}
+                                        </span>
                                     {% endif %}
                                 </div>
                             </div>
@@ -58,7 +61,7 @@
 
                             {% if form.lastName is defined %}
                             <div class="form-group m-form__group row">
-                                <label class="col-xl-3 col-lg-3 col-form-label">* {{ form_label(form.lastName) }}:</label>
+                                <label class="col-xl-3 col-lg-3 col-form-label">{% if form.lastName.vars.required %}* {% endif %} {{ form_label(form.lastName) }}:</label>
 
                                 <div class="col-xl-9 col-lg-9">
                                     {{
@@ -67,7 +70,7 @@
                                         {
                                             'attr': {
                                             'class': 'form-control m-input',
-                                            'placeholder': 'form.first_name.placeholder' | trans,
+                                            'placeholder': 'form.last_name.placeholder' | trans,
                                             'autocomplete': 'off',
                                             },
                                         }
@@ -79,7 +82,7 @@
 
                             {% if form.biography is defined %}
                             <div class="form-group m-form__group row">
-                                <label class="col-xl-3 col-lg-3 col-form-label">* {{ form_label(form.biography) }}:</label>
+                                <label class="col-xl-3 col-lg-3 col-form-label">{% if form.biography.vars.required %}* {% endif %} {{ form_label(form.biography) }}:</label>
 
                                 <div class="col-xl-9 col-lg-9">
                                     {{
@@ -88,7 +91,7 @@
                                         {
                                             'attr': {
                                             'class': 'form-control m-input',
-                                            'placeholder': 'form.first_name.placeholder' | trans,
+                                            'placeholder': 'form.biography.placeholder' | trans,
                                             'autocomplete': 'off',
                                             },
                                         }
@@ -100,7 +103,7 @@
 
                             {% if form.birthday is defined %}
                             <div class="form-group m-form__group row">
-                                <label class="col-xl-3 col-lg-3 col-form-label">* {{ form_label(form.birthday) }}:</label>
+                                <label class="col-xl-3 col-lg-3 col-form-label">{% if form.birthday.vars.required %}* {% endif %} {{ form_label(form.birthday) }}:</label>
 
                                 <div class="col-xl-9 col-lg-9">
                                     {{
@@ -431,7 +434,6 @@
 {% block page_javascripts %}
     <script>
         $( "#form_submit_button" ).click(function() {
-            alert('test')
             $("form[name='author']").submit();
         });
     </script>

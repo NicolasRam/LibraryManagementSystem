@@ -1,1 +1,3 @@
-form.first_name.placeholder: __form.first_name.placeholder
+form.first_name.placeholder: Prénom
+form.last_name.placeholder: Nom
+form.biography.placeholder: Biographie

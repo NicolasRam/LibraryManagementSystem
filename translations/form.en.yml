@@ -1,2 +1,3 @@
-page.title.author.new: __page.title.author.new
-form.first_name.placeholder: __form.first_name.placeholder
+form.first_name.placeholder: First name
+form.last_name.placeholder: Last name
+form.biography.placeholder: Biography

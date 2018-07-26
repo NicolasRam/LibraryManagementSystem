@@ -47,12 +47,22 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/backend/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/backend, roles: [ROLE_LIBRARIAN] }
+#        - { path: ^/backend, roles: [ROLE_LIBRARIAN, ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+#        - { path: ^/backend, role: ROLE_LIBERIAN }
+#        - { path: ^/backend, role: ROLE_ADMIN }
+#        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/admin/, role: ROLE_ADMIN }
+#        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/, role: ROLE_USER }
 
-    access_decision_manager:
-            strategy: unanimous
-            allow_if_all_abstain: false
+#    access_decision_manager:
+#            strategy: unanimous
+#            allow_if_all_abstain: false
 
     role_hierarchy:
-        ROLE_LIBRARIAN: ROLE_MEMBER
+#        ROLE_LIBRARIAN: ROLE_MEMBER
         ROLE_ADMIN: ROLE_LIBRARIAN
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
