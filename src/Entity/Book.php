@@ -7,7 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
+ *
+ * @ORM\MappedSuperclass
+ * @ORM\InheritanceType("NONE")
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
+ *
  */
 class Book
 {
@@ -45,14 +49,19 @@ class Book
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="books")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="contributedBooks")
+     * @ORM\JoinTable(name="book_author")
      */
     private $authors;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Pbook", mappedBy="book", cascade={"persist", "remove"})
+     */
+    private $pbook;
 
     public function getId()
     {
@@ -139,6 +148,23 @@ class Book
     public function setAuthors(?array $authors): self
     {
         $this->authors = $authors;
+
+        return $this;
+    }
+
+    public function getPbook(): ?Pbook
+    {
+        return $this->pbook;
+    }
+
+    public function setPbook(Pbook $pbook): self
+    {
+        $this->pbook = $pbook;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $pbook->getBook()) {
+            $pbook->setBook($this);
+        }
 
         return $this;
     }

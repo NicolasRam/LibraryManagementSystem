@@ -9,6 +9,7 @@
 namespace App\DataFixtures;
 
 
+use App\Entity\SuperAdmin;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -34,13 +35,14 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $superAdminUser = new User( ['ROLE_SUPER_USER'] );
+        $superAdminUser = new SuperAdmin( );
 
-        $superAdminUser->setEmail( 'moulaye.c@gmail.com' );
         $superAdminUser->setFirstName( 'Moulaye' );
         $superAdminUser->setLastName( 'Cissé' );
+        $superAdminUser->setEmail( 'moulaye.c@gmail.com' );
         $encoded = $this->encoder->encodePassword($superAdminUser, '123456789');
         $superAdminUser->setPassword( $encoded );
+
         $manager->persist($superAdminUser);
 
         $manager->flush();

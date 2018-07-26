@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorColumn(name="file_type", type="string")
  * @ORM\DiscriminatorMap({"image" = "Image"})
  */
-abstract class File
+class File
 {
     /**
      * @ORM\Id()

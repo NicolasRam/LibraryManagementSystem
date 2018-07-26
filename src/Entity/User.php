@@ -16,22 +16,24 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class User
  *
  * @package App\Entity
+ *
  * @ORM\MappedSuperclass
  * @ORM\Entity( repositoryClass="App\Repository\UserRepository" )
- * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="user_type", type="string")
  * @ORM\DiscriminatorMap
  * (
  *     {
- *          "Member" = "Member",
- *          "Liberian" = "Liberian",
- *          "Admin" = "Admin",
- *          "SuperAdmin" = "SuperAdmin",
+ *          "member" = "Member",
+ *          "liberian" = "Liberian",
+ *          "admin" = "Admin",
+ *          "super_admin" = "SuperAdmin",
  *      }
  * )
  * )
  */
-//abstract class User implements UserInterface
-class User implements UserInterface
+abstract class User implements UserInterface
+//class User implements UserInterface
 {
     const ROLE_MEMBER      = 'ROLE_MEMBER';
     const ROLE_LIBRARIAN   = 'ROLE_LIBRARIAN';
@@ -43,44 +45,39 @@ class User implements UserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
      * @Assert\Length(min=4, max=50)
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
      * @Assert\Length(min=4, max=50)
      */
-    private $lastName;
+    protected $lastName;
 
     /**
      * @ORM\Column(type="string", length=254, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $password;
+    protected $password;
 
     /**
      * @var array
      * @ORM\Column(type="simple_array")
      */
-    private $roles;
-
-    public function __construct( $roles = [self::ROLE_MEMBER] )
-    {
-        $this->roles      = $roles;
-    }
+    protected $roles;
 
     public function getRoles()
     {

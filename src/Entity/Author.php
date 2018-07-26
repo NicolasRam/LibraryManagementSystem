@@ -48,9 +48,35 @@ class Author
      */
     private $books;
 
+    /**
+     * @var Book[]
+     * @ORM\ManyToMany(targetEntity="App\Entity\Book", mappedBy="authors")
+     */
+    private $contributedBooks;
+
+    /**
+     * @return Book[]
+     */
+    public function getContributedBooks()
+    {
+        return $this->contributedBooks;
+    }
+
+    /**
+     * @param mixed $contributedBooks
+     *
+     * @return Author
+     */
+    public function setContributedBooks($contributedBooks)
+    {
+        $this->contributedBooks = $contributedBooks;
+        return $this;
+    }
+
     public function __construct()
     {
         $this->books = new ArrayCollection();
+        $this->contributedBooks = new ArrayCollection();
     }
 
     public function getId()
