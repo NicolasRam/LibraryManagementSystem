@@ -7,3 +7,7 @@
 ###< symfony/framework-bundle ###
 /.idea/
 /uml/*.bak_*
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###

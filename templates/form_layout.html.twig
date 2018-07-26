@@ -16,7 +16,7 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        Sticky Action Bar
+                                        {% block page_content_portlet_head_title 'Sticky Action Bar' %}
                                     </h3>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
 													</span>
                                 </a>
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md">
+                                    <button type="button" id="form_submit_button" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md">
 														<span>
 															<i class="la la-check"></i>
 															<span>Save</span>

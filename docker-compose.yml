@@ -17,6 +17,8 @@ services:
   # Lance un serveur MySQL
   db:
     image: mysql:5.7
+    volumes:
+        - ./dbdata:/var/lib/mysql
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
   pma:

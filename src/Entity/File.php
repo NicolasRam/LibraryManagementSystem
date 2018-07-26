@@ -7,9 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
+ *
  * @ORM\Entity(repositoryClass="App\Repository\FileRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="file_type", type="string")
+ * @ORM\DiscriminatorMap({"image" = "Image"})
  */
-class File
+abstract class File
 {
     /**
      * @ORM\Id()
