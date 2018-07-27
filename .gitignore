@@ -8,6 +8,7 @@
 /app/spool/*
 
 # Cache, session files and logs (Symfony3)
+/var
 /var/cache/*
 /var/logs/*
 /var/sessions/*
@@ -50,5 +51,5 @@
 # .idea
 /.idea/
 
-# phpinfo
-public/phpinfo.php
+.env
+/src/Migrations
