@@ -25,6 +25,7 @@ Requirements for makefile docker procedure:
 - docker ce 18 should be running as service
 - docker-compose version >= 1.21 should be installed
 - port 3366 should be free on your host
+- sysctl -w vm.max_map_count=262144
 
 * env & composer update before first use.
 * First launch will take some times for containers to come up, please be patient
