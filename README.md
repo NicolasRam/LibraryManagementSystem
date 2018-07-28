@@ -20,12 +20,12 @@ LMS - Library Management System
 
 Requirements for the makefile:
 
-- Works with Docker-compose version >= 1.21
+- Docker-compose version >= 1.21 should be installed
 - xterm should be installed (apt xterm)
 - netstat shoud be installed (packages net-tools)
 - docker should be running as service
-
-For accessing to fixtures "make" should be installed
+- For accessing to fixtures "make" should be installed
+- port 3306 should be free
 
 Type "make help" for instructions
 
