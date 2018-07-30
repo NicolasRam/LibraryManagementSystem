@@ -42,9 +42,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
 
             $authors = [];
 
-            /*
-            for ( $i = 0; $i < rand(0, 3); $i++ )
-            {
+            for ( $k = 0; $k < rand(0, 3); $k++ ) {
                 $authors[$i] = new Author();
 
                 $authors[$i]->setFirstName( $fakerFactory->firstName );
@@ -53,23 +51,19 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
 
                 $manager->persist( $authors[$i] );
             }
-            */
 
-            $bookCount = rand(1, 10);
-
-            for ( $i = 0; $i < $bookCount; $i++ )
-            {
+            for ( $k = 0; $k < rand(1, 1); $k++ ) {
                 $book = new Book();
 
-//                $book->setAuthor($author);
-//                $book->setAuthors($authors);
+                $book->setAuthor($author);
+                $book->setAuthors($authors);
 //                $book->setCover($fakerFactory->);
-//                $book->setIsbn($fakerFactory->isbn13);
-//                $book->setPageNumber( rand(100, 200) );
-//                $book->setResume( $fakerFactory->text($maxNbChars = 200) );
-//                $book->setTitle($fakerFactory->isbn13);
+                $book->setIsbn($fakerFactory->isbn13);
+                $book->setPageNumber( rand(100, 200) );
+                $book->setResume( $fakerFactory->text($maxNbChars = 200) );
+                $book->setTitle($fakerFactory->isbn13);
 
-//                $manager->persist($book);
+                $manager->persist($book);
             }
         }
 
