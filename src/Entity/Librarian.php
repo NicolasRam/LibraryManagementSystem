@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity(repositoryClass="App\Repository\LiberianRepository")
  */
-class Liberian extends User
+class Librarian extends User
 {
     public function __construct() {
         $this->roles = [ self::ROLE_LIBRARIAN ];
