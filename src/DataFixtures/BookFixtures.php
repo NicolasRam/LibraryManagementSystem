@@ -1,0 +1,88 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: moulaye
+ * Date: 24/07/18
+ * Time: 16:50
+ */
+
+namespace App\DataFixtures;
+
+use App\Entity\Author;
+use App\Entity\Book;
+use DateTime;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory;
+
+class BookFixtures extends Fixture implements OrderedFixtureInterface
+{
+    public function __construct() {
+    }
+
+    /**
+     * Load data fixtures with the passed EntityManager
+     *
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager)
+    {
+        $fakerFactory = Factory::create('fr_FR');
+
+        for ( $i = 0; $i < 100; $i++ )
+        {
+            $author = new Author();
+
+            $author->setFirstName( $fakerFactory->firstName );
+            $author->setLastName( $fakerFactory->lastName );
+            $author->setBiography( $fakerFactory->text($maxNbChars = 200) );
+
+            $manager->persist( $author );
+
+            $authors = [];
+
+            /*
+            for ( $i = 0; $i < rand(0, 3); $i++ )
+            {
+                $authors[$i] = new Author();
+
+                $authors[$i]->setFirstName( $fakerFactory->firstName );
+                $authors[$i]->setLastName( $fakerFactory->lastName );
+                $authors[$i]->setBiography( $fakerFactory->text($maxNbChars = 200) );
+
+                $manager->persist( $authors[$i] );
+            }
+            */
+
+            $bookCount = rand(1, 10);
+
+            for ( $i = 0; $i < $bookCount; $i++ )
+            {
+                $book = new Book();
+
+//                $book->setAuthor($author);
+//                $book->setAuthors($authors);
+//                $book->setCover($fakerFactory->);
+//                $book->setIsbn($fakerFactory->isbn13);
+//                $book->setPageNumber( rand(100, 200) );
+//                $book->setResume( $fakerFactory->text($maxNbChars = 200) );
+//                $book->setTitle($fakerFactory->isbn13);
+
+//                $manager->persist($book);
+            }
+        }
+
+        $manager->flush();
+    }
+
+    /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    public function getOrder()
+    {
+        return 3;
+    }
+}

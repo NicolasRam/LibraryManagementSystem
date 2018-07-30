@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * (
  *     {
  *          "member" = "Member",
- *          "liberian" = "Liberian",
+ *          "liberian" = "Librarian",
  *          "admin" = "Admin",
  *          "super_admin" = "SuperAdmin",
  *      }

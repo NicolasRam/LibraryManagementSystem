@@ -9,6 +9,10 @@
 namespace App\DataFixtures;
 
 
+use App\Entity\Admin;
+use App\Entity\Author;
+use App\Entity\Librarian;
+use App\Entity\Member;
 use App\Entity\SuperAdmin;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -35,15 +39,45 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $superAdminUser = new SuperAdmin( );
+        $superAdminUser = new SuperAdmin();
 
-        $superAdminUser->setFirstName( 'Moulaye' );
-        $superAdminUser->setLastName( 'Cissé' );
-        $superAdminUser->setEmail( 'moulaye.c@gmail.com' );
+        $superAdminUser->setFirstName( 'SuperAdmin' );
+        $superAdminUser->setLastName( 'SuperAdmin' );
+        $superAdminUser->setEmail( 'superadmin@superadmin.com' );
         $encoded = $this->encoder->encodePassword($superAdminUser, '123456789');
         $superAdminUser->setPassword( $encoded );
 
         $manager->persist($superAdminUser);
+
+        $adminUser = new Admin();
+
+        $adminUser->setFirstName( 'Admin' );
+        $adminUser->setLastName( 'Admin' );
+        $adminUser->setEmail( 'admin@admin.com' );
+        $encoded = $this->encoder->encodePassword($adminUser, '123456789');
+        $adminUser->setPassword( $encoded );
+
+        $manager->persist($adminUser);
+
+        $librarianUser = new Librarian();
+
+        $librarianUser->setFirstName( 'Librarian' );
+        $librarianUser->setLastName( 'Librarian' );
+        $librarianUser->setEmail( 'librarian@librarian.com' );
+        $encoded = $this->encoder->encodePassword($librarianUser, '123456789');
+        $librarianUser->setPassword( $encoded );
+
+        $manager->persist($librarianUser);
+
+        $memberUser = new Member();
+
+        $memberUser->setFirstName( 'Member' );
+        $memberUser->setLastName( 'Member' );
+        $memberUser->setEmail( 'member@member.com' );
+        $encoded = $this->encoder->encodePassword($memberUser, '123456789');
+        $memberUser->setPassword( $encoded );
+
+        $manager->persist($memberUser);
 
         $manager->flush();
     }
