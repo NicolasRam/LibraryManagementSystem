@@ -61,12 +61,14 @@ services:
     volumes:
       - ./docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
   redmine:
-    image: redmine:latest
+    build: docker/redmine
+#    image: redmine:latest
     restart: always
     networks:
       - redmine
     volumes:
       - ./docker/redmine/data:/usr/src/redmine/files
+      - ./docker/redmine/themes/flattheme:/usr/src/redmine/public/themes/flattheme1
     links:
       - db:db
       - smtp:smtp
