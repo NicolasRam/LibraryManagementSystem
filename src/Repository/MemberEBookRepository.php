@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\MemberEbook;
+use App\Entity\MemberEBook;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method MemberEbook|null find($id, $lockMode = null, $lockVersion = null)
- * @method MemberEbook|null findOneBy(array $criteria, array $orderBy = null)
- * @method MemberEbook[]    findAll()
- * @method MemberEbook[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method MemberEBook|null find($id, $lockMode = null, $lockVersion = null)
+ * @method MemberEBook|null findOneBy(array $criteria, array $orderBy = null)
+ * @method MemberEBook[]    findAll()
+ * @method MemberEBook[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MemberEbookRepository extends ServiceEntityRepository
+class MemberEBookRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, MemberEbook::class);
+        parent::__construct($registry, MemberEBook::class);
     }
 
 //    /**
-//     * @return MemberEbook[] Returns an array of MemberEbook objects
+//     * @return MemberEBook[] Returns an array of MemberEBook objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class MemberEbookRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?MemberEbook
+    public function findOneBySomeField($value): ?MemberEBook
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

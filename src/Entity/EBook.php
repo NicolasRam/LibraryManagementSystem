@@ -13,14 +13,14 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Ebook
+ * Class EBook
  *
  * @package App\Entity
  *
- * @ORM\Entity( repositoryClass="App\Repository\EbookRepository" )
+ * @ORM\Entity( repositoryClass="App\Repository\EBookRepository" )
  *
  */
-class Ebook /*extends Book*/
+class EBook /*extends Book*/
 {
     /**
      * @ORM\Id()
@@ -44,13 +44,13 @@ class Ebook /*extends Book*/
     private $file;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MemberEbook", mappedBy="ebook", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberEBook", mappedBy="eBook", orphanRemoval=true)
      */
-    private $memberEbooks;
+    private $memberEBooks;
 
     public function __construct()
     {
-        $this->memberEbooks = new ArrayCollection();
+        $this->memberEBooks = new ArrayCollection();
     }
 
     /**
@@ -64,39 +64,39 @@ class Ebook /*extends Book*/
     /**
      * @param Book $book
      *
-     * @return Ebook
+     * @return EBook
      */
-    public function setBook(Book $book): Ebook
+    public function setBook(Book $book): EBook
     {
         $this->book = $book;
         return $this;
     }
 
     /**
-     * @return Collection|MemberEbook[]
+     * @return Collection|MemberEBook[]
      */
-    public function getMemberEbooks(): Collection
+    public function getMemberEBooks(): Collection
     {
-        return $this->memberEbooks;
+        return $this->memberEBooks;
     }
 
-    public function addMemberEbook(MemberEbook $memberEbook): self
+    public function addMemberEBook(MemberEBook $memberEBook): self
     {
-        if (!$this->memberEbooks->contains($memberEbook)) {
-            $this->memberEbooks[] = $memberEbook;
-            $memberEbook->setEbook($this);
+        if (!$this->memberEBooks->contains($memberEBook)) {
+            $this->memberEBooks[] = $memberEBook;
+            $memberEBook->setEBook($this);
         }
 
         return $this;
     }
 
-    public function removeMemberEbook(MemberEbook $memberEbook): self
+    public function removeMemberEBook(MemberEBook $memberEBook): self
     {
-        if ($this->memberEbooks->contains($memberEbook)) {
-            $this->memberEbooks->removeElement($memberEbook);
+        if ($this->memberEBooks->contains($memberEBook)) {
+            $this->memberEBooks->removeElement($memberEBook);
             // set the owning side to null (unless already changed)
-            if ($memberEbook->getEbook() === $this) {
-                $memberEbook->setEbook(null);
+            if ($memberEBook->getEBook() === $this) {
+                $memberEBook->setEBook(null);
             }
         }
 

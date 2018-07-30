@@ -51,13 +51,13 @@ class Library
     private $closingTime;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Pbook", mappedBy="library")
+     * @ORM\OneToMany(targetEntity="PBook", mappedBy="library")
      */
-    private $pbooks;
+    private $pBooks;
 
     public function __construct()
     {
-        $this->pbooks = new ArrayCollection();
+        $this->pBooks = new ArrayCollection();
     }
 
     public function getId()
@@ -138,30 +138,30 @@ class Library
     }
 
     /**
-     * @return Collection|Pbook[]
+     * @return Collection|PBook[]
      */
-    public function getPbooks(): Collection
+    public function getPBooks(): Collection
     {
-        return $this->pbooks;
+        return $this->pBooks;
     }
 
-    public function addPbook(Pbook $pbook): self
+    public function addPBook(PBook $pBook): self
     {
-        if (!$this->pbooks->contains($pbook)) {
-            $this->pbooks[] = $pbook;
-            $pbook->setLibrary($this);
+        if (!$this->pBooks->contains($pBook)) {
+            $this->pBooks[] = $pBook;
+            $pBook->setLibrary($this);
         }
 
         return $this;
     }
 
-    public function removePbook(Pbook $pbook): self
+    public function removePBook(PBook $pBook): self
     {
-        if ($this->pbooks->contains($pbook)) {
-            $this->pbooks->removeElement($pbook);
+        if ($this->pBooks->contains($pBook)) {
+            $this->pBooks->removeElement($pBook);
             // set the owning side to null (unless already changed)
-            if ($pbook->getLibrary() === $this) {
-                $pbook->setLibrary(null);
+            if ($pBook->getLibrary() === $this) {
+                $pBook->setLibrary(null);
             }
         }
 

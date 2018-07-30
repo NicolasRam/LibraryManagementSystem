@@ -59,9 +59,9 @@ class Book
     private $authors;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Pbook", mappedBy="book", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="PBook", mappedBy="book", cascade={"persist", "remove"})
      */
-    private $pbook;
+    private $pBook;
 
     public function getId()
     {
@@ -152,18 +152,18 @@ class Book
         return $this;
     }
 
-    public function getPbook(): ?Pbook
+    public function getPBook(): ?PBook
     {
-        return $this->pbook;
+        return $this->pBook;
     }
 
-    public function setPbook(Pbook $pbook): self
+    public function setPBook(PBook $pBook): self
     {
-        $this->pbook = $pbook;
+        $this->pBook = $pBook;
 
         // set the owning side of the relation if necessary
-        if ($this !== $pbook->getBook()) {
-            $pbook->setBook($this);
+        if ($this !== $pBook->getBook()) {
+            $pBook->setBook($this);
         }
 
         return $this;
