@@ -1,14 +1,17 @@
-
-###> symfony/framework-bundle ###
 /.env
 /public/bundles/
 /var/
 /vendor/
-###< symfony/framework-bundle ###
 /.idea/
 /uml/*.bak_*
-###> symfony/phpunit-bridge ###
-.phpunit
-/phpunit.xml
-###< symfony/phpunit-bridge ###
-/public/frontend/backup/
+/src/Migrations
+
+###> symfony/webpack-encore-pack ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-pack ###
+
+/docker/elastic/data
+/docker/redmine/data
