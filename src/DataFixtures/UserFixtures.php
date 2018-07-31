@@ -39,6 +39,17 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $user = new User();
+
+        $user->setFirstName( 'Moulaye' );
+        $user->setLastName( 'Cissé' );
+        $user->setEmail( 'moulaye.c@gmail.com' );
+        $user->setRoles( [User::ROLE_SUPER_ADMIN] );
+        $encoded = $this->encoder->encodePassword($user, '123456789');
+        $user->setPassword( $encoded );
+
+        $manager->persist($user);
+
         $superAdminUser = new SuperAdmin();
 
         $superAdminUser->setFirstName( 'SuperAdmin' );

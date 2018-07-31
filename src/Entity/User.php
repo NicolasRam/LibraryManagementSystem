@@ -24,6 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\DiscriminatorMap
  * (
  *     {
+ *          "user" = "User",
  *          "member" = "Member",
  *          "liberian" = "Librarian",
  *          "admin" = "Admin",
@@ -32,7 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * )
  */
-abstract class User implements UserInterface
+class User implements UserInterface
 //class User implements UserInterface
 {
     const ROLE_MEMBER      = 'ROLE_MEMBER';
