@@ -23,11 +23,12 @@ security:
             form_login:
                 login_path: backend_user_login
                 check_path: backend_user_login
+                default_target_path: backend_home
                 username_parameter: backend_user_login[email]
                 password_parameter: backend_user_login[password]
             logout:
-                path: /backend/logout
-                target: /backend
+                path: backend_user_logout
+                target: backend_user_login
         frontend:
             pattern: ^/
             anonymous: true
