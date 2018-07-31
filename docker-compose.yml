@@ -19,6 +19,9 @@ services:
     image: mysql:5.7
     ports:
       - 3366:3306
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
   pma:
@@ -61,12 +64,14 @@ services:
     volumes:
       - ./docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
   redmine:
-    image: redmine:latest
+    build: docker/redmine
+#    image: redmine:latest
     restart: always
     networks:
       - redmine
     volumes:
       - ./docker/redmine/data:/usr/src/redmine/files
+      - ./docker/redmine/themes/flattheme:/usr/src/redmine/public/themes/flattheme1
     links:
       - db:db
       - smtp:smtp

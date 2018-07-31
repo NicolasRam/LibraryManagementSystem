@@ -2,20 +2,20 @@
 
 namespace App\Repository;
 
-use App\Entity\Ebook;
+use App\Entity\EBook;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Ebook|null find($id, $lockMode = null, $lockVersion = null)
- * @method Ebook|null findOneBy(array $criteria, array $orderBy = null)
- * @method Ebook[]    findAll()
- * @method Ebook[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method EBook|null find($id, $lockMode = null, $lockVersion = null)
+ * @method EBook|null findOneBy(array $criteria, array $orderBy = null)
+ * @method EBook[]    findAll()
+ * @method EBook[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EbookRepository extends ServiceEntityRepository
+class EBookRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Ebook::class);
+        parent::__construct($registry, EBook::class);
     }
 }
