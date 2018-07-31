@@ -14,16 +14,7 @@ services:
     # Récupére les volumes définis sur web
     volumes:
       - .:/usr/local/apache2/htdocs
-  # Lance un serveur MySQL
-  db:
-    image: mysql:5.7
-    ports:
-      - 3366:3306
-    volumes:
-      - ./docker/db/data:/var/lib/mysql
 
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
   pma:
     image: phpmyadmin/phpmyadmin
     ports:
@@ -70,19 +61,39 @@ services:
     networks:
       - redmine
     volumes:
-      - ./docker/redmine/data:/usr/src/redmine/files
-      - ./docker/redmine/themes/flattheme:/usr/src/redmine/public/themes/flattheme1
-    links:
-      - db:db
-      - smtp:smtp
+      - ./docker/redmine/data:/usr/src/redmine/sqlite
+#      - ./docker/redmine/themes/flattheme:/usr/src/redmine/public/themes/flattheme1
+#    links:
+#      - db:mysql
+#      - smtp:smtp
     ports:
       - 3000:3000
+#    environment:
+#      REDMINE_DB_MYSQL : db
+#      REDMINE_DB_PORT : 3366
+#      REDMINE_DB_USERNAME : root
+#      REDMINE_DB_PASSWORD :
+#      REDMINE_DB_DATABASE : redmine
+#    depends_on:
+#      - db
+    # Lance un serveur MySQL
+  db:
+    image: mysql:5.7
+    ports:
+    - 3366:3306
+    volumes:
+    - ./docker/db/data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
   smtp:
-    image: panubo/postfix
+    build: docker/smtp
+#    volumes:
+#      -
     ports:
       - 587:587
     environment:
       - MAILNAME=<mydomain>
+
 volumes:
   postgres-data:
 networks:
