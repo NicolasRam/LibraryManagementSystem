@@ -20,9 +20,9 @@ class Member extends User
     private $bookings;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MemberEbook", mappedBy="member", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberEBook", mappedBy="member", orphanRemoval=true)
      */
-    private $memberEbooks;
+    private $memberEBooks;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\MemberSubscription", mappedBy="member", orphanRemoval=true)
@@ -38,7 +38,7 @@ class Member extends User
     public function __construct() {
         $this->roles = [ self::ROLE_MEMBER ];
         $this->bookings = new ArrayCollection();
-        $this->memberEbooks = new ArrayCollection();
+        $this->memberEBooks = new ArrayCollection();
         $this->memberSubscriptions = new ArrayCollection();
     }
 
@@ -74,30 +74,30 @@ class Member extends User
     }
 
     /**
-     * @return Collection|MemberEbook[]
+     * @return Collection|MemberEBook[]
      */
-    public function getMemberEbooks(): Collection
+    public function getMemberEBooks(): Collection
     {
-        return $this->memberEbooks;
+        return $this->memberEBooks;
     }
 
-    public function addMemberEbook(MemberEbook $memberEbook): self
+    public function addMemberEBook(MemberEBook $memberEBook): self
     {
-        if (!$this->memberEbooks->contains($memberEbook)) {
-            $this->memberEbooks[] = $memberEbook;
-            $memberEbook->setMember($this);
+        if (!$this->memberEBooks->contains($memberEBook)) {
+            $this->memberEBooks[] = $memberEBook;
+            $memberEBook->setMember($this);
         }
 
         return $this;
     }
 
-    public function removeMemberEbook(MemberEbook $memberEbook): self
+    public function removeMemberEBook(MemberEBook $memberEBook): self
     {
-        if ($this->memberEbooks->contains($memberEbook)) {
-            $this->memberEbooks->removeElement($memberEbook);
+        if ($this->memberEBooks->contains($memberEBook)) {
+            $this->memberEBooks->removeElement($memberEBook);
             // set the owning side to null (unless already changed)
-            if ($memberEbook->getMember() === $this) {
-                $memberEbook->setMember(null);
+            if ($memberEBook->getMember() === $this) {
+                $memberEBook->setMember(null);
             }
         }
 

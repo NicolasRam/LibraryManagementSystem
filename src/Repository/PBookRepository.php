@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Pbook;
+use App\Entity\PBook;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Pbook|null find($id, $lockMode = null, $lockVersion = null)
- * @method Pbook|null findOneBy(array $criteria, array $orderBy = null)
- * @method Pbook[]    findAll()
- * @method Pbook[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PBook|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PBook|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PBook[]    findAll()
+ * @method PBook[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PbookRepository extends ServiceEntityRepository
+class PBookRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Pbook::class);
+        parent::__construct($registry, PBook::class);
     }
 
 //    /**
-//     * @return Pbook[] Returns an array of Pbook objects
+//     * @return PBook[] Returns an array of PBook objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PbookRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Pbook
+    public function findOneBySomeField($value): ?PBook
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

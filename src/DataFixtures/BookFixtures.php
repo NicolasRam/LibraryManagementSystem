@@ -10,6 +10,9 @@ namespace App\DataFixtures;
 
 use App\Entity\Author;
 use App\Entity\Book;
+use App\Entity\EBook;
+use App\Entity\Library;
+use App\Entity\PBook;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -29,6 +32,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $fakerFactory = Factory::create('fr_FR');
+        $libraries = $manager->getRepository(Library::class)->findAll();
 
         for ( $i = 0; $i < 100; $i++ )
         {
@@ -64,6 +68,29 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                 $book->setTitle($fakerFactory->isbn13);
 
                 $manager->persist($book);
+
+                foreach ( $libraries as $library )
+                {
+                    if( 3 !== rand(0, 5) ) {
+                        for( $m = 0; $m < rand(1, 10); $m++ ) {
+                            $pBook = new PBook();
+
+                            $pBook->setBook($book);
+                            $pBook->setLibrary($library);
+                            $pBook->setStatus('available');
+
+                            $manager->persist($pBook);
+                        }
+                    }
+
+                    if( 2 !== rand(0, 5) ) {
+                        $eBook = new EBook();
+
+                        $eBook->setBook($book);
+
+                        $manager->persist($eBook);
+                    }
+                }
             }
         }
 

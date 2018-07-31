@@ -70,5 +70,7 @@
         "symfony": {
             "allow-contrib": false
         }
-    }
+    },
+    "name": "",
+    "description": ""
 }

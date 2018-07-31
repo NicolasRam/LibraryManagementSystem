@@ -8,15 +8,29 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Library;
+use App\Entity\Format;
+use App\Entity\SubFormat;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 
-class LibraryFixtures extends Fixture implements OrderedFixtureInterface
+class FormatFixtures extends Fixture implements OrderedFixtureInterface
 {
+    private const FORMATS = [
+        "Livre",
+        "Livre poche",
+        "Livre broché",
+        "Revue, journal",
+        "beau-livre",
+        "Livre + CD",
+        "Livre + DVD",
+        "Bande dessinée",
+        "Luxe",
+        "CD audio",
+    ];
+
     public function __construct() {
     }
 
@@ -27,22 +41,14 @@ class LibraryFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $fakerFactory = Factory::create('fr_FR');
-
-        for ( $i = 0; $i < 10; $i++ )
+        foreach ( self::FORMATS as $formatName )
         {
-            $library = new Library();
+            $format = new Format();
 
-            $library->setName( $fakerFactory->company );
-            $library->setEmail( $fakerFactory->email );
-            $library->setAddress( $fakerFactory->address );
-            $library->setOpeningDate( DateTime::createFromFormat("H:i:s", "09:30:00") );
-            $library->setClosingTime( DateTime::createFromFormat("H:i:s", "19:30:00") );
-            $library->setPhone( $fakerFactory->phoneNumber );
+            $format->setName( $formatName );
 
-            $manager->persist($library);
+            $manager->persist($format);
         }
-
 
         $manager->flush();
     }
@@ -54,6 +60,6 @@ class LibraryFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 2;
+        return -1;
     }
 }

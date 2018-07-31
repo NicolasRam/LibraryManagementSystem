@@ -9,9 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass="App\Repository\PbookRepository")
+ * @ORM\Entity(repositoryClass="PBookRepository")
  */
-class Pbook
+class PBook
 {
     /**
      * @ORM\Id()
@@ -21,7 +21,7 @@ class Pbook
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Book", inversedBy="pbook", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBook", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $book;
@@ -32,12 +32,12 @@ class Pbook
     private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="pbook")
+     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="pBook")
      */
     private $bookings;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Library", inversedBy="pbooks")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Library", inversedBy="pBooks")
      */
     private $library;
 
@@ -87,7 +87,7 @@ class Pbook
     {
         if (!$this->bookings->contains($booking)) {
             $this->bookings[] = $booking;
-            $booking->setPbook($this);
+            $booking->setPBook($this);
         }
 
         return $this;
@@ -98,8 +98,8 @@ class Pbook
         if ($this->bookings->contains($booking)) {
             $this->bookings->removeElement($booking);
             // set the owning side to null (unless already changed)
-            if ($booking->getPbook() === $this) {
-                $booking->setPbook(null);
+            if ($booking->getPBook() === $this) {
+                $booking->setPBook(null);
             }
         }
 

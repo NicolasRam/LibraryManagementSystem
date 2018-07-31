@@ -7,9 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass="App\Repository\MemberEbookRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\MemberEBookRepository")
  */
-class MemberEbook
+class MemberEBook
 {
     /**
      * @ORM\Id()
@@ -24,16 +24,16 @@ class MemberEbook
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Member", inversedBy="memberEbooks")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Member", inversedBy="memberEBooks")
      * @ORM\JoinColumn(nullable=false)
      */
     private $member;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Ebook", inversedBy="memberEbooks")
+     * @ORM\ManyToOne(targetEntity="App\Entity\EBook", inversedBy="memberEBooks")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $ebook;
+    private $eBook;
 
     /**
      * @ORM\Column(type="integer")
@@ -69,14 +69,14 @@ class MemberEbook
         return $this;
     }
 
-    public function getEbook(): ?Ebook
+    public function getEBook(): ?EBook
     {
-        return $this->ebook;
+        return $this->eBook;
     }
 
-    public function setEbook(?Ebook $ebook): self
+    public function setEBook(?EBook $eBook): self
     {
-        $this->ebook = $ebook;
+        $this->eBook = $eBook;
 
         return $this;
     }
