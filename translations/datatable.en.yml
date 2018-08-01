@@ -1,0 +1,4 @@
+datatable.id: ID
+datatable.name: Name
+datatable.actions: ACTIONS
+datatable.no_records_found: 'no records found'
