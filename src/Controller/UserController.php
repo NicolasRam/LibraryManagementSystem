@@ -72,15 +72,4 @@ class UserController extends Controller
             ]
         );
     }
-
-    /**
-     * @Route({
-     *     "fr": "/deconnexion",
-     *     "en": "/logout"
-     * }, name="backend_user_logout")
-     */
-    public function logout()
-    {
-    }
-
 }

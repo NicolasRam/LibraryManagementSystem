@@ -1,4 +1,4 @@
-FROM redmine
+FROM redmine:3.4
 
 ENV DIRPATH /home/neo/share/websites/LibraryManagementSystem
 USER root

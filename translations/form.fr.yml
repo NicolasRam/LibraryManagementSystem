@@ -1,3 +1,5 @@
 form.first_name.placeholder: Prénom
 form.last_name.placeholder: Nom
 form.biography.placeholder: Biographie
+form.section.title.details: __form.section.title.details
+form.error.danger: __form.error.danger

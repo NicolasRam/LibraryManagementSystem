@@ -16,8 +16,14 @@ fronten_home:
     defaults:
         template: static/empty.html.twig
 
-backend_home:
-    path: /backend/
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: static/empty.html.twig
+#backend_home:
+#    path: /backend/
+#    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#    defaults:
+#        template: static/empty.html.twig
+
+
+backend_user_logout:
+    path:
+        fr: /backend/deconnexion
+        en: /backend/logout

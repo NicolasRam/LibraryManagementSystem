@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AuthorController extends Controller
 {
     /**
-     * @Route("/", name="author_index", methods="GET")
+     * @Route("/", name="backend_author_index", methods="GET")
      */
     public function index(AuthorRepository $authorRepository): Response
     {
@@ -37,7 +37,7 @@ class AuthorController extends Controller
             $em->persist($author);
             $em->flush();
 
-            return $this->redirectToRoute('author_index');
+            return $this->redirectToRoute('backend_author_index');
         }
 
         return $this->render('backend/author/new.html.twig', [
@@ -85,6 +85,6 @@ class AuthorController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('author_index');
+        return $this->redirectToRoute('backend_author_index');
     }
 }
