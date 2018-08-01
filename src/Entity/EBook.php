@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity( repositoryClass="App\Repository\EBookRepository" )
  *
  */
-class EBook /*extends Book*/
+class EBook
 {
     /**
      * @ORM\Id()
