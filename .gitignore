@@ -17,3 +17,4 @@ yarn-error.log
 /docker/redmine/data
 /docker/db/data/
 !/node_modules/
+.directory

@@ -62,7 +62,6 @@ services:
       - redmine
     volumes:
       - ./docker/redmine/data:/usr/src/redmine/sqlite
-#      - ./docker/redmine/themes/flattheme:/usr/src/redmine/public/themes/flattheme1
 #    links:
 #      - db:mysql
 #      - smtp:smtp
