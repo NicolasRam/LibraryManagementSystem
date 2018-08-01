@@ -15,6 +15,9 @@ help:
 	@echo "Docker procedure"
 	@echo "-----------------------"
 	@echo ""
+	@echo "Run All containers:"
+	@echo "    make start"
+	@echo ""
 	@echo "Run fixtures to create & populate bdd library:"
 	@echo "    make fixtures"
 	@echo ""
@@ -25,6 +28,11 @@ help:
 	@echo "    make status"
 	@echo ""
 
+start:
+	@$(call cyan, "We will check and remove all containers and volumes")
+	@docker-compose stop && docker-compose rm -f
+	@$(call cyan, "And start all containers")
+	@xterm -e docker-compose up --build &
 
 stop:
 	@$(call cyan, "We will check and remove all containers and volumes")
