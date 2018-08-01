@@ -1,24 +1,71 @@
 security:
+    encoders:
+        App\Entity\user: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
+        backend_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+        frontend_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+        backend:
+            anonymous: ~
+            pattern: ^/backend
+            provider: backend_user_provider
+            form_login:
+                login_path: backend_user_login
+                check_path: backend_user_login
+                default_target_path: backend_home
+                username_parameter: backend_user_login[email]
+                password_parameter: backend_user_login[password]
+            logout:
+                path: backend_user_logout
+                target: backend_user_login
+        frontend:
+            pattern: ^/
             anonymous: true
-
-            # activate different ways to authenticate
-
-            # http_basic: true
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: true
-            # https://symfony.com/doc/current/security/form_login_setup.html
+            provider: frontend_user_provider
+            form_login:
+                login_path: frontend_user_login
+                check_path: frontend_user_login
+                username_parameter: app_login[email]
+                password_parameter: app_login[password]
+            logout:
+                path: /logout
+                target: /
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/backend/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/backend, roles: [ROLE_LIBRARIAN] }
+        - { path: ^/backend, roles: [ROLE_ADMIN] }
+        - { path: ^/backend, roles: [ROLE_SUPER_ADMIN] }
+#        - { path: ^/backend, roles: [ROLE_LIBRARIAN, ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+#        - { path: ^/backend, role: ROLE_LIBERIAN }
+#        - { path: ^/backend, role: ROLE_ADMIN }
+#        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/admin/, role: ROLE_ADMIN }
+#        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/, role: ROLE_USER }
+
+#    access_decision_manager:
+#            strategy: unanimous
+#            allow_if_all_abstain: false
+
+    role_hierarchy:
+#        ROLE_LIBRARIAN: ROLE_MEMBER
+        ROLE_ADMIN: ROLE_LIBRARIAN
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
