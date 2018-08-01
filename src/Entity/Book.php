@@ -8,8 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource()
  *
- * @ORM\MappedSuperclass
- * @ORM\InheritanceType("NONE")
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  *
  */
@@ -62,6 +60,11 @@ class Book
      * @ORM\OneToMany(targetEntity="PBook", mappedBy="book", cascade={"persist", "remove"})
      */
     private $pBook;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EBook", mappedBy="book", cascade={"persist", "remove"})
+     */
+    private $eBook;
 
     public function getId()
     {
@@ -164,6 +167,23 @@ class Book
         // set the owning side of the relation if necessary
         if ($this !== $pBook->getBook()) {
             $pBook->setBook($this);
+        }
+
+        return $this;
+    }
+
+    public function getEBook(): ?EBook
+    {
+        return $this->eBook;
+    }
+
+    public function setEBook(EBook $eBook): self
+    {
+        $this->eBook = $eBook;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $eBook->getBook()) {
+            $eBook->setBook($this);
         }
 
         return $this;
