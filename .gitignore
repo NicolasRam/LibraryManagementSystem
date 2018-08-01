@@ -28,6 +28,5 @@ yarn-error.log
 /src/Migrations
 
 /docker/elastic/data
-/docker/redmine/data
 /docker/db/data/
 .directory
