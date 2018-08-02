@@ -30,3 +30,7 @@ yarn-error.log
 /docker/elastic/data
 /docker/db/data/
 .directory
+uml/.LMS.vpp.lck
+tests/Entity/.BookTest.php.swp
+tests/Entity/.SuperAdminTest.php.swp
+src/Entity/.Book.php.swp
