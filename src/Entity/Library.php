@@ -145,7 +145,7 @@ class Library
         return $this->pBooks;
     }
 
-    public function addPBook(PBook $pBook): self
+    public function addPBook(old $pBook): self
     {
         if (!$this->pBooks->contains($pBook)) {
             $this->pBooks[] = $pBook;
@@ -155,7 +155,7 @@ class Library
         return $this;
     }
 
-    public function removePBook(PBook $pBook): self
+    public function removePBook(old $pBook): self
     {
         if ($this->pBooks->contains($pBook)) {
             $this->pBooks->removeElement($pBook);
