@@ -33,3 +33,6 @@ framework:
                 reserve:
                     from: outside
                     to: reserved
+                        retire:
+                    from: outside
+                    to:   not_available
