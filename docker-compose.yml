@@ -5,40 +5,40 @@ services:
   web:
     build: docker/apache2
     ports:
-    - 8080:80
+      - 8080:80
     volumes:
-    - .:/usr/local/apache2/htdocs
+      - .:/usr/local/apache2/htdocs
 
   # Lance un serveur PHP FPM qui sera lié sur apache
   php:
     build: docker/php
     # Récupére les volumes définis sur web
     volumes:
-    - .:/usr/local/apache2/htdocs
+      - .:/usr/local/apache2/htdocs
 
   # Lance un serveur MySQL
   db:
     image: mysql:5.7
     ports:
-    - 3366:3306
+      - 3366:3306
     volumes:
-    - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/data:/var/lib/mysql
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
   pma:
     image: phpmyadmin/phpmyadmin
     ports:
-    - 8081:80
+      - 8081:80
     links:
-    - db:db
+      - db:db
 
   node:
     build: docker/node
     ports:
-    - 7000:7000
+      - 7000:7000
     volumes:
-    - .:/var/www/symfony
+      - .:/var/www/symfony
     command: "yarn run dev-server --port 7000 --host 0.0.0.0"
 
   elasticsearch:
@@ -88,8 +88,30 @@ services:
     environment:
       - MAILNAME=<mydomain>
 
-volumes:
-  postgres-data:
+  jenkins:
+    build: docker/jenkins
+    ports:
+      - 8082:8080
+      - 50000:50000
+    volumes:
+      - ./docker/jenkins/data:/var/jenkins_home
+      - /usr/bin/docker:/usr/bin/docker
+    environment:
+      - DOCKER_HOST=tcp://socat:2375
+    restart: always
+
+  socat:
+    build: docker/socat
+    command: TCP4-LISTEN:2375,fork,reuseaddr UNIX-CONNECT:/var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    expose:
+      - "2375"
+
+#volumes:
+#  postgres-data:
+#  jenkins_home:
+#    external: true
 networks:
   redmine:
     driver: bridge
