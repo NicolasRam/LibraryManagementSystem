@@ -2,21 +2,21 @@
 framework:
     workflows:
         pbook_status:
-            type: 'workflow' # or 'state_machine'
-            audit_trail: 'enabled'
+            type: workflow # or 'state_machine'
+#            audit_trail: [enabled]
             marking_store:
-                type: 'single_state' # or 'single_state'
+                type: single_state # or 'single_state'
                 arguments:
-                - 'currentPlace'
+                    - currentPlace
             supports:
-            - App\Entity\PBook
+                - App\Entity\PBook
             initial_place: waiting
             places:
-            - waiting
-            - not_available
-            - inside
-            - outside
-            - reserved
+                - waiting
+                - not_available
+                - inside
+                - outside
+                - reserved
             transitions:
                 disposal:
                     from: waiting

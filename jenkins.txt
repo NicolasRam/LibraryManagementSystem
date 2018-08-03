@@ -1,0 +1,1696 @@
+Attaching to librarymanagementsystem_smtp_1, librarymanagementsystem_node_1, librarymanagementsystem_php_1, librarymanagementsystem_socat_1, librarymanagementsystem_redmine_1, librarymanagementsystem_jenkins_1, librarymanagementsystem_elasticsearch_1, librarymanagementsystem_db_1, librarymanagementsystem_web_1, librarymanagementsystem_pma_1, librarymanagementsystem_kibana_1
+[36msmtp_1           |[0m smtp >> Warning: MYNETWORKS not specified, allowing all private IPs
+[36msmtp_1           |[0m Running command /usr/local/bin/s6-svscan /etc/s6
+[36msmtp_1           |[0m syslogd >> Setting syslogd output to /dev/stdout
+[36msmtp_1           |[0m dkim >> USE_DKIM = no. Not starting opendkim.
+[36msmtp_1           |[0m Aug  3 12:04:50 syslogd started: BusyBox v1.22.1
+[36msmtp_1           |[0m FINISH /etc/s6/opendkim WITH: 256 15
+[36msmtp_1           |[0m postfix >> Setting smtpd_use_tls to yes
+[36msmtp_1           |[0m postfix >> Generating snakeoil SSL cert
+[36msmtp_1           |[0m postfix >> Setting smtpd_tls parameters
+[36msmtp_1           |[0m postfix >> Setting mailname to <mydomain>
+[36msmtp_1           |[0m postfix >> Setting mynetworks to 127.0.0.0/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16
+[36msmtp_1           |[0m postfix >> Setting message_size_limit to 15728640
+[36msmtp_1           |[0m postfix >> Setting always_add_missing_headers to no
+[36msmtp_1           |[0m postfix >> Setting inet_protocols to all
+[36msmtp_1           |[0m Starting Postfix Mail Transport Agent: postfixAug  3 12:04:53 postmulti[49]: warning: valid_hostname: invalid character 60(decimal): <mydomain>
+[36msmtp_1           |[0m Aug  3 12:04:53 postmulti[49]: fatal: file /etc/postfix/main.cf: parameter myhostname: bad parameter value: <mydomain>
+[36msmtp_1           |[0m .
+[33mnode_1           |[0m yarn run v1.7.0
+[33mnode_1           |[0m $ encore dev-server --port 7000 --host 0.0.0.0
+[33mnode_1           |[0m Running webpack-dev-server ...
+[33mnode_1           |[0m 
+[32mphp_1            |[0m [03-Aug-2018 12:04:51] NOTICE: fpm is running, pid 1
+[32mphp_1            |[0m [03-Aug-2018 12:04:51] NOTICE: ready to handle connections
+[31mredmine_1        |[0m The Gemfile's dependencies are satisfied
+[36;1melasticsearch_1  |[0m OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.610080Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.612522Z 0 [Note] mysqld (mysqld 5.7.22) starting as process 1 ...
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.617239Z 0 [Note] InnoDB: PUNCH HOLE support available
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.617395Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.617509Z 0 [Note] InnoDB: Uses event mutexes
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.617593Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.617678Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.617772Z 0 [Note] InnoDB: Using Linux native AIO
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.622759Z 0 [Note] InnoDB: Number of pools: 1
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.623149Z 0 [Note] InnoDB: Using CPU crc32 instructions
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.626570Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.642000Z 0 [Note] InnoDB: Completed initialization of buffer pool
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.647361Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.691221Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.873923Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+[33;1mdb_1             |[0m 2018-08-03T12:04:52.874037Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.014551Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.015689Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.015709Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.016122Z 0 [Note] InnoDB: Waiting for purge to start
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.068406Z 0 [Note] InnoDB: 5.7.22 started; log sequence number 13881778
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.073221Z 0 [Note] Plugin 'FEDERATED' is disabled.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.074357Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.170173Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.176560Z 0 [Warning] CA certificate ca.pem is self signed.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.200668Z 0 [Note] InnoDB: Buffer pool(s) load completed at 180803 12:04:53
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.201698Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.204480Z 0 [Note] IPv6 is available.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.204520Z 0 [Note]   - '::' resolves to '::';
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.204545Z 0 [Note] Server socket created on IP: '::'.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.208235Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.224592Z 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.224642Z 0 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.224658Z 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.225113Z 0 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.225137Z 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.225500Z 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.244778Z 0 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.244992Z 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.265237Z 0 [Note] Event Scheduler: Loaded 0 events
+[33;1mdb_1             |[0m 2018-08-03T12:04:53.266643Z 0 [Note] mysqld: ready for connections.
+[33;1mdb_1             |[0m Version: '5.7.22'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+[32;1mweb_1            |[0m AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.22.0.7. Set the 'ServerName' directive globally to suppress this message
+[32;1mweb_1            |[0m AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.22.0.7. Set the 'ServerName' directive globally to suppress this message
+[32;1mweb_1            |[0m [Fri Aug 03 12:04:52.129257 2018] [mpm_event:notice] [pid 1:tid 140363511170944] AH00489: Apache/2.4.34 (Unix) configured -- resuming normal operations
+[32;1mweb_1            |[0m [Fri Aug 03 12:04:52.135045 2018] [core:notice] [pid 1:tid 140363511170944] AH00094: Command line: 'httpd -D FOREGROUND'
+[35;1mpma_1            |[0m /usr/lib/python2.7/site-packages/supervisor/options.py:298: UserWarning: Supervisord is running as root and it is searching for its configuration file in default locations (including its current working directory); you probably want to specify a "-c" argument specifying an absolute path to a configuration file for improved security.
+[35;1mpma_1            |[0m   'Supervisord is running as root and it is searching '
+[35;1mpma_1            |[0m 2018-08-03 12:04:54,296 CRIT Supervisor running as root (no user in config file)
+[35;1mpma_1            |[0m 2018-08-03 12:04:54,296 INFO Included extra file "/etc/supervisor.d/nginx.ini" during parsing
+[35;1mpma_1            |[0m 2018-08-03 12:04:54,298 INFO Included extra file "/etc/supervisor.d/php.ini" during parsing
+[35;1mpma_1            |[0m 2018-08-03 12:04:54,338 INFO RPC interface 'supervisor' initialized
+[35;1mpma_1            |[0m 2018-08-03 12:04:54,342 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+[35;1mpma_1            |[0m 2018-08-03 12:04:54,359 INFO supervisord started with pid 1
+[35;1mpma_1            |[0m 2018-08-03 12:04:55,364 INFO spawned: 'php-fpm' with pid 15
+[35;1mpma_1            |[0m 2018-08-03 12:04:55,367 INFO spawned: 'nginx' with pid 16
+[35;1mpma_1            |[0m 2018-08-03 12:04:56,602 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+[35;1mpma_1            |[0m 2018-08-03 12:04:56,603 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+[34mjenkins_1        |[0m Running from: /usr/share/jenkins/jenkins.war
+[34mjenkins_1        |[0m webroot: EnvVars.masterEnvVars.get("JENKINS_HOME")
+[36msmtp_1           |[0m cat: /var/spool/postfix/pid/master.pid: No such file or directory
+[36msmtp_1           |[0m Stopping Postfix Mail Transport Agent: postfixAug  3 12:05:04 postmulti[58]: warning: valid_hostname: invalid character 60(decimal): <mydomain>
+[36msmtp_1           |[0m Aug  3 12:05:04 postmulti[58]: fatal: file /etc/postfix/main.cf: parameter myhostname: bad parameter value: <mydomain>
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:04 PM org.eclipse.jetty.util.log.Log initialized
+[34mjenkins_1        |[0m INFO: Logging initialized @4019ms to org.eclipse.jetty.util.log.JavaUtilLog
+[36msmtp_1           |[0m .
+[36msmtp_1           |[0m Aug  3 12:05:05 syslogd exiting
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:05 PM winstone.Logger logInternal
+[34mjenkins_1        |[0m INFO: Beginning extraction from war file
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:05 PM org.eclipse.jetty.server.handler.ContextHandler setContextPath
+[34mjenkins_1        |[0m WARNING: Empty contextPath
+[36mlibrarymanagementsystem_smtp_1 exited with code 0
+[0m[34mjenkins_1        |[0m Aug 03, 2018 12:05:06 PM org.eclipse.jetty.server.Server doStart
+[34mjenkins_1        |[0m INFO: jetty-9.4.z-SNAPSHOT, build timestamp: 2017-11-21T21:27:37Z, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:07,137][INFO ][o.e.n.Node               ] [] initializing ...
+[33mnode_1           |[0m  DONE  Compiled successfully in 9146ms12:05:07 PM
+[33mnode_1           |[0m 
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:07,833][INFO ][o.e.e.NodeEnvironment    ] [HKV8jIe] using [1] data paths, mounts [[/usr/share/elasticsearch/data (/dev/sda6)]], net usable_space [14.6gb], net total_space [27.3gb], types [ext4]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:07,834][INFO ][o.e.e.NodeEnvironment    ] [HKV8jIe] heap size [990.7mb], compressed ordinary object pointers [true]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:07,902][INFO ][o.e.n.Node               ] [HKV8jIe] node name derived from node ID [HKV8jIeDQ5KEr9Q5CZmI_w]; set [node.name] to override
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:07,933][INFO ][o.e.n.Node               ] [HKV8jIe] version[6.3.2], pid[1], build[default/tar/053779d/2018-07-20T05:20:23.451332Z], OS[Linux/4.9.0-7-amd64/amd64], JVM["Oracle Corporation"/OpenJDK 64-Bit Server VM/10.0.2/10.0.2+13]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:07,933][INFO ][o.e.n.Node               ] [HKV8jIe] JVM arguments [-Xms1g, -Xmx1g, -XX:+UseConcMarkSweepGC, -XX:CMSInitiatingOccupancyFraction=75, -XX:+UseCMSInitiatingOccupancyOnly, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.io.tmpdir=/tmp/elasticsearch.mCohCJh2, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Djava.locale.providers=COMPAT, -XX:UseAVX=2, -Des.cgroups.hierarchy.override=/, -Des.path.home=/usr/share/elasticsearch, -Des.path.conf=/usr/share/elasticsearch/config, -Des.distribution.flavor=default, -Des.distribution.type=tar]
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:08 PM org.eclipse.jetty.webapp.StandardDescriptorProcessor visitServlet
+[34mjenkins_1        |[0m INFO: NO JSP Support for /, did not find org.eclipse.jetty.jsp.JettyJspServlet
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:09 PM org.eclipse.jetty.server.session.DefaultSessionIdManager doStart
+[34mjenkins_1        |[0m INFO: DefaultSessionIdManager workerName=node0
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:09 PM org.eclipse.jetty.server.session.DefaultSessionIdManager doStart
+[34mjenkins_1        |[0m INFO: No SessionScavenger set, using defaults
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:09 PM org.eclipse.jetty.server.session.HouseKeeper startScavenging
+[34mjenkins_1        |[0m INFO: Scavenging every 660000ms
+[34mjenkins_1        |[0m Jenkins home directory: /var/jenkins_home found at: EnvVars.masterEnvVars.get("JENKINS_HOME")
+[31mredmine_1        |[0m [2018-08-03 12:05:12] INFO  WEBrick 1.3.1
+[31mredmine_1        |[0m [2018-08-03 12:05:12] INFO  ruby 2.4.4 (2018-03-28) [x86_64-linux]
+[31mredmine_1        |[0m [2018-08-03 12:05:12] INFO  WEBrick::HTTPServer#start: pid=1 port=3000
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:13 PM org.eclipse.jetty.server.handler.ContextHandler doStart
+[34mjenkins_1        |[0m INFO: Started w.@1a4927d6{/,file:///var/jenkins_home/war/,AVAILABLE}{/var/jenkins_home/war}
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:13 PM org.eclipse.jetty.server.AbstractConnector doStart
+[34mjenkins_1        |[0m INFO: Started ServerConnector@6933b6c6{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:13 PM org.eclipse.jetty.server.Server doStart
+[34mjenkins_1        |[0m INFO: Started @12916ms
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:13 PM winstone.Logger logInternal
+[34mjenkins_1        |[0m INFO: Winstone Servlet Engine v4.0 running: controlPort=disabled
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:18 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:19 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,075][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [aggs-matrix-stats]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,080][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [analysis-common]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,081][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [ingest-common]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,081][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [lang-expression]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,082][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [lang-mustache]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,082][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [lang-painless]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,082][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [mapper-extras]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,083][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [parent-join]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,083][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [percolator]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,085][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [rank-eval]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,086][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [reindex]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,087][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [repository-url]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,088][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [transport-netty4]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,089][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [tribe]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,090][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-core]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,091][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-deprecation]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,093][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-graph]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,094][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-logstash]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,095][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-ml]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,096][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-monitoring]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,097][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-rollup]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,098][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-security]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,099][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-sql]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,100][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-upgrade]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,101][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded module [x-pack-watcher]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,103][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded plugin [ingest-geoip]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:22,106][INFO ][o.e.p.PluginsService     ] [HKV8jIe] loaded plugin [ingest-user-agent]
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:43,245][INFO ][o.e.x.m.j.p.l.CppLogMessageHandler] [controller/92] [Main.cc@109] controller (64 bit): Version 6.3.2 (Build 903094f295d249) Copyright (c) 2018 Elasticsearch BV
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:43Z","tags":["status","plugin:kibana@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from uninitialized to green - Ready","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:43Z","tags":["status","plugin:elasticsearch@6.3.2","info"],"pid":1,"state":"yellow","message":"Status changed from uninitialized to yellow - Waiting for Elasticsearch","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:43Z","tags":["status","plugin:xpack_main@6.3.2","info"],"pid":1,"state":"yellow","message":"Status changed from uninitialized to yellow - Waiting for Elasticsearch","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:43Z","tags":["status","plugin:searchprofiler@6.3.2","info"],"pid":1,"state":"yellow","message":"Status changed from uninitialized to yellow - Waiting for Elasticsearch","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:43Z","tags":["status","plugin:ml@6.3.2","info"],"pid":1,"state":"yellow","message":"Status changed from uninitialized to yellow - Waiting for Elasticsearch","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:43Z","tags":["status","plugin:tilemap@6.3.2","info"],"pid":1,"state":"yellow","message":"Status changed from uninitialized to yellow - Waiting for Elasticsearch","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:43Z","tags":["status","plugin:watcher@6.3.2","info"],"pid":1,"state":"yellow","message":"Status changed from uninitialized to yellow - Waiting for Elasticsearch","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:43Z","tags":["status","plugin:license_management@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from uninitialized to green - Ready","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:43Z","tags":["status","plugin:index_management@6.3.2","info"],"pid":1,"state":"yellow","message":"Status changed from uninitialized to yellow - Waiting for Elasticsearch","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:timelion@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from uninitialized to green - Ready","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:grokdebugger@6.3.2","info"],"pid":1,"state":"yellow","message":"Status changed from uninitialized to yellow - Waiting for Elasticsearch","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:dashboard_mode@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from uninitialized to green - Ready","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:logstash@6.3.2","info"],"pid":1,"state":"yellow","message":"Status changed from uninitialized to yellow - Waiting for Elasticsearch","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:apm@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from uninitialized to green - Ready","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:console@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from uninitialized to green - Ready","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:console_extensions@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from uninitialized to green - Ready","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:metrics@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from uninitialized to green - Ready","prevState":"uninitialized","prevMsg":"uninitialized"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["listening","info"],"pid":1,"message":"Server running at http://0.0.0.0:5601"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["error","elasticsearch","admin"],"pid":1,"message":"Request error, retrying\nHEAD http://elasticsearch:9200/ => connect ECONNREFUSED 172.22.0.9:9200"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"No living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:xpack_main@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from yellow to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"yellow","prevMsg":"Waiting for Elasticsearch"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:searchprofiler@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from yellow to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"yellow","prevMsg":"Waiting for Elasticsearch"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:ml@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from yellow to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"yellow","prevMsg":"Waiting for Elasticsearch"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:tilemap@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from yellow to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"yellow","prevMsg":"Waiting for Elasticsearch"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:watcher@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from yellow to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"yellow","prevMsg":"Waiting for Elasticsearch"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:index_management@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from yellow to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"yellow","prevMsg":"Waiting for Elasticsearch"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:grokdebugger@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from yellow to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"yellow","prevMsg":"Waiting for Elasticsearch"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:logstash@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from yellow to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"yellow","prevMsg":"Waiting for Elasticsearch"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:elasticsearch@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from yellow to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"yellow","prevMsg":"Waiting for Elasticsearch"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["error","elasticsearch","data"],"pid":1,"message":"Request error, retrying\nGET http://elasticsearch:9200/_xpack => connect ECONNREFUSED 172.22.0.9:9200"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["warning","elasticsearch","data"],"pid":1,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["warning","elasticsearch","data"],"pid":1,"message":"No living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["license","warning","xpack"],"pid":1,"message":"License information from the X-Pack plugin could not be obtained from Elasticsearch for the [data] cluster. Error: No Living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:xpack_main@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:searchprofiler@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:ml@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:tilemap@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:watcher@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:index_management@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:grokdebugger@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:44Z","tags":["status","plugin:logstash@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:45,758][INFO ][o.e.d.DiscoveryModule    ] [HKV8jIe] using discovery type [zen]
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:47Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:47Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"No living connections"}
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:48,849][INFO ][o.e.n.Node               ] [HKV8jIe] initialized
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:48,850][INFO ][o.e.n.Node               ] [HKV8jIe] starting ...
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:49 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:49 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:49Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:49Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"No living connections"}
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:49,707][INFO ][o.e.t.TransportService   ] [HKV8jIe] publish_address {172.22.0.9:9300}, bound_addresses {0.0.0.0:9300}
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:49,767][INFO ][o.e.b.BootstrapChecks    ] [HKV8jIe] bound or publishing to a non-loopback address, enforcing bootstrap checks
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:51 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:51 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:52 PM jenkins.util.groovy.GroovyHookScript execute
+[34mjenkins_1        |[0m INFO: Executing /var/jenkins_home/init.groovy.d/tcp-slave-agent-port.groovy
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:52 PM hudson.model.AsyncPeriodicWork$1 run
+[34mjenkins_1        |[0m INFO: Started Download metadata
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:52 PM hudson.model.AsyncPeriodicWork$1 run
+[34mjenkins_1        |[0m INFO: Finished Download metadata. 12 ms
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:52Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:52Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"No living connections"}
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:52 PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+[34mjenkins_1        |[0m INFO: Refreshing org.springframework.web.context.support.StaticWebApplicationContext@67a9d0d7: display name [Root WebApplicationContext]; startup date [Fri Aug 03 12:05:52 UTC 2018]; root of context hierarchy
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:52 PM org.springframework.context.support.AbstractApplicationContext obtainFreshBeanFactory
+[34mjenkins_1        |[0m INFO: Bean factory for application context [org.springframework.web.context.support.StaticWebApplicationContext@67a9d0d7]: org.springframework.beans.factory.support.DefaultListableBeanFactory@6267c596
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:52 PM org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
+[34mjenkins_1        |[0m INFO: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6267c596: defining beans [authenticationManager]; root of factory hierarchy
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:52 PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+[34mjenkins_1        |[0m INFO: Refreshing org.springframework.web.context.support.StaticWebApplicationContext@2da2ba56: display name [Root WebApplicationContext]; startup date [Fri Aug 03 12:05:52 UTC 2018]; root of context hierarchy
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:52 PM org.springframework.context.support.AbstractApplicationContext obtainFreshBeanFactory
+[34mjenkins_1        |[0m INFO: Bean factory for application context [org.springframework.web.context.support.StaticWebApplicationContext@2da2ba56]: org.springframework.beans.factory.support.DefaultListableBeanFactory@4d377f14
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:52 PM org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
+[34mjenkins_1        |[0m INFO: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4d377f14: defining beans [filter,legacy]; root of factory hierarchy
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:52 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:52,964][INFO ][o.e.c.s.MasterService    ] [HKV8jIe] zen-disco-elected-as-master ([0] nodes joined)[, ], reason: new_master {HKV8jIe}{HKV8jIeDQ5KEr9Q5CZmI_w}{2OGwx30QQnSXVTDUIlNx8Q}{172.22.0.9}{172.22.0.9:9300}{ml.machine_memory=8255004672, xpack.installed=true, ml.max_open_jobs=20, ml.enabled=true}
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:52,977][INFO ][o.e.c.s.ClusterApplierService] [HKV8jIe] new_master {HKV8jIe}{HKV8jIeDQ5KEr9Q5CZmI_w}{2OGwx30QQnSXVTDUIlNx8Q}{172.22.0.9}{172.22.0.9:9300}{ml.machine_memory=8255004672, xpack.installed=true, ml.max_open_jobs=20, ml.enabled=true}, reason: apply cluster state (from master [master {HKV8jIe}{HKV8jIeDQ5KEr9Q5CZmI_w}{2OGwx30QQnSXVTDUIlNx8Q}{172.22.0.9}{172.22.0.9:9300}{ml.machine_memory=8255004672, xpack.installed=true, ml.max_open_jobs=20, ml.enabled=true} committed version [1] source [zen-disco-elected-as-master ([0] nodes joined)[, ]]])
+[34mjenkins_1        |[0m Aug 03, 2018 12:05:53 PM hudson.WebAppMain$3 run
+[34mjenkins_1        |[0m INFO: Jenkins is fully up and running
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:53,089][INFO ][o.e.h.n.Netty4HttpServerTransport] [HKV8jIe] publish_address {172.22.0.9:9200}, bound_addresses {0.0.0.0:9200}
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:53,090][INFO ][o.e.n.Node               ] [HKV8jIe] started
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:53,458][INFO ][o.e.l.LicenseService     ] [HKV8jIe] license [6b08ddd5-ee8d-4a4e-b928-4978221e2da4] mode [basic] - valid
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:53,460][INFO ][o.e.g.GatewayService     ] [HKV8jIe] recovered [1] indices into cluster_state
+[36;1melasticsearch_1  |[0m [2018-08-03T12:05:53,834][INFO ][o.e.c.r.a.AllocationService] [HKV8jIe] Cluster health status changed from [RED] to [GREEN] (reason: [shards started [[.kibana][0]] ...]).
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:54Z","tags":["status","plugin:elasticsearch@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from red to green - Ready","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:54Z","tags":["license","info","xpack"],"pid":1,"message":"Imported license information from Elasticsearch for the [data] cluster: mode: basic | status: active"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:54Z","tags":["status","plugin:xpack_main@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from red to green - Ready","prevState":"red","prevMsg":"No Living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:54Z","tags":["status","plugin:searchprofiler@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from red to green - Ready","prevState":"red","prevMsg":"No Living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:54Z","tags":["status","plugin:ml@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from red to green - Ready","prevState":"red","prevMsg":"No Living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:54Z","tags":["status","plugin:tilemap@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from red to green - Ready","prevState":"red","prevMsg":"No Living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:54Z","tags":["status","plugin:watcher@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from red to green - Ready","prevState":"red","prevMsg":"No Living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:54Z","tags":["status","plugin:index_management@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from red to green - Ready","prevState":"red","prevMsg":"No Living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:54Z","tags":["status","plugin:grokdebugger@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from red to green - Ready","prevState":"red","prevMsg":"No Living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:05:54Z","tags":["status","plugin:logstash@6.3.2","info"],"pid":1,"state":"green","message":"Status changed from red to green - Ready","prevState":"red","prevMsg":"No Living connections"}
+[34mjenkins_1        |[0m --> setting agent port for jnlp
+[34mjenkins_1        |[0m --> setting agent port for jnlp... done
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Adding dependent install of jdk-tool for plugin cloudbees-folder
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Adding dependent install of command-launcher for plugin cloudbees-folder
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin command-launcher already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin antisamy-markup-formatter already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin antisamy-markup-formatter already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Adding dependent install of bouncycastle-api for plugin antisamy-markup-formatter
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin bouncycastle-api already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin bouncycastle-api already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin build-timeout already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin build-timeout already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin build-timeout already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin credentials-binding already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin credentials-binding already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin credentials-binding already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin timestamper already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin timestamper already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin timestamper already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin ws-cleanup already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin ws-cleanup already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Adding dependent install of resource-disposer for plugin ws-cleanup
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin resource-disposer already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin resource-disposer already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin resource-disposer already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin ws-cleanup already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin ant already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin ant already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of JDK Tool on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin ant already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin gradle already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin gradle already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin gradle already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Adding dependent install of pipeline-stage-view for plugin workflow-aggregator
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Adding dependent install of pipeline-rest-api for plugin pipeline-stage-view
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin pipeline-rest-api already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin pipeline-rest-api already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin pipeline-rest-api already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Adding dependent install of handlebars for plugin pipeline-stage-view
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin handlebars already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin handlebars already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin handlebars already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin pipeline-stage-view already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin pipeline-stage-view already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Adding dependent install of momentjs for plugin pipeline-stage-view
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin momentjs already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin momentjs already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin momentjs already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin pipeline-stage-view already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin workflow-aggregator already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin workflow-aggregator already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin workflow-aggregator already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin github-branch-source already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin github-branch-source already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin github-branch-source already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin pipeline-github-lib already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin pipeline-github-lib already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin pipeline-github-lib already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of pipeline-rest-api for plugin pipeline-stage-view already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of handlebars for plugin pipeline-stage-view already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin pipeline-stage-view already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin pipeline-stage-view already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of momentjs for plugin pipeline-stage-view already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin pipeline-stage-view already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin git already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin git already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin git already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin subversion already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Adding dependent install of mapdb-api for plugin subversion
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin mapdb-api already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin mapdb-api already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin mapdb-api already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin subversion already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin ssh-slaves already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin ssh-slaves already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin ssh-slaves already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin matrix-auth already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin matrix-auth already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin pam-auth already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin pam-auth already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin pam-auth already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin ldap already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin ldap already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin ldap already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin email-ext already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin email-ext already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin email-ext already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of jdk-tool for plugin mailer already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of command-launcher for plugin mailer already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:40 PM hudson.model.UpdateSite$Plugin deploy
+[34mjenkins_1        |[0m INFO: Dependent install of bouncycastle-api for plugin mailer already added, skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:41 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading JDK Tool
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:41 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/jdk-tool.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.model.DownloadService$Downloadable load
+[34mjenkins_1        |[0m INFO: Obtained the updated data file for hudson.tools.JDKInstaller
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-support
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of cloudbees-folder
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of matrix-project
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of blueocean-autofavorite
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of git-server
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-model-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of token-macro
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-model-extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of credentials-binding
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of jira
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of github
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of durable-task
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of jquery-detached
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of git-client
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of plain-credentials
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of scm-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-cps
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of jackson2-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-model-declarative-agent
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-milestone-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of variant
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of htmlpublisher
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-scm-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-multibranch
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of ace-editor
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pubsub-light
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of sse-gateway
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of ssh-credentials
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of git
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of handy-uri-templates-2-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of script-security
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-durable-task-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of authentication-tokens
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of github-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-build-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of cloudbees-bitbucket-branch-source
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-step-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of jsch
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of mailer
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of branch-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-stage-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of display-url-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-model-definition
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-job
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of github-branch-source
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of docker-workflow
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-stage-tags-metadata
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of docker-commons
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-cps-global-lib
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of apache-httpcomponents-client-4-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-graph-analysis
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of structs
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-input-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of junit
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of credentials
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of favorite
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of blueocean-display-url
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of mercurial
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin jdk-tool:1.1 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: JDK Tool
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:45 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Command Agent Launcher on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:46 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Command Agent Launcher
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/command-launcher.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-support
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of cloudbees-folder
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of matrix-project
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of blueocean-autofavorite
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of git-server
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-model-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of token-macro
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-model-extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of credentials-binding
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of jira
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of github
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of durable-task
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of jquery-detached
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of git-client
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of plain-credentials
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of scm-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-cps
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of jackson2-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-model-declarative-agent
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-milestone-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of variant
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of htmlpublisher
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-scm-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-multibranch
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of ace-editor
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pubsub-light
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of sse-gateway
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of ssh-credentials
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of git
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of handy-uri-templates-2-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-durable-task-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of authentication-tokens
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of github-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-build-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of cloudbees-bitbucket-branch-source
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-step-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of jsch
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of mailer
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of branch-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-stage-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of display-url-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-model-definition
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-job
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of github-branch-source
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of docker-workflow
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-stage-tags-metadata
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of docker-commons
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-cps-global-lib
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of apache-httpcomponents-client-4-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-graph-analysis
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of structs
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-input-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of junit
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of credentials
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of favorite
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of blueocean-display-url
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of mercurial
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin command-launcher:1.2 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Command Agent Launcher
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:47 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of bouncycastle API on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:48 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading bouncycastle API
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:57 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/bouncycastle-api.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of matrix-project
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of git-server
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of token-macro
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of credentials-binding
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of github
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of durable-task
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of jquery-detached
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of git-client
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of plain-credentials
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of scm-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-model-declarative-agent
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-milestone-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of variant
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of htmlpublisher
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of ace-editor
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pubsub-light
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of sse-gateway
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of ssh-credentials
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of git
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of handy-uri-templates-2-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of authentication-tokens
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of github-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of cloudbees-bitbucket-branch-source
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-step-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of jsch
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of mailer
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of branch-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-stage-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of display-url-api
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of github-branch-source
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of workflow-cps-global-lib
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-graph-analysis
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of structs
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of pipeline-input-step
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of junit
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of credentials
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of favorite
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of blueocean-display-url
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.ClassicPluginStrategy updateDependency
+[34mjenkins_1        |[0m INFO: Updated dependency of mercurial
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin bouncycastle-api:2.16.3 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: bouncycastle API
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:58 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of OWASP Markup Formatter on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:06:59 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading OWASP Markup Formatter
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/antisamy-markup-formatter.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin antisamy-markup-formatter:1.5 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: OWASP Markup Formatter
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:00 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Build Timeout on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:01 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Build Timeout
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/build-timeout.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.ExtensionFinder$GuiceFinder$FaultTolerantScope$1 error
+[34mjenkins_1        |[0m INFO: Failed to instantiate optional component hudson.plugins.build_timeout.operations.AbortAndRestartOperation$DescriptorImpl; skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.ExtensionFinder$GuiceFinder$FaultTolerantScope$1 error
+[34mjenkins_1        |[0m INFO: Failed to instantiate optional component hudson.plugins.build_timeout.operations.AbortAndRestartOperation$DescriptorImpl; skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.ExtensionFinder$GuiceFinder$FaultTolerantScope$1 error
+[34mjenkins_1        |[0m INFO: Failed to instantiate optional component hudson.plugins.build_timeout.operations.AbortAndRestartOperation$DescriptorImpl; skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.ExtensionFinder$GuiceFinder$FaultTolerantScope$1 error
+[34mjenkins_1        |[0m INFO: Failed to instantiate optional component hudson.plugins.build_timeout.operations.AbortAndRestartOperation$DescriptorImpl; skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.ExtensionFinder$GuiceFinder$FaultTolerantScope$1 error
+[34mjenkins_1        |[0m INFO: Failed to instantiate optional component hudson.plugins.build_timeout.operations.AbortAndRestartOperation$DescriptorImpl; skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.ExtensionFinder$GuiceFinder$FaultTolerantScope$1 error
+[34mjenkins_1        |[0m INFO: Failed to instantiate optional component hudson.plugins.build_timeout.operations.AbortAndRestartOperation$DescriptorImpl; skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.ExtensionFinder$GuiceFinder$FaultTolerantScope$1 error
+[34mjenkins_1        |[0m INFO: Failed to instantiate optional component hudson.plugins.build_timeout.operations.AbortAndRestartOperation$DescriptorImpl; skipping
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin build-timeout:1.19 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Build Timeout
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:02 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Timestamper on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:03 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Timestamper
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:03 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/timestamper.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:03 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:03 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:04 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:04 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:04 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:04 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:04 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:04 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin timestamper:1.8.10 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:04 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Timestamper
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:04 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Resource Disposer on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:04 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Resource Disposer
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:04 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/resource-disposer.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin resource-disposer:0.12 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Resource Disposer
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Workspace Cleanup on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:05 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Workspace Cleanup
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:06 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/ws-cleanup.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin ws-cleanup:0.34 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Workspace Cleanup
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Ant on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:07 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Ant
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:08 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/ant.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:08 PM hudson.model.DownloadService$Downloadable load
+[34mjenkins_1        |[0m INFO: Obtained the updated data file for hudson.tasks.Ant.AntInstaller
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:08 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:08 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:08 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:08 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:08 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:08 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:08 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:09 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin ant:1.8 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:09 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Ant
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:09 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Gradle on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:09 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Gradle
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:10 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/gradle.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:10 PM hudson.ClassicPluginStrategy createClassJarFromWebInfClasses
+[34mjenkins_1        |[0m WARNING: Created /var/jenkins_home/plugins/gradle/WEB-INF/lib/classes.jar; update plugin to a version created with a newer harness
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:10 PM hudson.model.DownloadService$Downloadable load
+[34mjenkins_1        |[0m INFO: Obtained the updated data file for hudson.plugins.gradle.GradleInstaller
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:10 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:10 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:11 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:11 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:11 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:11 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:11 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:11 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin gradle:1.29 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:11 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Gradle
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:11 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Pipeline: REST API on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:11 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Pipeline: REST API
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:12 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/pipeline-rest-api.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin pipeline-rest-api:2.10 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Pipeline: REST API
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of JavaScript GUI Lib: Handlebars bundle on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:13 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading JavaScript GUI Lib: Handlebars bundle
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/handlebars.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin handlebars:1.1.1 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: JavaScript GUI Lib: Handlebars bundle
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:14 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of JavaScript GUI Lib: Moment.js bundle on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading JavaScript GUI Lib: Moment.js bundle
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/momentjs.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin momentjs:1.1.1 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: JavaScript GUI Lib: Moment.js bundle
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:15 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Pipeline: Stage View on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:16 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Pipeline: Stage View
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:17 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/pipeline-stage-view.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin pipeline-stage-view:2.10 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Pipeline: Stage View
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Pipeline on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Pipeline
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:18 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/workflow-aggregator.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin workflow-aggregator:2.5 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Pipeline
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Pipeline: GitHub Groovy Libraries on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Pipeline: GitHub Groovy Libraries
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:19 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/pipeline-github-lib.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin pipeline-github-lib:1.0 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Pipeline: GitHub Groovy Libraries
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Pipeline: Stage View on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM hudson.model.UpdateCenter$InstallationJob _run
+[34mjenkins_1        |[0m INFO: Skipping duplicate install of: Pipeline: Stage View@2.10
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Pipeline: Stage View
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of MapDB API on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:20 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading MapDB API
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/mapdb-api.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin mapdb-api:1.0.9.0 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: MapDB API
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:22 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Subversion on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:23 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Subversion
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:26 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/subversion.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:27 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:27 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:27 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:27 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:27 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:27 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:27 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:27 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin subversion:2.11.1 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:27 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Subversion
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:27 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of SSH Slaves on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:28 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading SSH Slaves
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:28 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/ssh-slaves.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:29 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:29 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:29 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:29 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:29 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:29 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:29 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:29 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin ssh-slaves:1.26 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:29 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: SSH Slaves
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:29 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Matrix Authorization Strategy on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:30 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Matrix Authorization Strategy
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/matrix-auth.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin matrix-auth:2.3 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Matrix Authorization Strategy
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:31 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of PAM Authentication on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:32 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading PAM Authentication
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/pam-auth.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin pam-auth:1.3 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: PAM Authentication
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:33 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of LDAP on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:36 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading LDAP
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/ldap.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin ldap:1.20 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: LDAP
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:37 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Starting the installation of Email Extension on behalf of admin
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:38 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+[34mjenkins_1        |[0m INFO: Downloading Email Extension
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:41 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Attempting to dynamic load /var/jenkins_home/plugins/email-ext.jpi
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:42 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:42 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Listed all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:42 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Prepared all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:42 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Started all plugins
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:42 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Augmented all extensions
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:42 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Loaded all jobs
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:42 PM jenkins.InitReactorRunner$1 onAttained
+[34mjenkins_1        |[0m INFO: Completed initialization
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:42 PM hudson.PluginManager dynamicLoad
+[34mjenkins_1        |[0m INFO: Plugin email-ext:2.62 dynamically installed
+[34mjenkins_1        |[0m Aug 03, 2018 12:07:42 PM hudson.model.UpdateCenter$DownloadJob run
+[34mjenkins_1        |[0m INFO: Installation successful: Email Extension
+[34mjenkins_1        |[0m Aug 03, 2018 12:10:17 PM org.jenkinsci.remoting.util.AnonymousClassWarnings warn
+[34mjenkins_1        |[0m WARNING: Attempt to (de-)serialize anonymous class com.cloudbees.plugins.credentials.CredentialsScope$3 in file:/var/jenkins_home/plugins/credentials/WEB-INF/lib/credentials.jar; see: https://jenkins.io/redirect/serialization-of-anonymous-classes/
+[34mjenkins_1        |[0m Aug 03, 2018 12:10:35 PM com.squareup.okhttp.internal.Platform$JdkWithJettyBootPlatform getSelectedProtocol
+[34mjenkins_1        |[0m INFO: ALPN callback dropped: SPDY and HTTP/2 are disabled. Is alpn-boot on the boot class path?
+[34mjenkins_1        |[0m Aug 03, 2018 12:13:56 PM com.squareup.okhttp.internal.Platform$JdkWithJettyBootPlatform getSelectedProtocol
+[34mjenkins_1        |[0m INFO: ALPN callback dropped: SPDY and HTTP/2 are disabled. Is alpn-boot on the boot class path?
+[34mjenkins_1        |[0m Aug 03, 2018 12:13:57 PM org.eclipse.jetty.server.handler.ContextHandler$Context log
+[34mjenkins_1        |[0m WARNING: Error while serving http://localhost:8082/blue/rest/search/
+[34mjenkins_1        |[0m java.lang.reflect.InvocationTargetException
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Function$MethodFunction.invoke(Function.java:347)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.ForwardingFunction.invoke(ForwardingFunction.java:63)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.rest.pageable.PagedResponse$Processor.invoke(PagedResponse.java:42)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.PreInvokeInterceptedFunction.invoke(PreInvokeInterceptedFunction.java:26)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Function.bindAndInvoke(Function.java:184)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Function.bindAndInvokeAndServeResponse(Function.java:117)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.MetaClass$1.doDispatch(MetaClass.java:129)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.NameBasedDispatcher.dispatch(NameBasedDispatcher.java:58)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.tryInvoke(Stapler.java:734)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.invoke(Stapler.java:864)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.MetaClass$10.dispatch(MetaClass.java:374)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.tryInvoke(Stapler.java:734)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.invoke(Stapler.java:864)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.tryInvoke(Stapler.java:705)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.invoke(Stapler.java:864)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.MetaClass$10.dispatch(MetaClass.java:374)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.tryInvoke(Stapler.java:734)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.invoke(Stapler.java:864)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.invoke(Stapler.java:668)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.service(Stapler.java:238)
+[34mjenkins_1        |[0m 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:860)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1650)
+[34mjenkins_1        |[0m 	at hudson.util.PluginServletFilter$1.doFilter(PluginServletFilter.java:154)
+[34mjenkins_1        |[0m 	at org.jenkinsci.plugins.ssegateway.Endpoint$SSEListenChannelFilter.doFilter(Endpoint.java:225)
+[34mjenkins_1        |[0m 	at hudson.util.PluginServletFilter$1.doFilter(PluginServletFilter.java:151)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.ResourceCacheControl.doFilter(ResourceCacheControl.java:134)
+[34mjenkins_1        |[0m 	at hudson.util.PluginServletFilter$1.doFilter(PluginServletFilter.java:151)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.auth.jwt.impl.JwtAuthenticationFilter.doFilter(JwtAuthenticationFilter.java:61)
+[34mjenkins_1        |[0m 	at hudson.util.PluginServletFilter$1.doFilter(PluginServletFilter.java:151)
+[34mjenkins_1        |[0m 	at hudson.util.PluginServletFilter.doFilter(PluginServletFilter.java:157)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at hudson.security.csrf.CrumbFilter.doFilter(CrumbFilter.java:105)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:84)
+[34mjenkins_1        |[0m 	at hudson.security.UnwrapSecurityExceptionFilter.doFilter(UnwrapSecurityExceptionFilter.java:51)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at jenkins.security.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:117)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at org.acegisecurity.providers.anonymous.AnonymousProcessingFilter.doFilter(AnonymousProcessingFilter.java:125)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at org.acegisecurity.ui.rememberme.RememberMeProcessingFilter.doFilter(RememberMeProcessingFilter.java:142)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at org.acegisecurity.ui.AbstractProcessingFilter.doFilter(AbstractProcessingFilter.java:271)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at jenkins.security.BasicHeaderProcessor.doFilter(BasicHeaderProcessor.java:93)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at org.acegisecurity.context.HttpSessionContextIntegrationFilter.doFilter(HttpSessionContextIntegrationFilter.java:249)
+[34mjenkins_1        |[0m 	at hudson.security.HttpSessionContextIntegrationFilter2.doFilter(HttpSessionContextIntegrationFilter2.java:67)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter.doFilter(ChainedServletFilter.java:90)
+[34mjenkins_1        |[0m 	at hudson.security.HudsonFilter.doFilter(HudsonFilter.java:171)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.compression.CompressionFilter.doFilter(CompressionFilter.java:49)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at hudson.util.CharacterEncodingFilter.doFilter(CharacterEncodingFilter.java:82)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.DiagnosticThreadNameFilter.doFilter(DiagnosticThreadNameFilter.java:30)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:524)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:190)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:188)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1253)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:168)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:166)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1155)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.Server.handle(Server.java:530)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:347)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:256)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:279)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:124)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:247)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:140)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:382)
+[34mjenkins_1        |[0m 	at winstone.BoundedExecutorService$1.run(BoundedExecutorService.java:77)
+[34mjenkins_1        |[0m 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+[34mjenkins_1        |[0m 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+[34mjenkins_1        |[0m 	at java.lang.Thread.run(Thread.java:748)
+[34mjenkins_1        |[0m Caused by: java.lang.IllegalArgumentException: bad pattern '*LibraryManagementSystem*'
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.service.embedded.util.GlobMatcher.<init>(GlobMatcher.java:22)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.service.embedded.rest.PipelineSearch.search(PipelineSearch.java:117)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.rest.ApiHead.search(ApiHead.java:61)
+[34mjenkins_1        |[0m 	at java.lang.invoke.MethodHandle.invokeWithArguments(MethodHandle.java:627)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Function$MethodFunction.invoke(Function.java:343)
+[34mjenkins_1        |[0m 	... 87 more
+[34mjenkins_1        |[0m Caused by: org.apache.oro.text.regex.MalformedPatternException: ?+* follows nothing in expression
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.__parseAtom(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.__parseBranch(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.__parseAlternation(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.__parseExpression(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.compile(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.compile(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.GlobCompiler.compile(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.GlobCompiler.compile(Unknown Source)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.service.embedded.util.GlobMatcher.<init>(GlobMatcher.java:20)
+[34mjenkins_1        |[0m 	... 91 more
+[34mjenkins_1        |[0m 
+[34mjenkins_1        |[0m Aug 03, 2018 12:13:57 PM org.eclipse.jetty.server.handler.ContextHandler$Context log
+[34mjenkins_1        |[0m WARNING: Error while serving http://localhost:8082/blue/rest/search/
+[34mjenkins_1        |[0m java.lang.reflect.InvocationTargetException
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Function$MethodFunction.invoke(Function.java:347)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.ForwardingFunction.invoke(ForwardingFunction.java:63)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.rest.pageable.PagedResponse$Processor.invoke(PagedResponse.java:42)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.PreInvokeInterceptedFunction.invoke(PreInvokeInterceptedFunction.java:26)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Function.bindAndInvoke(Function.java:184)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Function.bindAndInvokeAndServeResponse(Function.java:117)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.MetaClass$1.doDispatch(MetaClass.java:129)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.NameBasedDispatcher.dispatch(NameBasedDispatcher.java:58)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.tryInvoke(Stapler.java:734)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.invoke(Stapler.java:864)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.MetaClass$10.dispatch(MetaClass.java:374)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.tryInvoke(Stapler.java:734)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.invoke(Stapler.java:864)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.tryInvoke(Stapler.java:705)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.invoke(Stapler.java:864)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.MetaClass$10.dispatch(MetaClass.java:374)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.tryInvoke(Stapler.java:734)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.invoke(Stapler.java:864)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.invoke(Stapler.java:668)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Stapler.service(Stapler.java:238)
+[34mjenkins_1        |[0m 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:860)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1650)
+[34mjenkins_1        |[0m 	at hudson.util.PluginServletFilter$1.doFilter(PluginServletFilter.java:154)
+[34mjenkins_1        |[0m 	at org.jenkinsci.plugins.ssegateway.Endpoint$SSEListenChannelFilter.doFilter(Endpoint.java:225)
+[34mjenkins_1        |[0m 	at hudson.util.PluginServletFilter$1.doFilter(PluginServletFilter.java:151)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.ResourceCacheControl.doFilter(ResourceCacheControl.java:134)
+[34mjenkins_1        |[0m 	at hudson.util.PluginServletFilter$1.doFilter(PluginServletFilter.java:151)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.auth.jwt.impl.JwtAuthenticationFilter.doFilter(JwtAuthenticationFilter.java:61)
+[34mjenkins_1        |[0m 	at hudson.util.PluginServletFilter$1.doFilter(PluginServletFilter.java:151)
+[34mjenkins_1        |[0m 	at hudson.util.PluginServletFilter.doFilter(PluginServletFilter.java:157)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at hudson.security.csrf.CrumbFilter.doFilter(CrumbFilter.java:105)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:84)
+[34mjenkins_1        |[0m 	at hudson.security.UnwrapSecurityExceptionFilter.doFilter(UnwrapSecurityExceptionFilter.java:51)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at jenkins.security.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:117)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at org.acegisecurity.providers.anonymous.AnonymousProcessingFilter.doFilter(AnonymousProcessingFilter.java:125)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at org.acegisecurity.ui.rememberme.RememberMeProcessingFilter.doFilter(RememberMeProcessingFilter.java:142)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at org.acegisecurity.ui.AbstractProcessingFilter.doFilter(AbstractProcessingFilter.java:271)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at jenkins.security.BasicHeaderProcessor.doFilter(BasicHeaderProcessor.java:93)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at org.acegisecurity.context.HttpSessionContextIntegrationFilter.doFilter(HttpSessionContextIntegrationFilter.java:249)
+[34mjenkins_1        |[0m 	at hudson.security.HttpSessionContextIntegrationFilter2.doFilter(HttpSessionContextIntegrationFilter2.java:67)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter$1.doFilter(ChainedServletFilter.java:87)
+[34mjenkins_1        |[0m 	at hudson.security.ChainedServletFilter.doFilter(ChainedServletFilter.java:90)
+[34mjenkins_1        |[0m 	at hudson.security.HudsonFilter.doFilter(HudsonFilter.java:171)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.compression.CompressionFilter.doFilter(CompressionFilter.java:49)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at hudson.util.CharacterEncodingFilter.doFilter(CharacterEncodingFilter.java:82)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.DiagnosticThreadNameFilter.doFilter(DiagnosticThreadNameFilter.java:30)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:524)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:190)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:188)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1253)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:168)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:166)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1155)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.Server.handle(Server.java:530)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:347)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:256)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:279)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:124)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:247)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:140)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+[34mjenkins_1        |[0m 	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:382)
+[34mjenkins_1        |[0m 	at winstone.BoundedExecutorService$1.run(BoundedExecutorService.java:77)
+[34mjenkins_1        |[0m 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+[34mjenkins_1        |[0m 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+[34mjenkins_1        |[0m 	at java.lang.Thread.run(Thread.java:748)
+[34mjenkins_1        |[0m Caused by: java.lang.IllegalArgumentException: bad pattern '*LibraryManagementSystem*'
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.service.embedded.util.GlobMatcher.<init>(GlobMatcher.java:22)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.service.embedded.rest.PipelineSearch.search(PipelineSearch.java:117)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.rest.ApiHead.search(ApiHead.java:61)
+[34mjenkins_1        |[0m 	at java.lang.invoke.MethodHandle.invokeWithArguments(MethodHandle.java:627)
+[34mjenkins_1        |[0m 	at org.kohsuke.stapler.Function$MethodFunction.invoke(Function.java:343)
+[34mjenkins_1        |[0m 	... 87 more
+[34mjenkins_1        |[0m Caused by: org.apache.oro.text.regex.MalformedPatternException: ?+* follows nothing in expression
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.__parseAtom(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.__parseBranch(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.__parseAlternation(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.__parseExpression(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.compile(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.regex.Perl5Compiler.compile(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.GlobCompiler.compile(Unknown Source)
+[34mjenkins_1        |[0m 	at org.apache.oro.text.GlobCompiler.compile(Unknown Source)
+[34mjenkins_1        |[0m 	at io.jenkins.blueocean.service.embedded.util.GlobMatcher.<init>(GlobMatcher.java:20)
+[34mjenkins_1        |[0m 	... 91 more
+[34mjenkins_1        |[0m 
+[34mjenkins_1        |[0m Aug 03, 2018 12:13:58 PM com.squareup.okhttp.internal.Platform$JdkWithJettyBootPlatform getSelectedProtocol
+[34mjenkins_1        |[0m INFO: ALPN callback dropped: SPDY and HTTP/2 are disabled. Is alpn-boot on the boot class path?
+[34mjenkins_1        |[0m Aug 03, 2018 12:13:58 PM jenkins.branch.MultiBranchProject$BranchIndexing run
+[34mjenkins_1        |[0m INFO: LibraryManagementSystem #20180803.121356 branch indexing action completed: SUCCESS in 2.7 sec
+[34mjenkins_1        |[0m Aug 03, 2018 12:13:59 PM com.squareup.okhttp.internal.Platform$JdkWithJettyBootPlatform getSelectedProtocol
+[34mjenkins_1        |[0m INFO: ALPN callback dropped: SPDY and HTTP/2 are disabled. Is alpn-boot on the boot class path?
+[34mjenkins_1        |[0m Aug 03, 2018 12:15:19 PM io.jenkins.blueocean.autofavorite.FavoritingScmListener onCheckout
+[34mjenkins_1        |[0m INFO: Automatically favorited LibraryManagementSystem/master for nicolas.ramond
+[34mjenkins_1        |[0m Aug 03, 2018 12:15:19 PM com.squareup.okhttp.internal.Platform$JdkWithJettyBootPlatform getSelectedProtocol
+[34mjenkins_1        |[0m INFO: ALPN callback dropped: SPDY and HTTP/2 are disabled. Is alpn-boot on the boot class path?
+[34mjenkins_1        |[0m Aug 03, 2018 12:15:26 PM org.jenkinsci.plugins.workflow.job.WorkflowRun finish
+[34mjenkins_1        |[0m INFO: LibraryManagementSystem/master #1 completed: FAILURE
+[32mphp_1            |[0m [03-Aug-2018 12:30:32] NOTICE: Terminating ...
+[34mjenkins_1        |[0m Aug 03, 2018 12:30:32 PM winstone.Logger logInternal
+[34mjenkins_1        |[0m INFO: JVM is terminating. Shutting down Jetty
+[32mphp_1            |[0m [03-Aug-2018 12:30:32] NOTICE: exiting, bye-bye!
+[36;1melasticsearch_1  |[0m [2018-08-03T12:30:32,475][INFO ][o.e.n.Node               ] [HKV8jIe] stopping ...
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.578355Z 0 [Note] Giving 0 client threads a chance to die gracefully
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.579431Z 0 [Note] Shutting down slave threads
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.582666Z 0 [Note] Forcefully disconnecting 0 remaining clients
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.585876Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.593095Z 0 [Note] Binlog end
+[35;1mpma_1            |[0m 2018-08-03 12:30:32,583 WARN received SIGTERM indicating exit request
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.659640Z 0 [Note] Shutting down plugin 'ngram'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.662530Z 0 [Note] Shutting down plugin 'partition'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.662553Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.664002Z 0 [Note] Shutting down plugin 'ARCHIVE'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.664016Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.666226Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.666250Z 0 [Note] Shutting down plugin 'MyISAM'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.668080Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672436Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672463Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672471Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672477Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672482Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672486Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672491Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672496Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672500Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672505Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672510Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672549Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672555Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672560Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672564Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672569Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672573Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672579Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672584Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672590Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672704Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672719Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672725Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672730Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672735Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672740Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672745Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672750Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672755Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.672760Z 0 [Note] Shutting down plugin 'InnoDB'
+[35;1mpma_1            |[0m 2018-08-03 12:30:32,684 INFO waiting for nginx, php-fpm to die
+[32;1mweb_1            |[0m [Fri Aug 03 12:30:32.691356 2018] [mpm_event:notice] [pid 1:tid 140363511170944] AH00491: caught SIGTERM, shutting down
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.712742Z 0 [Note] InnoDB: FTS optimize thread exiting.
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.716223Z 0 [Note] InnoDB: Starting shutdown...
+[31mredmine_1        |[0m [2018-08-03 12:30:32] FATAL SignalException: SIGTERM
+[31mredmine_1        |[0m 	/usr/local/lib/ruby/2.4.0/webrick/server.rb:171:in `select'
+[31mredmine_1        |[0m 	/usr/local/lib/ruby/2.4.0/webrick/server.rb:171:in `block in start'
+[31mredmine_1        |[0m 	/usr/local/lib/ruby/2.4.0/webrick/server.rb:33:in `start'
+[31mredmine_1        |[0m 	/usr/local/lib/ruby/2.4.0/webrick/server.rb:158:in `start'
+[31mredmine_1        |[0m 	/usr/local/bundle/gems/rack-1.6.10/lib/rack/handler/webrick.rb:34:in `run'
+[31mredmine_1        |[0m 	/usr/local/bundle/gems/rack-1.6.10/lib/rack/server.rb:287:in `start'
+[31mredmine_1        |[0m 	/usr/local/bundle/gems/railties-4.2.8/lib/rails/commands/server.rb:80:in `start'
+[31mredmine_1        |[0m 	/usr/local/bundle/gems/railties-4.2.8/lib/rails/commands/commands_tasks.rb:80:in `block in server'
+[31mredmine_1        |[0m 	/usr/local/bundle/gems/railties-4.2.8/lib/rails/commands/commands_tasks.rb:75:in `tap'
+[31mredmine_1        |[0m 	/usr/local/bundle/gems/railties-4.2.8/lib/rails/commands/commands_tasks.rb:75:in `server'
+[31mredmine_1        |[0m 	/usr/local/bundle/gems/railties-4.2.8/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+[31mredmine_1        |[0m 	/usr/local/bundle/gems/railties-4.2.8/lib/rails/commands.rb:17:in `<top (required)>'
+[31mredmine_1        |[0m 	bin/rails:4:in `require'
+[31mredmine_1        |[0m 	bin/rails:4:in `<main>'
+[31mredmine_1        |[0m [2018-08-03 12:30:32] INFO  going to shutdown ...
+[31mredmine_1        |[0m [2018-08-03 12:30:32] INFO  WEBrick::HTTPServer#start done.
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.817190Z 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+[33;1mdb_1             |[0m 2018-08-03T12:30:32.819228Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 180803 12:30:32
+[35;1mpma_1            |[0m 2018-08-03 12:30:32,879 INFO stopped: nginx (exit status 0)
+[36;1melasticsearch_1  |[0m [2018-08-03T12:30:32,907][INFO ][o.e.x.m.j.p.l.CppLogMessageHandler] [controller/92] [Main.cc@148] Ml controller exiting
+[36;1melasticsearch_1  |[0m [2018-08-03T12:30:32,915][INFO ][o.e.x.m.j.p.NativeController] Native controller process has stopped - no new native processes can be started
+[35;1mpma_1            |[0m 2018-08-03 12:30:32,991 INFO stopped: php-fpm (exit status 0)
+[36;1melasticsearch_1  |[0m [2018-08-03T12:30:33,013][INFO ][o.e.n.Node               ] [HKV8jIe] stopped
+[36;1melasticsearch_1  |[0m [2018-08-03T12:30:33,015][INFO ][o.e.n.Node               ] [HKV8jIe] closing ...
+[36;1melasticsearch_1  |[0m [2018-08-03T12:30:33,097][INFO ][o.e.n.Node               ] [HKV8jIe] closed
+[32;1mlibrarymanagementsystem_web_1 exited with code 0
+[0m[32mlibrarymanagementsystem_php_1 exited with code 0
+[0m[35mlibrarymanagementsystem_socat_1 exited with code 143
+[0m[33mlibrarymanagementsystem_node_1 exited with code 1
+[0m[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["error","elasticsearch","admin"],"pid":1,"message":"Request error, retrying\nHEAD http://elasticsearch:9200/ => getaddrinfo ENOTFOUND elasticsearch elasticsearch:9200"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"No living connections"}
+[36;1mlibrarymanagementsystem_elasticsearch_1 exited with code 143
+[0m[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:xpack_main@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from green to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"green","prevMsg":"Ready"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:searchprofiler@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from green to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"green","prevMsg":"Ready"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:ml@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from green to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"green","prevMsg":"Ready"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:tilemap@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from green to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"green","prevMsg":"Ready"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:watcher@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from green to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"green","prevMsg":"Ready"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:index_management@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from green to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"green","prevMsg":"Ready"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:grokdebugger@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from green to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"green","prevMsg":"Ready"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:logstash@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from green to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"green","prevMsg":"Ready"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:elasticsearch@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from green to red - Unable to connect to Elasticsearch at http://elasticsearch:9200.","prevState":"green","prevMsg":"Ready"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["error","elasticsearch","data"],"pid":1,"message":"Request error, retrying\nGET http://elasticsearch:9200/_xpack => getaddrinfo ENOTFOUND elasticsearch elasticsearch:9200"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["warning","elasticsearch","data"],"pid":1,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["warning","elasticsearch","data"],"pid":1,"message":"No living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["license","warning","xpack"],"pid":1,"message":"License information from the X-Pack plugin could not be obtained from Elasticsearch for the [data] cluster. Error: No Living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:xpack_main@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:searchprofiler@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:ml@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:tilemap@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:watcher@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:index_management@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:grokdebugger@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:33Z","tags":["status","plugin:logstash@6.3.2","error"],"pid":1,"state":"red","message":"Status changed from red to red - No Living connections","prevState":"red","prevMsg":"Unable to connect to Elasticsearch at http://elasticsearch:9200."}
+[31mredmine_1        |[0m => Booting WEBrick
+[31mredmine_1        |[0m => Rails 4.2.8 application starting in production on http://0.0.0.0:3000
+[31mredmine_1        |[0m => Run `rails server -h` for more startup options
+[31mredmine_1        |[0m => Ctrl-C to shutdown server
+[31mredmine_1        |[0m Exiting
+[35;1mlibrarymanagementsystem_pma_1 exited with code 0
+[0m[34mlibrarymanagementsystem_jenkins_1 exited with code 143
+[0m[31mlibrarymanagementsystem_redmine_1 exited with code 1
+[0m[33;1mdb_1             |[0m 2018-08-03T12:30:34.232739Z 0 [Note] InnoDB: Shutdown completed; log sequence number 13881806
+[33;1mdb_1             |[0m 2018-08-03T12:30:34.233046Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+[33;1mdb_1             |[0m 2018-08-03T12:30:34.233073Z 0 [Note] Shutting down plugin 'MEMORY'
+[33;1mdb_1             |[0m 2018-08-03T12:30:34.233086Z 0 [Note] Shutting down plugin 'CSV'
+[33;1mdb_1             |[0m 2018-08-03T12:30:34.233094Z 0 [Note] Shutting down plugin 'sha256_password'
+[33;1mdb_1             |[0m 2018-08-03T12:30:34.233101Z 0 [Note] Shutting down plugin 'mysql_native_password'
+[33;1mdb_1             |[0m 2018-08-03T12:30:34.236771Z 0 [Note] Shutting down plugin 'binlog'
+[33;1mdb_1             |[0m 2018-08-03T12:30:34.240202Z 0 [Note] mysqld: Shutdown complete
+[33;1mdb_1             |[0m 
+[33;1mlibrarymanagementsystem_db_1 exited with code 0
+[0m[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:36Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:36Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"No living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:38Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:38Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"No living connections"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:41Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[31;1mkibana_1         |[0m {"type":"log","@timestamp":"2018-08-03T12:30:41Z","tags":["warning","elasticsearch","admin"],"pid":1,"message":"No living connections"}
+[31;1mlibrarymanagementsystem_kibana_1 exited with code 137
+[0m

@@ -29,6 +29,7 @@ yarn-error.log
 
 /docker/elastic/data
 /docker/db/data/
+/docker/jenkins/data
 .directory
 uml/.LMS.vpp.lck
 tests/Entity/.BookTest.php.swp

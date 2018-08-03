@@ -5,7 +5,10 @@ USER root
 
 RUN apt-get update \
   && apt-get install -y \
-  php
+  php \
+  libltdl7
+
+#RUN rm -rf /var/lib/apt/lists/*
 
 USER jenkins
 
