@@ -12,6 +12,15 @@
             'have_access' : app.user.username != '' ? true : false
         },
         {
+            'label' : 'navigation.label.admins' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_admin_index',
+            'class' : app.request.attributes.get('_route') == 'backend_admin_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : 'm-badge--danger',
+            'have_access' : app.user.username != '' ? true : false
+        },
+        {
             'label' : 'navigation.label.authors' | trans,
             'icon' : 'flaticon-line-graph',
             'path' : 'backend_author_index',
@@ -21,10 +30,190 @@
             'have_access' : app.user.username != ''? true : false
         },
         {
+            'label' : 'navigation.label.books' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_book_index',
+            'class' : app.request.attributes.get('_route') == 'backend_book_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.bookings' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_booking_index',
+            'class' : app.request.attributes.get('_route') == 'backend_booking_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
             'label' : 'navigation.label.categories' | trans,
             'icon' : 'flaticon-line-graph',
             'path' : 'backend_category_index',
             'class' : app.request.attributes.get('_route') == 'backend_category_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.ebooks' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_ebook_index',
+            'class' : app.request.attributes.get('_route') == 'backend_ebook_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.editors' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_editor_index',
+            'class' : app.request.attributes.get('_route') == 'backend_editor_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.files' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_file_index',
+            'class' : app.request.attributes.get('_route') == 'backend_file_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.formats' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_format_index',
+            'class' : app.request.attributes.get('_route') == 'backend_format_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.images' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_image_index',
+            'class' : app.request.attributes.get('_route') == 'backend_image_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.librarians' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_librarian_index',
+            'class' : app.request.attributes.get('_route') == 'backend_librarian_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.libraries' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_library_index',
+            'class' : app.request.attributes.get('_route') == 'backend_library_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.locations' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_location_index',
+            'class' : app.request.attributes.get('_route') == 'backend_location_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.members' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_member_index',
+            'class' : app.request.attributes.get('_route') == 'backend_member_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.member_ebooks' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_member_ebook_index',
+            'class' : app.request.attributes.get('_route') == 'backend_member_ebook_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.member_subscriptions' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_member_subscription_index',
+            'class' : app.request.attributes.get('_route') == 'backend_member_subscription_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.member_types' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_member_type_index',
+            'class' : app.request.attributes.get('_route') == 'backend_member_type_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.pbooks' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_pbook_index',
+            'class' : app.request.attributes.get('_route') == 'backend_pbook_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.sub_categories' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_sub_category_index',
+            'class' : app.request.attributes.get('_route') == 'backend_sub_category_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.subscriptions' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_subscription_index',
+            'class' : app.request.attributes.get('_route') == 'backend_subscription_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.subscriptions' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_subscription_index',
+            'class' : app.request.attributes.get('_route') == 'backend_subscription_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.super_admins' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_super_admin_index',
+            'class' : app.request.attributes.get('_route') == 'backend_super_admin_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+        {
+            'label' : 'navigation.label.users' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_user_index',
+            'class' : app.request.attributes.get('_route') == 'backend_user_index' ? 'm-menu__item--active' : '',
             'badge' : '',
             'badge_status' : '',
             'have_access' : app.user.username != ''? true : false

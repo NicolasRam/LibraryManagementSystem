@@ -1,4 +1,4 @@
-<?= $helper->getHeadPrintCode($entity_class_name) ?>
+{% extends "view_layout.html.twig" %}
 
 {% block body %}
     <h1><?= $entity_class_name ?></h1>

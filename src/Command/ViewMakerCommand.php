@@ -41,6 +41,9 @@ class ViewMakerCommand extends Command
     private $doctrineHelper;
 
     private $doctrineEntities = [];
+    private $view = '';
+
+    private $override = false;
 
     /**
      * @var SymfonyStyle
@@ -88,6 +91,10 @@ class ViewMakerCommand extends Command
         $question->setAutocompleterValues($this->doctrineEntities);
 
         $value = $this->io->askQuestion($question);
+
+        $this->override = $this->io->choice( 'Ecraser si les fichiers existe déjà ?', ['Oui', 'Non'] ) === 'Oui' ? true : false;
+
+        $this->view = $this->io->choice( 'Quelle vue voulez-vous générer', ['Tous', 'edit', 'index', 'new', 'show'] );
 
 //        $input->setArgument('entity-class', $value);
         $this->entityClass = $value;
@@ -144,46 +151,9 @@ class ViewMakerCommand extends Command
 
         $routeName = Str::asRouteName($controllerClassDetails->getRelativeNameWithoutSuffix());
 
-        $this->generator->generateClass(
-            $controllerClassDetails->getFullName(),
-            'crud/controller/Controller.tpl.php',
-            array_merge([
-                'entity_full_class_name' => $entityClassDetails->getFullName(),
-                'entity_class_name' => $entityClassDetails->getShortName(),
-                'form_full_class_name' => $formClassDetails->getFullName(),
-                'form_class_name' => $formClassDetails->getShortName(),
-                'route_path' => Str::asRoutePath($controllerClassDetails->getRelativeNameWithoutSuffix()),
-//                'twig_installed' => true,
-                'route_name' => $routeName,
-                'entity_var_plural' => $entityVarPlural,
-                'entity_twig_var_plural' => $entityTwigVarPlural,
-                'entity_var_singular' => $entityVarSingular,
-                'entity_twig_var_singular' => $entityTwigVarSingular,
-                'entity_identifier' => $entityDoctrineDetails->getIdentifier(),
-            ],
-                $repositoryVars
-            )
-        );
-
-        $this->generator->generateClass(
-            $formClassDetails->getFullName(),
-            'form/Type.tpl.php',
-            [
-                'bounded_full_class_name' => $entityClassDetails->getFullName(),
-                'bounded_class_name' => $entityClassDetails->getShortName(),
-                'form_fields' => $entityDoctrineDetails->getFormFields(),
-            ]
-        );
-
         $templatesPath = Str::asFilePath($controllerClassDetails->getRelativeNameWithoutSuffix());
 
         $templates = [
-            '_delete_form' => [
-                'route_name' => $routeName,
-                'entity_twig_var_singular' => $entityTwigVarSingular,
-                'entity_identifier' => $entityDoctrineDetails->getIdentifier(),
-            ],
-            '_form' => [],
             'edit' => [
                 'entity_class_name' => $entityClassDetails->getShortName(),
                 'entity_twig_var_singular' => $entityTwigVarSingular,
@@ -211,12 +181,15 @@ class ViewMakerCommand extends Command
             ],
         ];
 
+        if( $this->view !== 'Tous' ) foreach ( array_keys( $templates ) as $view ) if( $view !== $this->view ) unset($templates[$view]);
+
         foreach ($templates as $template => $variables) {
             try {
                 $this->generator->generateFile(
-                    'templates/backend/' . $templatesPath . '/' . $template . '.html.twig',
-                    'crud/templates/' . $template . '.tpl.php',
-                    $variables
+                    'templates/backend/' . $templatesPath . '/' . $template . '.html.twig'
+                    , 'crud/templates/' . $template . '.tpl.php'
+                    , $variables
+                    , $this->override
                 );
             } catch (\Exception $e) {
             }

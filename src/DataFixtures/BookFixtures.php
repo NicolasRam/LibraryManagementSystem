@@ -84,11 +84,11 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                     }
 
                     if( 2 !== rand(0, 5) ) {
-                        $eBook = new EBook();
+                        $ebook = new EBook();
 
-                        $eBook->setBook($book);
+                        $ebook->setBook($book);
 
-                        $manager->persist($eBook);
+                        $manager->persist($ebook);
                     }
                 }
             }

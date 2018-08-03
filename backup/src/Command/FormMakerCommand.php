@@ -4,6 +4,8 @@ namespace App\Command;
 
 use App\Service\Maker\View\DoctrineHelper;
 use App\Service\Maker\View\Generator;
+use App\Service\Maker\View\Str;
+use App\Service\Maker\View\Validator;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Common\Inflector\Inflector;
 use Doctrine\ORM\EntityManager;
@@ -40,11 +42,16 @@ class ViewMakerCommand extends Command
 
     private $doctrineEntities = [];
 
+    /**
+     * @var SymfonyStyle
+     */
+    private $io;
+
     public function __construct(
-        $name = null
-        , EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager
         , Generator $generator
         , DoctrineHelper $doctrineHelper
+        , $name = null
     )
     {
         parent::__construct($name);
@@ -65,8 +72,8 @@ class ViewMakerCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:make-view')
-            ->setDescription('Creates CRUD for Doctrine entity class')
+            ->setName('app:make-form')
+            ->setDescription('Creates Form for Doctrine entity class')
             ->setHelp(file_get_contents(__DIR__.'/help/MakeCrud.txt'))
         ;
     }
@@ -75,9 +82,9 @@ class ViewMakerCommand extends Command
     {
         $this->io = new SymfonyStyle($input, $output);
 
-        $this->io->title('Bienvenu dans le génarateur de vues des controllers');
+        $this->io->title('Bienvenu dans le génarateur de forms des controllers');
 
-        $question = new Question('Bienvenu dans le génarateur de vues des controllers');
+        $question = new Question('Bienvenu dans le génarateur de forms des controllers');
         $question->setAutocompleterValues($this->doctrineEntities);
 
         $value = $this->io->askQuestion($question);
@@ -86,7 +93,6 @@ class ViewMakerCommand extends Command
         $this->entityClass = $value;
 
         $this->generate();
-
     }
 
     public function generate()
@@ -120,14 +126,14 @@ class ViewMakerCommand extends Command
             'Controller'
         );
 
-        $iter = 0;
+        $iterator = 0;
         do {
             $formClassDetails = $this->generator->createClassNameDetails(
-                $entityClassDetails->getRelativeNameWithoutSuffix().($iter ?: ''),
+                $entityClassDetails->getRelativeNameWithoutSuffix().($iterator ?: ''),
                 'Form\\',
                 'Type'
             );
-            ++$iter;
+            ++$iterator;
         } while (class_exists($formClassDetails->getFullName()));
 
         $entityVarPlural = lcfirst(Inflector::pluralize($entityClassDetails->getShortName()));
@@ -139,29 +145,8 @@ class ViewMakerCommand extends Command
         $routeName = Str::asRouteName($controllerClassDetails->getRelativeNameWithoutSuffix());
 
         $this->generator->generateClass(
-            $controllerClassDetails->getFullName(),
-            '../Service/Maker/View/crud/controller/Controller.tpl.php',
-            array_merge([
-                'entity_full_class_name' => $entityClassDetails->getFullName(),
-                'entity_class_name' => $entityClassDetails->getShortName(),
-                'form_full_class_name' => $formClassDetails->getFullName(),
-                'form_class_name' => $formClassDetails->getShortName(),
-                'route_path' => Str::asRoutePath($controllerClassDetails->getRelativeNameWithoutSuffix()),
-//                'twig_installed' => true,
-                'route_name' => $routeName,
-                'entity_var_plural' => $entityVarPlural,
-                'entity_twig_var_plural' => $entityTwigVarPlural,
-                'entity_var_singular' => $entityVarSingular,
-                'entity_twig_var_singular' => $entityTwigVarSingular,
-                'entity_identifier' => $entityDoctrineDetails->getIdentifier(),
-            ],
-                $repositoryVars
-            )
-        );
-
-        $this->generator->generateClass(
             $formClassDetails->getFullName(),
-            '../Service/Maker/View/form/Type.tpl.php',
+            'form/Type.tpl.php',
             [
                 'bounded_full_class_name' => $entityClassDetails->getFullName(),
                 'bounded_class_name' => $entityClassDetails->getShortName(),
@@ -206,11 +191,14 @@ class ViewMakerCommand extends Command
         ];
 
         foreach ($templates as $template => $variables) {
-            $this->generator->generateFile(
-                'templates/backend/'.$templatesPath.'/'.$template.'.html.twig',
-                '../Service/Maker/View/crud/templates/'.$template.'.tpl.php',
-                $variables
-            );
+            try {
+                $this->generator->generateFile(
+                    'templates/backend/' . $templatesPath . '/' . $template . '.html.twig',
+                    'crud/templates/' . $template . '.tpl.php',
+                    $variables
+                );
+            } catch (\Exception $e) {
+            }
         }
 
         $this->generator->writeChanges();
@@ -257,7 +245,7 @@ class ViewMakerCommand extends Command
     }
 
 
-    protected function writeSuccessMessage(ConsoleStyle $io)
+    protected function writeSuccessMessage(SymfonyStyle $io)
     {
         $io->newLine();
         $io->writeln(' <bg=green;fg=white>          </>');

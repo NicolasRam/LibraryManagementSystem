@@ -66,13 +66,13 @@ class Generator
      *
      * @throws \Exception
      */
-    public function generateFile(string $targetPath, string $templateName, array $variables)
+    public function generateFile(string $targetPath, string $templateName, array $variables, $override = false)
     {
         $variables = array_merge($variables, [
             'helper' => $this->twigHelper,
         ]);
 
-        $this->addOperation($targetPath, $templateName, $variables);
+        $this->addOperation($targetPath, $templateName, $variables, $override);
     }
 
     /**
@@ -126,30 +126,32 @@ class Generator
         return new ClassNameDetails($className, $fullNamespacePrefix, $suffix);
     }
 
-    private function addOperation(string $targetPath, string $templateName, array $variables)
+    private function addOperation(string $targetPath, string $templateName, array $variables, $override = false)
     {
-        if ($this->fileManager->fileExists($targetPath)) {
-            throw new RuntimeCommandException(sprintf(
-                'The file "%s" can\'t be generated because it already exists.',
-                $this->fileManager->relativizePath($targetPath)
-            ));
-        }
+//        if (!$override && $this->fileManager->fileExists($targetPath)) {
+//            throw new RuntimeCommandException(sprintf(
+//                'The file "%s" can\'t be generated because it already exists.',
+//                $this->fileManager->relativizePath($targetPath)
+//            ));
+//        }
 
-        $variables['relative_path'] = $this->fileManager->relativizePath($targetPath);
+        if ( !$this->fileManager->fileExists($targetPath) || $override) {
+            $variables['relative_path'] = $this->fileManager->relativizePath($targetPath);
 
-        $templatePath = $templateName;
-        if (!file_exists($templatePath)) {
-            $templatePath = __DIR__.'/'.$templateName;
-
+            $templatePath = $templateName;
             if (!file_exists($templatePath)) {
-                throw new \Exception(sprintf('Cannot find template "%s"', $templateName));
-            }
-        }
+                $templatePath = __DIR__ . '/' . $templateName;
 
-        $this->pendingOperations[$targetPath] = [
-            'template' => $templatePath,
-            'variables' => $variables,
-        ];
+                if (!file_exists($templatePath)) {
+                    throw new \Exception(sprintf('Cannot find template "%s"', $templateName));
+                }
+            }
+
+            $this->pendingOperations[$targetPath] = [
+                'template' => $templatePath,
+                'variables' => $variables,
+            ];
+        }
     }
 
     public function hasPendingOperations(): bool

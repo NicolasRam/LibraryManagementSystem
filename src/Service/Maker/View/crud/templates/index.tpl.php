@@ -1,5 +1,3 @@
-<?= $helper->getHeadPrintCode($entity_class_name.' index'); ?>
-
 {% extends "datatable_layout.html.twig" %}
 
 {% block page_title 'page.title.<?= $route_name ?>.list' | trans({}, 'page') %}
@@ -24,9 +22,9 @@
     </thead>
 
     <tbody>
-        {% for category in categories %}
+        {% for <?= $route_name ?> in <?= $route_name ?>s %}
         <tr>
-            <td>{{ category.id }}</td>
+            <td>{{ <?= $route_name ?>.id }}</td>
 
             <?php foreach ($entity_fields as $field): ?>
             <td>{{ <?= $helper->getEntityFieldPrintCode($entity_twig_var_singular, $field) ?> }}</td>
@@ -63,12 +61,12 @@
                     <i class="la la-edit"></i>
                 </a>
 
-                <form style="display: inline" method="post" action="{{ path('<?= $route_name ?>_delete', {'id': category.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
+                <form style="display: inline" method="post" action="{{ path('<?= $route_name ?>_delete', {'id': <?= $route_name ?>.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
                     <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ <?= $route_name ?>.id) }}">
 
                     <button
-                            href="{{ path('<?= $route_name ?>_edit', {'id' : category.id}) }}"
+                            href="{{ path('<?= $route_name ?>_edit', {'id' : <?= $route_name ?>.id}) }}"
                             class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
                             title="View"
                     >

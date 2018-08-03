@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\MappedSuperclass()
  *
- * @ORM\Entity(repositoryClass="App\Repository\LiberianRepository")
+ * @ORM\Entity(repositoryClass="LibrarianRepository")
  */
 class Librarian extends User
 {

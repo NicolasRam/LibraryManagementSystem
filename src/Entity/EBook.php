@@ -44,7 +44,7 @@ class EBook /*extends Book*/
     private $file;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MemberEBook", mappedBy="eBook", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberEBook", mappedBy="ebook", orphanRemoval=true)
      */
     private $memberEBooks;
 

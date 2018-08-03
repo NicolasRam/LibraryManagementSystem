@@ -789,11 +789,11 @@
 {% endblock page_vendors_scripts %}
 
 {% block page_javascripts %}
+    {% if true %}
     <!--begin::Page Resources -->
     <script src="{{ asset('backend/assets/demo/default/custom/crud/datatables/basic/basic.js') }}" type="text/javascript"></script>
     <!--end::Page Resources -->
-
-    {% if false %}
+    {% else %}
     <script>
         var DatatablesBasicBasic = {
             init: function () {
