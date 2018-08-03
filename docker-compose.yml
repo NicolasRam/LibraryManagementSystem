@@ -94,24 +94,24 @@ services:
     - ${JENKINS_PORT}:8082
     - 50000:50000
     volumes:
-    - jenkins_home:/var/jenkins_home
+    - ./docker/jenkins/data:/var/jenkins_home
     - ${DOCKER_BIN}:/usr/bin/docker
     environment:
     - DOCKER_HOST=tcp://socat:2375
     restart: always
 
   socat:
-    build: socat
+    build: docker/socat
     command: TCP4-LISTEN:2375,fork,reuseaddr UNIX-CONNECT:/var/run/docker.sock
     volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
+    - /docker/docker.sock:/var/run/docker.sock
     expose:
     - "2375"
 
-volumes:
-  postgres-data:
-  jenkins_home:./docker/jenkins/data
-  external: true
+#volumes:
+#  postgres-data:
+#  jenkins_home:
+#    external: true
 networks:
   redmine:
     driver: bridge
