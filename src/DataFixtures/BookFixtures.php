@@ -12,7 +12,7 @@ use App\Entity\Author;
 use App\Entity\Book;
 use App\Entity\EBook;
 use App\Entity\Library;
-use App\Entity\old;
+use App\Entity\PBook;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -73,7 +73,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                 {
                     if( 3 !== rand(0, 5) ) {
                         for( $m = 0; $m < rand(1, 10); $m++ ) {
-                            $pBook = new old();
+                            $pBook = new PBook();
 
                             $pBook->setBook($book);
                             $pBook->setLibrary($library);

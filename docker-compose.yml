@@ -18,9 +18,9 @@ services:
 
   # Lance un serveur MySQL
   db:
-    build: docker/db
+    image: mysql:5.7
     ports:
-      - 3366:3306
+      - 3306:3306
     volumes:
       - ./docker/db/data:/var/lib/mysql
     environment:
