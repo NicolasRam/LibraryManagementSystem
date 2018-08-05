@@ -2,3 +2,5 @@
 #swiftmailer:
 #    # send all emails to a specific address
 #    delivery_addresses: ['agostinipowered@gmail.com']
+#swiftmailer:
+#  delivery_addresses: ['agostinipowered@gmail.com']

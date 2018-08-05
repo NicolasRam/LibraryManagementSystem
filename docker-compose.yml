@@ -18,7 +18,7 @@ services:
 
   # Lance un serveur MySQL
   db:
-    image: mysql:5.7
+    build: docker/db
     ports:
       - 3366:3306
     volumes:
@@ -27,7 +27,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
   pma:
-    image: phpmyadmin/phpmyadmin
+    build: docker/phpmyadmin
     ports:
       - 8081:80
     links:
@@ -42,7 +42,7 @@ services:
     command: "yarn run dev-server --port 7000 --host 0.0.0.0"
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    build: docker/elastic
     hostname: elasticsearch
     ports:
       - 9200:9200
@@ -59,7 +59,7 @@ services:
         hard: 65536
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.3.2
+    build: docker/kibana
     hostname: kibana
     links:
       - elasticsearch
@@ -80,13 +80,6 @@ services:
 #      - smtp:smtp
     ports:
       - 3000:3000
-
-  smtp:
-    image: panubo/postfix
-    ports:
-      - 587:587
-    environment:
-      - MAILNAME=<mydomain>
 
   jenkins:
     build: docker/jenkins

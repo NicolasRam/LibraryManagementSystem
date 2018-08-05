@@ -5,9 +5,9 @@ monolog:
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
             channels: ["!event"]
-        ovh:
-            type: rotating_file
-            path: '%kernel.logs_dir%/%kernel.environment%/ovh-sms.log'
-            level: debug
-            max_files: 30
-            channels: [ovh]
+#        ovh:
+#            type: rotating_file
+#            path: '%kernel.logs_dir%/%kernel.environment%/ovh-sms.log'
+#            level: debug
+#            max_files: 30
+#            channels: [ovh]

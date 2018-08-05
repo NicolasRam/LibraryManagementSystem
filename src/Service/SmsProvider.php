@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service;
 
 use Ovh\Exceptions\InvalidParameterException;
@@ -10,9 +11,6 @@ class SmsProvider
 {
 
 
-
-//    /** @var array */
-//    private $config;
     /** @var LoggerInterface */
     private $logger;
 
@@ -32,44 +30,58 @@ class SmsProvider
     public function sendMessage($phoneNumber, $message)
     {
 
+        //On récupère les variables d'environnements pour l'api d'ovh
         $applicationKey = getenv('APP_KEY');
         $applicationSecret = getenv('APPSMS_SECRET');
         $consumer_key = getenv('CONSUMER_KEY');
         $endpoint = getenv('END_POINT');
 
-
+        //On crée un tableau de numéros car c'est ce qui est attendu dans l'api
         $phoneNumbers = (array)$phoneNumber;
 
         try {
-
-            $ovh = new Api( $applicationKey,
+            //On instancie l'api
+            $ovh = new Api($applicationKey,
                 $applicationSecret,
                 $endpoint,
                 $consumer_key);
 
-
+            //On récupère le nom du service (le premier)
             $smsServices = $ovh->get('/sms/');
             foreach ($smsServices as $smsService) {
-                print_r($smsService); }
+                print_r($smsService);
+            }
 
-            $content = (object) array(
-                "charset"=> "UTF-8",
-                "class"=> "phoneDisplay",
-                "coding"=> "7bit",
+            //On crée le contenu
+            $content = (object)array(
+                "charset" => "UTF-8",
+                "class" => "phoneDisplay",
+                "coding" => "7bit",
                 'message' => $message,
-                "noStopClause"=> false,
-                "priority"=> "high",
+                "noStopClause" => false,
+                "priority" => "high",
                 'receivers' => $phoneNumbers,
-                "senderForResponse"=> true,
-                "validityPeriod"=> 2880
+                "senderForResponse" => true,
+                "validityPeriod" => 2880
             );
 
+            //Ici on log le message envoyé ainsi que le numéro pour le suivi
+            $this->logger->debug('We have sent the message: '. $message . ' to '. $phoneNumber);
 
-            //Ca fait le boulot
-            $resultPostJob = $ovh->post('/sms/'. $smsServices[0] . '/jobs/', $content); //appel sur le 1er compte SMS
-            dd($resultPostJob);
-            print_r($resultPostJob);
-            $smsJobs = $ovh->get('/sms/'. $smsServices[0] . '/jobs/'); print_r($smsJobs);
+//            $this->logger->get('monolog.logger.ovh');
+//            $logger->info("This one goes to test channel!!")
+
+            //Pour les tests j'ai désactivé l'envoi de sms
+            //A la place on dd
+            dd($content);
+
+            //Finalement on sollicite l'api en post pour rendre effective l'envoi de message
+            //$resultPostJob = $ovh->post('/sms/' . $smsServices[0] . '/jobs/', $content); //appel sur le 1er compte SMS
+
+            //Ici on a la possibilité d'afficher en commande l'échec ou le succès de la commande
+            //print_r($resultPostJob);
+            //$smsJobs = $ovh->get('/sms/' . $smsServices[0] . '/jobs/');
+            //print_r($smsJobs);
 
 
         } catch (\Exception $e) {
@@ -189,7 +201,6 @@ class SmsProvider
 
         return $conn;
     }
-
 
 
     public function getHappyMessage()

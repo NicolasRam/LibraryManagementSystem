@@ -4,20 +4,13 @@ namespace App\Command;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
-
 use App\Service\LoggerDependency;
-
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use App\Service\SmsProvider;
-
 use Symfony\Component\Console\Logger\ConsoleLogger;
-
 use Psr\Log\LogLevel;
-
-use Ovh\Api;
 
 /**
  */
@@ -30,8 +23,6 @@ class SmsCommand extends Command
     {
         parent::__construct();
         $this->smsProvider = $smsProvider;
-
-
     }
 
     protected function configure()
@@ -40,8 +31,9 @@ class SmsCommand extends Command
             ->setName('app:sms:notifications')
             ->setDescription('SMS command (Format number : +336...)')
             ->addOption('send', 's', InputOption::VALUE_REQUIRED, 'Send SMS to a specific number')
-            ->addOption('list', 'l', InputOption::VALUE_NONE, 'List number blacklist')
-            ->addOption('blacklist', 'b', InputOption::VALUE_REQUIRED, 'Remove an number from blacklist')
+            ->addOption('message', 'm', InputOption::VALUE_REQUIRED, 'Send SMS with a specific message')
+//            ->addOption('list', 'l', InputOption::VALUE_NONE, 'List number blacklist')
+//            ->addOption('blacklist', 'b', InputOption::VALUE_REQUIRED, 'Remove an number from blacklist')
         ;
     }
 
@@ -52,7 +44,6 @@ class SmsCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        //$logger = new ConsoleLogger($output);
         $verbosityLevelMap = array(
             LogLevel::NOTICE => OutputInterface::VERBOSITY_NORMAL,
             LogLevel::INFO   => OutputInterface::VERBOSITY_NORMAL,
@@ -62,8 +53,6 @@ class SmsCommand extends Command
         // et son paramètre (numéro au format +336)
 
         if ($input->getOption('send')) {
-//            $logger = $this->get('monolog.logger.my_channel');
-//            $this->log('info', sprintf('Test to send an SMS to "%s"', $input->getOption('send')));
             $LoggerDependency = new LoggerDependency($logger);
             $LoggerDependency->ready();
 
@@ -72,9 +61,18 @@ class SmsCommand extends Command
 
                 //$smsJobs = $ovh->get('/sms/'. $smsServices[0] . '/jobs/'); print_r($smsJobs);
 
+                $message = $input->getOption('message');
 
-//Ca c'est à faire
-                $this->smsProvider->sendMessage($input->getOption('send'), 'Ceci est un test');
+                if (!$input->getOption('message'))
+                {
+                    echo "Message non spécifié, valeur par défaut";
+                    $message = "No text input spécified, just sending some text instead";
+                }
+
+
+
+                //On sollicite notre service
+                $this->smsProvider->sendMessage($input->getOption('send'), $message);
 
 
 //                $this->getContainer()->get('app.sms.provider')->sendMessage($input->getOption('send'), 'Votre message');
@@ -82,28 +80,34 @@ class SmsCommand extends Command
             } catch (\Exception $e) {
 //                $this->log('info', sprintf('Error to send an SMS to %s : %s', $input->getOption('blacklist'), $e->getMessage()));
             }
-        }
-
-        // Exécution de la commande avec l’option ‘list’
-        if ($input->getOption('list')) {
-            $output->writeln('List number from blacklist :');
-            $results = $this->smsProvider->getHappyMessage();
-//            $results = $this->getContainer()->get('app.sms.provider')->getBlacklist();
-            $output->writeln($results);
-        }
-
-        // Exécution de la commande avec l’option ‘blacklist’
-        // et son paramètre (numéro au format +336)
-        if ($input->getOption('blacklist')) {
-//            $this->log('info', sprintf('Remove "%s" from blacklist', $input->getOption('blacklist')));
-
-            try {
-//                $this->getContainer()->get('app.sms.provider')->removeFromBlacklist($input->getOption('blacklist'));
-//                $this->log('info', sprintf('%s removed from blacklist', $input->getOption('blacklist')));
-            } catch (\Exception $e) {
-//                $this->log('info', sprintf('Error to remove %s from blacklist : %s', $input->getOption('blacklist'), $e->getMessage()));
+        } else {
+            if (!$input->getOption('send'))
+            {
+                echo "You're strange, how do you expect me to send some message if you don't specify the phone number? \n";
+//                die;
             }
         }
+
+//        // Exécution de la commande avec l’option ‘list’
+//        if ($input->getOption('list')) {
+//            $output->writeln('List number from blacklist :');
+//            $results = $this->smsProvider->getHappyMessage();
+////            $results = $this->getContainer()->get('app.sms.provider')->getBlacklist();
+//            $output->writeln($results);
+//        }
+//
+//        // Exécution de la commande avec l’option ‘blacklist’
+//        // et son paramètre (numéro au format +336)
+//        if ($input->getOption('blacklist')) {
+////            $this->log('info', sprintf('Remove "%s" from blacklist', $input->getOption('blacklist')));
+//
+//            try {
+////                $this->getContainer()->get('app.sms.provider')->removeFromBlacklist($input->getOption('blacklist'));
+////                $this->log('info', sprintf('%s removed from blacklist', $input->getOption('blacklist')));
+//            } catch (\Exception $e) {
+////                $this->log('info', sprintf('Error to remove %s from blacklist : %s', $input->getOption('blacklist'), $e->getMessage()));
+//            }
+//        }
     }
 
 }
