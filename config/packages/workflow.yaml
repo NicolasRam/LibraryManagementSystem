@@ -3,7 +3,6 @@ framework:
     workflows:
         pbook_status:
             type: workflow # or 'state_machine'
-#            audit_trail: [enabled]
             marking_store:
                 type: single_state # or 'single_state'
                 arguments:
@@ -33,6 +32,6 @@ framework:
                 reserve:
                     from: outside
                     to: reserved
-                        retire:
+                retire2:
                     from: outside
                     to:   not_available

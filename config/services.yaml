@@ -29,3 +29,16 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Log\CustomLogger:
+        autowire: true
+        arguments: ['@logger']
+        tags:
+        - { name: monolog.logger, channel: ovh }
+
+    App\Service\SmsProvider:
+        autowire: true
+        arguments:
+            # the '@' symbol is important: that's what tells the container
+            # you want to pass the *service* whose id is 'monolog.logger.request',
+            # and not just the *string* 'monolog.logger.request'
+            $logger: '@monolog.logger.request'

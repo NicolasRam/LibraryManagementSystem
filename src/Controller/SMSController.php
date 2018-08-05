@@ -1,7 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: neo
- * Date: 01/08/18
- * Time: 23:23
- */
+
+namespace App\Controller;
+
+use App\Service\SmsProvider;
+use Psr\Log\LoggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+
+class SMSController extends Controller
+{
+
+    public function new(SmsProvider $smsGenerator)
+    {
+        // thanks to the type-hint, the container will instantiate a
+        // new MessageGenerator and pass it to you!
+        // ...
+
+        $message = $smsGenerator->getHappyMessage();
+        $this->addFlash('success', $message);
+        // ...
+    }
+}
