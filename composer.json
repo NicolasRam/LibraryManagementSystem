@@ -2,10 +2,11 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.2.8",
+        "php": "^7.2.7",
         "ext-iconv": "*",
         "api-platform/api-pack": "^1.1",
         "fzaninotto/faker": "^1.8",
+        "ovh/ovh": "dev-master",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^4.1",
@@ -27,6 +28,7 @@
         "symfony/var-dumper": "^4.1",
         "symfony/web-link": "^4.1",
         "symfony/webpack-encore-pack": "^1.0",
+        "symfony/workflow": "^4.1",
         "symfony/yaml": "^4.1"
     },
     "require-dev": {

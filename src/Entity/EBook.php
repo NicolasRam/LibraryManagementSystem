@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity( repositoryClass="App\Repository\EBookRepository" )
  *
  */
-class EBook
+class EBook /*extends Book*/
 {
     /**
      * @ORM\Id()
@@ -29,12 +29,14 @@ class EBook
      */
     private $id;
 
-    /**
-     * @var Book
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Book")
-     */
-    private $book;
+
+//    /**
+//     * @var Book
+//     *
+//     * @ORM\ManyToOne(targetEntity="App\Entity\Book")
+//     */
+//    private $book;
+
 
     /**
      * @var Book
@@ -48,29 +50,36 @@ class EBook
      */
     private $memberEBooks;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Book", inversedBy="eBook", cascade={"persist", "remove"})
+     */
+    private $Book;
+
     public function __construct()
     {
         $this->memberEBooks = new ArrayCollection();
     }
 
-    /**
-     * @return Book
-     */
-    public function getBook(): Book
-    {
-        return $this->book;
-    }
 
-    /**
-     * @param Book $book
-     *
-     * @return EBook
-     */
-    public function setBook(Book $book): EBook
-    {
-        $this->book = $book;
-        return $this;
-    }
+//    /**
+//     * @return Book
+//     */
+//    public function getBook(): Book
+//    {
+//        return $this->book;
+//    }
+//
+//    /**
+//     * @param Book $book
+//     *
+//     * @return EBook
+//     */
+//    public function setBook(Book $book): EBook
+//    {
+//        $this->book = $book;
+//        return $this;
+//    }
+
 
     /**
      * @return Collection|MemberEBook[]
@@ -101,5 +110,19 @@ class EBook
         }
 
         return $this;
+
+    }
+
+    public function getBook(): ?Book
+    {
+        return $this->Book;
+    }
+
+    public function setBook(?Book $Book): self
+    {
+        $this->Book = $Book;
+
+        return $this;
+
     }
 }

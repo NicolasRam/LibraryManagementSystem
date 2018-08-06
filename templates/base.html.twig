@@ -23,16 +23,12 @@
         </script>
         <!--end::Web font -->
 
-        <!--begin::Base Styles -->
+        {% block page_vendors_styles '' %}
 
+        <!--begin::Base Styles -->
         {% block stylesheets %}
             <link href="{{ asset('backend/assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css"/>
-
-            <!--RTL version:<link href="{{ asset('backend/assets/vendors/base/vendors.bundle.rtl.css') }}" rel="stylesheet" type="text/css" />-->
             <link href="{{ asset('backend/assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css"/>
-
-            <!--RTL version:<link href="{{ asset('backend/assets/demo/default/base/style.bundle.rtl.css') }}" rel="stylesheet" type="text/css" />-->
-            <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
         {% endblock %}
 
         {% block page_stylesheets %}
@@ -2969,20 +2965,22 @@
 
         {% include 'backend/_components/_quick_nav.html.twig' %}
 
+
+
         {% block javascripts %}
             <!--begin::Base Scripts -->
             <script src="{{ asset('backend/assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
             <script src="{{ asset('backend/assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
-            <script src="{{ asset('build/js/app.js') }}"></script>
             <!--end::Base Scripts -->
         {% endblock %}
 
-
-        {% block page_javascripts %}
+        {% block page_vendors_scripts %}
             <!--begin::Page Vendors -->
             <script src="{{ asset('backend/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
             <!--end::Page Vendors -->
+        {% endblock page_vendors_scripts %}
 
+        {% block page_javascripts %}
             <!--begin::Page Snippets -->
             <script src="{{ asset('backend/assets/app/js/dashboard.js') }}" type="text/javascript"></script>
             <!--end::Page Snippets -->

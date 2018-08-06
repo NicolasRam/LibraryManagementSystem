@@ -60,7 +60,7 @@ class Member extends User
         return $this;
     }
 
-    public function removeBooking(Booking $booking): self
+    public function removebooking(Booking $booking): self
     {
         if ($this->bookings->contains($booking)) {
             $this->bookings->removeElement($booking);

@@ -20,11 +20,13 @@ class PBook
      */
     private $id;
 
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBook", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $book;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,6 +43,13 @@ class PBook
      */
     private $library;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBooks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Book;
+
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -51,17 +60,19 @@ class PBook
         return $this->id;
     }
 
-    public function getBook(): ?Book
-    {
-        return $this->book;
-    }
 
-    public function setBook(Book $book): self
-    {
-        $this->book = $book;
+//    public function getBook(): ?Book
+//    {
+//        return $this->book;
+//    }
+//
+//    public function setBook(Book $book): self
+//    {
+//        $this->book = $book;
+//
+//        return $this;
+//    }
 
-        return $this;
-    }
 
     public function getStatus(): ?string
     {
@@ -93,6 +104,7 @@ class PBook
         return $this;
     }
 
+
     public function removeBooking(Booking $booking): self
     {
         if ($this->bookings->contains($booking)) {
@@ -116,5 +128,19 @@ class PBook
         $this->library = $library;
 
         return $this;
+
+    }
+
+    public function getBook(): ?Book
+    {
+        return $this->Book;
+    }
+
+    public function setBook(?Book $Book): self
+    {
+        $this->Book = $Book;
+
+        return $this;
+
     }
 }

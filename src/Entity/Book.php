@@ -3,6 +3,10 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,15 +60,27 @@ class Book
      */
     private $authors;
 
-    /**
-     * @ORM\OneToMany(targetEntity="PBook", mappedBy="book", cascade={"persist", "remove"})
-     */
-    private $pBook;
+
+
+//    /**
+//     * @ORM\OneToMany(targetEntity="EBook", mappedBy="book", cascade={"persist", "remove"})
+//     */
+//    private $eBook;
 
     /**
-     * @ORM\OneToMany(targetEntity="eBook", mappedBy="book", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\PBook", mappedBy="Book")
+     */
+    private $pBooks;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\EBook", mappedBy="Book", cascade={"persist", "remove"})
      */
     private $eBook;
+
+    public function __construct()
+    {
+        $this->pBooks = new ArrayCollection();
+    }
 
 
     public function getId()
@@ -156,10 +172,12 @@ class Book
         return $this;
     }
 
+
     public function getPBook(): ?PBook
     {
         return $this->pBook;
     }
+
 
     public function setPBook(PBook $pBook): self
     {
@@ -173,27 +191,70 @@ class Book
         return $this;
     }
 
+
+//    public function getEBook(): ?EBook
+//    {
+//        return $this->eBook;
+//    }
+//
+//    public function setEBook(EBook $eBook): self
+//    {
+//        $this->eBook = $eBook;
+//
+//        // set the owning side of the relation if necessary
+//        if ($this !== $eBook->getBook()) {
+//            $eBook->setBook($this);
+//        }
+//
+//        return $this;
+//    }
+
     /**
-     * @return mixed
+     * @return Collection|PBook[]
      */
-    public function getEBook()
+    public function getPBooks(): Collection
     {
-        return $this->eBook;
+        return $this->pBooks;
     }
 
-    /**
-     * @param mixed $eBook
-     */
-    public function setEBook(EBook $eBook): self
+    public function addPBook(PBook $pBook): self
     {
-        $this->eBook = $eBook;
-
-        // set the owning side of the relation if necessary
-        if ($this !== $eBook->getBook()) {
-            $eBook->setBook($this);
+        if (!$this->pBooks->contains($pBook)) {
+            $this->pBooks[] = $pBook;
+            $pBook->setBook($this);
         }
 
         return $this;
     }
 
+    public function removePBook(PBook $pBook): self
+    {
+        if ($this->pBooks->contains($pBook)) {
+            $this->pBooks->removeElement($pBook);
+            // set the owning side to null (unless already changed)
+            if ($pBook->getBook() === $this) {
+                $pBook->setBook(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getEBook(): ?EBook
+    {
+        return $this->eBook;
+    }
+
+    public function setEBook(?EBook $eBook): self
+    {
+        $this->eBook = $eBook;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newBook = $eBook === null ? null : $this;
+        if ($newBook !== $eBook->getBook()) {
+            $eBook->setBook($newBook);
+        }
+
+        return $this;
+    }
 }
