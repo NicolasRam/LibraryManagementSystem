@@ -53,7 +53,7 @@ class EBook /*extends Book*/
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Book", inversedBy="eBook", cascade={"persist", "remove"})
      */
-    private $Book;
+    private $book;
 
     public function __construct()
     {
@@ -115,12 +115,12 @@ class EBook /*extends Book*/
 
     public function getBook(): ?Book
     {
-        return $this->Book;
+        return $this->book;
     }
 
-    public function setBook(?Book $Book): self
+    public function setBook(?Book $book): self
     {
-        $this->Book = $Book;
+        $this->book = $book;
 
         return $this;
 

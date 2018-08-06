@@ -10,6 +10,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Author;
 use App\Entity\Book;
+use App\Entity\Category;
 use App\Entity\EBook;
 use App\Entity\Library;
 use App\Entity\PBook;
@@ -59,6 +60,10 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
             for ( $k = 0; $k < rand(1, 1); $k++ ) {
                 $book = new Book();
 
+                $category = $manager->getRepository(Category::class)->findAll();
+                $choosenCategory = rand(0, count($category));
+
+
                 $book->setAuthor($author);
                 $book->setAuthors($authors);
 //                $book->setCover($fakerFactory->);
@@ -66,6 +71,9 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                 $book->setPageNumber( rand(100, 200) );
                 $book->setResume( $fakerFactory->text($maxNbChars = 200) );
                 $book->setTitle($fakerFactory->isbn13);
+                $book->setSlug($fakerFactory->isbn13);
+                $book->setCategory($choosenCategory[random_int(0, count($category) - 1)]);
+
 
                 $manager->persist($book);
 
@@ -84,13 +92,11 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                     }
 
                     if( 2 !== rand(0, 5) ) {
-
                         $ebook = new EBook();
 
                         $ebook->setBook($book);
 
                         $manager->persist($ebook);
-
                     }
                 }
             }

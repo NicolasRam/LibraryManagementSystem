@@ -43,11 +43,11 @@ class PBook
      */
     private $library;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBooks")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Book;
+//    /**
+//     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBooks")
+//     * @ORM\JoinColumn(nullable=false)
+//     */
+//    private $Book;
 
 
     public function __construct()
@@ -133,12 +133,16 @@ class PBook
 
     public function getBook(): ?Book
     {
-        return $this->Book;
+        return $this->book;
     }
 
-    public function setBook(?Book $Book): self
+    /**
+     * @param Book|null $book
+     * @return PBook
+     */
+    public function setBook(?Book $book): self
     {
-        $this->Book = $Book;
+        $this->book = $book;
 
         return $this;
 

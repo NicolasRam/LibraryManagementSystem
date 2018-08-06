@@ -143,6 +143,7 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
             $category = new Category();
 
             $category->setName( $categoryName );
+            $category->setSlug($categoryName);
 
             $manager->persist($category);
 

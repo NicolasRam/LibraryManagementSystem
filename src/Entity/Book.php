@@ -3,10 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +33,11 @@ class Book
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $resume;
@@ -60,15 +63,8 @@ class Book
      */
     private $authors;
 
-
-
-//    /**
-//     * @ORM\OneToMany(targetEntity="EBook", mappedBy="book", cascade={"persist", "remove"})
-//     */
-//    private $eBook;
-
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PBook", mappedBy="Book")
+     * @ORM\OneToMany(targetEntity="App\Entity\PBook", mappedBy="Book", cascade={"persist", "remove"})
      */
     private $pBooks;
 
@@ -76,6 +72,28 @@ class Book
      * @ORM\OneToOne(targetEntity="App\Entity\EBook", mappedBy="Book", cascade={"persist", "remove"})
      */
     private $eBook;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="books")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category): void
+    {
+        $this->category = $category;
+    }
 
     public function __construct()
     {
@@ -172,12 +190,10 @@ class Book
         return $this;
     }
 
-
     public function getPBook(): ?PBook
     {
         return $this->pBook;
     }
-
 
     public function setPBook(PBook $pBook): self
     {
@@ -190,24 +206,6 @@ class Book
 
         return $this;
     }
-
-
-//    public function getEBook(): ?EBook
-//    {
-//        return $this->eBook;
-//    }
-//
-//    public function setEBook(EBook $eBook): self
-//    {
-//        $this->eBook = $eBook;
-//
-//        // set the owning side of the relation if necessary
-//        if ($this !== $eBook->getBook()) {
-//            $eBook->setBook($this);
-//        }
-//
-//        return $this;
-//    }
 
     /**
      * @return Collection|PBook[]
@@ -257,4 +255,38 @@ class Book
 
         return $this;
     }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $pBooks
+     */
+    public function setPBooks($pBooks): void
+    {
+        $this->pBooks = $pBooks;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug): void
+    {
+        $this->slug = $slug;
+    }
+
+
 }
