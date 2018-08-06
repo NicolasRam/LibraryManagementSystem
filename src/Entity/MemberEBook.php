@@ -33,7 +33,7 @@ class MemberEBook
      * @ORM\ManyToOne(targetEntity="App\Entity\EBook", inversedBy="memberEBooks")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $eBook;
+    private $ebook;
 
     /**
      * @ORM\Column(type="integer")
@@ -71,12 +71,20 @@ class MemberEBook
 
     public function getEBook(): ?EBook
     {
+
         return $this->eBook;
     }
 
     public function setEBook(?EBook $eBook): self
     {
         $this->eBook = $eBook;
+
+        return $this->ebook;
+    }
+
+    public function setEBook(?EBook $ebook): self
+    {
+        $this->ebook = $ebook;
 
         return $this;
     }

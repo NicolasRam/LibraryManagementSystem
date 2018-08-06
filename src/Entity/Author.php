@@ -150,7 +150,8 @@ class Author
         return $this;
     }
 
-    public function removeBook(Book $book): self
+
+    public function removebook(Book $book): self
     {
         if ($this->books->contains($book)) {
             $this->books->removeElement($book);

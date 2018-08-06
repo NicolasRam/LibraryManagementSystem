@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -59,6 +61,7 @@ class Book
     private $authors;
 
 
+
 //    /**
 //     * @ORM\OneToMany(targetEntity="EBook", mappedBy="book", cascade={"persist", "remove"})
 //     */
@@ -78,6 +81,7 @@ class Book
     {
         $this->pBooks = new ArrayCollection();
     }
+
 
     public function getId()
     {
@@ -168,12 +172,14 @@ class Book
         return $this;
     }
 
-    public function getPBook(): ?old
+
+    public function getPBook(): ?PBook
     {
         return $this->pBook;
     }
 
-    public function setPBook(old $pBook): self
+
+    public function setPBook(PBook $pBook): self
     {
         $this->pBook = $pBook;
 
@@ -184,6 +190,7 @@ class Book
 
         return $this;
     }
+
 
 //    public function getEBook(): ?EBook
 //    {

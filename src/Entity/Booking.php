@@ -50,12 +50,14 @@ class Booking
         return $this->id;
     }
 
-    public function getPBook(): ?old
+
+    public function getPBook(): ?PBook
     {
         return $this->pBook;
     }
 
-    public function setPBook(?old $pBook): self
+
+    public function setPBook(?PBook $pBook): self
     {
         $this->pBook = $pBook;
 

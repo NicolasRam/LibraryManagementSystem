@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
+
 use App\Entity\PBook;
 use Symfony\Component\Workflow\Registry;
 use App\Entity\Author;
 use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 
 /**
@@ -37,8 +38,7 @@ class BookController extends Controller
                     array('name' => $name)
                 ),
                 'text/html'
-            )
-            /*
+            )/*
              * If you also want to include a plaintext version of the message
             ->addPart(
                 $this->renderView(
@@ -86,5 +86,5 @@ class BookController extends Controller
         // See all the available transitions for the post in the current state
         $transitions = $workflow->getEnabledTransitions($pbook);
     }
-    
+
 }

@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity( repositoryClass="App\Repository\EBookRepository" )
  *
  */
-class EBook
+class EBook /*extends Book*/
 {
     /**
      * @ORM\Id()
@@ -29,12 +29,14 @@ class EBook
      */
     private $id;
 
+
 //    /**
 //     * @var Book
 //     *
 //     * @ORM\ManyToOne(targetEntity="App\Entity\Book")
 //     */
 //    private $book;
+
 
     /**
      * @var Book
@@ -58,6 +60,7 @@ class EBook
         $this->memberEBooks = new ArrayCollection();
     }
 
+
 //    /**
 //     * @return Book
 //     */
@@ -76,6 +79,7 @@ class EBook
 //        $this->book = $book;
 //        return $this;
 //    }
+
 
     /**
      * @return Collection|MemberEBook[]
@@ -106,6 +110,7 @@ class EBook
         }
 
         return $this;
+
     }
 
     public function getBook(): ?Book
@@ -118,5 +123,6 @@ class EBook
         $this->Book = $Book;
 
         return $this;
+
     }
 }
