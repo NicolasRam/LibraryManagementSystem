@@ -16,8 +16,12 @@ yarn-error.log
 /docker/elastic/data
 /docker/redmine/data
 /docker/db/data/
+<<<<<<< HEAD
 src/Catalogue/
 src/MakerBundle/
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
+=======
+/docker/jenkins/data
+>>>>>>> 1450bec079f89606ed634de36c87c4c1c8e9193e
