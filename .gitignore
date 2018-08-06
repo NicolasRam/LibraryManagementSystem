@@ -16,3 +16,4 @@ yarn-error.log
 /docker/elastic/data
 /docker/redmine/data
 /docker/db/data/
+/docker/jenkins/data
