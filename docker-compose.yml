@@ -89,8 +89,8 @@ services:
 #    environment:
 #      - MAILNAME=<mydomain>
 
-volumes:
-  postgres-data:
-networks:
-  redmine:
-    driver: bridge
+#volumes:
+#  postgres-data:
+#networks:
+#  redmine:
+#    driver: bridge
