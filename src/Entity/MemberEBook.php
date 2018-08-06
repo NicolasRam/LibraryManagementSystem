@@ -82,12 +82,6 @@ class MemberEBook
         return $this->ebook;
     }
 
-    public function setEBook(?EBook $ebook): self
-    {
-        $this->ebook = $ebook;
-
-        return $this;
-    }
 
     public function getPrice(): ?int
     {
