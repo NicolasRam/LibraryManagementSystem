@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\PBook;
+use Swift_Mailer;
 use Symfony\Component\Workflow\Registry;
 use App\Entity\Author;
 use App\Form\AuthorType;
@@ -21,25 +22,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookController extends Controller
 {
     /**
-     * @Route("/", name="backend_home", methods="GET")
-     * @param $name
-     * @param \Swift_Mailer $mailer
-     * @return Response
+     * @Route("/", name="backend_book_index", methods="GET")
+     * @param Swift_Mailer $mailer
      */
-    public function index($name, \Swift_Mailer $mailer)
+    public function index(\Swift_Mailer $mailer)
     {
+
         $message = (new \Swift_Message('Hello Email'))
             ->setFrom('send@librarymanagementsystem.com')
-            ->setTo('recipient@example.com')
+            ->setTo('nicolas.ramond@me.com')
             ->setBody(
                 $this->renderView(
                 // templates/emails/registration.html.twig
                     'emails/registration.html.twig',
-                    array('name' => $name)
+                    array('name' => 'nicolas')
                 ),
                 'text/html'
-            )/*
-             * If you also want to include a plaintext version of the message
+            )
+
+             /* If you also want to include a plaintext version of the message
             ->addPart(
                 $this->renderView(
                     'emails/registration.txt.twig',
@@ -52,7 +53,8 @@ class BookController extends Controller
 
         $mailer->send($message);
 
-        $this->redirectToRoute("/");
+//        $this->redirectToRoute("backend_home");
+        return $this->render('backend/home/index.html.twig', []);
     }
 
 //    public function index(): Response
