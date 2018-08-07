@@ -104,8 +104,29 @@
     "facebook/webdriver": {
         "version": "1.6.0"
     },
+    "fig/http-message-util": {
+        "version": "1.1.2"
+    },
+    "firebase/php-jwt": {
+        "version": "v5.0.0"
+    },
     "fzaninotto/faker": {
         "version": "v1.8.0"
+    },
+    "giggsey/libphonenumber-for-php": {
+        "version": "8.9.11"
+    },
+    "giggsey/locale": {
+        "version": "1.5"
+    },
+    "google/auth": {
+        "version": "v1.3.2"
+    },
+    "google/cloud-core": {
+        "version": "v1.21.1"
+    },
+    "google/cloud-storage": {
+        "version": "v1.3.4"
     },
     "guzzlehttp/guzzle": {
         "version": "6.3.3"
@@ -119,8 +140,23 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "kreait/firebase-bundle": {
+        "version": "1.1.1"
+    },
+    "kreait/firebase-php": {
+        "version": "4.15.1"
+    },
+    "kreait/firebase-tokens": {
+        "version": "1.7.1"
+    },
+    "kreait/gcp-metadata": {
+        "version": "1.0.1"
+    },
     "lcobucci/jwt": {
         "version": "3.2.4"
+    },
+    "league/flysystem": {
+        "version": "1.0.45"
     },
     "lexik/jwt-authentication-bundle": {
         "version": "2.5",
@@ -133,6 +169,9 @@
     },
     "monolog/monolog": {
         "version": "1.23.0"
+    },
+    "mtdowling/jmespath.php": {
+        "version": "2.4.0"
     },
     "namshi/jose": {
         "version": "7.2.3"
@@ -179,6 +218,9 @@
     "psr/simple-cache": {
         "version": "1.0.1"
     },
+    "rize/uri-template": {
+        "version": "0.3.2"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -187,6 +229,9 @@
             "version": "5.2",
             "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
         }
+    },
+    "superbalist/flysystem-google-storage": {
+        "version": "7.0.0"
     },
     "symfony/apache-pack": {
         "version": "1.0",

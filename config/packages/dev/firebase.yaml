@@ -1,0 +1,5 @@
+kreait_firebase:
+    projects:
+        default:
+            credentials: 'https://lms-library-management-system.firebaseio.com/'
+#            credentials: '%env(FIREBASE_CREDENTIALS_PATH)%'

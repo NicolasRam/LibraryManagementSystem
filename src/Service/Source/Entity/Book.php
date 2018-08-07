@@ -16,52 +16,57 @@ class Book
     /**
      * @var String
      */
-    private $title;
+    private $title = '';
 
     /**
      * @var String
      */
-    private $image;
+    private $image = '';
 
     /**
      * @var String
      */
-    private $url;
+    private $url = '';
 
     /**
      * @var String
      */
-    private $resume;
+    private $resume = '';
 
     /**
      * @var String
      */
-    private $author;
+    private $author = '';
 
     /**
      * @var String
      */
-    private $priceNew;
+    private $priceNew = '';
 
     /**
      * @var String
      */
-    private $priceUsed;
+    private $priceUsed = '';
 
     /**
      * @var String
      */
-    private $state;
+    private $state = '';
+
+    /**
+     * @var string
+     */
+    private $isbn = '';
 
     /**
      * @var BookContrib[]
      */
-    private $details;
+    private $details = [];
 
     /**
      * @var BookDetail[]
      */
-    private $contribs;
+    private $contribs = [];
 
     /**
      * @return String
@@ -70,6 +75,27 @@ class Book
     {
         return $this->title;
     }
+
+    /**
+     * @return string
+     */
+    public function getIsbn(): string
+    {
+        return $this->isbn;
+    }
+
+    /**
+     * @param string $isbn
+     *
+     * @return Book
+     */
+    public function setIsbn(string $isbn): Book
+    {
+        $this->isbn = $isbn;
+        return $this;
+    }
+
+
 
     /**
      * @param String $title

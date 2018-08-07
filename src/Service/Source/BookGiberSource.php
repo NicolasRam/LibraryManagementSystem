@@ -10,6 +10,7 @@ namespace App\Service\Source;
 
 
 use App\Service\Source\Entity\Book;
+use App\Service\Source\Entity\Firebase;
 use Goutte\Client;
 use PHPMailer\PHPMailer\Exception;
 use Symfony\Component\DomCrawler\Crawler;
@@ -46,6 +47,8 @@ class BookGiberSource
 
                     $this->getBookDetails( $book );
 
+                    (new Firebase())->send($book);
+
                     return $book;
                 }
             );
@@ -70,6 +73,9 @@ class BookGiberSource
 
             if($crawler->filter('div.product.attribute.description > div.value')->count() > 0)
                 $book->setResume($crawler->filter('div.product.attribute.description > div.value')->text());
+
+            if($crawler->filter("td[data-th='ISBN']")->count() > 0)
+                $book->setIsbn($crawler->filter("td[data-th='ISBN']")->text());
 
             //            $book->setContribs( $bookCrawler->filter('div.product.attribute.description > div.value')->text() );
 //            $book->setPriceNew($bookCrawler->filter('[rel="stylesheet"],[type="text/css"]'));

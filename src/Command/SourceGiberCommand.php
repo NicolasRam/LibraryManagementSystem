@@ -15,7 +15,9 @@ use Doctrine\Common\Inflector\Inflector;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
+use GuzzleHttp\Psr7\Uri;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Bundle\MakerBundle\DependencyBuilder;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Console\Input\InputInterface;
@@ -29,7 +31,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Tightenco\Collect\Support\Collection;
 
 
-class SourceGiberCommand extends Command
+class SourceGiberCommand extends ContainerAwareCommand
 {
     /**
      * @var EntityManager
@@ -70,7 +72,7 @@ class SourceGiberCommand extends Command
     {
         $this->io = new SymfonyStyle($input, $output);
 
-        $this->io->title('Bienvenu dans le livres en provenance de Giber.com');
+        $this->io->title('Livres en provenance de Giber.com');
 
         $books = [];
         /**
