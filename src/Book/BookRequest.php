@@ -33,10 +33,7 @@ class BookRequest
      *     maxSize="2M", maxSizeMessage="asserts.book.image.maxsize")
      */
     private $featuredImage;
-    private $imageUrl;
-    private $special;
-    private $spotlight;
-    private $createdDate;
+
 
     /**
      * @Assert\NotNull(message="asserts.book.category.notnull")

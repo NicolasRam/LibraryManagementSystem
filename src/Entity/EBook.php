@@ -55,6 +55,7 @@ class EBook /*extends Book*/
      */
     private $book;
 
+
     public function __construct()
     {
         $this->memberEBooks = new ArrayCollection();
@@ -89,6 +90,7 @@ class EBook /*extends Book*/
         return $this->memberEBooks;
     }
 
+
     public function addMemberEBook(MemberEBook $memberEBook): self
     {
         if (!$this->memberEBooks->contains($memberEBook)) {
@@ -98,6 +100,7 @@ class EBook /*extends Book*/
 
         return $this;
     }
+
 
     public function removeMemberEBook(MemberEBook $memberEBook): self
     {
@@ -113,10 +116,12 @@ class EBook /*extends Book*/
 
     }
 
+
     public function getBook(): ?Book
     {
         return $this->book;
     }
+
 
     public function setBook(?Book $book): self
     {
@@ -125,4 +130,42 @@ class EBook /*extends Book*/
         return $this;
 
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+
+    /**
+     * @return Book
+     */
+    public function getFile(): Book
+    {
+        return $this->file;
+    }
+
+
+    /**
+     * @param Book $file
+     */
+    public function setFile(Book $file): void
+    {
+        $this->file = $file;
+    }
+
+
 }

@@ -4,7 +4,7 @@
 
 {% trans_default_domain 'datatable' %}
 
-{% block new_record_link '' ~ path('book_new') %}
+{#{% block new_record_link '' ~ path('book_new') %}#}
 
 {% block datable %}
 <!--begin: Datatable -->
@@ -31,7 +31,7 @@
             <td>{{ book.title }}</td>
             <td>{{ book.resume }}</td>
             <td>{{ book.pageNumber }}</td>
-            <td>{{ book.cover }}</td>
+            {#<td>{{ book.featuredimage }}</td>#}
             <td nowrap>
                 {% if false %}
                 <span class="dropdown">

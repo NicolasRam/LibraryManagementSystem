@@ -2,7 +2,6 @@
 
 namespace App\Book;
 
-
 use App\Book\Source\BookAbstractSource;
 use App\Book\Source\DoctrineSource;
 use App\Book\Source\YamlSource;
@@ -14,7 +13,6 @@ class BookCatalogue implements BookCatalogueInterface
 {
 
     private $sources;
-
 
     public function addSource(BookAbstractSource $source): void
     {
@@ -43,11 +41,11 @@ class BookCatalogue implements BookCatalogueInterface
 
         $books = new Collection();
 
-        # Je parcours mes sources à la recherche de mon book
+        # Je parcours mes sources à la recherche de mon livre
         /* @var $source BookAbstractSource */
         foreach ($this->sources as $source) {
 
-            dump($source);
+            //dd($source);
             # J'appel la fonction find() de chaque source
             $book = $source->find($id);
 
@@ -68,7 +66,7 @@ class BookCatalogue implements BookCatalogueInterface
             #}
         }
 
-        # Retourne l'book de la dernière source
+        # Retourne le livre de la dernière source
         return $books->pop();
     }
 
@@ -78,8 +76,9 @@ class BookCatalogue implements BookCatalogueInterface
      */
     public function findAll(): ?iterable
     {
-        return $this->iterateOverSources('findAll')
-            ->sortBy('createdDate');
+
+        return $this->iterateOverSources('findAll');
+//            ->sortBy('createdDate');
     }
 
     /**
@@ -108,14 +107,19 @@ class BookCatalogue implements BookCatalogueInterface
     private function iterateOverSources(string $functionToCall): Collection
     {
         $books = new Collection();
+            //dd(($this->sources));
 
-        /* @var $source BookAbstractSource */
-        /* @var $book Book */
-        foreach ($this->sources as $source) {
-            foreach ($source->$functionToCall() as $book) {
-                $books[] = $book;
+        if (($this->sources))
+            {
+                /* @var $source BookAbstractSource */
+                /* @var $book Book */
+                    foreach ($this->sources as $source) {
+                        //dd($this->sources);
+                        foreach ($source->$functionToCall() as $book) {
+                            $books[] = $book;
+                        }
+                    }
             }
-        }
 
         return $books;
     }

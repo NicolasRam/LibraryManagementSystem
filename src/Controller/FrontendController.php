@@ -18,9 +18,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/backend/book")
+ * @Route("/frontend")
  */
-class BookController extends Controller
+class FrontendController extends Controller
 {
     /**
      * @Route("/", name="backend_book_index", methods="GET")
@@ -59,35 +59,16 @@ class BookController extends Controller
 //    }
 
     /**
-     * @Route("/", name="backend_book_index", methods="GET")
+     * @Route("/", name="frontend_index", methods="GET")
      * @param YamlProvider $yamlProvider
      * @param BookCatalogue $catalogue
      * @return Response
      */
 //    public function index(YamlProvider $yamlProvider, BookCatalogue $catalogue)
-    public function index(BookCatalogue $catalogue)
+    public function index()
     {
 
-        # Récupération des Books depuis YamlProvider
-         //$books = $yamlProvider->getBooks();
-//         dd($books);
-
-        # Connexion au Repository
-        //$repository = $this->getDoctrine()
-        //   ->getRepository(Book::class);
-
-        # Récupération des books depuis la BDD
-        # $books = $repository->findAll();
-        //dd($catalogue->getSources());
-        //dd($catalogue);
-
-
-        $books = $catalogue->findAll();
-
-        //dd($books);
-
-        return $this->render('backend/book/index.html.twig', [
-            'books' => $books,
+        return $this->render('frontend/index.html', [
         ]);
     }
 

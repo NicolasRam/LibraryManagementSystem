@@ -19,13 +19,10 @@ class BookFactory
             $request->getId(),
             $request->getTitle(),
             $request->getSlug(),
-            $request->getContent(),
+            $request->getResume(),
             $request->getFeaturedImage(),
-            $request->getSpecial(),
-            $request->getSpotlight(),
-            $request->getCreatedDate(),
             $request->getCategory(),
-            $request->getUser(),
+            $request->getAuthor(),
             $request->getStatus()
         );
     }

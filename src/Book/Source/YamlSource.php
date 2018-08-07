@@ -91,33 +91,33 @@ class YamlSource extends BookAbstractSource
      */
     protected function createFromArray(iterable $book): ?Book
     {
-        //$tmp = (object) $book;
+        $tmp = (object) $book;
 
         # Construire l'objet Category
         $category = new Category();
-        $category->setId($tmp->categorie['id']);
-        $category->setName($tmp->categorie['name']);
-        $category->setSlug($this->slugify($tmp->categorie['name']));
+        $category->setId($tmp->category['id']);
+        $category->setName($tmp->category['name']);
+        $category->setSlug($this->slugify($tmp->category['name']));
 
         # Construire l'objet Auteur
         $user = new Author();
-        $user->setId($tmp->auteur['id']);
-        $user->setFirstName($tmp->auteur['prenom']);
-        $user->setLastName($tmp->auteur['nom']);
+        $user->setId($tmp->author['id']);
+        $user->setFirstName($tmp->author['firstName']);
+        $user->setLastName($tmp->author['lastName']);
 
         $date = new \DateTime();
 
-        $MyNewBook = new Book();
+        $myNewBook = new Book();
 
-        $MyNewBook->setId($tmp->id);
-        $MyNewBook->setIsbn($tmp->isbn);
-        $MyNewBook->setTitle($tmp->titre);
-        $MyNewBook->setSlug($this->slugify($tmp->titre));
-        $MyNewBook->setResume($tmp->contenu);
-        $MyNewBook->setPageNumber($tmp->nombredepage);
-        $MyNewBook->setCover($tmp->featuredimage);
-        $MyNewBook->setAuthor($tmp->auteur);
-        $MyNewBook->setCategory($tmp->categorie);
+        $myNewBook->setId($tmp->id);
+        $myNewBook->setIsbn($tmp->isbn);
+        $myNewBook->setTitle($tmp->title);
+        $myNewBook->setSlug($this->slugify($tmp->title));
+        $myNewBook->setResume($tmp->resume);
+        $myNewBook->setPageNumber($tmp->pageNumber);
+        $myNewBook->setCover($tmp->featuredimage);
+        $myNewBook->setAuthor($user);
+        $myNewBook->setCategory($tmp->category);
 
         //On set tous les parameters
 //        $tmp->set
@@ -136,7 +136,7 @@ class YamlSource extends BookAbstractSource
 //            );
 
         # Construire l'objet Book
-        return $MyNewBook;
+        return $myNewBook;
 
     }
 }

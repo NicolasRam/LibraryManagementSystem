@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    books_assets_directory: '%kernel.project_dir%/public/upload'
     locale: 'fr'
 
 services:
@@ -49,3 +50,49 @@ services:
         class: Monolog\Formatter\LineFormatter
         arguments:
         - "[%%datetime%%] [%%extra.token%%] %%channel%%.%%level_name%%: %%message%% %%context%% %%extra%%\n"
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    App\Book\BookRequestHandler:
+        arguments:
+            $assetsDirectory: '%books_assets_directory%'
+
+    App\Book\BookRequestUpdateHandler:
+        arguments:
+            $assetsDirectory: '%books_assets_directory%'
+
+    # Solution I
+    #App\Book\BookCatalogue:
+    #    calls:
+    #        - ['addSource', ['@App\Book\Source\YamlSource']]
+    #        - ['addSource', ['@App\Book\Source\DoctrineSource']]
+
+    # Solution II
+    #App\Book\Source\YamlSource:
+    #    tags:
+    #        - app.book_source
+
+    #App\Book\Source\DoctrineSource:
+    #    tags:
+    #        - app.book_source
+
+    # Solution III
+    _instanceof:
+        App\Book\Source\BookAbstractSource:
+            tags:
+            - app.book_source
+
+    App\Book\BookCatalogue:
+        calls:
+        - ['setSources', [!tagged app.book_source]]
+
+    App\DataCollector\SourcesCollector:
+        tags:
+        -
+            name:     data_collector
+            template: 'collector/sources.html.twig'
+            # must match the value returned by the getName() method
+            id:       'app.sources_collector'
+            # optional priority
+            # priority: 300
+        public: false

@@ -64,12 +64,12 @@ class Book
     private $authors;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PBook", mappedBy="Book", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\PBook", mappedBy="book", cascade={"persist", "remove"})
      */
     private $pBooks;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\EBook", mappedBy="Book", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\EBook", mappedBy="book", cascade={"persist", "remove"})
      */
     private $eBook;
 
@@ -238,23 +238,41 @@ class Book
         return $this;
     }
 
-    public function getEBook(): ?EBook
+    /**
+     * @return mixed
+     */
+    public function getEBook()
     {
         return $this->eBook;
     }
 
-    public function setEBook(?EBook $eBook): self
+    /**
+     * @param mixed $eBook
+     */
+    public function setEBook($eBook): void
     {
         $this->eBook = $eBook;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newBook = $eBook === null ? null : $this;
-        if ($newBook !== $eBook->getBook()) {
-            $eBook->setBook($newBook);
-        }
-
-        return $this;
     }
+
+//    public function getEBook(): ?EBook
+//    {
+//        return $this->eBook;
+//    }
+//
+//    public function setEBook(?EBook $eBook): self
+//    {
+//        $this->eBook = $eBook;
+//
+//        // set (or unset) the owning side of the relation if necessary
+//        $newBook = $eBook === null ? null : $this;
+//        if ($newBook !== $eBook->getBook()) {
+//            $eBook->setBook($newBook);
+//        }
+//
+//        return $this;
+//    }
+
+
 
     /**
      * @param mixed $id

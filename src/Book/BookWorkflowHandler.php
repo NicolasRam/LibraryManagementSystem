@@ -31,7 +31,7 @@ class BookWorkflowHandler
         # Insertion en BDD
         $em->flush();
 
-        # Publication de l'book si possible
+        # Publication du livre si possible
         if ($workflow->can($book, 'to_be_published')) {
             $workflow->apply($book, 'to_be_published');
             $em->flush();
