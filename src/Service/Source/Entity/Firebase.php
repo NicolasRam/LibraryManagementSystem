@@ -11,7 +11,7 @@ namespace App\Service\Source\Entity;
 
 class Firebase
 {
-    private $url              = 'https://lms-library-management-system.firebaseio.com/';
+    private $url              = '';
     private $authentification = '';
 
     public function __construct() {
