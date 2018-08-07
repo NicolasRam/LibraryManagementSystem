@@ -50,6 +50,18 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
 
         $manager->persist($user);
 
+
+        $librarianUser = new Librarian();
+
+        $librarianUser->setFirstName( 'nicolas' );
+        $librarianUser->setLastName( 'ramond' );
+        $librarianUser->setEmail( 'nicolas.ramond@me.com' );
+        $encoded = $this->encoder->encodePassword($librarianUser, '123456789');
+        $librarianUser->setPassword( $encoded );
+
+        $manager->persist($librarianUser);
+
+
         $superAdminUser = new SuperAdmin();
 
         $superAdminUser->setFirstName( 'SuperAdmin' );
