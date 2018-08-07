@@ -7,6 +7,9 @@ use App\Service\Maker\View\Generator;
 use App\Service\Maker\View\Str;
 use App\Service\Maker\View\Validator;
 use App\Service\Source\BookGiberSource;
+use App\Service\Source\Entity\Category;
+use App\Service\Source\Entity\Menu;
+use App\Service\Source\Entity\SubCategory;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Common\Inflector\Inflector;
 use Doctrine\ORM\EntityManager;
@@ -23,6 +26,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Tightenco\Collect\Support\Collection;
 
 
 class SourceGiberCommand extends Command
@@ -68,6 +72,51 @@ class SourceGiberCommand extends Command
 
         $this->io->title('Bienvenu dans le livres en provenance de Giber.com');
 
-        $this->bookGiberSource->getMenu();
+        $books = [];
+        /**
+         * @var Menu $menu
+         */
+        $menu = $this->bookGiberSource->getMenu();
+
+//        $this->io->text('SubCategories : ');
+        $categoryProgressBar = $this->io->createProgressBar(count($menu->getCategories()));
+        $categoryProgressBar->setMessage( 'Categories' );
+        $categoryProgressBar->display();
+        $categoryProgressBar->start();
+//        $this->io->text("\n\n");
+
+        /**
+         * @var Category $category
+         */
+        foreach ( $menu->getCategories() as $category )
+        {
+            /**
+             * @var SubCategory $subCategory
+             */
+
+//            $this->io->text('Categories : ');
+            $subCategoryProgressBar = $this->io->createProgressBar(count($category->getSubCategories()));
+            $subCategoryProgressBar->setMessage( 'SubCategories' );
+            $subCategoryProgressBar->display();
+            $subCategoryProgressBar->start();
+//            $this->io->text("\n\n");
+
+            foreach ( $category->getSubCategories() as $subCategory  )
+            {
+
+                $books = array_merge( $books, $this->bookGiberSource->getBooks($subCategory->getLink()));
+
+                $subCategoryProgressBar->advance(1);
+            }
+
+            $subCategoryProgressBar->finish();
+
+            $categoryProgressBar->advance(1);
+        }
+
+        $categoryProgressBar->finish();
+
+
+        dd($books);
     }
 }

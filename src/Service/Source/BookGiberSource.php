@@ -9,21 +9,81 @@
 namespace App\Service\Source;
 
 
+use App\Service\Source\Entity\Book;
 use Goutte\Client;
+use PHPMailer\PHPMailer\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 class BookGiberSource
 {
-    public function getBooks(): array
+    /**
+     * @param string $url
+     *
+     * @return array
+     */
+    public function getBooks( $url = '' ) : array
     {
         $books = [];
 
-        $client = new Client();
-        $crawler = $client->request('GET', '/');
+        if( $url !== '' )
+        {
+            $client = new Client();
+            $crawler = $client->request('GET', $url);
+
+            $books = $crawler->filter('li.item.product.product-item')->each(
+                function ($crawler)
+                {
+                    $book = new Entity\Book();
+
+                    /**
+                     * @var Crawler $crawler
+                     */
+                    $book->setTitle(trim($crawler->filter('div.product.details.product-item-details > strong > a')->text()));
+
+                    $book->setImage($crawler->filter('div.product-item-info > a > span > span > img')->image()->getUri());
+                    $book->setAuthor($crawler->filter('div.product.details.product-item-details > p.author > a')->text());
+                    $book->setUrl($crawler->filter('div.product.details.product-item-details > strong > a')->link()->getUri());
+
+                    $this->getBookDetails( $book );
+
+                    return $book;
+                }
+            );
+        }
 
         return $books;
     }
 
+    public function getBookDetails( Book $book )
+    {
+        if( $book->getUrl() !== '' )
+        {
+            $client = new Client();
+            $crawler = $client->request('GET', $book->getUrl() );
+
+//            $bookCrawler = $crawler->filter('div.product-info-main');
+
+//            $book->setTitle($bookCrawler->filter('h1.page-title > span')->text());
+//            $book->setImage($bookCrawler->filter('div.product-item-info > a > span > span > img')->image()->getUri());
+//            $book->setAuthor($bookCrawler->filter('div.product.details.product-item-details > p.author > a')->text());
+//            $book->setUrl($bookCrawler->filter('div.product.details.product-item-details > strong > a')->getUri());
+
+            if($crawler->filter('div.product.attribute.description > div.value')->count() > 0)
+                $book->setResume($crawler->filter('div.product.attribute.description > div.value')->text());
+
+            //            $book->setContribs( $bookCrawler->filter('div.product.attribute.description > div.value')->text() );
+//            $book->setPriceNew($bookCrawler->filter('[rel="stylesheet"],[type="text/css"]'));
+//            $book->setPriceUsed();
+//            $book->setState();
+
+//            dd($bookCrawler->filter('div.product.attribute.description > div.value')->text());
+
+        }
+    }
+
+    /**
+     * @return \App\Service\Source\Entity\Menu
+     */
     public function getMenu()
     {
         $categories = [];
@@ -31,30 +91,34 @@ class BookGiberSource
         $client = new Client();
         $crawler = $client->request('GET', 'https://www.gibert.com/livres-4.html');
 
-        $menu = new Menu();
+        $menu = new Entity\Menu();
 
         $booksMenu = $crawler->filter('li.level0.nav-1.level-top.parent')->first();
 
-        $categoriesCrawler = $booksMenu->filter('li.level1 > a > span');
-        $categories = $categoriesCrawler->each(
-            function ($crawler) {
-                /**
-                 * @var SubCategory $subCategories[]
-                 */
-                $subCategories = [];
-
+        $categoriesCrawler = $booksMenu->filter('li.level1');
+        $categories = $categoriesCrawler->each
+        (
+            function ($crawler)
+            {
                 /**
                  * @var Crawler $crawler
                  */
-                return $this->getCategory($crawler)->addSubCategory
+                $category = $this->getCategory($crawler);
+
+                $subCategories = $crawler->filter('li.level2')->each
                 (
-                    $crawler->filter('li.level1 > a > span')->each(
-                        function ( $crawler )
-                        {
-                            $this->getSubCategory($crawler);
-                        }
-                    )
+                    /**
+                     * @var Crawler $crawler
+                     */
+                    function ( $crawler )
+                    {
+                        return $this->getSubCategory($crawler);
+                    }
                 );
+
+                $category->setSubCategories( $subCategories );
+
+                return $category;
             }
         );
 
@@ -63,194 +127,32 @@ class BookGiberSource
         return $menu;
     }
 
+    /**
+     * @param Crawler $crawler
+     *
+     * @return \App\Service\Source\Entity\Category
+     */
     function getCategory( Crawler $crawler )
     {
-        $category = new Category();
+        $category = new Entity\Category();
 
-        $category->setName( $crawler->text() );
+        $category->setName( $crawler->filter('a > span')->text() );
 
         return $category;
     }
 
-
+    /**
+     * @param Crawler $crawler
+     *
+     * @return \App\Service\Source\Entity\SubCategory
+     */
     function getSubCategory( Crawler $crawler )
     {
-        $category = new Category();
+        $subCategory = new Entity\SubCategory();
 
-        $parent = $crawler->parents()->filter('li.level1 > a > span');
+        $subCategory->setName( $crawler->filter('a > span')->text() );
+        $subCategory->setLink( $crawler->filter('a')->link()->getUri() );
 
-        $subCategory = new SubCategory();
-
-        $subCategory->setName( $crawler->text() );
-        $subCategory->setLink( $crawler->parents()->filter('li.level1 > a')->link()->getUri() );
-
-        return $category;
-    }
-
-    /**
-     * @return array
-     */
-    public function getCategories(): array
-    {
-        return array_keys($this->getMenu());
-    }
-}
-
-class Menu{
-    /**
-     * @var array
-     */
-    private $categories = [];
-
-    /**
-     * @return array
-     */
-    public function getCategories(): array
-    {
-        return $this->categories;
-    }
-
-    /**
-     * @param array $categories
-     *
-     * @return Menu
-     */
-    public function setCategories(array $categories): Menu
-    {
-        $this->categories = $categories;
-        return $this;
-    }
-
-    /**
-     * @param mixed $category
-     *
-     * @return Menu
-     */
-    public function addCategory($category) : Menu
-    {
-        $this->categories[] = $category;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $category
-     *
-     * @return Menu
-     */
-    public function removeCategory($category) : Menu
-    {
-        if (FALSE !== $key = array_search($category, $this->categories, TRUE)) {
-            array_splice($this->categories, $key, 1);
-        }
-
-        return $this;
-    }
-}
-
-class Category{
-    /**
-     * @var string
-     */
-    private $name = "";
-
-    /**
-     * @var array
-     */
-    private $subCategories = [];
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return Category
-     */
-    public function setName(string $name): Category
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @param mixed $subCategory
-     *
-     * @return Category
-     */
-    public function addSubCategory($subCategory) : Category
-    {
-        $this->subCategories[] = $subCategory;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $subCategory
-     *
-     * @return Category
-     */
-    public function removeSubCategory($subCategory) : Category
-    {
-        if (FALSE !== $key = array_search($subCategory, $this->subCategories, TRUE)) {
-            array_splice($this->subCategories, $key, 1);
-        }
-
-        return $this;
-    }
-}
-
-class SubCategory{
-    /**
-     * @var string
-     */
-    private $name = "";
-
-    /**
-     * @var string
-     */
-    private $link = "";
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return SubCategory
-     */
-    public function setName(string $name): SubCategory
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLink(): string
-    {
-        return $this->link;
-    }
-
-    /**
-     * @param string $link
-     *
-     * @return SubCategory
-     */
-    public function setLink(string $link): SubCategory
-    {
-        $this->link = $link;
-        return $this;
+        return $subCategory;
     }
 }
