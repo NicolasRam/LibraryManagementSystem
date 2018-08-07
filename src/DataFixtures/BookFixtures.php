@@ -72,7 +72,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                 $book->setResume( $fakerFactory->text($maxNbChars = 200) );
                 $book->setTitle($fakerFactory->isbn13);
                 $book->setSlug($fakerFactory->isbn13);
-                $book->setCategory($choosenCategory[random_int(0, count($category) - 1)]);
+                $book->setCategory($category[random_int(0, count($category) - 1)]);
 
 
                 $manager->persist($book);
@@ -91,14 +91,16 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                         }
                     }
 
-                    if( 2 !== rand(0, 5) ) {
+
+                }
+
+                        //En dehors de la boucle
                         $ebook = new EBook();
 
                         $ebook->setBook($book);
 
                         $manager->persist($ebook);
-                    }
-                }
+
             }
         }
 
