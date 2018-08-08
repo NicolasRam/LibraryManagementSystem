@@ -4,63 +4,128 @@
 
 {% trans_default_domain 'datatable' %}
 
-{% block datable %}
-    <h1>Liste des livres </h1>
+{#{% block new_record_link '' ~ path('book_new') %}#}
 
-    <table class="table">
+{% block datable %}
+    <!--begin: Datatable -->
+    <table class="table table-striped- table-bordered table-hover table-checkable_" id="m_table_1">
+        <thead>
+        <tr>
+            <th>Record ID</th>
+            <th>{{ 'datatable.id' | trans({}, 'datatable') }}</th>
+            <th>{{ 'datatable.title' | trans({}, 'datatable') }}</th>
+            <th>{{ 'datatable.library' | trans({}, 'datatable') }}</th>
+            <th>{{ 'datatable.status' | trans({}, 'datatable') }}</th>
+            <th>{{ 'datatable.bookings' | trans({}, 'datatable') }}</th>
+
+            <th>ACTIONS</th>
+        </tr>
+        </thead>
+
+
+
         <tbody>
-        <tr>
-            <th>Books number</th>
-            <td>    <span class="Count"><a href={{ path('backend_pbook_list', {'book' : book}) }}>{{ count }}</a></span></td>
-        </tr>
-        <tr>
-            <th>Id</th>
-            <td>{{ book.id }}</td>
-        </tr>
-        <tr>
-            <th>Isbn</th>
-            <td>{{ book.isbn }}</td>
-        </tr>
-        <tr>
-            <th>Title</th>
-            <td>{{ book.title }}</td>
-        </tr>
-        <tr>
-            <th>Resume</th>
-            <td>{{ book.resume }}</td>
-        </tr>
-        <tr>
-            <th>PageNumber</th>
-            <td>{{ book.pageNumber }}</td>
-        </tr>
-        <tr>
-            <th>Cover</th>
-            <td>{{ book.cover }}</td>
-        </tr>
+
+        {#{{  dump(pbooks)  }}#}
+
+        {% for pbook in pbooks %}
+            <tr>
+                <td>{{ pbook.id }}</td>
+                <td>{{ pbook.id }}</td>
+                <td>{{ pbook.book.title }}</td>
+                <td>{{ pbook.library.name }}</td>
+                <td>
+                    {% if pbook.status == 'reserved' %}
+                    <span class="m-badge m-badge--primary m-badge--wide">reserved</span>
+                    {% endif %}
+                    {% if pbook.status == 'inside' %}
+                    <span class="m-badge m-badge--success m-badge--wide">inside</span>
+                    {% endif %}
+                    {% if pbook.status == 'not_available' %}
+                    <span class="m-badge m-badge--danger m-badge--wide">not available</span>
+                    {% endif %}
+                    {% if pbook.status == 'outside' %}
+                        <span class="m-badge m-badge--info m-badge--wide">outside</span>
+                    {% endif %}
+                    {% if pbook.status == 'waiting' %}
+                        <span class="m-badge m-badge--warning m-badge--wide">waiting</span>
+                    {% endif %}
+
+                    {#1: {title: "Pending", class: "m-badge--brand"},#}
+                    {#2: {title: "Delivered", class: " m-badge--metal"},#}
+                    {#3: {title: "Canceled", class: " m-badge--primary"},#}
+                    {#4: {title: "Success", class: " m-badge--success"},#}
+                    {#5: {title: "Info", class: " m-badge--info"},#}
+                    {#6: {title: "Danger", class: " m-badge--danger"},#}
+                    {#7: {title: "Warning", class: " m-badge--warning"}#}
+
+
+
+                </td>
+
+                    <td>
+                       {#{{  dump(pbook.booking)  }}#}
+                        {% for booking in pbook.bookings %}
+                            {{ booking.startDate ~ ' ' ~ booking.endDate }}
+                        {% endfor %}</td>
+
+
+
+                <td nowrap>
+                    {% if false %}
+                        <span class="dropdown">
+                                <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
+                                    <i class="la la-ellipsis-h"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit</a>
+                                    <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>
+                                    <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>
+                                </div>
+                            </span>
+                    {% endif %}
+
+                    <a
+                            href="{{ path('backend_book_show', {'id': pbook.id}) }}"
+                            class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
+                            title="View"
+                    >
+                        <i class="la la-eye"></i>
+                    </a>
+
+                    <a
+                            href="{{ path('backend_book_edit', {'id': pbook.id}) }}"
+                            class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
+                            title="Edit"
+                    >
+                        <i class="la la-edit"></i>
+                    </a>
+
+                    <form style="display: inline" method="post" action="{{ path('backend_book_delete', {'id': pbook.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pbook.id) }}">
+
+                        <button
+                                href="{{ path('backend_book_edit', {'id' : pbook.id}) }}"
+                                class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
+                                title="View"
+                        >
+                            <i class="la la-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">{{ 'datatable.no_records_found' | trans({}, 'datatable') }}</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('backend_book_index') }}">back to list</a>
-
-    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
-
-    {{ include('backend/book/_delete_form.html.twig') }}
-
 {% endblock datable %}
+
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        $('.Count').each(function () {
-            var $this = $(this);
-            jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
-                duration: 5000,
-                easing: 'swing',
-                step: function () {
-                    $this.text(Math.ceil(this.Counter));
-                }
-            });
-        });
-    </script>
-
 {% endblock %}

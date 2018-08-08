@@ -11,7 +11,15 @@
         <tbody>
             <tr>
                 <th>Books number</th>
-                <td>    <span class="Count"><a href={{ path('backend_pbook_list', {'book' : book}) }}>{{ count }}</a></span></td>
+                <td>
+
+
+                    <a href="{{ path('backend_pbook_list', {'id' : book.id}) }}" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">
+                        <span class="Count">{{ count }}</span></a>
+
+
+
+                </td>
             </tr>
             <tr>
                 <th>Id</th>
@@ -54,7 +62,7 @@
         $('.Count').each(function () {
             var $this = $(this);
             jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
-                duration: 5000,
+                duration: 2500,
                 easing: 'swing',
                 step: function () {
                     $this.text(Math.ceil(this.Counter));

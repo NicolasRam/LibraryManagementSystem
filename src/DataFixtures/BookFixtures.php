@@ -10,10 +10,13 @@ namespace App\DataFixtures;
 
 use App\Entity\Author;
 use App\Entity\Book;
+use App\Entity\Booking;
 use App\Entity\Category;
 use App\Entity\EBook;
 use App\Entity\Library;
+use App\Entity\Member;
 use App\Entity\PBook;
+use App\Entity\User;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -61,7 +64,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                 $book = new Book();
 
                 $category = $manager->getRepository(Category::class)->findAll();
-                $choosenCategory = rand(0, count($category));
+                //$choosenCategory = rand(0, count($category));
 
 
                 $book->setAuthor($author);
@@ -79,16 +82,113 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
 
                 foreach ( $libraries as $library )
                 {
-                    if( 3 !== rand(0, 5) ) {
-                        for( $m = 0; $m < rand(1, 10); $m++ ) {
-                            $pBook = new PBook();
+                    //if( 3 !== rand(0, 5) ) {
+                        $monRandom = rand(0, 4);
 
+                        for( $m = 0; $m < $monRandom; $m++ ) {
+
+                            $pBook = new PBook();
                             $pBook->setBook($book);
                             $pBook->setLibrary($library);
-                            $pBook->setStatus('available');
+
+                            $aleatoire = rand(0, 4);
+
+                            if( $aleatoire == 0 ) {
+                                $pBook->setStatus('waiting');
+                            }
+
+                            if( $aleatoire == 1 ) {
+                                $pBook->setStatus('inside');
+                                //Ajouter des réservations des jours d'avant et d'après
+                                for ($i=0;$i<=4;$i++) {
+
+                                    $member = $manager->getRepository(Member::class)->findAll();
+                                    $memberChoosed = $member[random_int(0, count($member) - 1)];
+
+
+                                    $myBooking = new Booking();
+                                    $myBooking->setPBook($pBook);
+                                    $myBooking->setMember($memberChoosed);
+                                    $timestamp = rand( strtotime("Jan 01 2018"), strtotime("Sept 01 2018") );
+                                    $EndDate = date("d.m.Y", $timestamp );
+                                    $EndDate = new DateTime($EndDate);
+                                    $startDate = $EndDate;
+                                    $EndDate->modify('+3 weeks');
+                                    $myBooking->setStartDate($startDate);
+                                    $myBooking->setEndDate($EndDate);
+                                    $pBook->addBooking($myBooking);
+                                }
+                            }
+                            if( $aleatoire == 2 ) {
+                                $pBook->setStatus('outside');
+                                //Ajouter des réservations des jours d'avant et d'après
+//                                for ($i = 0; $i <= rand(0, 10); $i++) {
+//
+//                                    $member = $manager->getRepository(Member::class)->findAll();
+//                                    $memberChoosed = $member[random_int(0, count($member) - 1)];
+//
+//
+//                                    $myBooking = new Booking();
+//                                    $myBooking->setPBook($pBook);
+//                                    $myBooking->setMember($memberChoosed);
+//                                    $timestamp = rand( strtotime("Jan 01 2018"), strtotime("Sept 01 2018") );
+//                                    $EndDate = date("d.m.Y", $timestamp );
+//                                    $EndDate = new DateTime($EndDate);
+//                                    $startDate = $EndDate;
+//                                    $EndDate->modify('+3 weeks');
+//                                    $myBooking->setStartDate($startDate);
+//                                    $myBooking->setEndDate($EndDate);
+//                                    $pBook->addBooking($myBooking);
+//                                }
+                            }
+                            if( $aleatoire == 3 ) {
+                                $pBook->setStatus('not_available');
+                                //Ajouter des réservations des jours d'avant et d'après
+//                                for ($i = 0; $i <= rand(0, 10); $i++) {
+//
+//                                    $member = $manager->getRepository(Member::class)->findAll();
+//                                    $memberChoosed = $member[random_int(0, count($member) - 1)];
+//
+//
+//                                    $myBooking = new Booking();
+//                                    $myBooking->setPBook($pBook);
+//                                    $myBooking->setMember($memberChoosed);
+//                                    $timestamp = rand( strtotime("Jan 01 2018"), strtotime("Sept 01 2018") );
+//                                    $EndDate = date("d.m.Y", $timestamp );
+//                                    $EndDate = new DateTime($EndDate);
+//                                    $startDate = $EndDate;
+//                                    $EndDate->modify('+3 weeks');
+//                                    $myBooking->setStartDate($startDate);
+//                                    $myBooking->setEndDate($EndDate);
+//                                    $pBook->addBooking($myBooking);
+//                                }
+                            }
+                            if( $aleatoire == 4 ) {
+                                $pBook->setStatus('reserved');
+                                //Ajouter plein de reservations
+//                                for ($i = 0; $i <= rand(0, 10); $i++) {
+//
+//                                    $member = $manager->getRepository(Member::class)->findAll();
+//                                    $memberChoosed = $member[random_int(0, count($member) - 1)];
+//
+//
+//                                    $myBooking = new Booking();
+//                                    $myBooking->setPBook($pBook);
+//                                    $myBooking->setMember($memberChoosed);
+//                                    $timestamp = rand( strtotime("Jan 01 2018"), strtotime("Sept 01 2018") );
+//                                    $EndDate = date("d.m.Y", $timestamp );
+//                                    $EndDate = new DateTime($EndDate);
+//                                    $startDate = $EndDate;
+//                                    $EndDate->modify('+3 weeks');
+//                                    $myBooking->setStartDate($startDate);
+//                                    $myBooking->setEndDate($EndDate);
+//                                    $pBook->addBooking($myBooking);
+//                                }
+                            }
 
                             $manager->persist($pBook);
-                        }
+
+                        //}
                     }
 
 

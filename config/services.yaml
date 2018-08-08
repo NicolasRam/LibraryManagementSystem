@@ -96,3 +96,10 @@ services:
             # optional priority
             # priority: 300
         public: false
+
+    audit_trail_listener:
+        class: App\Event\Subscriber\CustomAuditTrailListener
+        arguments:
+            - "@logger"
+        tags:
+        - { name: kernel.event_subscriber }

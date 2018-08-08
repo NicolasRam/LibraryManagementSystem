@@ -27,7 +27,7 @@ class PBookController extends Controller
     }
 
     /**
-     * @Route("/", name="backend_pbook_list", methods="GET")
+     * @Route("/list/{id}", name="backend_pbook_list", methods="GET")
      * @param PBookRepository $pbookRepository
      * @param Book $book
      * @return Response
@@ -35,9 +35,9 @@ class PBookController extends Controller
     public function list(PBookRepository $pbookRepository, Book $book): Response
     {
 
+
+
         $pbooks = $book->getPBooks();
-
-
 
         return $this->render('backend/pbook/list.html.twig', ['pbooks' => $pbooks]);
     }
