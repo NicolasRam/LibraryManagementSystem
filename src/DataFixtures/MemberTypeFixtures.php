@@ -8,24 +8,26 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Format;
+use App\Entity\MemberType;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class FormatFixtures extends Fixture implements OrderedFixtureInterface
+class MemberTypeFixtures extends Fixture implements OrderedFixtureInterface
 {
-    private const FORMATS = [
-        "Livre",
-        "Livre poche",
-        "Livre broché",
-        "Revue, journal",
-        "beau-livre",
-        "Livre + CD",
-        "Livre + DVD",
-        "Bande dessinée",
-        "Luxe",
-        "CD audio",
+    private const MEMBER_TYPES = [
+        [
+            "name" => "Enfant",
+            "rate" => 0.25,
+        ],
+        [
+            "name" => "Etudiant",
+            "rate" => 0.75,
+        ],
+        [
+            "name" => "Adulte",
+            "rate" => 1,
+        ]
     ];
 
     public function __construct() {
@@ -38,13 +40,14 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        foreach ( self::FORMATS as $formatName )
+        foreach ( self::MEMBER_TYPES as $MEMBER_TYPE )
         {
-            $format = new Format();
+            $memberType = new MemberType();
 
-            $format->setName( $formatName );
+            $memberType->setName( $MEMBER_TYPE['name'] );
+            $memberType->setRate( $MEMBER_TYPE['rate'] );
 
-            $manager->persist($format);
+            $manager->persist($memberType);
         }
 
         $manager->flush();
@@ -57,6 +60,6 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return -1;
+        return -3;
     }
 }

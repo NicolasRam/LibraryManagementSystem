@@ -59,6 +59,30 @@ class Book
     private $isbn = '';
 
     /**
+     * @var SubCategory
+     */
+    private $subCategory;
+
+    /**
+     * @return SubCategory
+     */
+    public function getSubCategory(): SubCategory
+    {
+        return $this->subCategory;
+    }
+
+    /**
+     * @param SubCategory $subCategory
+     *
+     * @return Book
+     */
+    public function setSubCategory(SubCategory $subCategory): Book
+    {
+        $this->subCategory = $subCategory;
+        return $this;
+    }
+
+    /**
      * @var BookContrib[]
      */
     private $details = [];

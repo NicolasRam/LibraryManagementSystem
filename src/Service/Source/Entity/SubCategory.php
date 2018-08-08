@@ -21,6 +21,30 @@ class SubCategory
     private $link = "";
 
     /**
+     * @var Category
+     */
+    private $category;
+
+    /**
+     * @return Category
+     */
+    public function getCategory(): Category
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     *
+     * @return SubCategory
+     */
+    public function setCategory(Category $category): SubCategory
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getName(): string

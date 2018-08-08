@@ -10,7 +10,6 @@ namespace App\DataFixtures;
 
 
 use App\Entity\Admin;
-use App\Entity\Author;
 use App\Entity\Librarian;
 use App\Entity\Member;
 use App\Entity\SuperAdmin;

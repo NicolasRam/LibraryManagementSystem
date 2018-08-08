@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass="PBookRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PBookRepository")
  */
 class PBook
 {

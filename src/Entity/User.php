@@ -19,8 +19,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\MappedSuperclass
  * @ORM\Entity( repositoryClass="App\Repository\UserRepository" )
- * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="user_type", type="string")
+ * @ORM\DiscriminatorColumn(name="user_type", type="string")
+ * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorMap
  * (
  *     {
@@ -40,6 +41,7 @@ class User implements UserInterface
     const ROLE_LIBRARIAN   = 'ROLE_LIBRARIAN';
     const ROLE_ADMIN       = 'ROLE_ADMIN';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+//    const USER_TYPE = 'user';
 
     /**
      * @ORM\Id
@@ -192,5 +194,10 @@ class User implements UserInterface
     {
         $this->lastName = $lastName;
         return $this;
+    }
+
+    public function getType()
+    {
+        return 'user';
     }
 }

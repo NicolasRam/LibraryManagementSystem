@@ -10,11 +10,9 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\SubCategory;
-use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Faker\Factory;
 
 class CategoryFixtures extends Fixture implements OrderedFixtureInterface
 {

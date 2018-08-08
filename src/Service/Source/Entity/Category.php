@@ -16,6 +16,11 @@ class Category
     private $name = "";
 
     /**
+     * @var string
+     */
+    private $link = "";
+
+    /**
      * @var array
      */
     private $subCategories = [];
@@ -36,6 +41,25 @@ class Category
     public function setName(string $name): Category
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink(): string
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param string $link
+     *
+     * @return Category
+     */
+    public function setLink(string $link): Category
+    {
+        $this->link = $link;
         return $this;
     }
 
