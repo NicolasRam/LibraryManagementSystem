@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use App\Entity\PBook;
 use App\Form\PBookType;
 use App\Repository\PBookRepository;
@@ -17,6 +18,8 @@ class PBookController extends Controller
 {
     /**
      * @Route("/", name="backend_pbook_index", methods="GET")
+     * @param PBookRepository $pbookRepository
+     * @return Response
      */
     public function index(PBookRepository $pbookRepository): Response
     {
@@ -24,7 +27,26 @@ class PBookController extends Controller
     }
 
     /**
+     * @Route("/", name="backend_pbook_list", methods="GET")
+     * @param PBookRepository $pbookRepository
+     * @param Book $book
+     * @return Response
+     */
+    public function list(PBookRepository $pbookRepository, Book $book): Response
+    {
+
+        $pbooks = $book->getPBooks();
+
+
+
+        return $this->render('backend/pbook/list.html.twig', ['pbooks' => $pbooks]);
+    }
+
+
+    /**
      * @Route("/new", name="pbook_new", methods="GET|POST")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {

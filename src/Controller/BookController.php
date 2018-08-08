@@ -68,23 +68,7 @@ class BookController extends Controller
     public function index(BookCatalogue $catalogue)
     {
 
-        # Récupération des Books depuis YamlProvider
-         //$books = $yamlProvider->getBooks();
-//         dd($books);
-
-        # Connexion au Repository
-        //$repository = $this->getDoctrine()
-        //   ->getRepository(Book::class);
-
-        # Récupération des books depuis la BDD
-        # $books = $repository->findAll();
-        //dd($catalogue->getSources());
-        //dd($catalogue);
-
-
         $books = $catalogue->findAll();
-
-        //dd($books);
 
         return $this->render('backend/book/index.html.twig', [
             'books' => $books,
@@ -92,20 +76,25 @@ class BookController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="book_show", methods="GET")
+     * @Route("/{id}", name="backend_book_show", methods="GET")
      * @param Book $book
      * @return Response
      */
     public function show(Book $book): Response
     {
+        $pbook = $book->getPBooks();
+
+        $count = count($pbook);
+
+
         return $this->render('backend/book/show.html.twig', [
-            'book' => $book,
+            'book' => $book, 'pbook' => $pbook, 'count' => $count
         ]);
     }
 
 
     /**
-     * @Route("/{id}", name="book_edit", methods="GET")
+     * @Route("/{id}", name="backend_book_edit", methods="GET")
      * @param Registry $workflows
      */
     public function edit(Registry $workflows)
@@ -136,7 +125,7 @@ class BookController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="book_delete", methods="DELETE")
+     * @Route("/{id}", name="backend_book_delete", methods="DELETE")
      * @param Request $request
      * @param Book $book
      * @return Response

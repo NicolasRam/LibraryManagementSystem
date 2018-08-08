@@ -5,38 +5,38 @@
 {% trans_default_domain 'datatable' %}
 
 {% block datable %}
-    <h1>{{ book.title }}</h1>
+    <h1>Liste des livres </h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Books number</th>
-                <td>    <span class="Count"><a href={{ path('backend_pbook_list', {'book' : book}) }}>{{ count }}</a></span></td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ book.id }}</td>
-            </tr>
-            <tr>
-                <th>Isbn</th>
-                <td>{{ book.isbn }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ book.title }}</td>
-            </tr>
-            <tr>
-                <th>Resume</th>
-                <td>{{ book.resume }}</td>
-            </tr>
-            <tr>
-                <th>PageNumber</th>
-                <td>{{ book.pageNumber }}</td>
-            </tr>
-            <tr>
-                <th>Cover</th>
-                <td>{{ book.cover }}</td>
-            </tr>
+        <tr>
+            <th>Books number</th>
+            <td>    <span class="Count"><a href={{ path('backend_pbook_list', {'book' : book}) }}>{{ count }}</a></span></td>
+        </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ book.id }}</td>
+        </tr>
+        <tr>
+            <th>Isbn</th>
+            <td>{{ book.isbn }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ book.title }}</td>
+        </tr>
+        <tr>
+            <th>Resume</th>
+            <td>{{ book.resume }}</td>
+        </tr>
+        <tr>
+            <th>PageNumber</th>
+            <td>{{ book.pageNumber }}</td>
+        </tr>
+        <tr>
+            <th>Cover</th>
+            <td>{{ book.cover }}</td>
+        </tr>
         </tbody>
     </table>
 

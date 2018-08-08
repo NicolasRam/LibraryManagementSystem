@@ -17,6 +17,8 @@ class LibrarianController extends Controller
 {
     /**
      * @Route("/", name="backend_librarian_index", methods="GET")
+     * @param LibrarianRepository $librarianRepository
+     * @return Response
      */
     public function index(LibrarianRepository $librarianRepository): Response
     {
@@ -25,6 +27,8 @@ class LibrarianController extends Controller
 
     /**
      * @Route("/new", name="librarian_new", methods="GET|POST")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {

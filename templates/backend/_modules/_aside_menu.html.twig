@@ -1,5 +1,42 @@
 {% trans_default_domain 'navigation' %}
 
+{% if is_granted('ROLE_LIBRARIAN') %}
+    {%
+    set menus = [
+            {
+            'label' : 'navigation.label.books' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_book_index',
+            'class' : app.request.attributes.get('_route') == 'backend_book_index' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+            },
+            {
+                'label' : 'navigation.label.bookings' | trans,
+                'icon' : 'flaticon-line-graph',
+                'path' : 'backend_booking_index',
+                'class' : app.request.attributes.get('_route') == 'backend_booking_index' ? 'm-menu__item--active' : '',
+                'badge' : '',
+                'badge_status' : '',
+                'have_access' : app.user.username != ''? true : false
+            },
+        {
+            'label' : 'navigation.label.rentABook' | trans,
+            'icon' : 'flaticon-line-graph',
+            'path' : 'backend_booking_rent',
+            'class' : app.request.attributes.get('_route') == 'backend_booking_rent' ? 'm-menu__item--active' : '',
+            'badge' : '',
+            'badge_status' : '',
+            'have_access' : app.user.username != ''? true : false
+        },
+    ]
+    %}
+
+{% endif %}
+
+{% if is_granted('ROLE_SUPER_ADMIN') %}
+
 {%
     set menus = [
         {
@@ -220,6 +257,8 @@
         },
     ]
  %}
+
+{% endif %}
 <!-- BEGIN: Aside Menu -->
 <div
     id="m_ver_menu"

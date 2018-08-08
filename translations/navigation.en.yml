@@ -2,7 +2,7 @@ navigation.label.dashboard: Dashboard
 navigation.label.authors: Authors
 navigation.label.categories: Catégories
 navigation.label.admins: Administrateurs
-navigation.label.books: Livres
+navigation.label.books: Books List
 navigation.label.bookings: Réservations
 navigation.label.ebooks: 'Livres Electronics'
 navigation.label.editors: Editeurs
@@ -21,3 +21,4 @@ navigation.label.sub_categories: Sous-Catégories
 navigation.label.subscriptions: 'Inscriptionq'
 navigation.label.super_admins: 'Supeur Administrateur'
 navigation.label.users: 'Utilisateurs'
+navigation.label.rentABook: 'Rent a book'

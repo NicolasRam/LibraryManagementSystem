@@ -17,6 +17,8 @@ class BookingController extends Controller
 {
     /**
      * @Route("/", name="backend_booking_index", methods="GET")
+     * @param BookingRepository $bookingRepository
+     * @return Response
      */
     public function index(BookingRepository $bookingRepository): Response
     {
@@ -24,7 +26,21 @@ class BookingController extends Controller
     }
 
     /**
+     * @Route("/rent", name="backend_booking_rent", methods="GET")
+     * @param BookingRepository $bookingRepository
+     * @return Response
+     */
+    public function rent(BookingRepository $bookingRepository): Response
+    {
+        $repository = $bookingRepository->findAll();
+        //dd($repository);
+        return $this->render('backend/booking/rent.html.twig', []);
+    }
+
+    /**
      * @Route("/new", name="booking_new", methods="GET|POST")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {

@@ -31,7 +31,7 @@
             <td>{{ book.title }}</td>
             <td>{{ book.resume }}</td>
             <td>{{ book.pageNumber }}</td>
-            {#<td>{{ book.featuredimage }}</td>#}
+            <td>{{ book.cover }}</td>
             <td nowrap>
                 {% if false %}
                 <span class="dropdown">
@@ -48,7 +48,7 @@
                 {% endif %}
 
                 <a
-                        href="{{ path('book_show', {'id': book.id}) }}"
+                        href="{{ path('backend_book_show', {'id': book.id}) }}"
                         class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
                         title="View"
                 >
@@ -56,19 +56,19 @@
                 </a>
 
                 <a
-                        href="{{ path('book_edit', {'id': book.id}) }}"
+                        href="{{ path('backend_book_edit', {'id': book.id}) }}"
                         class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
                         title="Edit"
                 >
                     <i class="la la-edit"></i>
                 </a>
 
-                <form style="display: inline" method="post" action="{{ path('book_delete', {'id': book.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
+                <form style="display: inline" method="post" action="{{ path('backend_book_delete', {'id': book.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
 
                     <button
-                            href="{{ path('book_edit', {'id' : book.id}) }}"
+                            href="{{ path('backend_book_edit', {'id' : book.id}) }}"
                             class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
                             title="View"
                     >
