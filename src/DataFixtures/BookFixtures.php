@@ -16,6 +16,7 @@ use App\Entity\EBook;
 use App\Entity\Library;
 use App\Entity\Member;
 use App\Entity\PBook;
+use App\Entity\SubCategory;
 use App\Entity\User;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -63,7 +64,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
             for ( $k = 0; $k < rand(1, 1); $k++ ) {
                 $book = new Book();
 
-                $category = $manager->getRepository(Category::class)->findAll();
+                $subcategory = $manager->getRepository(SubCategory::class)->findAll();
                 //$choosenCategory = rand(0, count($category));
 
 
@@ -75,7 +76,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                 $book->setResume( $fakerFactory->text($maxNbChars = 200) );
                 $book->setTitle($fakerFactory->isbn13);
                 $book->setSlug($fakerFactory->isbn13);
-                $book->setCategory($category[random_int(0, count($category) - 1)]);
+                $book->setSubCategory($subcategory[random_int(0, count($subcategory) - 1)]);
 
 
                 $manager->persist($book);
@@ -90,7 +91,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                             $pBook = new PBook();
                             $pBook->setBook($book);
                             $pBook->setLibrary($library);
-
+                            $pBook->setStatus('waiting');
                             $aleatoire = rand(0, 4);
 
                             if( $aleatoire == 0 ) {
@@ -100,7 +101,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
                             if( $aleatoire == 1 ) {
                                 $pBook->setStatus('inside');
                                 //Ajouter des réservations des jours d'avant et d'après
-                                for ($i=0;$i<=4;$i++) {
+                                for ($i=0;$i<=1;$i++) {
 
                                     $member = $manager->getRepository(Member::class)->findAll();
                                     $memberChoosed = $member[random_int(0, count($member) - 1)];

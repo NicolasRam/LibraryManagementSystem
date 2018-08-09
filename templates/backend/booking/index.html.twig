@@ -4,7 +4,7 @@
 
 {% trans_default_domain 'datatable' %}
 
-{% block new_record_link '' ~ path('booking_new') %}
+{% block new_record_link '' ~ path('backend_booking_new') %}
 
 {% block datable %}
 <!--begin: Datatable -->
@@ -48,7 +48,7 @@
                 {% endif %}
 
                 <a
-                        href="{{ path('booking_show', {'id': booking.id}) }}"
+                        href="{{ path('backend_booking_show', {'id': booking.id}) }}"
                         class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
                         title="View"
                 >
@@ -56,19 +56,19 @@
                 </a>
 
                 <a
-                        href="{{ path('booking_edit', {'id': booking.id}) }}"
+                        href="{{ path('backend_booking_edit', {'id': booking.id}) }}"
                         class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
                         title="Edit"
                 >
                     <i class="la la-edit"></i>
                 </a>
 
-                <form style="display: inline" method="post" action="{{ path('booking_delete', {'id': booking.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
+                <form style="display: inline" method="post" action="{{ path('backend_booking_delete', {'id': booking.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
 
                     <button
-                            href="{{ path('booking_edit', {'id' : booking.id}) }}"
+                            href="{{ path('backend_booking_edit', {'id' : booking.id}) }}"
                             class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
                             title="View"
                     >

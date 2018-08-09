@@ -47,9 +47,6 @@
                     {% if pbook.status == 'outside' %}
                         <span class="m-badge m-badge--info m-badge--wide">outside</span>
                     {% endif %}
-                    {% if pbook.status == 'waiting' %}
-                        <span class="m-badge m-badge--warning m-badge--wide">waiting</span>
-                    {% endif %}
 
                     {#1: {title: "Pending", class: "m-badge--brand"},#}
                     {#2: {title: "Delivered", class: " m-badge--metal"},#}
@@ -87,29 +84,40 @@
                     {% endif %}
 
                     <a
-                            href="{{ path('backend_book_show', {'id': pbook.id}) }}"
+                            href="{{ path('backend_pbook_show', {'id': pbook.id}) }}"
                             class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                            title="View"
+                            title="Voir détails"
                     >
                         <i class="la la-eye"></i>
                     </a>
-
+                    {% if pbook.status != 'not_available' and pbook.status != 'outside' %}
                     <a
-                            href="{{ path('backend_book_edit', {'id': pbook.id}) }}"
+                            href="{{ path('backend_booking_rent', {'id': pbook.id}) }}"
                             class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
-                            title="Edit"
+                            title="Ajouter une location"
                     >
                         <i class="la la-edit"></i>
                     </a>
+                    {% endif %}
 
-                    <form style="display: inline" method="post" action="{{ path('backend_book_delete', {'id': pbook.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
+                    {% if pbook.status != 'not_available' %}
+                    <a
+                            href="{{ path('backend_pbook_edit', {'id': pbook.id}) }}"
+                            class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
+                            title="Ajouter une réservation"
+                    >
+                        <i class="la la-edit"></i>
+                    </a>
+                    {% endif %}
+
+                    <form style="display: inline" method="post" action="{{ path('backend_pbook_delete', {'id': pbook.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pbook.id) }}">
 
                         <button
-                                href="{{ path('backend_book_edit', {'id' : pbook.id}) }}"
+                                href="{{ path('backend_pbook_delete', {'id' : pbook.id}) }}"
                                 class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
-                                title="View"
+                                title="DELETE"
                         >
                             <i class="la la-trash"></i>
                         </button>

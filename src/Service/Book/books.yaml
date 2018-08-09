@@ -11,10 +11,10 @@ data:
             id : 1
             firstName : 'Alberto'
             lastName : 'Moravia'
-        category :
+        subcategory :
             id : 1
             name : |
-                Romans et Littérature
+                Poésie
     livre2 :
         id : 2
         isbn : 2080705254
@@ -27,10 +27,10 @@ data:
             id : 2
             firstName : 'Jules'
             lastName : 'Vernes'
-        category :
+        subcategory :
             id : 1
             name : |
-                Romans et Littérature
+                Poésie
     livre3 :
         id : 3
         isbn : 2080705255
@@ -43,7 +43,7 @@ data:
             id : 2
             firstName : 'Jules'
             lastName : 'Vernes'
-        category :
+        subcategory :
             id : 1
             name : |
-                Romans et Littérature
+                Poésie

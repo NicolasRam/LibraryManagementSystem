@@ -7,21 +7,20 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PBookType extends AbstractType
+class PBookEType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('book')
-            ->add('library')
-            ->add('status')
+            ->remove('date')
+            ->remove('book')
+            ->remove('library')
+            ->remove('status')
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function getParent()
     {
-        $resolver->setDefaults([
-            'data_class' => PBook::class,
-        ]);
+        return PBookType::class;
     }
 }

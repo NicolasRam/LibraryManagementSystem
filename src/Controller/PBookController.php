@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Workflow\Registry;
 use App\Entity\Book;
 use App\Entity\PBook;
 use App\Form\PBookType;
@@ -10,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Workflow\Exception\TransitionException;
 
 /**
  * @Route("/backend/pbook")
@@ -38,6 +40,7 @@ class PBookController extends Controller
 
 
         $pbooks = $book->getPBooks();
+
 
         return $this->render('backend/pbook/list.html.twig', ['pbooks' => $pbooks]);
     }
@@ -69,25 +72,31 @@ class PBookController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="pbook_show", methods="GET")
+     *
+     * @Route("/{id}", name="backend_pbook_show", methods="GET")
      */
     public function show(PBook $pbook): Response
     {
         return $this->render('backend/pbook/show.html.twig', ['pbook' => $pbook]);
     }
 
+
     /**
-     * @Route("/{id}/edit", name="pbook_edit", methods="GET|POST")
+     * @Route("/{id}/edit", name="backend_pbook_edit", methods="GET|POST")
+     * @param Request $request
+     * @param PBook $pbook
+     * @return Response
      */
     public function edit(Request $request, PBook $pbook): Response
     {
-        $form = $this->createForm(PBookType::class, $pbook);
+
+        $form = $this->createForm(PBookEType::class, $pbook);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('pbook_edit', ['id' => $pbook->getId()]);
+            return $this->redirectToRoute('backend_pbook_edit', ['id' => $pbook->getId()]);
         }
 
         return $this->render('backend/pbook/edit.html.twig', [
@@ -97,7 +106,7 @@ class PBookController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="pbook_delete", methods="DELETE")
+     * @Route("/{id}", name="backend_pbook_delete", methods="DELETE")
      */
     public function delete(Request $request, PBook $pbook): Response
     {

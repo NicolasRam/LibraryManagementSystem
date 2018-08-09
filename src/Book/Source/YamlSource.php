@@ -6,7 +6,7 @@ namespace App\Book\Source;
 use App\Controller\HelperTrait;
 use App\Entity\Author;
 use App\Entity\Book;
-use App\Entity\Category;
+use App\Entity\SubCategory;
 use App\Entity\User;
 use App\Service\Book\YamlProvider;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -93,11 +93,14 @@ class YamlSource extends BookAbstractSource
     {
         $tmp = (object) $book;
 
-        # Construire l'objet Category
-        $category = new Category();
-        $category->setId($tmp->category['id']);
-        $category->setName($tmp->category['name']);
-        $category->setSlug($this->slugify($tmp->category['name']));
+//        dd($tmp);
+
+        # Construire l'objet SubCategory
+        $subCategory = new SubCategory();
+        $subCategory->setId($tmp->subcategory['id']);
+        $subCategory->setName($tmp->subcategory['name']);
+
+//        $subCategory->setSlug($this->slugify($tmp->subCategory['name']));
 
         # Construire l'objet Auteur
         $user = new Author();
@@ -117,7 +120,7 @@ class YamlSource extends BookAbstractSource
         $myNewBook->setPageNumber($tmp->pageNumber);
         $myNewBook->setCover($tmp->featuredimage);
         $myNewBook->setAuthor($user);
-        $myNewBook->setCategory($tmp->category);
+        $myNewBook->setSubCategory($tmp->subcategory);
 
         //On set tous les parameters
 //        $tmp->set
@@ -130,7 +133,7 @@ class YamlSource extends BookAbstractSource
 //                $tmp->special,
 //                $tmp->spotlight,
 //                $date->setTimestamp($tmp->datecreation),
-//                $category,
+//                $subCategory,
 //                $user,
 //                'published'
 //            );

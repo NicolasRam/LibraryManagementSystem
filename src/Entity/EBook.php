@@ -29,15 +29,6 @@ class EBook /*extends Book*/
      */
     private $id;
 
-
-//    /**
-//     * @var Book
-//     *
-//     * @ORM\ManyToOne(targetEntity="App\Entity\Book")
-//     */
-//    private $book;
-
-
     /**
      * @var Book
      *
@@ -51,7 +42,7 @@ class EBook /*extends Book*/
     private $memberEBooks;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Book", inversedBy="eBook", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Book", inversedBy="eBook")
      */
     private $book;
 
@@ -60,27 +51,6 @@ class EBook /*extends Book*/
     {
         $this->memberEBooks = new ArrayCollection();
     }
-
-
-//    /**
-//     * @return Book
-//     */
-//    public function getBook(): Book
-//    {
-//        return $this->book;
-//    }
-//
-//    /**
-//     * @param Book $book
-//     *
-//     * @return EBook
-//     */
-//    public function setBook(Book $book): EBook
-//    {
-//        $this->book = $book;
-//        return $this;
-//    }
-
 
     /**
      * @return Collection|MemberEBook[]

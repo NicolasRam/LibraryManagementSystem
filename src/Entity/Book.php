@@ -74,26 +74,28 @@ class Book
     private $eBook;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="books")
+     * @ORM\ManyToOne(targetEntity="App\Entity\SubCategory", inversedBy="books")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $category;
+    private $subCategory;
 
     /**
      * @return mixed
      */
-    public function getCategory()
+    public function getSubCategory()
     {
-        return $this->category;
+        return $this->subCategory;
     }
 
     /**
-     * @param mixed $category
+     * @param mixed $subCategory
      */
-    public function setCategory($category): void
+    public function setSubCategory($subCategory): void
     {
-        $this->category = $category;
+        $this->subCategory = $subCategory;
     }
+
+
 
     public function __construct()
     {
@@ -254,26 +256,6 @@ class Book
         $this->eBook = $eBook;
     }
 
-//    public function getEBook(): ?EBook
-//    {
-//        return $this->eBook;
-//    }
-//
-//    public function setEBook(?EBook $eBook): self
-//    {
-//        $this->eBook = $eBook;
-//
-//        // set (or unset) the owning side of the relation if necessary
-//        $newBook = $eBook === null ? null : $this;
-//        if ($newBook !== $eBook->getBook()) {
-//            $eBook->setBook($newBook);
-//        }
-//
-//        return $this;
-//    }
-
-
-
     /**
      * @param mixed $id
      */
@@ -305,6 +287,7 @@ class Book
     {
         $this->slug = $slug;
     }
+
 
 
 }

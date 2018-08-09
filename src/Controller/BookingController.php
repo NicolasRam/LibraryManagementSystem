@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\PBook;
 use App\Form\BookingType;
 use App\Repository\BookingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,16 +26,32 @@ class BookingController extends Controller
         return $this->render('backend/booking/index.html.twig', ['bookings' => $bookingRepository->findAll()]);
     }
 
+
     /**
-     * @Route("/rent", name="backend_booking_rent", methods="GET")
-     * @param BookingRepository $bookingRepository
+     * @Route("/rent/{id}/", name="backend_booking_rent", methods="GET|POST|DELETE")
+     * @param Request $request
+     * @param PBook $pbook
      * @return Response
      */
-    public function rent(BookingRepository $bookingRepository): Response
+    public function rent(Request $request, PBook $pbook): Response
     {
-        $repository = $bookingRepository->findAll();
-        //dd($repository);
-        return $this->render('backend/booking/rent.html.twig', []);
+        $booking = new Booking();
+        $form = $this->createForm(BookingType::class, $booking);
+
+        //TO-DO: fournir le pbook au form
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('backend_booking_rent', ['id' => $booking->getId()]);
+        }
+
+        return $this->render('backend/booking/rent.html.twig', [
+            'booking' => $booking,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
