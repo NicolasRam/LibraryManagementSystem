@@ -29,6 +29,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class MemberFixtures extends Fixture implements OrderedFixtureInterface
 {
+    public const MEMBERS_REFERENCE = 'member';
+    public const MEMBERS_COUNT_REFERENCE = 10;
+
     /**
      * @var UserPasswordEncoderInterface
      */
@@ -46,49 +49,28 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $startDate = new DateTime( '2018-06-06' );
-        $todayDate = new DateTime('now');
-        $interval = DateInterval::createFromDateString('1 day');
-        $period = new DatePeriod($startDate, $interval, $todayDate);
-
-        $memberTypes = $manager->getRepository(MemberType::class)->findAll();
-        $subscriptions = $manager->getRepository(Subscription::class)->findAll();
-
         $fakerFactory = Factory::create('fr_FR');
+//        $startDate = new DateTime( '2018-06-06' );
+//        $todayDate = new DateTime('now');
+//        $interval = DateInterval::createFromDateString('1 day');
+//        $period = new DatePeriod($startDate, $interval, $todayDate);
 
-//        /**
-//         * @var \DateTime $day
-//         */
-//        foreach ($period as $day) {
-//            if( rand(0, 1) )
-//            {
-//                $memberUser = new Member();
-//
-//                $memberUser->setFirstName( $fakerFactory->firstName );
-//                $memberUser->setLastName( $fakerFactory->lastName );
-//                $memberUser->setEmail( $fakerFactory->email );
-//                $memberUser->setMemberType( $memberTypes[rand(0, count($memberTypes) - 1)]);
-//                $encoded = $this->encoder->encodePassword($memberUser, '123456789');
-//                $memberUser->setPassword( $encoded );
-//
-//                $manager->persist($memberUser);
-//
-//                $subscription = $subscriptions[rand( 0, count($subscriptions) - 1 )];
-//
-//                $memberSubscription = new MemberSubscription();
-//
-//                $endDate = $day;
-//                $endDate->modify( '+' . $subscription->getDuration() . ' day'  );
-//
-//                $memberSubscription->setMember( $memberUser );
-//                $memberSubscription->setStart( $day );
-//                $memberSubscription->setEnd( $endDate );
-//
-//                $manager->persist($memberSubscription);
-//
-//                $manager->flush();
-//            }
-//        }
+        for ( $i = 0; $i < self::MEMBERS_COUNT_REFERENCE; $i++ ) {
+                $member = new Member();
+
+                $member->setFirstName( $fakerFactory->firstName );
+                $member->setLastName( $fakerFactory->lastName );
+                $member->setEmail( $fakerFactory->email );
+                $member->setMemberType( $this->getReference( MemberTypeFixtures::MEMBERS_REFERENCE . rand(0, MemberTypeFixtures::MEMBERS_COUNT_REFERENCE - 1) ) );
+                $encoded = $this->encoder->encodePassword($member, '123456789');
+                $member->setPassword( $encoded );
+
+                $manager->persist($member);
+
+            $this->addReference(self::MEMBERS_REFERENCE . $i, $member);
+        }
+
+        $manager->flush();
     }
 
     /**
@@ -98,6 +80,6 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 1;
+        return 2;
     }
 }

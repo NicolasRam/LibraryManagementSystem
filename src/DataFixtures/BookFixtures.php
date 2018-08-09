@@ -10,10 +10,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Author;
 use App\Entity\Book;
-use App\Entity\EBook;
-use App\Entity\Library;
-use App\Entity\PBook;
-use DateTime;
+use Behat\Transliterator\Transliterator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,6 +18,9 @@ use Faker\Factory;
 
 class BookFixtures extends Fixture implements OrderedFixtureInterface
 {
+    public const BOOKS_REFERENCE = 'books';
+    public const BOOKS_COUNT_REFERENCE = 10;
+
     public function __construct() {
     }
 
@@ -32,69 +32,50 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $fakerFactory = Factory::create('fr_FR');
-        $libraries = $manager->getRepository(Library::class)->findAll();
+        $authors = [];
 
-        for ( $i = 0; $i < 100; $i++ )
+        for( $i = 0; $i < AuthorFixtures::AUTHORS_COUNT_REFERENCE; $i++ )
         {
-            $author = new Author();
+            $authors[] = $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . $i );
+        }
 
-            $author->setFirstName( $fakerFactory->firstName );
-            $author->setLastName( $fakerFactory->lastName );
-            $author->setBiography( $fakerFactory->text($maxNbChars = 200) );
+        for ( $i = 0; $i < self::BOOKS_COUNT_REFERENCE && $authors >= 3; $i++ ) {
+            $book = new Book();
 
-            $manager->persist( $author );
+            /**
+             * @var Author
+             */
+            $book->setAuthor( $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1) ) );
+            $authorCounts = rand(0, 3);
+            $book->addAuthor( $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1) ) );
+            $book->setAuthors($this->pickAuthors($authors));
+            $book->setSubCategory( $this->getReference( SubCategoryFixtures::SUB_CATEGORIES_REFERENCE . rand(0, SubCategoryFixtures::SUB_CATEGORIES_COUNT_REFERENCE - 1) ) );
+            $book->setIsbn($fakerFactory->isbn13);
+            $book->setPageNumber( rand(100, 200) );
+            $book->setResume( $fakerFactory->text($maxNbChars = 200) );
+            $book->setTitle($fakerFactory->isbn13);
+            $book->setSlug(Transliterator::transliterate($book->getTitle()));
 
-            $authors = [];
+            $manager->persist($book);
 
-            for ( $k = 0; $k < rand(0, 3); $k++ ) {
-                $authors[$i] = new Author();
-
-                $authors[$i]->setFirstName( $fakerFactory->firstName );
-                $authors[$i]->setLastName( $fakerFactory->lastName );
-                $authors[$i]->setBiography( $fakerFactory->text($maxNbChars = 200) );
-
-                $manager->persist( $authors[$i] );
-            }
-
-            for ( $k = 0; $k < rand(1, 1); $k++ ) {
-                $book = new Book();
-
-                $book->setAuthor($author);
-                $book->setAuthors($authors);
-//                $book->setCover($fakerFactory->);
-                $book->setIsbn($fakerFactory->isbn13);
-                $book->setPageNumber( rand(100, 200) );
-                $book->setResume( $fakerFactory->text($maxNbChars = 200) );
-                $book->setTitle($fakerFactory->isbn13);
-
-                $manager->persist($book);
-
-                foreach ( $libraries as $library )
-                {
-                    if( 3 !== rand(0, 5) ) {
-                        for( $m = 0; $m < rand(1, 10); $m++ ) {
-                            $pBook = new PBook();
-
-                            $pBook->setBook($book);
-                            $pBook->setLibrary($library);
-                            $pBook->setStatus('available');
-
-                            $manager->persist($pBook);
-                        }
-                    }
-                }
-
-                if( 2 !== rand(0, 5) ) {
-                    $ebook = new EBook();
-
-                    $ebook->setBook($book);
-
-                    $manager->persist($ebook);
-                }
-            }
+            $this->addReference( self::BOOKS_REFERENCE . $i, $book );
         }
 
         $manager->flush();
+    }
+
+    private function pickAuthors($authors = [], $number = 3  )
+    {
+        $pickedAuthors = [];
+        for ($i = 0; $i < count($authors); $i++ )
+        {
+            $index = mt_rand(0, count($authors));
+            $pickedAuthors[] = $authors[$index];
+
+            $authors = array_slice($authors, $index, 0);
+        }
+
+        return $pickedAuthors;
     }
 
     /**
@@ -104,6 +85,6 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 3;
+        return 4;
     }
 }

@@ -32,7 +32,7 @@ class EBook /*extends Book*/
     /**
      * @var Book
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Book")
+     * @ORM\OneToOne(targetEntity="App\Entity\Book", inversedBy="eBook")
      */
     private $book;
 

@@ -8,27 +8,16 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Format;
+use App\Entity\Location;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory;
 
-class FormatFixtures extends Fixture implements OrderedFixtureInterface
+class LocationFixtures extends Fixture implements OrderedFixtureInterface
 {
-    public const FORMATS_REFERENCE = 'formats';
-
-    private const FORMATS = [
-        "Livre",
-        "Livre poche",
-        "Livre broché",
-        "Revue, journal",
-        "beau-livre",
-        "Livre + CD",
-        "Livre + DVD",
-        "Bande dessinée",
-        "Luxe",
-        "CD audio",
-    ];
+    public const LOCATIONS_REFERENCE = 'locations';
+    public const LOCATIONS_COUNT_REFERENCE = 10;
 
     public function __construct() {
     }
@@ -40,17 +29,21 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $i = 0;
+        $fakerFactory = Factory::create('fr_FR');
+        $locations = [];
 
-        foreach ( self::FORMATS as $formatName )
+        for ( $i = 0; $i < self::LOCATIONS_COUNT_REFERENCE; $i++ )
         {
-            $format = new Format();
+            $location = new Location();
 
-            $format->setName( $formatName );
+            $location->setName( $fakerFactory->name );
+            $location->setFloor( rand(1, 3) );
 
-            $manager->persist($format);
+            $manager->persist( $location );
 
-            $this->addReference(self::FORMATS_REFERENCE . $i++, $format);
+            $locations[] = $location;
+
+            $this->addReference(self::LOCATIONS_REFERENCE . $i, $location);
         }
 
         $manager->flush();
@@ -63,6 +56,6 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return -1;
+        return -6;
     }
 }

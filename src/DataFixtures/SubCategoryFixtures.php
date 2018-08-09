@@ -14,10 +14,8 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class CategoryFixtures extends Fixture implements OrderedFixtureInterface
+class SubCategoryFixtures extends Fixture implements OrderedFixtureInterface
 {
-    public const CATEGORIES_REFERENCE = 'categories';
-    public const CATEGORIES_COUNT_REFERENCE = 7;
     public const SUB_CATEGORIES_REFERENCE = 'sub_categories';
     public const SUB_CATEGORIES_COUNT_REFERENCE = 93;
 
@@ -138,16 +136,19 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $i = 0;
+        $k = 0;
+        for ( $i = 0; $i < CategoryFixtures::CATEGORIES_COUNT_REFERENCE; $i++ ) {
+            foreach ( self::CATEGORIES[$this->getReference( CategoryFixtures::CATEGORIES_REFERENCE . $i )->getName()] as $subCategoryName ){
+                $subCategory = new SubCategory();
 
-        foreach ( self::CATEGORIES as $categoryName => $subCategories ) {
-            $category = new Category();
+                $subCategory->setName( $subCategoryName );
+                $subCategory->setCategory( $this->getReference( CategoryFixtures::CATEGORIES_REFERENCE . $i ) );
+//                $subCategory->setLocation( $subCategory );
 
-            $category->setName( $categoryName );
+                $manager->persist($subCategory);
 
-            $manager->persist($category);
-
-            $this->setReference( self::CATEGORIES_REFERENCE . $i++, $category );
+                $this->setReference( self::SUB_CATEGORIES_REFERENCE . $k++, $subCategory );
+            }
         }
 
         $manager->flush();
@@ -160,6 +161,6 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 0;
+        return 1;
     }
 }

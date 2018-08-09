@@ -8,21 +8,19 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Book;
-use App\Entity\Booking;
-use App\Entity\PBook;
-use App\Entity\Member;
-use DateInterval;
-use DatePeriod;
+use App\Entity\Reservation;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class BookingFixtures extends Fixture implements OrderedFixtureInterface
+class ReservationFixtures extends Fixture implements OrderedFixtureInterface
 {
-    public const BOOKINGS_REFERENCE = 'bookings';
-    public const BOOKINGS_COUNT_REFERENCE = 10;
+    public const RESERVATIONS_REFERENCE = 'reservations';
+    public const RESERVATIONS_COUNT_REFERENCE = 10;
+
+    public function __construct() {
+    }
 
     /**
      * Load data fixtures with the passed EntityManager
@@ -43,24 +41,18 @@ class BookingFixtures extends Fixture implements OrderedFixtureInterface
             if( $this->hasReference( PBookFixtures::PBOOKS_REFERENCE . $i)) $pbooks[] = $this->getReference( PBookFixtures::PBOOKS_REFERENCE . $i++);
         }
 
-        for ( $i = 0; $i < self::BOOKINGS_COUNT_REFERENCE; $i++ ) {
-            $booking = new Booking();
+        for ( $i = 0; $i < self::RESERVATIONS_COUNT_REFERENCE; $i++ ) {
+            $reservation = new Reservation();
             $date = $this->randomDate($start, $end);
-            $startDate = $date;
-            $returnDate = $date;
-            $returnDate = $returnDate->modify('+15 day');
-            $endDate = $date;
-            $endDate = $endDate->modify('+' . mt_rand( 1, 30) . ' day');
+//            $date = $date;
 
-            $booking->setPBook( $pbooks[rand(0, count($pbooks))] );
-            $booking->setMember( $this->getReference( MemberFixtures::MEMBERS_REFERENCE . rand(0, MemberFixtures::MEMBERS_COUNT_REFERENCE - 1) ) );
-            $booking->setStartDate( $startDate );
-            $booking->setReturnDate( $returnDate );
-            $booking->setEndDate( $endDate );
+            $reservation->setPBook( $pbooks[rand(0, count($pbooks) - 1) ] );
+            $reservation->setMember( $this->getReference( MemberFixtures::MEMBERS_REFERENCE . rand(0, MemberFixtures::MEMBERS_COUNT_REFERENCE - 1) ) );
+            $reservation->setDate( $date );
 
-            $manager->persist($booking);
+            $manager->persist($reservation);
 
-            $this->addReference(self::BOOKINGS_REFERENCE . $i, $booking);
+            $this->addReference(self::RESERVATIONS_REFERENCE . $i, $reservation);
         }
 
         $manager->flush();
@@ -84,14 +76,13 @@ class BookingFixtures extends Fixture implements OrderedFixtureInterface
         return $randomDate;
     }
 
-
     /**
- * Get the order of this fixture
- *
- * @return integer
- */
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
     public function getOrder()
     {
-        return 10;
+        return 9;
     }
 }

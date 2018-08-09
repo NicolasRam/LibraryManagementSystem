@@ -15,6 +15,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class SubscriptionFixtures extends Fixture implements OrderedFixtureInterface
 {
+    public const SUBSCRIPTIONS_REFERENCE = 'subscriptions';
+
     private const SUBSCRIPTIONS = [
         [
             "name" => "Annuel",
@@ -38,6 +40,8 @@ class SubscriptionFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $i = 0;
+
         foreach (self::SUBSCRIPTIONS as $SUBSCRIPTION )
         {
             $subscription = new Subscription();
@@ -47,6 +51,8 @@ class SubscriptionFixtures extends Fixture implements OrderedFixtureInterface
             $subscription->setPrice( $SUBSCRIPTION['price'] );
 
             $manager->persist($subscription);
+
+            $this->setReference( self::SUBSCRIPTIONS_REFERENCE . $i++, $subscription );
         }
 
         $manager->flush();

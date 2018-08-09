@@ -8,27 +8,16 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Format;
+use App\Entity\Editor;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory;
 
-class FormatFixtures extends Fixture implements OrderedFixtureInterface
+class EditorFixtures extends Fixture implements OrderedFixtureInterface
 {
-    public const FORMATS_REFERENCE = 'formats';
-
-    private const FORMATS = [
-        "Livre",
-        "Livre poche",
-        "Livre broché",
-        "Revue, journal",
-        "beau-livre",
-        "Livre + CD",
-        "Livre + DVD",
-        "Bande dessinée",
-        "Luxe",
-        "CD audio",
-    ];
+    public const EDITORS_REFERENCE = 'editors';
+    public const EDITORS_COUNT_REFERENCE = 3;
 
     public function __construct() {
     }
@@ -40,17 +29,21 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $i = 0;
+        $fakerFactory = Factory::create('fr_FR');
+        $editors = [];
 
-        foreach ( self::FORMATS as $formatName )
+        for ( $i = 0; $i < self::EDITORS_COUNT_REFERENCE; $i++ )
         {
-            $format = new Format();
+            $editor = new Editor();
 
-            $format->setName( $formatName );
+            $editor->setName( $fakerFactory->company);
+            $editor->setAddress( $fakerFactory->address );
 
-            $manager->persist($format);
+            $manager->persist( $editor );
 
-            $this->addReference(self::FORMATS_REFERENCE . $i++, $format);
+            $editors[] = $editor;
+
+            $this->addReference(self::EDITORS_REFERENCE . $i, $editor);
         }
 
         $manager->flush();
@@ -63,6 +56,6 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return -1;
+        return -4;
     }
 }

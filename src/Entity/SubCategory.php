@@ -26,6 +26,11 @@ class SubCategory
      */
     private $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="subCategory")
+     */
+    private $books;
+
     public function getId()
     {
         return $this->id;
@@ -69,6 +74,25 @@ class SubCategory
     {
         $this->location = $location;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
+    /**
+     * @param mixed $books
+     *
+     * @return SubCategory
+     */
+    public function setBooks($books)
+    {
+        $this->books = $books;
         return $this;
     }
 }

@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PBook
 {
+    public const STATUS = [ 'inside', 'outside', 'reserved', 'not_available' ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -21,7 +23,7 @@ class PBook
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBook", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBook")
      * @ORM\JoinColumn(nullable=false)
      */
     private $book;

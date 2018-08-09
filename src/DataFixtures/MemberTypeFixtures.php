@@ -15,7 +15,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class MemberTypeFixtures extends Fixture implements OrderedFixtureInterface
 {
-    private const MEMBER_TYPES = [
+    public const MEMBERS_REFERENCE = 'member_types';
+    public const MEMBERS_COUNT_REFERENCE = 3;
+
+    public const MEMBER_TYPES = [
         [
             "name" => "Enfant",
             "rate" => 0.25,
@@ -40,6 +43,7 @@ class MemberTypeFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $i = 0;
         foreach ( self::MEMBER_TYPES as $MEMBER_TYPE )
         {
             $memberType = new MemberType();
@@ -48,6 +52,8 @@ class MemberTypeFixtures extends Fixture implements OrderedFixtureInterface
             $memberType->setRate( $MEMBER_TYPE['rate'] );
 
             $manager->persist($memberType);
+
+            $this->addReference(self::MEMBERS_REFERENCE . $i++, $memberType);
         }
 
         $manager->flush();
