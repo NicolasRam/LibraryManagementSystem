@@ -81,12 +81,19 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
 
         $this->addReference( self::ADMIN_REFERENCE, $admin );
 
+        $i = 0;
+        $libraries = [];
+        while ( $this->hasReference( LibraryFixtures::LIBRARIES_REFERENCE . $i) ) {
+            if( $this->hasReference( LibraryFixtures::LIBRARIES_REFERENCE . $i)) $libraries[] = $this->getReference( LibraryFixtures::LIBRARIES_REFERENCE . $i++);
+        }
+
         $librarian = new Librarian();
 
         $librarian->setFirstName( 'Librarian' );
         $librarian->setLastName( 'Librarian' );
         $librarian->setEmail( 'librarian@librarian.com' );
         $encoded = $this->encoder->encodePassword($librarian, '123456789');
+        $librarian->setLibrary( $libraries[rand(0, count($libraries) - 1) ] );
         $librarian->setPassword( $encoded );
 
         $manager->persist($librarian);
@@ -100,6 +107,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
         $member->setEmail( 'member@member.com' );
         $encoded = $this->encoder->encodePassword($member, '123456789');
         $member->setPassword( $encoded );
+        $member->setMemberType( $this->getReference( MemberTypeFixtures::MEMBERS_REFERENCE . rand(0, MemberTypeFixtures::MEMBERS_COUNT_REFERENCE - 1) ) );
 
         $manager->persist($member);
 
@@ -115,6 +123,6 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 3;
+        return 4;
     }
 }

@@ -24,6 +24,8 @@ class PBookFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $status = PBook::STATUS;
+
         $j = 0;
         for ($i = 0; $i < BookFixtures::BOOKS_COUNT_REFERENCE; $i++) {
             for ( $k = 0; $k < LibraryFixtures::LIBRARIES_COUNT_REFERENCE - 1; $k++ ) {
@@ -38,7 +40,7 @@ class PBookFixtures extends Fixture implements OrderedFixtureInterface
                         $manager->persist($pBook);
                         $pBook->setBook($this->getReference(BookFixtures::BOOKS_REFERENCE . $i));
                         $pBook->setLibrary($this->getReference(LibraryFixtures::LIBRARIES_REFERENCE . $k));
-                        $pBook->setStatus('waiting');
+                        $pBook->setStatus($status[mt_rand(0, count($status) - 1)]);
 
                         $this->addReference( self::PBOOKS_REFERENCE . $j++, $pBook );
 
