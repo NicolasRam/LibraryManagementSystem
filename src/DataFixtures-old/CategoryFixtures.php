@@ -10,19 +10,15 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\SubCategory;
-use Behat\Transliterator\Transliterator;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory;
 
 class CategoryFixtures extends Fixture implements OrderedFixtureInterface
 {
-    public const CATEGORIES_REFERENCE = 'categories';
-    public const CATEGORIES_COUNT_REFERENCE = 7;
-    public const SUB_CATEGORIES_REFERENCE = 'sub_categories';
-    public const SUB_CATEGORIES_COUNT_REFERENCE = 93;
-
-    public const CATEGORIES = [
+    private const CATEGORIES = [
         "Romans et Littérature" => [
             "Littérature française",
             "Littérature classique",
@@ -132,6 +128,9 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
         ]
     ];
 
+    public function __construct() {
+    }
+
     /**
      * Load data fixtures with the passed EntityManager
      *
@@ -139,16 +138,25 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $i = 0;
-
-        foreach ( self::CATEGORIES as $categoryName => $subCategories ) {
+        foreach ( self::CATEGORIES as $categoryName => $subCategories )
+        {
             $category = new Category();
 
             $category->setName( $categoryName );
-            $category->setSlug(Transliterator::transliterate($category->getName()));
+            $category->setSlug($categoryName);
+
             $manager->persist($category);
 
-            $this->setReference( self::CATEGORIES_REFERENCE . $i++, $category );
+            foreach ( $subCategories as $subCategoryName )
+            {
+                $subCategory = new SubCategory();
+
+                $subCategory->setName( $subCategoryName );
+                $subCategory->setCategory( $category );
+//                $subCategory->setLocation( $subCategory );
+
+                $manager->persist($subCategory);
+            }
         }
 
         $manager->flush();

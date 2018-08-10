@@ -10,7 +10,6 @@ namespace App\DataFixtures;
 
 
 use App\Entity\Admin;
-use App\Entity\Author;
 use App\Entity\Librarian;
 use App\Entity\Member;
 use App\Entity\SuperAdmin;
@@ -22,6 +21,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends Fixture implements OrderedFixtureInterface
 {
+    public const USER_REFERENCE = 'user';
+    public const MEMBER_REFERENCE = 'member';
+    public const LIBRARIAN_REFERENCE = 'librarian';
+    public const ADMIN_REFERENCE = 'admin';
+    public const SUPER_ADMIN_REFERENCE = 'super_admin';
+
     /**
      * @var UserPasswordEncoderInterface
      */
@@ -44,63 +49,61 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
         $user->setFirstName( 'Moulaye' );
         $user->setLastName( 'Cissé' );
         $user->setEmail( 'moulaye.c@gmail.com' );
-        $user->setRoles( [User::ROLE_SUPER_ADMIN] );
+        $user->setRoles( [User::ROLE_SUPER_ADMIN, User::ROLE_ADMIN, User::ROLE_LIBRARIAN, User::ROLE_MEMBER] );
         $encoded = $this->encoder->encodePassword($user, '123456789');
         $user->setPassword( $encoded );
 
         $manager->persist($user);
 
+        $this->addReference( self::USER_REFERENCE, $user );
 
-        $librarianUser = new Librarian();
+        $superAdmin = new SuperAdmin();
 
-        $librarianUser->setFirstName( 'nicolas' );
-        $librarianUser->setLastName( 'ramond' );
-        $librarianUser->setEmail( 'nicolas.ramond@me.com' );
-        $encoded = $this->encoder->encodePassword($librarianUser, '123456789');
-        $librarianUser->setPassword( $encoded );
+        $superAdmin->setFirstName( 'SuperAdmin' );
+        $superAdmin->setLastName( 'SuperAdmin' );
+        $superAdmin->setEmail( 'superadmin@superadmin.com' );
+        $encoded = $this->encoder->encodePassword($superAdmin, '123456789');
+        $superAdmin->setPassword( $encoded );
 
-        $manager->persist($librarianUser);
+        $manager->persist($superAdmin);
 
+        $this->addReference( self::SUPER_ADMIN_REFERENCE, $superAdmin );
 
-        $superAdminUser = new SuperAdmin();
+        $admin = new Admin();
 
-        $superAdminUser->setFirstName( 'SuperAdmin' );
-        $superAdminUser->setLastName( 'SuperAdmin' );
-        $superAdminUser->setEmail( 'superadmin@superadmin.com' );
-        $encoded = $this->encoder->encodePassword($superAdminUser, '123456789');
-        $superAdminUser->setPassword( $encoded );
+        $admin->setFirstName( 'Admin' );
+        $admin->setLastName( 'Admin' );
+        $admin->setEmail( 'admin@admin.com' );
+        $encoded = $this->encoder->encodePassword($admin, '123456789');
+        $admin->setPassword( $encoded );
 
-        $manager->persist($superAdminUser);
+        $manager->persist($admin);
 
-        $adminUser = new Admin();
+        $this->addReference( self::ADMIN_REFERENCE, $admin );
 
-        $adminUser->setFirstName( 'Admin' );
-        $adminUser->setLastName( 'Admin' );
-        $adminUser->setEmail( 'admin@admin.com' );
-        $encoded = $this->encoder->encodePassword($adminUser, '123456789');
-        $adminUser->setPassword( $encoded );
+        $librarian = new Librarian();
 
-        $manager->persist($adminUser);
+        $librarian->setFirstName( 'Librarian' );
+        $librarian->setLastName( 'Librarian' );
+        $librarian->setEmail( 'librarian@librarian.com' );
+        $encoded = $this->encoder->encodePassword($librarian, '123456789');
+        $librarian->setPassword( $encoded );
 
-        $librarianUser = new Librarian();
+        $manager->persist($librarian);
 
-        $librarianUser->setFirstName( 'Librarian' );
-        $librarianUser->setLastName( 'Librarian' );
-        $librarianUser->setEmail( 'librarian@librarian.com' );
-        $encoded = $this->encoder->encodePassword($librarianUser, '123456789');
-        $librarianUser->setPassword( $encoded );
+        $this->addReference( self::LIBRARIAN_REFERENCE, $librarian );
 
-        $manager->persist($librarianUser);
+        $member = new Member();
 
-        $memberUser = new Member();
+        $member->setFirstName( 'Member' );
+        $member->setLastName( 'Member' );
+        $member->setEmail( 'member@member.com' );
+        $encoded = $this->encoder->encodePassword($member, '123456789');
+        $member->setPassword( $encoded );
 
-        $memberUser->setFirstName( 'Member' );
-        $memberUser->setLastName( 'Member' );
-        $memberUser->setEmail( 'member@member.com' );
-        $encoded = $this->encoder->encodePassword($memberUser, '123456789');
-        $memberUser->setPassword( $encoded );
+        $manager->persist($member);
 
-        $manager->persist($memberUser);
+        $this->addReference( self::MEMBER_REFERENCE, $member );
 
         $manager->flush();
     }
@@ -112,6 +115,6 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 1;
+        return 3;
     }
 }

@@ -17,8 +17,8 @@ use Faker\Factory;
 
 class LibraryFixtures extends Fixture implements OrderedFixtureInterface
 {
-    public const LIBRARIES_REFERENCE = 'libraries';
-    public const LIBRARIES_COUNT_REFERENCE = 5;
+    public function __construct() {
+    }
 
     /**
      * Load data fixtures with the passed EntityManager
@@ -29,7 +29,7 @@ class LibraryFixtures extends Fixture implements OrderedFixtureInterface
     {
         $fakerFactory = Factory::create('fr_FR');
 
-        for ( $i = 0; $i < self::LIBRARIES_COUNT_REFERENCE; $i++ )
+        for ( $i = 0; $i < 10; $i++ )
         {
             $library = new Library();
 
@@ -41,8 +41,6 @@ class LibraryFixtures extends Fixture implements OrderedFixtureInterface
             $library->setPhone( $fakerFactory->phoneNumber );
 
             $manager->persist($library);
-
-            $this->addReference(self::LIBRARIES_REFERENCE . $i, $library);
         }
 
 
@@ -56,6 +54,6 @@ class LibraryFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 5;
+        return 2;
     }
 }

@@ -8,27 +8,16 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Format;
+use App\Entity\Author;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory;
 
-class FormatFixtures extends Fixture implements OrderedFixtureInterface
+class AuthorFixtures extends Fixture implements OrderedFixtureInterface
 {
-    public const FORMATS_REFERENCE = 'formats';
-
-    private const FORMATS = [
-        "Livre",
-        "Livre poche",
-        "Livre broché",
-        "Revue, journal",
-        "beau-livre",
-        "Livre + CD",
-        "Livre + DVD",
-        "Bande dessinée",
-        "Luxe",
-        "CD audio",
-    ];
+    public const AUTHORS_REFERENCE = 'authors';
+    public const AUTHORS_COUNT_REFERENCE = 300;
 
     public function __construct() {
     }
@@ -40,17 +29,19 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $i = 0;
+        $fakerFactory = Factory::create('fr_FR');
 
-        foreach ( self::FORMATS as $formatName )
+        for ( $i = 0; $i < self::AUTHORS_COUNT_REFERENCE; $i++ )
         {
-            $format = new Format();
+            $author = new Author();
 
-            $format->setName( $formatName );
+            $author->setFirstName( $fakerFactory->firstName );
+            $author->setLastName( $fakerFactory->lastName );
+            $author->setBiography( $fakerFactory->text($maxNbChars = 200) );
 
-            $manager->persist($format);
+            $manager->persist( $author );
 
-            $this->addReference(self::FORMATS_REFERENCE . $i++, $format);
+            $this->addReference(self::AUTHORS_REFERENCE . $i, $author);
         }
 
         $manager->flush();
@@ -63,6 +54,6 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return -1;
+        return -5;
     }
 }

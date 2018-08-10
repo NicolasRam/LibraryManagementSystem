@@ -288,6 +288,12 @@ class Book
         $this->slug = $slug;
     }
 
+    public function addAuthor(Author $author)
+    {
+        $this->authors[] = $author;
+
+        return $this;
+    }
 
 
 }
