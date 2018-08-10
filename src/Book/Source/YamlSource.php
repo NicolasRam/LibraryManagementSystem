@@ -27,13 +27,6 @@ class YamlSource extends BookAbstractSource
     {
         $this->books = new Collection($yamlProvider->getBooks());
 
-        /*
-         * Autre possibilitée :
-         */
-        # $this->Books = new Collection($yamlProvider->getBooks());
-        # foreach ($this->books as &$book) {
-        #    $book = $this->createFromArray($book);
-        # }
     }
 
     /**

@@ -13,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PBook
 {
+
+    public const STATUS = [ 'inside', 'outside', 'reserved', 'not_available' ];
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

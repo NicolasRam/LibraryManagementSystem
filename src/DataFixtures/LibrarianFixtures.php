@@ -60,6 +60,19 @@ class LibrarianFixtures extends Fixture implements OrderedFixtureInterface
             $this->addReference(self::LIBRARIANS_REFERENCE . $i, $librarian);
         }
 
+        $librarian = new Librarian();
+
+        $librarian->setFirstName('Nicolas');
+        $librarian->setLastName( 'Ramond');
+        $librarian->setEmail( 'nicolas.ramond@me.com');
+        $encoded = $this->encoder->encodePassword($librarian, '123456789');
+        $librarian->setPassword( $encoded );
+        $librarian->setLibrary( $libraries[rand(0, count($libraries) - 1) ] );
+
+        $manager->persist($librarian);
+
+        $this->addReference(self::LIBRARIANS_REFERENCE . $i, $librarian);
+
         $manager->flush();
     }
 

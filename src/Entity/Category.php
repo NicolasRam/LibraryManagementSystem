@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
+ *
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
 class Category
@@ -26,7 +27,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=100, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $slug;
 
@@ -38,7 +39,6 @@ class Category
     public function __construct()
     {
         $this->subCategories = new ArrayCollection();
-        $this->books = new ArrayCollection();
     }
 
     public function getId()
@@ -55,6 +55,25 @@ class Category
     {
         $this->name = $name;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     *
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
         return $this;
     }
 
@@ -88,47 +107,4 @@ class Category
 
         return $this;
     }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getBooks(): ArrayCollection
-    {
-        return $this->books;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @param mixed $subCategories
-     */
-    public function setSubCategories($subCategories): void
-    {
-        $this->subCategories = $subCategories;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @param mixed $slug
-     */
-    public function setSlug($slug): void
-    {
-        $this->slug = $slug;
-    }
-
-
-
 }
