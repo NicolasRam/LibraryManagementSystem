@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Booking;
+use App\Entity\Library;
+use App\Entity\PBook;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,32 +21,25 @@ class BookingRepository extends ServiceEntityRepository
         parent::__construct($registry, Booking::class);
     }
 
-//    /**
-//     * @return Booking[] Returns an array of Booking objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Récupère les suggestions d'articles
+     *
+     * @param $libraryId
+     *
+     * @return mixed
+     */
+    public function findLibraryLateBooking($libraryId)
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        return $this->createQueryBuilder('booking')
+            ->join( PBook::class, 'pbook' )
+            ->join( Library::class, 'library' )
 
-    /*
-    public function findOneBySomeField($value): ?Booking
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
+            ->where('booking.endDate < CURRENT_DATE()')
+            ->andWhere('booking.returnDate IS NULL')
+            ->andWhere('library.id != :library_id')
+            ->setParameter('library_id', $libraryId)
+
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
 }

@@ -101,6 +101,9 @@
             "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
         }
     },
+    "egulias/email-validator": {
+        "version": "2.1.4"
+    },
     "fabpot/goutte": {
         "version": "v3.2.3"
     },
@@ -235,6 +238,9 @@
     },
     "superbalist/flysystem-google-storage": {
         "version": "7.0.0"
+    },
+    "swiftmailer/swiftmailer": {
+        "version": "v6.1.2"
     },
     "symfony/apache-pack": {
         "version": "1.0",
@@ -431,6 +437,15 @@
     "symfony/stopwatch": {
         "version": "v4.1.2"
     },
+    "symfony/swiftmailer-bundle": {
+        "version": "2.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "3db029c03e452b4a23f7fc45cec7c922c2247eb8"
+        }
+    },
     "symfony/translation": {
         "version": "3.3",
         "recipe": {
@@ -474,6 +489,15 @@
             "branch": "master",
             "version": "1.0",
             "ref": "b87dfd249390a7b534caa137450277930901236e"
+        }
+    },
+    "symfony/workflow": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "7c8798612bf94fbe4cb75056a4cd7ea3a9183698"
         }
     },
     "symfony/yaml": {

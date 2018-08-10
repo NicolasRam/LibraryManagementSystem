@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
+ *
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
 class Category
@@ -24,6 +25,11 @@ class Category
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\SubCategory", mappedBy="category")
@@ -49,6 +55,25 @@ class Category
     {
         $this->name = $name;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     *
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
         return $this;
     }
 

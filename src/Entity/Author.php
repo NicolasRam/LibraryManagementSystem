@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource()
+ *
  * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
  */
 class Author

@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
+ *
  * @ORM\Entity(repositoryClass="App\Repository\LibraryRepository")
  */
 class Library
@@ -54,6 +55,11 @@ class Library
      * @ORM\OneToMany(targetEntity="PBook", mappedBy="library")
      */
     private $pBooks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Librarian", mappedBy="library")
+     */
+    private $librarians;
 
     public function __construct()
     {
