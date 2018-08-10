@@ -63,7 +63,9 @@
                     <td>
                        {#{{  dump(pbook.booking)  }}#}
                         {% for booking in pbook.bookings %}
-                            {{ booking.startDate ~ ' ' ~ booking.endDate }}
+                            <a href="{{ path('backend_booking_delete', {'id': booking.id}) }}">
+                            {{ '[' ~ booking.startDate|date('d-m-Y') ~ '  ->   ' ~ booking.EndDate|date('d-m-Y') ~ ']' }}
+                            </a>
                         {% endfor %}</td>
 
 
@@ -95,16 +97,6 @@
                             href="{{ path('backend_booking_rent', {'id': pbook.id}) }}"
                             class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
                             title="Ajouter une location"
-                    >
-                        <i class="la la-edit"></i>
-                    </a>
-                    {% endif %}
-
-                    {% if pbook.status != 'not_available' %}
-                    <a
-                            href="{{ path('backend_pbook_edit', {'id': pbook.id}) }}"
-                            class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
-                            title="Ajouter une réservation"
                     >
                         <i class="la la-edit"></i>
                     </a>

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Booking\BookingRequest;
+use App\Booking\BookingRequestHandler;
 use App\Entity\Booking;
 use App\Entity\PBook;
 use App\Form\BookingType;
@@ -30,20 +32,30 @@ class BookingController extends Controller
     /**
      * @Route("/rent/{id}/", name="backend_booking_rent", methods="GET|POST|DELETE")
      * @param Request $request
+     * @param BookingRequestHandler $bookingRequestHandler
      * @param PBook $pbook
      * @return Response
      */
-    public function rent(Request $request, PBook $pbook): Response
+    public function rent(Request $request, BookingRequestHandler $bookingRequestHandler, PBook $pbook): Response
     {
-        $booking = new Booking();
+
+//        $booking = new Booking();
+
+        $booking = new BookingRequest($pbook);
+
+
         $form = $this->createForm(BookingType::class, $booking);
 
         //TO-DO: fournir le pbook au form
+
+        //To-Do: gérer les dates et les ajouter au form
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $booking = $bookingRequestHandler->handle($booking);
 
             return $this->redirectToRoute('backend_booking_rent', ['id' => $booking->getId()]);
         }
@@ -55,7 +67,7 @@ class BookingController extends Controller
     }
 
     /**
-     * @Route("/new", name="booking_new", methods="GET|POST")
+     * @Route("/new", name="backend_booking_new", methods="GET|POST")
      * @param Request $request
      * @return Response
      */
@@ -80,7 +92,7 @@ class BookingController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="booking_show", methods="GET")
+     * @Route("/{id}", name="backend_booking_show", methods="GET")
      */
     public function show(Booking $booking): Response
     {
@@ -88,7 +100,7 @@ class BookingController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="booking_edit", methods="GET|POST")
+     * @Route("/{id}/edit", name="backend_booking_edit", methods="GET|POST")
      */
     public function edit(Request $request, Booking $booking): Response
     {
@@ -108,7 +120,11 @@ class BookingController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="booking_delete", methods="DELETE")
+     *
+     * @Route("/{id}", name="backend_booking_delete", methods="DELETE")
+     * @param Request $request
+     * @param Booking $booking
+     * @return Response
      */
     public function delete(Request $request, Booking $booking): Response
     {

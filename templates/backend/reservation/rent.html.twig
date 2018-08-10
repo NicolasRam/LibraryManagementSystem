@@ -1,10 +1,10 @@
 {% extends "form_layout.html.twig" %}
 
-{% block page_title 'page.title.booking.rent' | trans({}, 'page') %}
+{% block page_title 'page.title.reservation.rent' | trans({}, 'page') %}
 
 {% trans_default_domain 'form' %}
 
-{% block page_content_portlet_head_title 'page.title.booking.rent' | trans({}, 'page') %}
+{% block page_content_portlet_head_title 'page.title.reservation.rent' | trans({}, 'page') %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -65,34 +65,34 @@
                             </div>
                         {% endif %}
 
-                        {#{% if form.member is defined %}#}
-                            {#<div class="form-group m-form__group row {% if form_errors(form.member) is not empty %}has-danger{% endif %} {% if form_errors(form.member) is not empty %}has-success{% endif %}">#}
-                                {#<label class="col-xl-3 col-lg-3 col-form-label">{% if form.member.vars.required %}* {% endif %}#}
-                                    {#Choix de la période :#}
+                        {% if form.member is defined %}
+                        <div class="form-group m-form__group row {% if form_errors(form.member) is not empty %}has-danger{% endif %} {% if form_errors(form.member) is not empty %}has-success{% endif %}">
+                        <label class="col-xl-3 col-lg-3 col-form-label">{% if form.member.vars.required %}* {% endif %}
+                        Choix de la période :
 
-                                {#</label>#}
+                        </label>
 
-                                {#<div class="col-xl-9 col-lg-9">#}
+                        <div class="col-xl-9 col-lg-9">
 
-                                    {#<div class="input-daterange input-group" id="m_datepicker_5">#}
-                                        {#<input type="text" class="form-control m-input"#}
-                                               {#name='{{ form_widget(form.startDate) }}'>#}
-                                        {#<div class="input-group-append">#}
-                                            {#<span class="input-group-text"><i class="la la-ellipsis-h"></i></span>#}
-                                        {#</div>#}
-                                        {#<input type="text" class="form-control" name='{{ form_widget(form.endDate) }}'>#}
-                                    {#</div>#}
+                        <div class="input-daterange input-group" id="m_datepicker_5">
+                        <input type="text" class="form-control m-input"
+                        name='{{ form_widget(form.startDate) }}'>
+                        <div class="input-group-append">
+                        <span class="input-group-text"><i class="la la-ellipsis-h"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name='{{ form_widget(form.endDate) }}'>
+                        </div>
 
-                                    {#{% if form.member.vars.errors|length > 0 %}#}
-                                        {#<span class="m-form__help text-danger">#}
-                                            {#{% for error in form.member.vars.errors %}#}
-                                                {#{{ error.message }}#}
-                                            {#{% endfor %}#}
-                                        {#</span>#}
-                                    {#{% endif %}#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#{% endif %}#}
+                        {% if form.member.vars.errors|length > 0 %}
+                        <span class="m-form__help text-danger">
+                        {% for error in form.member.vars.errors %}
+                        {{ error.message }}
+                        {% endfor %}
+                        </span>
+                        {% endif %}
+                        </div>
+                        </div>
+                        {% endif %}
 
                     </div>
                 </div>
@@ -128,7 +128,7 @@
             </script>
             <script>
                 $("#form_submit_button").click(function () {
-                    $("form[name='booking']").submit();
+                    $("form[name='reservation']").submit();
                 });
             </script>
             <!--end::Page Snippets -->

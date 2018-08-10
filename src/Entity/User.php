@@ -80,6 +80,8 @@ class User implements UserInterface
      */
     protected $roles;
 
+
+
     public function getRoles()
     {
         return $this->roles;
