@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Booking\BookingRequest;
 use App\Entity\Booking;
 use App\Entity\Member;
 use App\Entity\PBook;
@@ -12,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BookingType extends AbstractType
+class BookingRequestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -66,8 +67,8 @@ class BookingType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-//            'data_class' => Booking::class,
-                        'data_class' => null
+            'data_class' => BookingRequest::class,
+//                        'data_class' => null
         ]);
     }
 }

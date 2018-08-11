@@ -5,8 +5,9 @@ namespace App\Controller;
 use App\Booking\BookingRequest;
 use App\Booking\BookingRequestHandler;
 use App\Entity\Booking;
+use App\Entity\Member;
 use App\Entity\PBook;
-use App\Form\BookingType;
+use App\Form\BookingRequestType;
 use App\Repository\BookingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,12 +40,13 @@ class BookingController extends Controller
     public function rent(Request $request, BookingRequestHandler $bookingRequestHandler, PBook $pbook): Response
     {
 
+
 //        $booking = new Booking();
 
-        $booking = new BookingRequest($pbook);
+        $bookingRequest = new BookingRequest($pbook);
 
-
-        $form = $this->createForm(BookingType::class, $booking);
+//
+        $form = $this->createForm(BookingRequestType::class, $bookingRequest);
 
         //TO-DO: fournir le pbook au form
 
@@ -53,15 +55,16 @@ class BookingController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+//            dd( $form );
             $this->getDoctrine()->getManager()->flush();
 
-            $booking = $bookingRequestHandler->handle($booking);
+            $booking = $bookingRequestHandler->handle($bookingRequest);
 
             return $this->redirectToRoute('backend_booking_rent', ['id' => $booking->getId()]);
         }
 
         return $this->render('backend/booking/rent.html.twig', [
-            'booking' => $booking,
+//            'booking' => $booking,
             'form' => $form->createView(),
         ]);
     }
@@ -74,7 +77,7 @@ class BookingController extends Controller
     public function new(Request $request): Response
     {
         $booking = new Booking();
-        $form = $this->createForm(BookingType::class, $booking);
+        $form = $this->createForm(BookingRequestType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -104,7 +107,7 @@ class BookingController extends Controller
      */
     public function edit(Request $request, Booking $booking): Response
     {
-        $form = $this->createForm(BookingType::class, $booking);
+        $form = $this->createForm(BookingRequestType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
