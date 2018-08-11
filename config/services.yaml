@@ -46,6 +46,16 @@ services:
 #        tags:
 #        - { name: monolog.processor }
 
+    App\Service\Member\MemberProvider:
+        autowire: true
+#        arguments:
+            # the '@' symbol is important: that's what tells the container
+            # you want to pass the *service* whose id is 'monolog.logger.request',
+            # and not just the *string* 'monolog.logger.request'
+#            $logger: '@monolog.logger.ovh'
+    #        tags:
+    #        - { name: monolog.processor }
+
     monolog.formatter.session_request:
         class: Monolog\Formatter\LineFormatter
         arguments:

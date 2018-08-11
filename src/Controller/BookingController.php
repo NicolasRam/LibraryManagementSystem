@@ -9,16 +9,26 @@ use App\Entity\Member;
 use App\Entity\PBook;
 use App\Form\BookingRequestType;
 use App\Repository\BookingRepository;
+use App\Service\Member\MemberProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Workflow\Registry;
+use Symfony\Component\Workflow\WorkflowInterface\InstanceOfSupportStrategy;
 
 /**
  * @Route("/backend/booking")
  */
 class BookingController extends Controller
 {
+
+    /**
+     * @var MemberProvider $memberProvider
+     */
+    private $memberProvider;
+
+
     /**
      * @Route("/", name="backend_booking_index", methods="GET")
      * @param BookingRepository $bookingRepository
@@ -35,32 +45,54 @@ class BookingController extends Controller
      * @param Request $request
      * @param BookingRequestHandler $bookingRequestHandler
      * @param PBook $pbook
+     * @param MemberProvider $memberProvider
      * @return Response
      */
-    public function rent(Request $request, BookingRequestHandler $bookingRequestHandler, PBook $pbook): Response
+    public function rent(Request $request, BookingRequestHandler $bookingRequestHandler, PBook $pbook, MemberProvider $memberProvider): Response
     {
 
 
-//        $booking = new Booking();
-
         $bookingRequest = new BookingRequest($pbook);
 
-//
         $form = $this->createForm(BookingRequestType::class, $bookingRequest);
-
-        //TO-DO: fournir le pbook au form
-
-        //To-Do: gérer les dates et les ajouter au form
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            dd( $form );
+
+
+            //On vérifie que le membre peut souscrire à une nouvelle reservation
+            $responseFromQuery = $memberProvider->verifyIfBookingCanBeValid($bookingRequest->getMember());
+
+
+            if ($responseFromQuery == true) {
+
+                $registry = new Registry();
+
+                $workflow = $registry->get($bookingRequest);
+
+                if ($workflow->can($bookingRequest, 'publish'))
+//                    $workflow->get
+
+                $workflow->can($bookingRequest, 'publish'); // False
+                $workflow->can($bookingRequest, 'to_review'); // True
+
+                // Update the currentState on the post
+                try {
+                    $workflow->apply($bookingRequest, 'to_review');
+                } catch (TransitionException $exception) {
+                    // ... if the transition is not allowed
+                }
+            $this->addFlash('notice', 'La réservation est effective.');
+
             $this->getDoctrine()->getManager()->flush();
 
             $booking = $bookingRequestHandler->handle($bookingRequest);
 
-            return $this->redirectToRoute('backend_booking_rent', ['id' => $booking->getId()]);
+            return $this->redirectToRoute('backend_booking_rent', ['id' => $pbook->getId()]);
+            } else {
+                $this->addFlash('error', 'Ce membre a déjà 3 livres en location');
+            }
         }
 
         return $this->render('backend/booking/rent.html.twig', [
