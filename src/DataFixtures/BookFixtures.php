@@ -10,6 +10,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Author;
 use App\Entity\Book;
+use App\Service\Source\Entity\Firebase;
 use Behat\Transliterator\Transliterator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -20,8 +21,13 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
 {
     public const BOOKS_REFERENCE = 'books';
     public const BOOKS_COUNT_REFERENCE = 10;
+    /**
+     * @var Firebase
+     */
+    private $firebase;
 
-    public function __construct() {
+    public function __construct( Firebase $firebase ) {
+        $this->firebase = $firebase;
     }
 
     /**
@@ -33,14 +39,20 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
     {
         $fakerFactory = Factory::create('fr_FR');
         $authors = [];
+        $firebaseBooks = $this->firebase->getBooks();
 
-        for( $i = 0; $i < AuthorFixtures::AUTHORS_COUNT_REFERENCE; $i++ )
-        {
+        $offset = mt_rand( 0,  count($firebaseBooks) - self::BOOKS_COUNT_REFERENCE );
+
+        for( $i = $offset; $i < AuthorFixtures::AUTHORS_COUNT_REFERENCE; $i++ ) {
             $authors[] = $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . $i );
         }
 
         for ( $i = 0; $i < self::BOOKS_COUNT_REFERENCE && $authors >= 3; $i++ ) {
             $book = new Book();
+            /**
+             * @var \App\Service\Source\Entity\Book $firebaseBook
+             */
+            $firebaseBook = $firebaseBooks[$i];
 
             /**
              * @var Author
@@ -50,11 +62,11 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
             $book->addAuthor( $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1) ) );
             $book->setAuthors($this->pickAuthors($authors));
             $book->setSubCategory( $this->getReference( SubCategoryFixtures::SUB_CATEGORIES_REFERENCE . rand(0, SubCategoryFixtures::SUB_CATEGORIES_COUNT_REFERENCE - 1) ) );
-            $book->setIsbn($fakerFactory->isbn13);
+            $book->setIsbn($firebaseBook->getIsbn());
             $book->setPageNumber( rand(100, 200) );
             $book->setResume( $fakerFactory->text($maxNbChars = 200) );
-            $book->setTitle($fakerFactory->isbn13);
-            $book->setSlug(Transliterator::transliterate($book->getTitle()));
+            $book->setTitle( $firebaseBook->getTitle() );
+            $book->setSlug( Transliterator::transliterate($book->getTitle()) );
 
             $manager->persist($book);
 

@@ -18,4 +18,34 @@ class PBookRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, PBook::class);
     }
+
+
+    /**
+     * @param $libraryId
+     *
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countLibraryPbook($libraryId) : int
+    {
+        try{
+            return $this->createQueryBuilder('pbook')
+                ->select( 'COUNT(pbook)' )
+                ->join( PBook::class, 'pbook' )
+                ->join( Library::class, 'library' )
+
+                ->andWhere('library.id = :library_id')
+                ->setParameter('library_id', $libraryId)
+
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NonUniqueResultException $e) {
+            return 0;
+        }
+    }
+
+    public function findMostRentedByLibrary($libraryId, $limit = 10, $offset = 0) {
+        return $this->findBy( [ 'library' => $libraryId ], ['id'], $limit, $offset );
+    }
+
 }

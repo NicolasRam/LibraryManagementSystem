@@ -47,9 +47,9 @@ class BookingFixtures extends Fixture implements OrderedFixtureInterface
         //        new DateTime( '2017-01-01' );
         $todayDate = new DateTime('now');
         $start = $todayDate;
-        $start->modify('-45');
+        $start->modify('-45 day');
         $end = new DateTime('now');
-        $end->modify('-15');
+        $end->modify('-15 day');
         $interval = DateInterval::createFromDateString('1 day');
         $period = new DatePeriod($start, $interval, $end);
 
@@ -164,29 +164,6 @@ class BookingFixtures extends Fixture implements OrderedFixtureInterface
                 }
             }
         }
-
-        /*
-        $k = $i;
-        for ( $i = 0; $i < self::BOOKINGS_COUNT_REFERENCE; $i++ ) {
-            $booking = new Booking();
-            $date = $this->randomDate($start, $end);
-            $startDate = $date;
-            $returnDate = $date;
-            $returnDate = $returnDate->modify('+15 day');
-            $endDate = $date;
-            $endDate = $endDate->modify('+' . mt_rand( 1, 30) . ' day');
-
-            $booking->setPBook( $pbooks[rand(0, count($pbooks))] );
-            $booking->setMember( $this->getReference( UserFixtures::MEMBER_REFERENCE ) );
-            $booking->setStartDate( $startDate );
-            $booking->setReturnDate( $returnDate );
-            $booking->setEndDate( $endDate );
-
-            $manager->persist($booking);
-
-            $this->addReference(self::BOOKINGS_REFERENCE . $k++, $booking);
-        }
-        */
 
         $manager->flush();
     }

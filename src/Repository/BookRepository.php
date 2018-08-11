@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Book;
+use App\Entity\Library;
+use App\Entity\PBook;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -19,32 +22,61 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
-//    /**
-//     * @return Book[] Returns an array of Book objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param $libraryId
+     *
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findByLibrary($libraryId)
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('book')
+            ->join( PBook::class, 'pbook')
+            ->where( 'pbook.book_id = book.id' )
+            ->distinct( 'pbook.book_id' )
+
+            ->join( Library::class, 'library' )
+            ->where('library.id = :library_id')
+            ->setParameter('library_id', $libraryId)
+
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Book
+    /**
+     * @param $libraryId
+     *
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countByLibrary($libraryId)
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $count = 0;
+
+        try{
+            $query = $this->createQueryBuilder('book')
+                ->select( 'Count( book )' )
+                ->distinct( 'book' )
+                ->join( PBook::class, 'pbook', 'WITH', 'pbook.library_id = :library.id' )
+                ->setParameter('library_id', $libraryId)
+                ->addSelect( 'pbook' )
+//                ->where( 'pbook = book.id' )
+//                ->andWhere( 'pbook.library_id = :library_id' )
+
+                ->getQuery()
+//                ->getSingleScalarResult()
+                ;
+
+//            dd( $query );
+
+//            $count = $query;
+
+            $count = 0;
+        } catch (NonUniqueResultException $e) {
+            $count = 0;
+        }
+
+        return $count;
     }
-    */
 }

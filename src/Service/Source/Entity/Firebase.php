@@ -106,29 +106,23 @@ class Firebase
         return $response;
     }
 
-    public function saveBook(Book $book = null, $path = '/book/' )
+    /**
+     * @param string $path
+     *
+     * @return array
+     */
+    public function getBooks( $path = '/book' ) : array
     {
         // Data for PATCH
         // Matching nodes updated
-        $data = [
-            "url" => $book->getUrl() ?? '',
-            "author" => $book->getAuthor() ?? '',
-            "image" => $book->getImage() ?? '',
-            "price_new" => $book->getPriceNew() ?? '',
-            "price_used" => $book->getPriceUsed() ?? '',
-            "resume" => $book->getResume() ?? '',
-            "title" => $book->getTitle() ?? '',
-            "subCategory" => Transliterator::transliterate($book->getSubCategory()->getName()),
-            "contribs" => [],
-            "details" => [],
-        ];
+//        $data = [];
 
         // JSON encoded
-        $json = json_encode($data);
+//        $json = json_encode($data);
         // Initialize cURL
         $curl = curl_init();
 
-        $value = $this->url . $path . $book->getIsbn() . '.json?auth=' . $this->authentication;
+        $url = $this->url . $path . '.json?auth=' . $this->authentication;
 
         // Create
         // curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_PUT );
@@ -137,21 +131,48 @@ class Firebase
         // Read
         // curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_GET );
         // Update
-        curl_setopt($curl, CURLOPT_URL, $value);
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PATCH");
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
-
-        // Delete
-        // curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_DELETE );
-        // curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
-        // Get return value
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, FALSE);
+        curl_setopt($curl, CURLOPT_HEADER, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+
 
         // Make request
         // Close connection
         $response = curl_exec($curl);
         curl_close($curl);
 
-        return $response;
+        $response = json_decode($response, true);
+
+        $books = [];
+        foreach ( $response as $isbn => $value )
+        {
+            if(
+                    isset($value['author'])         && !empty($value['author'])
+                &&  isset($value['title'])          && !empty($value['title'])
+                &&  isset($value['image'])
+                &&  isset($value['price_new'])
+                &&  isset($value['price_used'])
+                &&  isset($value['url'])
+            )
+            {
+                $books[] = ( new Book() )
+                    ->setAuthor($value['author'])
+                    ->setImage($value['image'])
+                    ->setPriceNew($value['price_new'])
+                    ->setPriceUsed($value['price_used'])
+                    ->setResume($value['resume'])
+//                    ->setSubCategory($value['resume'])
+                    ->setTitle($value['title'])
+                    ->setUrl($value['url'])
+                    ->setIsbn($isbn)
+                ;
+            }
+        }
+
+        return $books;
     }
+
 }

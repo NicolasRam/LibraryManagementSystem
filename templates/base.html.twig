@@ -53,10 +53,14 @@
                     <!-- begin::Body -->
                     <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 
+                        {% block left_sidebar %}
                         {% include 'backend/_components/_left_sidebar.html.twig' %}
+                        {% endblock left_sidebar %}
 
                         <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                            {% block subheader %}
                             {% include 'backend/_components/_subheader.html.twig' %}
+                            {% endblock subheader %}
 
                             {% block page_content %}
                             <div class="m-content">
@@ -2950,12 +2954,16 @@
                     <!-- end:: Body -->
                 {% endblock page_body %}
 
+                {% block footer %}
                 {% include 'backend/_components/_footer.html.twig' %}
+                {% endblock footer %}
             </div>
             <!-- end:: Page -->
         {% endblock page %}
 
+        {% block quick_sidebar %}
         {% include 'backend/_components/_quick_sidebar.html.twig' %}
+        {% endblock quick_sidebar %}
 
         <!-- begin::Scroll Top -->
         <div id="m_scroll_top" class="m-scroll-top">
@@ -2963,7 +2971,9 @@
         </div>
         <!-- end::Scroll Top -->
 
+        {% block quick_nav %}
         {% include 'backend/_components/_quick_nav.html.twig' %}
+        {% endblock quick_nav %}
 
 
 
