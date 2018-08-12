@@ -11,6 +11,6 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 RUN apt-get update && apt-get install yarn
 
 
-RUN yarn install
+RUN yarn install --ignore-engines
 
 WORKDIR /var/www/symfony
