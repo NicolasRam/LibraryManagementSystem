@@ -69,20 +69,20 @@ class BookingController extends Controller
 
                 $registry = new Registry();
 
-                $workflow = $registry->get($bookingRequest);
+//                $workflow = $registry->get($bookingRequest);
 
-                if ($workflow->can($bookingRequest, 'publish'))
-//                    $workflow->get
-
-                $workflow->can($bookingRequest, 'publish'); // False
-                $workflow->can($bookingRequest, 'to_review'); // True
-
-                // Update the currentState on the post
-                try {
-                    $workflow->apply($bookingRequest, 'to_review');
-                } catch (TransitionException $exception) {
-                    // ... if the transition is not allowed
-                }
+//                if ($workflow->can($bookingRequest, 'publish'))
+////                    $workflow->get
+//
+////                $workflow->can($bookingRequest, 'publish'); // False
+////                $workflow->can($bookingRequest, 'to_review'); // True
+//
+//                // Update the currentState on the post
+//                try {
+////                    $workflow->apply($bookingRequest, 'to_review');
+//                } catch (TransitionException $exception) {
+//                    // ... if the transition is not allowed
+//                }
             $this->addFlash('notice', 'La réservation est effective.');
 
             $this->getDoctrine()->getManager()->flush();
