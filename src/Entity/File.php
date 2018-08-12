@@ -33,6 +33,11 @@ class File
     private $extension;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isLocal;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $path;

@@ -2,8 +2,12 @@
 
 namespace App\Repository;
 
+use App\Entity\Booking;
+use App\Entity\Library;
 use App\Entity\Member;
+use App\Entity\PBook;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -19,32 +23,22 @@ class MemberRepository extends ServiceEntityRepository
         parent::__construct($registry, Member::class);
     }
 
-//    /**
-//     * @return Member[] Returns an array of Member objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function findLateByLibrary($libraryId)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        return $this->findAll();
+//        return $this->createQueryBuilder('member')
+//            ->join( Booking::class, 'booking' )
+//            ->join( Library::class, 'library' )
+//            ->join( PBook::class, 'pbook' )
 
-    /*
-    public function findOneBySomeField($value): ?Member
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+//            ->where('booking.endDate < CURRENT_DATE()')
+//            ->andWhere('member.id = booking.member_id')
+//            ->andWhere('booking.returnDate IS NULL')
+//            ->andWhere('library.id = :library_id')
+//            ->setParameter('library_id', $libraryId)
+
+//            ->getQuery()
+//            ->getResult()
+//            ;
     }
-    */
 }

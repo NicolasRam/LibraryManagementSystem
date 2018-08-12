@@ -9,13 +9,14 @@
 namespace App\DataFixtures;
 
 use App\Entity\Format;
-use App\Entity\SubFormat;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class FormatFixtures extends Fixture implements OrderedFixtureInterface
 {
+    public const FORMATS_REFERENCE = 'formats';
+
     private const FORMATS = [
         "Livre",
         "Livre poche",
@@ -39,6 +40,8 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $i = 0;
+
         foreach ( self::FORMATS as $formatName )
         {
             $format = new Format();
@@ -46,6 +49,8 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
             $format->setName( $formatName );
 
             $manager->persist($format);
+
+            $this->addReference(self::FORMATS_REFERENCE . $i++, $format);
         }
 
         $manager->flush();

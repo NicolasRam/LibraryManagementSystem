@@ -33,6 +33,11 @@ class Book
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $resume;
@@ -53,10 +58,22 @@ class Book
     private $author;
 
     /**
+     * @var Author[]
      * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="contributedBooks")
      * @ORM\JoinTable(name="book_author")
      */
     private $authors;
+
+    /**
+     * @ORM\OneToOne(targetEntity="EBook", mappedBy="book", cascade={"persist", "remove"})
+     */
+    private $eBook;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SubCategory", inversedBy="books")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $subCategory;
 
     /**
      * @ORM\OneToMany(targetEntity="PBook", mappedBy="book", cascade={"persist", "remove"})
@@ -89,6 +106,26 @@ class Book
     {
         $this->title = $title;
 
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     *
+     * @return Book
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
         return $this;
     }
 
@@ -166,6 +203,62 @@ class Book
             $pBook->setBook($this);
         }
 
+        return $this;
+    }
+
+    /**
+     * @param Author $author
+     */
+    public function addAuthor(Author $author)
+    {
+        $this->authors[] = $author;
+    }
+
+    /**
+     * @param Author $author
+     */
+    public function removeAuthor(Author $author)
+    {
+        if (FALSE !== $key = array_search($author, $this->authors, TRUE)) {
+            array_splice($this->authors, $key, 1);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEBook()
+    {
+        return $this->eBook;
+    }
+
+    /**
+     * @param mixed $eBook
+     *
+     * @return Book
+     */
+    public function setEBook($eBook)
+    {
+        $this->eBook = $eBook;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubCategory()
+    {
+        return $this->subCategory;
+    }
+
+    /**
+     * @param mixed $subCategory
+     *
+     * @return Book
+     */
+    public function setSubCategory($subCategory)
+    {
+        $this->subCategory = $subCategory;
         return $this;
     }
 }

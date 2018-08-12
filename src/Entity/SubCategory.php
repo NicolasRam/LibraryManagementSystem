@@ -22,9 +22,19 @@ class SubCategory
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="subCategories")
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="subCategory")
+     */
+    private $books;
 
     public function getId()
     {
@@ -42,6 +52,27 @@ class SubCategory
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     *
+     * @return SubCategory
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+
 
     public function getCategory(): ?Category
     {
@@ -69,6 +100,25 @@ class SubCategory
     {
         $this->location = $location;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
+    /**
+     * @param mixed $books
+     *
+     * @return SubCategory
+     */
+    public function setBooks($books)
+    {
+        $this->books = $books;
         return $this;
     }
 }

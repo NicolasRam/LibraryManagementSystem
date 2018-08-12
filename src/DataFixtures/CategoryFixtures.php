@@ -9,16 +9,19 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\SubCategory;
-use DateTime;
+use Behat\Transliterator\Transliterator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Faker\Factory;
 
 class CategoryFixtures extends Fixture implements OrderedFixtureInterface
 {
-    private const CATEGORIES = [
+    public const CATEGORIES_REFERENCE = 'categories';
+    public const CATEGORIES_COUNT_REFERENCE = 7;
+    public const SUB_CATEGORIES_REFERENCE = 'sub_categories';
+    public const SUB_CATEGORIES_COUNT_REFERENCE = 93;
+
+    public const CATEGORIES = [
         "Romans et Littérature" => [
             "Littérature française",
             "Littérature classique",
@@ -128,9 +131,6 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
         ]
     ];
 
-    public function __construct() {
-    }
-
     /**
      * Load data fixtures with the passed EntityManager
      *
@@ -138,24 +138,17 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        foreach ( self::CATEGORIES as $categoryName => $subCategories )
-        {
+        $i = 0;
+
+        foreach ( self::CATEGORIES as $categoryName => $subCategories ) {
             $category = new Category();
 
             $category->setName( $categoryName );
+            $category->setSlug( Transliterator::transliterate($category->getName()) );
 
             $manager->persist($category);
 
-            foreach ( $subCategories as $subCategoryName )
-            {
-                $subCategory = new SubCategory();
-
-                $subCategory->setName( $subCategoryName );
-                $subCategory->setCategory( $category );
-//                $subCategory->setLocation( $subCategory );
-
-                $manager->persist($subCategory);
-            }
+            $this->setReference( self::CATEGORIES_REFERENCE . $i++, $category );
         }
 
         $manager->flush();

@@ -11,18 +11,25 @@ namespace App\Service\Source;
 
 use App\Service\Source\Entity\Book;
 use App\Service\Source\Entity\Firebase;
+use App\Service\Source\Entity\SubCategory;
 use Goutte\Client;
 use PHPMailer\PHPMailer\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 class BookGiberSource
 {
+
+    public function __construct() {
+    }
+
     /**
-     * @param string $url
+     * @param string      $url
+     *
+     * @param SubCategory $subCategory
      *
      * @return array
      */
-    public function getBooks( $url = '' ) : array
+    public function getBooks( $url = '', SubCategory $subCategory = null ) : array
     {
         $books = [];
 
@@ -32,7 +39,7 @@ class BookGiberSource
             $crawler = $client->request('GET', $url);
 
             $books = $crawler->filter('li.item.product.product-item')->each(
-                function ($crawler)
+                function ($crawler) use ($subCategory)
                 {
                     $book = new Entity\Book();
 
@@ -44,10 +51,9 @@ class BookGiberSource
                     $book->setImage($crawler->filter('div.product-item-info > a > span > span > img')->image()->getUri());
                     $book->setAuthor($crawler->filter('div.product.details.product-item-details > p.author > a')->text());
                     $book->setUrl($crawler->filter('div.product.details.product-item-details > strong > a')->link()->getUri());
+                    $book->setSubCategory($subCategory);
 
                     $this->getBookDetails( $book );
-
-                    (new Firebase())->send($book);
 
                     return $book;
                 }
@@ -116,9 +122,9 @@ class BookGiberSource
                     /**
                      * @var Crawler $crawler
                      */
-                    function ( $crawler )
+                    function ( $crawler ) use ( $category )
                     {
-                        return $this->getSubCategory($crawler);
+                        return $this->getSubCategory($crawler, $category);
                     }
                 );
 
@@ -143,6 +149,7 @@ class BookGiberSource
         $category = new Entity\Category();
 
         $category->setName( $crawler->filter('a > span')->text() );
+        $category->setLink( $crawler->filter('a')->link()->getUri()  );
 
         return $category;
     }
@@ -150,14 +157,17 @@ class BookGiberSource
     /**
      * @param Crawler $crawler
      *
+     * @param null    $category
+     *
      * @return \App\Service\Source\Entity\SubCategory
      */
-    function getSubCategory( Crawler $crawler )
+    function getSubCategory( Crawler $crawler, $category = null )
     {
         $subCategory = new Entity\SubCategory();
 
         $subCategory->setName( $crawler->filter('a > span')->text() );
         $subCategory->setLink( $crawler->filter('a')->link()->getUri() );
+        $subCategory->setCategory( $category );
 
         return $subCategory;
     }

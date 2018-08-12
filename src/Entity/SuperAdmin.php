@@ -15,4 +15,9 @@ class SuperAdmin extends User
     public function __construct() {
         $this->roles = [ self::ROLE_SUPER_ADMIN ];
     }
+
+    public function getType()
+    {
+        return 'super_admin';
+    }
 }

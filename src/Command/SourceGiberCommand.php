@@ -8,6 +8,7 @@ use App\Service\Maker\View\Str;
 use App\Service\Maker\View\Validator;
 use App\Service\Source\BookGiberSource;
 use App\Service\Source\Entity\Category;
+use App\Service\Source\Entity\Firebase;
 use App\Service\Source\Entity\Menu;
 use App\Service\Source\Entity\SubCategory;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
@@ -48,6 +49,11 @@ class SourceGiberCommand extends ContainerAwareCommand
      */
     private $io;
 
+    /**
+     * @var Firebase
+     */
+    private $firebase;
+
     public function __construct(
         EntityManagerInterface $entityManager
         , BookGiberSource $bookGiberSource
@@ -57,6 +63,7 @@ class SourceGiberCommand extends ContainerAwareCommand
         parent::__construct($name);
         $this->bookGiberSource = $bookGiberSource;
         $this->entityManager = $entityManager;
+        $this->firebase = new Firebase();
     }
 
     protected function configure()
@@ -74,7 +81,10 @@ class SourceGiberCommand extends ContainerAwareCommand
 
         $this->io->title('Livres en provenance de Giber.com');
 
+        $categories = [];
+        $subCategories = [];
         $books = [];
+
         /**
          * @var Menu $menu
          */
@@ -101,24 +111,36 @@ class SourceGiberCommand extends ContainerAwareCommand
             $subCategoryProgressBar->setMessage( 'SubCategories' );
             $subCategoryProgressBar->display();
             $subCategoryProgressBar->start();
-//            $this->io->text("\n\n");
 
-            foreach ( $category->getSubCategories() as $subCategory  )
-            {
+            foreach ( $category->getSubCategories() as $subCategory  ) {
+                $bookProgressBar = $this->io->createProgressBar(count($category->getSubCategories()));
+                $bookProgressBar->setMessage( 'SubCategories' );
+                $bookProgressBar->display();
+                $bookProgressBar->start();
 
-                $books = array_merge( $books, $this->bookGiberSource->getBooks($subCategory->getLink()));
+                foreach ( $this->bookGiberSource->getBooks($subCategory->getLink(), $subCategory) as $book){
+                    $books[] = $book;
+                    $this->firebase->saveBook($book) ;
+
+                    $bookProgressBar->advance(1);
+                }
+
+                $bookProgressBar->finish();
+
+                $this->firebase->saveSubCategory($subCategory) ;
 
                 $subCategoryProgressBar->advance(1);
             }
 
             $subCategoryProgressBar->finish();
 
+            $this->firebase->saveCategory($category) ;
+
             $categoryProgressBar->advance(1);
         }
 
         $categoryProgressBar->finish();
 
-
-        dd($books);
+        $this->io->success( 'Categories : ' . count($categories) . ' - SubCategories : '  . count($subCategories) . ' - Books : ' . count($books) );
     }
 }

@@ -19,32 +19,33 @@ class PBookRepository extends ServiceEntityRepository
         parent::__construct($registry, PBook::class);
     }
 
-//    /**
-//     * @return PBook[] Returns an array of PBook objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?PBook
+    /**
+     * @param $libraryId
+     *
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countLibraryPbook($libraryId) : int
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        try{
+            return $this->createQueryBuilder('pbook')
+                ->select( 'COUNT(pbook)' )
+                ->join( PBook::class, 'pbook' )
+                ->join( Library::class, 'library' )
+
+                ->andWhere('library.id = :library_id')
+                ->setParameter('library_id', $libraryId)
+
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NonUniqueResultException $e) {
+            return 0;
+        }
     }
-    */
+
+    public function findMostRentedByLibrary($libraryId, $limit = 10, $offset = 0) {
+        return $this->findBy( [ 'library' => $libraryId ], ['id'], $limit, $offset );
+    }
+
 }

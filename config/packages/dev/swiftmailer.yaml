@@ -1,0 +1,4 @@
+# See https://symfony.com/doc/current/email/dev_environment.html
+swiftmailer:
+    # send all emails to a specific address
+    delivery_addresses: ['6f48afa12d-ec462e@inbox.mailtrap.io']

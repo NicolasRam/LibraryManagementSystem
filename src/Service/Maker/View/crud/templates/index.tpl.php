@@ -46,7 +46,7 @@
                 {% endif %}
 
                 <a
-                        href="{{ path('<?= $route_name ?>_show', {'<?= $entity_identifier ?>': <?= $entity_twig_var_singular ?>.<?= $entity_identifier ?>}) }}"
+                        href="{{ path('backend_<?= $route_name ?>_show', {'<?= $entity_identifier ?>': <?= $entity_twig_var_singular ?>.<?= $entity_identifier ?>}) }}"
                         class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
                         title="View"
                 >
@@ -54,19 +54,19 @@
                 </a>
 
                 <a
-                        href="{{ path('<?= $route_name ?>_edit', {'<?= $entity_identifier ?>': <?= $entity_twig_var_singular ?>.<?= $entity_identifier ?>}) }}"
+                        href="{{ path('backend_<?= $route_name ?>_edit', {'<?= $entity_identifier ?>': <?= $entity_twig_var_singular ?>.<?= $entity_identifier ?>}) }}"
                         class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
                         title="Edit"
                 >
                     <i class="la la-edit"></i>
                 </a>
 
-                <form style="display: inline" method="post" action="{{ path('<?= $route_name ?>_delete', {'id': <?= $route_name ?>.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
+                <form style="display: inline" method="post" action="{{ path('backend_<?= $route_name ?>_delete', {'id': <?= $route_name ?>.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ <?= $route_name ?>.id) }}">
 
                     <button
-                            href="{{ path('<?= $route_name ?>_edit', {'id' : <?= $route_name ?>.id}) }}"
+                            href="{{ path('backend_<?= $route_name ?>_edit', {'id' : <?= $route_name ?>.id}) }}"
                             class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
                             title="View"
                     >

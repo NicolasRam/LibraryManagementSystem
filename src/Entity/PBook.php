@@ -9,10 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass="PBookRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PBookRepository")
  */
 class PBook
 {
+    public const STATUS = [ 'inside', 'outside', 'reserved', 'not_available' ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -21,13 +23,13 @@ class PBook
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBook", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBook")
      * @ORM\JoinColumn(nullable=false)
      */
     private $book;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="simple_array", nullable=true)
      */
     private $status;
 
@@ -51,6 +53,9 @@ class PBook
         return $this->id;
     }
 
+    /**
+     * @return Book|null
+     */
     public function getBook(): ?Book
     {
         return $this->book;
