@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Entity\PBook;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Console\Helper\TableStyle;
@@ -20,6 +21,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Helper\TableCell;
+use Symfony\Component\Workflow\Registry;
 
 /**
  */
@@ -57,7 +59,9 @@ class BookingCommand extends Command
 
 
         $LoggerDependency = new LoggerDependency($logger);
-            $LoggerDependency->ready();
+        $LoggerDependency->ready();
+
+
 
         try {
 //                $LoggerDependency->numberGiven();
@@ -108,7 +112,7 @@ class BookingCommand extends Command
 
                 $table
                     ->addRow([
-                            $idbook, $valueTitre , $valueCount]
+                            $idbook, $valueTitre, $valueCount]
                     );
             }
             $table->setStyle($tableStyle);
