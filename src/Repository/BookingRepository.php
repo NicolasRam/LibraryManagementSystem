@@ -6,6 +6,7 @@ use App\Entity\Booking;
 use App\Entity\Library;
 use App\Entity\Member;
 use App\Entity\PBook;
+use App\Entity\User;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -46,37 +47,35 @@ class BookingRepository extends ServiceEntityRepository
      * @param bool $currentOnly
      * @param bool $late
      * @param null $date
-     * @return Query
+     * @return QueryBuilder
      */
     private function queryBooking($libraryId = false, $memberId = false, $currentOnly = false, $late = false, $date = null ) : QueryBuilder
     {
-        $queryBuilder = $this->createQueryBuilder('booking');
-//        $query->join(Booking::class, 'booking');
+        $queryBuilder = $this->createQueryBuilder('b');
 
         $date = $date ?? new DateTime( 'now' );
 
-        if( $libraryId && is_int($libraryId) ) {
-//            $queryBuilder->join( 'booking.pBook', 'pbook' );
-//            $queryBuilder->join( 'pbook.library', 'library' );
-//            $queryBuilder->where( 'library.id = :library_id' );
-//            $queryBuilder->setParameter( 'library_id', $libraryId );
+        if( $libraryId && is_int($libraryId)) {
+            $queryBuilder->join( 'b.pBook', 'p' );
+            $queryBuilder->join( 'p.library', 'library' );
+            $queryBuilder->where( 'library.id = :library_id' );
+            $queryBuilder->setParameter( 'library_id', $libraryId );
         }
 
         if( $memberId && is_int($memberId) ) {
-//            $queryBuilder->join('booking.member', 'member');
-//            $queryBuilder->join(Member::class, 'member');
-//            $queryBuilder->andWhere( 'member.id = :member_id');
-//            $queryBuilder->setParameter( 'member_id', $memberId );
+            $queryBuilder->join('b.member', 'm');
+            $queryBuilder->where( 'm.id = :member_id');
+            $queryBuilder->setParameter( 'member_id', $memberId );
         }
 
         if( $currentOnly ) {
-//            $query->where( 'booking.endDate = < CURRENT_DATE()' );
-//            $queryBuilder->where( 'booking.endDate < :date' );
-//            $queryBuilder->setParameter( 'date', $date );
+            $queryBuilder->andWhere( 'b.returnDate IS NULL' );
+            $queryBuilder->andWhere( 'b.endDate < :date' );
+            $queryBuilder->setParameter( 'date', $date );
         }
 
         if( $late ) {
-            $queryBuilder->andWhere('booking.returnDate IS NULL');
+            $queryBuilder->andWhere('b.returnDate IS NULL');
         }
 
         return $queryBuilder;
@@ -93,9 +92,10 @@ class BookingRepository extends ServiceEntityRepository
     public function findBooking( $libraryId = false, $memberId = false, $currentOnly = false, $late = false, $date = null  ) : array
     {
         $queryBuilder = $this->queryBooking($libraryId, $memberId, $currentOnly, $late, $date);
+
         $query = $queryBuilder->getQuery();
 
-        return $query->getArrayResult();
+        return $query->getResult();
     }
 
     /**
@@ -109,7 +109,7 @@ class BookingRepository extends ServiceEntityRepository
     public function countBooking( $libraryId = false, $memberId = false, $currentOnly = false, $late = false, $date = null  ) : int
     {
         $queryBuilder = $this->queryBooking($libraryId, $memberId, $currentOnly, $late, $date);
-        $queryBuilder = $queryBuilder->select( 'Count(0)' );
+        $queryBuilder = $queryBuilder->select( 'COUNT(b)' );
         $query = $queryBuilder->getQuery();
 
         try{
@@ -176,5 +176,12 @@ class BookingRepository extends ServiceEntityRepository
         } catch (NonUniqueResultException $e) {
             return 0;
         }
+    }
+
+    public function truncate(){
+        $connection = $this->getEntityManager()->getConnection();
+        $platform   = $connection->getDatabasePlatform();
+
+        $connection->executeUpdate($platform->getTruncateTableSQL('booking', true));
     }
 }

@@ -45,7 +45,7 @@ class PBookRepository extends ServiceEntityRepository
     }
 
     public function findMostRentedByLibrary($libraryId, $limit = 10, $offset = 0) {
-        return $this->findBy( [ 'library' => $libraryId ], ['id'], $limit, $offset );
+        return $this->findBy( [ 'library' => $libraryId ], ['id' => 'ASC'], $limit, $offset );
     }
 
 }

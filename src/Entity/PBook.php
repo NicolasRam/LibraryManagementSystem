@@ -13,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PBook
 {
+    public const STATUS_INSIDE = 'inside';
+    public const STATUS_OUTSIDE = 'outside';
+    public const STATUS_RESERVED = 'reserved';
+    public const STATUS_NOT_AVAILABLE = 'no_available';
     public const STATUS = [ 'inside', 'outside', 'reserved', 'not_available' ];
 
     /**
@@ -30,6 +34,8 @@ class PBook
 
     /**
      * @ORM\Column(type="simple_array", nullable=true)
+     *
+     * @var array
      */
     private $status;
 
@@ -46,6 +52,7 @@ class PBook
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
+        $this->status = new ArrayCollection();
     }
 
     public function getId()
@@ -68,14 +75,32 @@ class PBook
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): array
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(array $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function addStatus( string $status): self
+    {
+        if (!$this->bookings->contains($status) && count($this->status) < 2) {
+            $this->status[] = $status;
+        }
+
+        return $this;
+    }
+
+    public function removeStatus(string $status): self
+    {
+        if ($this->status->contains($status)) {
+            $this->status->removeElement($status);
+        }
 
         return $this;
     }
@@ -98,7 +123,7 @@ class PBook
         return $this;
     }
 
-    public function removebooking(Booking $booking): self
+    public function removeBooking(Booking $booking): self
     {
         if ($this->bookings->contains($booking)) {
             $this->bookings->removeElement($booking);

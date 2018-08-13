@@ -62,6 +62,12 @@ class BookingCommand extends ContainerAwareCommand
 
         $this->io->title('Create booking');
 
+        $purge = $this->io->choice( 'Purger la table booking?', ['Oui', 'Non'] );
+
+        if( $purge === 'Oui' ) {
+            $this->entityManager->getRepository(Booking::class)->truncate();
+        }
+
         $libraryNames = array_map(function ( $library ){ return $library->getName(); }, $libraries);
         array_unshift($libraryNames, 'Tous');
 
@@ -78,28 +84,75 @@ class BookingCommand extends ContainerAwareCommand
 
         $daysProgressBar = $this->io->createProgressBar($days);
         $daysProgressBar->setMessage( 'SubCategories' );
-        $daysProgressBar->display();
-        $daysProgressBar->start();
+//        $daysProgressBar->display();
+//        $daysProgressBar->start();
 
         $this->io->newLine(2);
 
-        $date = new DateTime( 'now' );
-        $k = 0;
+        $today = new DateTime();
+        $date = clone $today;
+        $startDate = clone $today;
+
+        $today->format('Y-m-d');
+        $date->format('Y-m-d');
+        $startDate->format('Y-m-d');
+
+
+        $startDate = $startDate->modify( '-' . $days . ' day' );
+        $date = $date->modify( '-' . $days . ' day' );
+
+
+        foreach ( $pbooks as &$pbook ) {
+            $pbook->setStatus([PBook::STATUS_INSIDE]);
+            $this->entityManager->persist($pbook);
+        }
+
+        $this->entityManager->flush();
 
         for ( $i = 0; $i < $days; $i++ ) {
-            $date->modify("-$k day");
-            $k++;
+            $date = $date->modify("-1 day");
 
             foreach ( $members as $member ) {
-                $bookingCounr = $this->entityManager->getRepository(Booking::class )->countBooking(false, $member->getId(), true, false, $date );
+                $bookingCount = $this->entityManager->getRepository(Booking::class )->countBooking(false, $member->getId(), TRUE, false, $date );
 
-                dd($bookingCounr);
-                foreach ( $pbooks as $pbook ) {
-//                    $workflow = $this->get('workflow.pbook_status');
-                    $workflow = $this->registry->get($pbook, 'pbook_status');
+                if( $bookingCount >= 3 ) {
+                    $memberBookings = $this->entityManager->getRepository( Booking::class )->findBooking( false, $member->getId(), TRUE, false, $date );
 
-                    $this->io->text($pbook->getBook()->getTitle());
-                    $this->io->text($workflow->getEnabledTransitions($pbook));
+                    /**
+                     * @var Booking $memberBooking
+                     */
+                    foreach ( $memberBookings as $memberBooking ) {
+                        if( 1 === mt_rand( 0, 5 ) ){
+                            $memberBooking->setReturnDate($date);
+                            $memberBooking->getPBook()->setStatus([PBook::STATUS_INSIDE]);
+
+                            $this->entityManager->persist( $memberBooking );
+                            $this->entityManager->flush();
+                        }
+                    }
+                } else {
+                    foreach ( $pbooks as $pbook ) {
+                        if( 1 === mt_rand( 0, 5 ) && $pbook->getStatus() === [PBook::STATUS_INSIDE] ) {
+                            $booking = new Booking();
+                            $endDate = clone $date;
+                            $endDate->modify( '+15 day' );
+                            $booking->setStartDate( $date );
+                            $booking->setEndDate( $endDate );
+                            $booking->setPBook( $pbook );
+                            $booking->setMember( $member );
+
+                            $pbook->setStatus( [PBook::STATUS_OUTSIDE] );
+
+                            $this->entityManager->persist( $pbook );
+                            $this->entityManager->persist( $booking );
+                            $this->entityManager->flush();
+
+//                            $workflow = $this->registry->get($pbook, 'pbook_status');
+
+                            $this->io->text($pbook->getBook()->getTitle() .' - ' . $date->format('Y-m-d'));
+//                            $this->io->text($workflow->getEnabledTransitions($pbook));
+                        }
+                    }
                 }
             }
             $daysProgressBar->advance(1);
@@ -107,10 +160,15 @@ class BookingCommand extends ContainerAwareCommand
 
         $daysProgressBar->finish();
 
-        $this->io->newLine(2);
-        $this->io->section('yo');
+        //$this->io->newLine(2);
+        //$this->io->section('yo');
 
+        $this->io->newLine(2);
         $this->io->success( 'Days : ' . $days );
 //        $this->io->success( 'Categories : ' . count($categories) . ' - SubCategories : '  . count($subCategories) . ' - Books : ' . count($books) );
+    }
+
+    function chance($percent) {
+        return mt_rand(0, 99) < $percent;
     }
 }

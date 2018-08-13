@@ -32,6 +32,7 @@ use App\Repository\PBookRepository;
 use App\Repository\ReservationRepository;
 use App\Repository\SubCategoryRepository;
 use App\Repository\SubscriptionRepository;
+use App\Service\Source\Entity\Firebase;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class LibrarianProvider
@@ -89,21 +90,27 @@ class LibrarianProvider
      * @var User
      */
     private $user;
+    /**
+     * @var Firebase
+     */
+    private $firebase;
 
     /**
      * Librarian constructor.
-     * @param LibraryRepository $libraryRepository
-     * @param BookRepository $bookRepository
-     * @param PBookRepository $pbookRepository
-     * @param BookingRepository $bookingRepository
-     * @param MemberRepository $memberRepository
-     * @param LibrarianRepository $librarianRepository
-     * @param ReservationRepository $reservationRepository
-     * @param CategoryRepository $categoryRepository
-     * @param SubCategoryRepository $subCategoryRepository
-     * @param LocationRepository $locationRepositoryRepository
+     *
+     * @param LibraryRepository      $libraryRepository
+     * @param BookRepository         $bookRepository
+     * @param PBookRepository        $pbookRepository
+     * @param BookingRepository      $bookingRepository
+     * @param MemberRepository       $memberRepository
+     * @param LibrarianRepository    $librarianRepository
+     * @param ReservationRepository  $reservationRepository
+     * @param CategoryRepository     $categoryRepository
+     * @param SubCategoryRepository  $subCategoryRepository
+     * @param LocationRepository     $locationRepositoryRepository
      * @param SubscriptionRepository $subscriptionRepository
-     * @param TokenStorageInterface $tokenStorage
+     * @param Firebase               $firebase
+     * @param TokenStorageInterface  $tokenStorage
      */
     public function __construct (
         LibraryRepository $libraryRepository
@@ -117,6 +124,7 @@ class LibrarianProvider
         , SubCategoryRepository $subCategoryRepository
         , LocationRepository $locationRepositoryRepository
         , SubscriptionRepository $subscriptionRepository
+        , Firebase $firebase
         , TokenStorageInterface $tokenStorage
     ) {
 
@@ -134,6 +142,7 @@ class LibrarianProvider
         $this->tokenStorage = $tokenStorage;
 
         $this->user = $tokenStorage->getToken()->getUser();
+        $this->firebase = $firebase;
     }
 
     /**
@@ -234,6 +243,14 @@ class LibrarianProvider
          */
         $librarian = $this->user;
         return $librarian;
+    }
+
+    /**
+     * @return \App\Service\Source\Entity\Book
+     */
+    public function getGetBooksFromFirebase( ) : array
+    {
+        return $this->firebase->getBooks();
     }
 
     public function getLibrary( $librarian = null )
