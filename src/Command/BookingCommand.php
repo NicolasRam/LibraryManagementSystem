@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use DateTime;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Console\Helper\TableStyle;
 
 use App\Entity\Booking;
@@ -53,22 +54,17 @@ class BookingCommand extends Command
             LogLevel::INFO => OutputInterface::VERBOSITY_NORMAL,
         );
         $logger = new ConsoleLogger($output, $verbosityLevelMap);
-        // Exécution de la commande avec l’option ‘send’
-        // et son paramètre (numéro au format +336)
 
 
         $LoggerDependency = new LoggerDependency($logger);
-//            $LoggerDependency->ready();
+            $LoggerDependency->ready();
 
         try {
 //                $LoggerDependency->numberGiven();
 
-            //$bookingJobs = $ovh->get('/booking/'. $bookingServices[0] . '/jobs/'); print_r($bookingJobs);
-
             $selectedNumber = $input->getOption('numberGiven');
             if ($input->getOption('numberGiven')) {
                 echo "Number OK! Top " . $selectedNumber . " selected\n";
-//                    $selectedNumber = 10;
             }
             if (!$input->getOption('numberGiven')) {
                 echo "Number not specified, default top 10 selected\n";
@@ -77,17 +73,20 @@ class BookingCommand extends Command
             $progressBar = new ProgressBar($output, 50);
             // starts and displays the progress bar
 
-            //Top des livres loués
-            $myQuery = $this->bookingProvider->topBookings($selectedNumber);
 
-            //Nombre de livres avec statut inside pour un livre
+            $progressBar->start();
+            $i = 0;
+            while ($i++ < 50) {
+                // ... do some work
 
-            //Nombre de pbook pour un book
-            foreach ($myQuery as $key => $value)
-            {
-                $nombreDePbookPourUnBook[] = $myQuery->getPBook();
+                //Top des livres loués
+                $myQuery = $this->bookingProvider->topBookings($selectedNumber);
+                // advances the progress bar 1 unit
+                $progressBar->advance();
+
+                // you can also advance the progress bar by more than 1 unit
+                // $progressBar->advance(3);
             }
-
             // by default, this is based on the default style
             $tableStyle = new TableStyle();
             // customizes the style
@@ -96,52 +95,28 @@ class BookingCommand extends Command
                 ->setVerticalBorderChars('<fg=blue>-</>')//                    ->setDefaultCrossingChar(' ')
             ;
 
-//                dump ($startdate);
-
-
             $table = new Table($output);
 
             $table
-                ->setHeaders(array('ID des livres', 'Titre des livres', 'Nombre de livres disponibles', 'Nombre de livres totale', 'Nombre de bookings'));
-//            ->setRows(array(new TableCell('This value spans 3 columns.', array('colspan' => 3))));
+                ->setHeaders(array('ID des livres', 'Titre des livres', 'Nombre de bookings'));
 
+            foreach ($myQuery as $booking) {
 
-            foreach ($myQuery as $key => $value) {
-
-                $startdate = $myQuery[$key]->getStartDate();
-                $enddate = $myQuery[$key]->getEndDate();
-                $result1 = $startdate->format('Y-m-d');
-                $result2 = $enddate->format('Y-m-d');
-                $result0 = $myQuery[$key]->getId();
+                $idbook = $booking->getPbook()->getBook()->getId();
+                $valueTitre = $booking->getPbook()->getBook()->getTitle();
+                $valueCount = count($booking->getPBook()->getBookings());
 
                 $table
                     ->addRow([
-                        $result0, $result1, $result2]
-//
+                            $idbook, $valueTitre , $valueCount]
                     );
             }
             $table->setStyle($tableStyle);
-//                $table->setStyle('box-double');
             $table->render();
 
-            $progressBar->start();
-            $i = 0;
-            while ($i++ < 50) {
-                // ... do some work
-
-                // advances the progress bar 1 unit
-                $progressBar->advance();
-
-                // you can also advance the progress bar by more than 1 unit
-                // $progressBar->advance(3);
-            }
-
-// ensures that the progress bar is at 100%
+            // ensures that the progress bar is at 100%
             $progressBar->finish();
-            //On sollicite notre service
 
-
-//                dump($myQuery);
 
 //                $this->getContainer()->get('app.booking.provider')->sendMessage($input->getOption('send'), 'Votre message');
 //                $this->log('info', sprintf('SMS send to %s', $input->getOption('send')));

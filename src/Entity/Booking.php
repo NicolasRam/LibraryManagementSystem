@@ -111,4 +111,13 @@ class Booking
 
         return $this;
     }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
 }

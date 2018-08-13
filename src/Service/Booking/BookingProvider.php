@@ -29,28 +29,26 @@ class BookingProvider extends AbstractController
      */
     public function topBookings($topNumber)
     {
-//        try {
+        try {
             $em = $this->getDoctrine()->getManager();
-dump('before');
+//            dump('before');
             $topBookings = $em->getRepository(Booking::class)
                 ->findPbooktop($topNumber);
-//            dd($topBookings);
-        dump('after');
-        dump($topBookings);
-            //Ici on log le message envoyé ainsi que le numéro pour le suivi
-//            $this->logger->info('We have contacted the logger: TOP '.$topNumber.' of pbooks requested. ');
+//            dump('after');
+
+            $this->logger->info('We have contacted the logger: TOP '.$topNumber.' of pbooks requested. ');
 
             return $topBookings;
 
-//        } catch (\Exception $e) {
-//            echo "erreur";
-//            if (null !== $this->logger) {
-//                $this->logger->critical(
-//                    sprintf("erreur critique"));
-//            }
+        } catch (\Exception $e) {
+            echo "erreur";
+            if (null !== $this->logger) {
+                $this->logger->critical(
+                    sprintf("erreur critique"));
+            }
 
 
-//        }
+        }
 
 
     }

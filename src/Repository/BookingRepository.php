@@ -57,51 +57,47 @@ class BookingRepository extends ServiceEntityRepository
 
         try {
 
-            dump('Entering sql task');
+//            dump('Entering sql task');
+//            $conn = $this->getEntityManager()->getConnection();
+//            dump('Contact has been made with database');
 
-            $conn = $this->getEntityManager()->getConnection();
-
-            dump('Contact has been made with database');
-
-            $sql = 'select book.title as Titre, book.isbn as ISBN, COUNT(pbook.status=\'not_available\'),
- COUNT(pbook.id) as Nombre
- from booking, pbook JOIN book ON book.id = pbook.book_id WHERE booking.p_book_id = pbook.id
- GROUP BY pbook.id
- ORDER BY COUNT(pbook.id) DESC
- LIMIT 10';
-
-            $stmt = $conn->prepare($sql);
-
-//            dump('Executing');
-            $stmt->execute();
-//            dd($stmt);
-            // returns an array of arrays (i.e. a raw data set)
-            dump('Everything goes well');
-            return $stmt->fetchAll();
-//dump('just before myquery');
-//        $myQuery = $this
-//            ->createQueryBuilder('a')
-////            ->select('a')
-////            ->from('Booking', 'a')
-//            ->leftjoin('a.pBook', 'p')
+//             $sql = 'SELECT COUNT(pbook.book_id) as c, book.title
+//              FROM booking
+//              JOIN pbook ON pbook.id = booking.p_book_id
+//              JOIN book ON book.id = pbook.book_id
+//              GROUP BY pbook.book_id
+//              ORDER BY c DESC
+//             ';
 //
-////            ->addSelect('a AS Booking')
-//            ->addSelect('p')
-//            ->leftjoin('p.book', 'b')
-////            ->orderBy('COUNT(b.id)', 'DESC')
-////            ->where('')
-//            ->addSelect('b', 'book')
-////            ->groupBy(Book::class)
-////                ->addGroupBy('b.id')
-////            ->orderBy('book', 'DESC')
-////                ->addOrderBy('b.id', 'DESC')
-//            ->setMaxResults($topNumber)
-//        ;
+//            $stmt = $conn->prepare($sql);
+//
+////            dump('Executing');
+//            $stmt->execute();
+////            dd($stmt);
+//            dump('Everything goes well');
+//            return $stmt->fetchAll();
 
 
-//                return $myQuery
-//            ->getQuery()
-//            ->getResult();
+//        dump('Just before myquery');
+        $myQuery = $this
+            ->createQueryBuilder('booking')
+            ->join('booking.pBook', 'pbook')
+//            ->addSelect('pbook')
+            ->join('pbook.book', 'book')
+//            ->addSelect('book')
+            ->groupBy('book.id')
+            ->orderBy('book.id')
+            ->setMaxResults($topNumber)
+        ;
+
+//        dump($myQuery->getQuery()->getSQL());
+//        dump($myQuery->getQuery()->getResult());
+
+//        dump('---> After query Result');
+
+        return $myQuery
+            ->getQuery()
+            ->getResult();
 
         } catch (NonUniqueResultException $e) {
             echo "erreur Repo";
