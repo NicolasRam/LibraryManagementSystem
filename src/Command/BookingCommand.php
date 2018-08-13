@@ -42,7 +42,7 @@ class BookingCommand extends ContainerAwareCommand
         parent::__construct($name);
         $this->entityManager = $entityManager;
 
-        $this->registry = new Registry();
+//        $this->registry = new Registry();
     }
 
     protected function configure()
@@ -132,6 +132,8 @@ class BookingCommand extends ContainerAwareCommand
                     }
                 } else {
                     foreach ( $pbooks as $pbook ) {
+                        $workflow = $this->registry->get($pbook);
+
                         if( 1 === mt_rand( 0, 5 ) && $pbook->getStatus() === [PBook::STATUS_INSIDE] ) {
                             $booking = new Booking();
                             $endDate = clone $date;

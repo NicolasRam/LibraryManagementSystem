@@ -451,32 +451,41 @@
                         <div class="m-widget14">
                             <div class="m-widget14__header">
                                 <h3 class="m-widget14__title">
-                                    Profit Share
+                                    Livres
                                 </h3>
+
                                 <span class="m-widget14__desc">
-                                                                        Profit Share between customers
-                                                                    </span>
+                                    Status des livres de notre library
+                                </span>
                             </div>
                             <div class="row  align-items-center">
                                 <div class="col">
                                     <div id="m_chart_profit_share" class="m-widget14__chart"
                                          style="height: 160px">
-                                        <div class="m-widget14__stat">45</div>
+                                        <div class="m-widget14__stat">{{ pbooks | length }}</div>
                                     </div>
                                 </div>
+
                                 <div class="col">
                                     <div class="m-widget14__legends">
                                         <div class="m-widget14__legend">
                                             <span class="m-widget14__legend-bullet m--bg-accent"></span>
-                                            <span class="m-widget14__legend-text">37% Sport Tickets</span>
+                                            <span class="m-widget14__legend-text">{{ filter_pbooks(pbooks).insides_pbooks | length }}</span>
                                         </div>
+
                                         <div class="m-widget14__legend">
                                             <span class="m-widget14__legend-bullet m--bg-warning"></span>
-                                            <span class="m-widget14__legend-text">47% Business Events</span>
+                                            <span class="m-widget14__legend-text">{{ filter_pbooks(pbooks).outside_pbooks | length }}</span>
                                         </div>
+
                                         <div class="m-widget14__legend">
                                             <span class="m-widget14__legend-bullet m--bg-brand"></span>
-                                            <span class="m-widget14__legend-text">19% Others</span>
+                                            <span class="m-widget14__legend-text">{{ filter_pbooks(pbooks).reserved_pbooks | length }}</span>
+                                        </div>
+
+                                        <div class="m-widget14__legend">
+                                            <span class="m-widget14__legend-bullet m--bg-danger"></span>
+                                            <span class="m-widget14__legend-text">{{ filter_pbooks(pbooks).not_available_pbooks | length }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -633,9 +642,9 @@
                                     <div class="m-timeline-3">
                                         <div class="m-timeline-3__items">
                                             {% for lateBooking in lateBookings %}
-                                            {{ dump(lateBooking.endDate) }}
                                             <div class="m-timeline-3__item m-timeline-3__item--info">
-                                                <span class="m-timeline-3__item-time">1</span>
+                                                <span class="m-timeline-3__item-time"></span>
+
                                                 <div class="m-timeline-3__item-desc">
                                                     <span class="m-timeline-3__item-text">
                                                         {{ lateBooking.pbook.book.title }}
@@ -646,7 +655,7 @@
                                                     <span class="m-timeline-3__item-user-name">
                                                         <a href="#"
                                                            class="m-link m-link--metal m-timeline-3__item-link">
-                                                                {{ lateBooking.member.firstname ~ ' ' ~ lateBooking.member.lastname }}
+                                                                {{ lateBooking.endDate | time_elapsed_string }}
                                                         </a>
                                                     </span>
                                                 </div>

@@ -77,7 +77,7 @@ class PBook
 
     public function getStatus(): array
     {
-        return $this->status;
+        return is_array($this->status) ? $this->status : explode(',', $this->status);
     }
 
     public function setStatus(array $status): self
