@@ -3,45 +3,58 @@ security:
         App\Entity\user: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
-        backend_user_provider:
-            entity:
-                class: App\Entity\User
-                property: email
+#        in_memory: { memory: ~ }
+#        backend_user_provider:
+#            entity:
+#                class: App\Entity\User
+#                property: email
         frontend_user_provider:
             entity:
                 class: App\Entity\User
                 property: email
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        backend:
-            anonymous: ~
-            pattern: ^/backend
-            provider: backend_user_provider
-            form_login:
-                login_path: backend_user_login
-                check_path: backend_user_login
-                default_target_path: backend_home
-                username_parameter: backend_user_login[email]
-                password_parameter: backend_user_login[password]
-            logout:
-                path: backend_user_logout
-                target: backend_user_login
         frontend:
-            pattern: ^/
+#            pattern: ^/frontend/login
+            pattern: ^/login
+            stateless: true
             anonymous: true
+#            provider: frontend_user_provider
+#            form_login:
+#                login_path: frontend_user_login
+#                check_path: frontend_user_login
+#                username_parameter: app_login[email]
+#                password_parameter: app_login[password]
+#            logout:
+#                path: /logout
+#                target: /
             provider: frontend_user_provider
-            form_login:
-                login_path: frontend_user_login
-                check_path: frontend_user_login
-                username_parameter: app_login[email]
-                password_parameter: app_login[password]
-            logout:
-                path: /logout
-                target: /
+            json_login:
+#                check_path: /frontend/login_check
+                check_path: /login_check
+                username_path: username
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+#        dev:
+#            pattern: ^/(_(profiler|wdt)|css|images|js)/
+#            security: false
+#        backend:
+#            anonymous: ~
+#            pattern: ^/backend
+#            provider: backend_user_provider
+#            form_login:
+#                login_path: backend_user_login
+#                check_path: backend_user_login
+#                default_target_path: backend_home
+#                username_parameter: backend_user_login[email]
+#                password_parameter: backend_user_login[password]
+#            logout:
+#                path: backend_user_logout
+#                target: backend_user_login
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
@@ -60,8 +73,16 @@ security:
 #        - { path: ^/admin/, role: ROLE_ADMIN }
 #        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
 #        - { path: ^/, role: ROLE_USER }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+#        - { path: ^/frontend/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/cards$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/cards/generate, roles: ROLE_USER }
 
-#    access_decision_manager:
+
+    #    access_decision_manager:
 #            strategy: unanimous
 #            allow_if_all_abstain: false
 

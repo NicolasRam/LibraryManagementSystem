@@ -6,6 +6,7 @@
 parameters:
     books_assets_directory: '%kernel.project_dir%/public/upload'
     locale: 'fr'
+    email_from: '%env(MAILER_FROM)%'
 
 services:
     # default configuration for services in *this* file
@@ -113,3 +114,7 @@ services:
             - "@logger"
         tags:
         - { name: kernel.event_subscriber }
+
+    App\Mailer\Mailer:
+        arguments:
+            $mailFrom: '%email_from%'
