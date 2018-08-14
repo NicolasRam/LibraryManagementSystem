@@ -9,6 +9,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Librarian;
+use App\Mailer\Mailer;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -24,10 +25,20 @@ class LibrarianFixtures extends Fixture implements OrderedFixtureInterface
      * @var UserPasswordEncoderInterface
      */
     private $encoder;
+    /**
+     * @var Mailer
+     */
+    private $mailer;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
-    {
+    /**
+     * LibrarianFixtures constructor.
+     *
+     * @param UserPasswordEncoderInterface $encoder
+     * @param Mailer                       $mailer
+     */
+    public function __construct(UserPasswordEncoderInterface $encoder, Mailer $mailer ) {
         $this->encoder = $encoder;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -41,39 +52,26 @@ class LibrarianFixtures extends Fixture implements OrderedFixtureInterface
 
         $i = 0;
         $libraries = [];
-        while ($this->hasReference(LibraryFixtures::LIBRARIES_REFERENCE . $i)) {
-            if ($this->hasReference(LibraryFixtures::LIBRARIES_REFERENCE . $i)) {
-                $libraries[] = $this->getReference(LibraryFixtures::LIBRARIES_REFERENCE . $i++);
-            }
+        while ( $this->hasReference( LibraryFixtures::LIBRARIES_REFERENCE . $i) ) {
+            if( $this->hasReference( LibraryFixtures::LIBRARIES_REFERENCE . $i)) $libraries[] = $this->getReference( LibraryFixtures::LIBRARIES_REFERENCE . $i++);
         }
 
-        for ($i = 0; $i < self::LIBRARIANS_COUNT_REFERENCE; $i++) {
-            $librarian = new Librarian();
+        for ( $i = 0; $i < self::LIBRARIANS_COUNT_REFERENCE; $i++ ) {
+                $librarian = new Librarian();
 
-            $librarian->setFirstName($fakerFactory->firstName);
-            $librarian->setLastName($fakerFactory->lastName);
-            $librarian->setEmail($fakerFactory->email);
-            $encoded = $this->encoder->encodePassword($librarian, '123456789');
-            $librarian->setPassword($encoded);
-            $librarian->setLibrary($libraries[rand(0, count($libraries) - 1) ]);
+                $librarian->setFirstName( $fakerFactory->firstName );
+                $librarian->setLastName( $fakerFactory->lastName );
+                $librarian->setEmail( $fakerFactory->email );
+                $encoded = $this->encoder->encodePassword($librarian, '123456789');
+                $librarian->setPassword( $encoded );
+                $librarian->setLibrary( $libraries[rand(0, count($libraries) - 1) ] );
 
-            $manager->persist($librarian);
+                $manager->persist($librarian);
+
+                $this->mailer->sendConfirmationEmail($librarian);
 
             $this->addReference(self::LIBRARIANS_REFERENCE . $i, $librarian);
         }
-
-        $librarian = new Librarian();
-
-        $librarian->setFirstName('Nicolas');
-        $librarian->setLastName('Ramond');
-        $librarian->setEmail('nicolas.ramond@me.com');
-        $encoded = $this->encoder->encodePassword($librarian, '123456789');
-        $librarian->setPassword($encoded);
-        $librarian->setLibrary($libraries[rand(0, count($libraries) - 1) ]);
-
-        $manager->persist($librarian);
-
-        $this->addReference(self::LIBRARIANS_REFERENCE . $i, $librarian);
 
         $manager->flush();
     }

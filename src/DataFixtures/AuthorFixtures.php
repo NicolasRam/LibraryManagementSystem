@@ -19,8 +19,7 @@ class AuthorFixtures extends Fixture implements OrderedFixtureInterface
     public const AUTHORS_REFERENCE = 'authors';
     public const AUTHORS_COUNT_REFERENCE = 300;
 
-    public function __construct()
-    {
+    public function __construct() {
     }
 
     /**
@@ -32,14 +31,15 @@ class AuthorFixtures extends Fixture implements OrderedFixtureInterface
     {
         $fakerFactory = Factory::create('fr_FR');
 
-        for ($i = 0; $i < self::AUTHORS_COUNT_REFERENCE; $i++) {
+        for ( $i = 0; $i < self::AUTHORS_COUNT_REFERENCE; $i++ )
+        {
             $author = new Author();
 
-            $author->setFirstName($fakerFactory->firstName);
-            $author->setLastName($fakerFactory->lastName);
-            $author->setBiography($fakerFactory->text($maxNbChars = 200));
+            $author->setFirstName( $fakerFactory->firstName );
+            $author->setLastName( $fakerFactory->lastName );
+            $author->setBiography( $fakerFactory->text($maxNbChars = 200) );
 
-            $manager->persist($author);
+            $manager->persist( $author );
 
             $this->addReference(self::AUTHORS_REFERENCE . $i, $author);
         }

@@ -17,8 +17,7 @@ class EBookFixtures extends Fixture implements OrderedFixtureInterface
 {
     public const EBOOKS_REFERENCE = 'ebooks';
 
-    public function __construct()
-    {
+    public function __construct() {
     }
 
     /**
@@ -29,15 +28,15 @@ class EBookFixtures extends Fixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $k = 0;
-        for ($i = 0; $i < BookFixtures::BOOKS_COUNT_REFERENCE; $i++) {
-            if (2 !== rand(0, 5)) {
+        for ( $i = 0; $i < BookFixtures::BOOKS_COUNT_REFERENCE; $i++ ) {
+            if( 2 !== rand(0, 5) ) {
                 $ebook = new EBook();
 
-                $ebook->setBook($this->getReference(BookFixtures::BOOKS_REFERENCE . $i));
+                $ebook->setBook($this->getReference( BookFixtures::BOOKS_REFERENCE . $i ));
 
                 $manager->persist($ebook);
 
-                $this->addReference(self::EBOOKS_REFERENCE . $k++, $ebook);
+                $this->addReference( self::EBOOKS_REFERENCE . $k++, $ebook );
             }
         }
 

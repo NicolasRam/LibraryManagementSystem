@@ -19,8 +19,7 @@ class EditorFixtures extends Fixture implements OrderedFixtureInterface
     public const EDITORS_REFERENCE = 'editors';
     public const EDITORS_COUNT_REFERENCE = 3;
 
-    public function __construct()
-    {
+    public function __construct() {
     }
 
     /**
@@ -33,13 +32,14 @@ class EditorFixtures extends Fixture implements OrderedFixtureInterface
         $fakerFactory = Factory::create('fr_FR');
         $editors = [];
 
-        for ($i = 0; $i < self::EDITORS_COUNT_REFERENCE; $i++) {
+        for ( $i = 0; $i < self::EDITORS_COUNT_REFERENCE; $i++ )
+        {
             $editor = new Editor();
 
-            $editor->setName($fakerFactory->company);
-            $editor->setAddress($fakerFactory->address);
+            $editor->setName( $fakerFactory->company);
+            $editor->setAddress( $fakerFactory->address );
 
-            $manager->persist($editor);
+            $manager->persist( $editor );
 
             $editors[] = $editor;
 

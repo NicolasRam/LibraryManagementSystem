@@ -33,8 +33,7 @@ class MemberTypeFixtures extends Fixture implements OrderedFixtureInterface
         ]
     ];
 
-    public function __construct()
-    {
+    public function __construct() {
     }
 
     /**
@@ -45,11 +44,12 @@ class MemberTypeFixtures extends Fixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $i = 0;
-        foreach (self::MEMBER_TYPES as $MEMBER_TYPE) {
+        foreach ( self::MEMBER_TYPES as $MEMBER_TYPE )
+        {
             $memberType = new MemberType();
 
-            $memberType->setName($MEMBER_TYPE['name']);
-            $memberType->setRate($MEMBER_TYPE['rate']);
+            $memberType->setName( $MEMBER_TYPE['name'] );
+            $memberType->setRate( $MEMBER_TYPE['rate'] );
 
             $manager->persist($memberType);
 

@@ -138,18 +138,18 @@ class SubCategoryFixtures extends Fixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $k = 0;
-        for ($i = 0; $i < CategoryFixtures::CATEGORIES_COUNT_REFERENCE; $i++) {
-            foreach (self::CATEGORIES[$this->getReference(CategoryFixtures::CATEGORIES_REFERENCE . $i)->getName()] as $subCategoryName) {
+        for ( $i = 0; $i < CategoryFixtures::CATEGORIES_COUNT_REFERENCE; $i++ ) {
+            foreach ( self::CATEGORIES[$this->getReference( CategoryFixtures::CATEGORIES_REFERENCE . $i )->getName()] as $subCategoryName ){
                 $subCategory = new SubCategory();
 
-                $subCategory->setName($subCategoryName);
-                $subCategory->setCategory($this->getReference(CategoryFixtures::CATEGORIES_REFERENCE . $i));
-                $subCategory->setSlug(Transliterator::transliterate($subCategory->getName()));
+                $subCategory->setName( $subCategoryName );
+                $subCategory->setCategory( $this->getReference( CategoryFixtures::CATEGORIES_REFERENCE . $i ) );
+                $subCategory->setSlug( Transliterator::transliterate($subCategory->getName()) );
 //                $subCategory->setLocation( $subCategory );
 
                 $manager->persist($subCategory);
 
-                $this->setReference(self::SUB_CATEGORIES_REFERENCE . $k++, $subCategory);
+                $this->setReference( self::SUB_CATEGORIES_REFERENCE . $k++, $subCategory );
             }
         }
 

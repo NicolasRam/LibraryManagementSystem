@@ -30,8 +30,7 @@ class SubscriptionFixtures extends Fixture implements OrderedFixtureInterface
         ]
     ];
 
-    public function __construct()
-    {
+    public function __construct() {
     }
 
     /**
@@ -43,16 +42,17 @@ class SubscriptionFixtures extends Fixture implements OrderedFixtureInterface
     {
         $i = 0;
 
-        foreach (self::SUBSCRIPTIONS as $SUBSCRIPTION) {
+        foreach (self::SUBSCRIPTIONS as $SUBSCRIPTION )
+        {
             $subscription = new Subscription();
 
-            $subscription->setName($SUBSCRIPTION['name']);
-            $subscription->setDuration($SUBSCRIPTION['duration']);
-            $subscription->setPrice($SUBSCRIPTION['price']);
+            $subscription->setName( $SUBSCRIPTION['name'] );
+            $subscription->setDuration( $SUBSCRIPTION['duration'] );
+            $subscription->setPrice( $SUBSCRIPTION['price'] );
 
             $manager->persist($subscription);
 
-            $this->setReference(self::SUBSCRIPTIONS_REFERENCE . $i++, $subscription);
+            $this->setReference( self::SUBSCRIPTIONS_REFERENCE . $i++, $subscription );
         }
 
         $manager->flush();

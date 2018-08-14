@@ -9,7 +9,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\SubCategory;
 use Behat\Transliterator\Transliterator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -141,15 +140,15 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
     {
         $i = 0;
 
-        foreach (self::CATEGORIES as $categoryName => $subCategories) {
+        foreach ( self::CATEGORIES as $categoryName => $subCategories ) {
             $category = new Category();
 
-            $category->setName($categoryName);
-            $category->setSlug(Transliterator::transliterate($category->getName()));
+            $category->setName( $categoryName );
+            $category->setSlug( Transliterator::transliterate($category->getName()) );
 
             $manager->persist($category);
 
-            $this->setReference(self::CATEGORIES_REFERENCE . $i++, $category);
+            $this->setReference( self::CATEGORIES_REFERENCE . $i++, $category );
         }
 
         $manager->flush();
