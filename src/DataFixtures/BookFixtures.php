@@ -26,7 +26,8 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
      */
     private $firebase;
 
-    public function __construct( Firebase $firebase ) {
+    public function __construct(Firebase $firebase)
+    {
         $this->firebase = $firebase;
     }
 
@@ -41,13 +42,13 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
         $authors = [];
         $firebaseBooks = $this->firebase->getBooks();
 
-        $offset = mt_rand( 0,  count($firebaseBooks) - self::BOOKS_COUNT_REFERENCE );
+        $offset = mt_rand(0, count($firebaseBooks) - self::BOOKS_COUNT_REFERENCE);
 
-        for( $i = $offset; $i < AuthorFixtures::AUTHORS_COUNT_REFERENCE; $i++ ) {
-            $authors[] = $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . $i );
+        for ($i = $offset; $i < AuthorFixtures::AUTHORS_COUNT_REFERENCE; $i++) {
+            $authors[] = $this->getReference(AuthorFixtures::AUTHORS_REFERENCE . $i);
         }
 
-        for ( $i = 0; $i < self::BOOKS_COUNT_REFERENCE && $authors >= 3; $i++ ) {
+        for ($i = 0; $i < self::BOOKS_COUNT_REFERENCE && $authors >= 3; $i++) {
             $book = new Book();
             /**
              * @var \App\Service\Source\Entity\Book $firebaseBook
@@ -57,30 +58,29 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
             /**
              * @var Author
              */
-            $book->setAuthor( $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1) ) );
+            $book->setAuthor($this->getReference(AuthorFixtures::AUTHORS_REFERENCE . rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1)));
             $authorCounts = rand(0, 3);
-            $book->addAuthor( $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1) ) );
+            $book->addAuthor($this->getReference(AuthorFixtures::AUTHORS_REFERENCE . rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1)));
             $book->setAuthors($this->pickAuthors($authors));
-            $book->setSubCategory( $this->getReference( SubCategoryFixtures::SUB_CATEGORIES_REFERENCE . rand(0, SubCategoryFixtures::SUB_CATEGORIES_COUNT_REFERENCE - 1) ) );
+            $book->setSubCategory($this->getReference(SubCategoryFixtures::SUB_CATEGORIES_REFERENCE . rand(0, SubCategoryFixtures::SUB_CATEGORIES_COUNT_REFERENCE - 1)));
             $book->setIsbn($firebaseBook->getIsbn());
-            $book->setPageNumber( rand(100, 200) );
-            $book->setResume( $fakerFactory->text($maxNbChars = 200) );
-            $book->setTitle( $firebaseBook->getTitle() );
-            $book->setSlug( Transliterator::transliterate($book->getTitle()) );
+            $book->setPageNumber(rand(100, 200));
+            $book->setResume($fakerFactory->text($maxNbChars = 200));
+            $book->setTitle($firebaseBook->getTitle());
+            $book->setSlug(Transliterator::transliterate($book->getTitle()));
 
             $manager->persist($book);
 
-            $this->addReference( self::BOOKS_REFERENCE . $i, $book );
+            $this->addReference(self::BOOKS_REFERENCE . $i, $book);
         }
 
         $manager->flush();
     }
 
-    private function pickAuthors($authors = [], $number = 3  )
+    private function pickAuthors($authors = [], $number = 3)
     {
         $pickedAuthors = [];
-        for ($i = 0; $i < count($authors); $i++ )
-        {
+        for ($i = 0; $i < count($authors); $i++) {
             $index = mt_rand(0, count($authors));
             $pickedAuthors[] = $authors[$index];
 

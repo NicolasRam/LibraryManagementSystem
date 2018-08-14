@@ -23,7 +23,6 @@ use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-
 class ViewMakerCommand extends Command
 {
     /**
@@ -51,12 +50,11 @@ class ViewMakerCommand extends Command
     private $io;
 
     public function __construct(
-        EntityManagerInterface $entityManager
-        , Generator $generator
-        , DoctrineHelper $doctrineHelper
-        , $name = null
-    )
-    {
+        EntityManagerInterface $entityManager,
+        Generator $generator,
+        DoctrineHelper $doctrineHelper,
+        $name = null
+    ) {
         parent::__construct($name);
         $this->entityManager = $entityManager;
         $this->generator = $generator;
@@ -65,7 +63,9 @@ class ViewMakerCommand extends Command
         $entities = [];
         try {
             $entitiesTemp = $this->entityManager->getConfiguration()->getMetadataDriverImpl()->getAllClassNames();
-            foreach ( $entitiesTemp as $entity ) $entities[] = str_replace( 'App\\Entity\\', '', $entity );
+            foreach ($entitiesTemp as $entity) {
+                $entities[] = str_replace('App\\Entity\\', '', $entity);
+            }
         } catch (ORMException $e) {
         }
 
@@ -92,9 +92,9 @@ class ViewMakerCommand extends Command
 
         $value = $this->io->askQuestion($question);
 
-        $this->override = $this->io->choice( 'Ecraser si les fichiers existe déjà ?', ['Oui', 'Non'] ) === 'Oui' ? true : false;
+        $this->override = $this->io->choice('Ecraser si les fichiers existe déjà ?', ['Oui', 'Non']) === 'Oui' ? true : false;
 
-        $this->view = $this->io->choice( 'Quelle vue voulez-vous générer', ['Tous', 'edit', 'index', 'new', 'show'] );
+        $this->view = $this->io->choice('Quelle vue voulez-vous générer', ['Tous', 'edit', 'index', 'new', 'show']);
 
 //        $input->setArgument('entity-class', $value);
         $this->entityClass = $value;
@@ -181,15 +181,21 @@ class ViewMakerCommand extends Command
             ],
         ];
 
-        if( $this->view !== 'Tous' ) foreach ( array_keys( $templates ) as $view ) if( $view !== $this->view ) unset($templates[$view]);
+        if ($this->view !== 'Tous') {
+            foreach (array_keys($templates) as $view) {
+                if ($view !== $this->view) {
+                    unset($templates[$view]);
+                }
+            }
+        }
 
         foreach ($templates as $template => $variables) {
             try {
                 $this->generator->generateFile(
-                    'templates/backend/' . $templatesPath . '/' . $template . '.html.twig'
-                    , 'crud/templates/' . $template . '.tpl.php'
-                    , $variables
-                    , $this->override
+                    'templates/backend/' . $templatesPath . '/' . $template . '.html.twig',
+                    'crud/templates/' . $template . '.tpl.php',
+                    $variables,
+                    $this->override
                 );
             } catch (\Exception $e) {
             }

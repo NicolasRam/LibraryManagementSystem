@@ -3,19 +3,19 @@
  * Created by PhpStorm.
  * User: moulaye
  * Date: 24/07/18
- * Time: 08:09
+ * Time: 08:09.
  */
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class User
+ * Class User.
  *
- * @package App\Entity
  *
  * @ORM\MappedSuperclass
  * @ORM\Entity( repositoryClass="App\Repository\UserRepository" )
@@ -33,13 +33,22 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      }
  * )
  * )
+ *
+ * @ApiResource(
+ *     itemOperations={
+ *          "get",
+ *          "generate"={
+ *              "route_name"="api_user_login"
+ *          },
+ *      }
+ * )
  */
 class User implements UserInterface
 //class User implements UserInterface
 {
-    const ROLE_MEMBER      = 'ROLE_MEMBER';
-    const ROLE_LIBRARIAN   = 'ROLE_LIBRARIAN';
-    const ROLE_ADMIN       = 'ROLE_ADMIN';
+    const ROLE_MEMBER = 'ROLE_MEMBER';
+    const ROLE_LIBRARIAN = 'ROLE_LIBRARIAN';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 //    const USER_TYPE = 'user';
 
@@ -102,7 +111,7 @@ class User implements UserInterface
 
     public function getSalt()
     {
-        return NULL;
+        return null;
     }
 
     public function getUsername()
@@ -112,7 +121,6 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
-
     }
 
     /**
@@ -155,6 +163,7 @@ class User implements UserInterface
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -174,6 +183,7 @@ class User implements UserInterface
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -193,6 +203,7 @@ class User implements UserInterface
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 

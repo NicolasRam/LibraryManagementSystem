@@ -51,7 +51,8 @@ class Mailer
         $this->mailer->send($message);
     }
 
-    public function sendLateBookingNotification(Booking $booking) {
+    public function sendLateBookingNotification(Booking $booking)
+    {
         $body = $this->twig->render(
             'email/booking/late/notification.html.twig',
             [
@@ -66,6 +67,5 @@ class Mailer
                 ->setBody($body, 'text/html');
 
         $this->mailer->send($message);
-
     }
 }

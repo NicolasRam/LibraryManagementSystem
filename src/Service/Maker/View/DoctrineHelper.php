@@ -40,10 +40,9 @@ final class DoctrineHelper
     private $doctrineEntities = [];
 
     public function __construct(
-        EntityManagerInterface $entityManager
-        , string $entityNamespace = 'App\\Entity'
-    )
-    {
+        EntityManagerInterface $entityManager,
+        string $entityNamespace = 'App\\Entity'
+    ) {
         $this->entityNamespace = trim($entityNamespace, '\\');
         $this->entityManager = $entityManager;
 
@@ -51,7 +50,9 @@ final class DoctrineHelper
 
         try {
             $entitiesTemp = $this->entityManager->getConfiguration()->getMetadataDriverImpl()->getAllClassNames();
-            foreach ( $entitiesTemp as $entity ) $entities[] = str_replace( 'App\\Entity\\', '', $entity );
+            foreach ($entitiesTemp as $entity) {
+                $entities[] = str_replace('App\\Entity\\', '', $entity);
+            }
         } catch (ORMException $e) {
         }
 

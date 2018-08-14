@@ -219,7 +219,7 @@ class Book
      */
     public function removeAuthor(Author $author)
     {
-        if (FALSE !== $key = array_search($author, $this->authors, TRUE)) {
+        if (false !== $key = array_search($author, $this->authors, true)) {
             array_splice($this->authors, $key, 1);
         }
     }

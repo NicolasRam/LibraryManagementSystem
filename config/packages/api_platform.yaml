@@ -12,3 +12,9 @@ api_platform:
         csv:      ['text/csv']
         html:     ['text/html']
 #        myformat: ['application/vnd.myformat']
+
+    swagger:
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header

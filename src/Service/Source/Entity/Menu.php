@@ -53,7 +53,7 @@ class Menu
      */
     public function removeCategory($category): Menu
     {
-        if (FALSE !== $key = array_search($category, $this->categories, TRUE)) {
+        if (false !== $key = array_search($category, $this->categories, true)) {
             array_splice($this->categories, $key, 1);
         }
 

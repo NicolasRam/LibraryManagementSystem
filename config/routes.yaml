@@ -1,3 +1,9 @@
+login:
+  path: /login_check
+#    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#    defaults:
+#        template: static/empty.html.twig
+
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
@@ -9,7 +15,6 @@
 #    defaults: { _locale: '%locale%' }
 #    requirements:
 #        _locale: en|fr
-
 frontend_home:
     path: /
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction

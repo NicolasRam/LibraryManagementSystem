@@ -26,10 +26,9 @@ class Generator
     private $namespacePrefix;
 
     public function __construct(
-        FileManager $fileManager
-        , string $namespacePrefix = 'App\\Entity'
-    )
-    {
+        FileManager $fileManager,
+        string $namespacePrefix = 'App\\Entity'
+    ) {
         $this->fileManager = $fileManager;
 //        dump($fileManager);
         $this->twigHelper = new GeneratorTwigHelper($fileManager);
@@ -135,7 +134,7 @@ class Generator
 //            ));
 //        }
 
-        if ( !$this->fileManager->fileExists($targetPath) || $override) {
+        if (!$this->fileManager->fileExists($targetPath) || $override) {
             $variables['relative_path'] = $this->fileManager->relativizePath($targetPath);
 
             $templatePath = $templateName;

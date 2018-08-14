@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: moulaye
  * Date: 24/07/18
- * Time: 11:22
+ * Time: 11:22.
  */
 
 namespace App\Controller;
-
 
 use App\Entity\User;
 use App\Form\UserLoginType;
@@ -19,9 +18,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
- * Class UserController
+ * Class UserController.
  *
- * @package App\Controller
  *
  * @Route( path="/backend" )
  * Route( path="/backend/user" )
@@ -30,6 +28,7 @@ class UserController extends Controller
 {
     /**
      * @Route("/", name="backend_user_index", methods="GET")
+     *
      * @param UserRepository $userRepository
      *
      * @return Response
@@ -118,9 +117,8 @@ class UserController extends Controller
 //        return $this->redirectToRoute('backend_user_index');
 //    }
 
-
     /**
-     * connection
+     * connection.
      *
      * Route(
      *     {
@@ -129,6 +127,7 @@ class UserController extends Controller
      *      },
      *     name="backend_user_login"
      * )
+     *
      * @Route( path="/login", name="backend_user_login" )
      *
      * @param Request             $request
@@ -138,7 +137,7 @@ class UserController extends Controller
      */
     public function login(Request $request, AuthenticationUtils $authenticationUtils)
     {
-        /**
+        /*
          * If user is login and is granted permissions go to home page
          *
          * @Todo add home controller
@@ -149,20 +148,48 @@ class UserController extends Controller
         }
 
         /**
-         * Retrieve user login form
+         * Retrieve user login form.
          */
         $form = $this->createForm(UserLoginType::class, ['email' => $authenticationUtils->getLastUsername()]);
 
         /**
-         * Get error message
+         * Get error message.
          */
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        return $this->render('backend/user/login.html.twig',
+        return $this->render(
+            'backend/user/login.html.twig',
             [
                 'form' => $form->createView(),
                 'error' => $error,
             ]
         );
+    }
+
+    /**
+     * @Route("/api/user/login", name="api_user_login", defaults={
+     *   "#_api_resource_class"=Card::class,
+     *   "_api_item_operation_name"="generate",
+     *   "_api_receive"=false
+     * })
+     */
+    public function api_login(Request $request)
+    {
+        dd($request);
+
+        $user = ['user' => $this->getUser()->getUsername()];
+
+        $card = new Card();
+        $card->setCode(rand(12, 148));
+
+        $this->getDoctrine()->getManager()->persist($card);
+        $this->getDoctrine()->getManager()->flush();
+
+        $responseCard = [
+            'id' => $card->getId(),
+            'code' => $card->getCode(),
+        ];
+
+        return new JsonResponse($responseCard);
     }
 }

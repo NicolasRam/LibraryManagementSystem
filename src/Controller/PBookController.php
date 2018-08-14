@@ -87,4 +87,29 @@ class PBookController extends Controller
 
         return $this->redirectToRoute('backend_pbook_index');
     }
+
+    /**
+     * @Route("/api/cards/generate", name="card_generate", defaults={
+     *   "#_api_resource_class"=Card::class,
+     *   "_api_item_operation_name"="generate",
+     *   "_api_receive"=false
+     * })
+     */
+    public function generate()
+    {
+        $user = ['user' => $this->getUser()->getUsername()];
+
+        $card = new Card();
+        $card->setCode(rand(12, 148));
+
+        $this->getDoctrine()->getManager()->persist($card);
+        $this->getDoctrine()->getManager()->flush();
+
+        $responseCard = [
+            'id' => $card->getId(),
+            'code' => $card->getCode(),
+        ];
+
+        return new JsonResponse($responseCard);
+    }
 }

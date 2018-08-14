@@ -30,11 +30,11 @@ class BookRepository extends ServiceEntityRepository
     public function findByLibrary($libraryId) : array
     {
         return $this->createQueryBuilder('book')
-            ->join( PBook::class, 'pbook')
-            ->where( 'pbook.book_id = book.id' )
-            ->distinct( 'pbook.book_id' )
+            ->join(PBook::class, 'pbook')
+            ->where('pbook.book_id = book.id')
+            ->distinct('pbook.book_id')
 
-            ->join( Library::class, 'library' )
+            ->join(Library::class, 'library')
             ->where('library.id = :library_id')
             ->setParameter('library_id', $libraryId)
 
@@ -52,13 +52,13 @@ class BookRepository extends ServiceEntityRepository
     {
         $count = 0;
 
-        try{
+        try {
             $query = $this->createQueryBuilder('book')
-                ->select( 'Count( book )' )
-                ->distinct( 'book' )
-                ->join( PBook::class, 'pbook', 'WITH', 'pbook.library_id = :library.id' )
+                ->select('Count( book )')
+                ->distinct('book')
+                ->join(PBook::class, 'pbook', 'WITH', 'pbook.library_id = :library.id')
                 ->setParameter('library_id', $libraryId)
-                ->addSelect( 'pbook' )
+                ->addSelect('pbook')
 //                ->where( 'pbook = book.id' )
 //                ->andWhere( 'pbook.library_id = :library_id' )
 

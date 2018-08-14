@@ -17,7 +17,8 @@ class Librarian extends User
      */
     private $library;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->roles = [ self::ROLE_LIBRARIAN ];
     }
 

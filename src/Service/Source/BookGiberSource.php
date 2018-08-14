@@ -8,7 +8,6 @@
 
 namespace App\Service\Source;
 
-
 use App\Service\Source\Entity\Book;
 use App\Service\Source\Entity\Firebase;
 use App\Service\Source\Entity\SubCategory;
@@ -18,8 +17,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class BookGiberSource
 {
-
-    public function __construct() {
+    public function __construct()
+    {
     }
 
     /**
@@ -29,18 +28,16 @@ class BookGiberSource
      *
      * @return array
      */
-    public function getBooks( $url = '', SubCategory $subCategory = null ) : array
+    public function getBooks($url = '', SubCategory $subCategory = null) : array
     {
         $books = [];
 
-        if( $url !== '' )
-        {
+        if ($url !== '') {
             $client = new Client();
             $crawler = $client->request('GET', $url);
 
             $books = $crawler->filter('li.item.product.product-item')->each(
-                function ($crawler) use ($subCategory)
-                {
+                function ($crawler) use ($subCategory) {
                     $book = new Entity\Book();
 
                     /**
@@ -53,7 +50,7 @@ class BookGiberSource
                     $book->setUrl($crawler->filter('div.product.details.product-item-details > strong > a')->link()->getUri());
                     $book->setSubCategory($subCategory);
 
-                    $this->getBookDetails( $book );
+                    $this->getBookDetails($book);
 
                     return $book;
                 }
@@ -63,12 +60,11 @@ class BookGiberSource
         return $books;
     }
 
-    public function getBookDetails( Book $book )
+    public function getBookDetails(Book $book)
     {
-        if( $book->getUrl() !== '' )
-        {
+        if ($book->getUrl() !== '') {
             $client = new Client();
-            $crawler = $client->request('GET', $book->getUrl() );
+            $crawler = $client->request('GET', $book->getUrl());
 
 //            $bookCrawler = $crawler->filter('div.product-info-main');
 
@@ -77,11 +73,13 @@ class BookGiberSource
 //            $book->setAuthor($bookCrawler->filter('div.product.details.product-item-details > p.author > a')->text());
 //            $book->setUrl($bookCrawler->filter('div.product.details.product-item-details > strong > a')->getUri());
 
-            if($crawler->filter('div.product.attribute.description > div.value')->count() > 0)
+            if ($crawler->filter('div.product.attribute.description > div.value')->count() > 0) {
                 $book->setResume($crawler->filter('div.product.attribute.description > div.value')->text());
+            }
 
-            if($crawler->filter("td[data-th='ISBN']")->count() > 0)
+            if ($crawler->filter("td[data-th='ISBN']")->count() > 0) {
                 $book->setIsbn($crawler->filter("td[data-th='ISBN']")->text());
+            }
 
             //            $book->setContribs( $bookCrawler->filter('div.product.attribute.description > div.value')->text() );
 //            $book->setPriceNew($bookCrawler->filter('[rel="stylesheet"],[type="text/css"]'));
@@ -89,7 +87,6 @@ class BookGiberSource
 //            $book->setState();
 
 //            dd($bookCrawler->filter('div.product.attribute.description > div.value')->text());
-
         }
     }
 
@@ -108,33 +105,29 @@ class BookGiberSource
         $booksMenu = $crawler->filter('li.level0.nav-1.level-top.parent')->first();
 
         $categoriesCrawler = $booksMenu->filter('li.level1');
-        $categories = $categoriesCrawler->each
-        (
-            function ($crawler)
-            {
+        $categories = $categoriesCrawler->each(
+            function ($crawler) {
                 /**
                  * @var Crawler $crawler
                  */
                 $category = $this->getCategory($crawler);
 
-                $subCategories = $crawler->filter('li.level2')->each
-                (
+                $subCategories = $crawler->filter('li.level2')->each(
                     /**
                      * @var Crawler $crawler
                      */
-                    function ( $crawler ) use ( $category )
-                    {
+                    function ($crawler) use ($category) {
                         return $this->getSubCategory($crawler, $category);
                     }
                 );
 
-                $category->setSubCategories( $subCategories );
+                $category->setSubCategories($subCategories);
 
                 return $category;
             }
         );
 
-        $menu->setCategories( $categories );
+        $menu->setCategories($categories);
 
         return $menu;
     }
@@ -144,12 +137,12 @@ class BookGiberSource
      *
      * @return \App\Service\Source\Entity\Category
      */
-    function getCategory( Crawler $crawler )
+    public function getCategory(Crawler $crawler)
     {
         $category = new Entity\Category();
 
-        $category->setName( $crawler->filter('a > span')->text() );
-        $category->setLink( $crawler->filter('a')->link()->getUri()  );
+        $category->setName($crawler->filter('a > span')->text());
+        $category->setLink($crawler->filter('a')->link()->getUri());
 
         return $category;
     }
@@ -161,13 +154,13 @@ class BookGiberSource
      *
      * @return \App\Service\Source\Entity\SubCategory
      */
-    function getSubCategory( Crawler $crawler, $category = null )
+    public function getSubCategory(Crawler $crawler, $category = null)
     {
         $subCategory = new Entity\SubCategory();
 
-        $subCategory->setName( $crawler->filter('a > span')->text() );
-        $subCategory->setLink( $crawler->filter('a')->link()->getUri() );
-        $subCategory->setCategory( $category );
+        $subCategory->setName($crawler->filter('a > span')->text());
+        $subCategory->setLink($crawler->filter('a')->link()->getUri());
+        $subCategory->setCategory($category);
 
         return $subCategory;
     }

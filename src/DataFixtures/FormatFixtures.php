@@ -30,7 +30,8 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
         "CD audio",
     ];
 
-    public function __construct() {
+    public function __construct()
+    {
     }
 
     /**
@@ -42,11 +43,10 @@ class FormatFixtures extends Fixture implements OrderedFixtureInterface
     {
         $i = 0;
 
-        foreach ( self::FORMATS as $formatName )
-        {
+        foreach (self::FORMATS as $formatName) {
             $format = new Format();
 
-            $format->setName( $formatName );
+            $format->setName($formatName);
 
             $manager->persist($format);
 

@@ -31,7 +31,6 @@ use Symfony\Component\Validator\Validation;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Tightenco\Collect\Support\Collection;
 
-
 class SourceGiberCommand extends ContainerAwareCommand
 {
     /**
@@ -55,11 +54,10 @@ class SourceGiberCommand extends ContainerAwareCommand
     private $firebase;
 
     public function __construct(
-        EntityManagerInterface $entityManager
-        , BookGiberSource $bookGiberSource
-        , $name = null
-    )
-    {
+        EntityManagerInterface $entityManager,
+        BookGiberSource $bookGiberSource,
+        $name = null
+    ) {
         parent::__construct($name);
         $this->bookGiberSource = $bookGiberSource;
         $this->entityManager = $entityManager;
@@ -92,7 +90,7 @@ class SourceGiberCommand extends ContainerAwareCommand
 
 //        $this->io->text('SubCategories : ');
         $categoryProgressBar = $this->io->createProgressBar(count($menu->getCategories()));
-        $categoryProgressBar->setMessage( 'Categories' );
+        $categoryProgressBar->setMessage('Categories');
         $categoryProgressBar->display();
         $categoryProgressBar->start();
 //        $this->io->text("\n\n");
@@ -100,25 +98,24 @@ class SourceGiberCommand extends ContainerAwareCommand
         /**
          * @var Category $category
          */
-        foreach ( $menu->getCategories() as $category )
-        {
+        foreach ($menu->getCategories() as $category) {
             /**
              * @var SubCategory $subCategory
              */
 
 //            $this->io->text('Categories : ');
             $subCategoryProgressBar = $this->io->createProgressBar(count($category->getSubCategories()));
-            $subCategoryProgressBar->setMessage( 'SubCategories' );
+            $subCategoryProgressBar->setMessage('SubCategories');
             $subCategoryProgressBar->display();
             $subCategoryProgressBar->start();
 
-            foreach ( $category->getSubCategories() as $subCategory  ) {
+            foreach ($category->getSubCategories() as $subCategory) {
                 $bookProgressBar = $this->io->createProgressBar(count($category->getSubCategories()));
-                $bookProgressBar->setMessage( 'SubCategories' );
+                $bookProgressBar->setMessage('SubCategories');
                 $bookProgressBar->display();
                 $bookProgressBar->start();
 
-                foreach ( $this->bookGiberSource->getBooks($subCategory->getLink(), $subCategory) as $book){
+                foreach ($this->bookGiberSource->getBooks($subCategory->getLink(), $subCategory) as $book) {
                     $books[] = $book;
                     $this->firebase->saveBook($book) ;
 
@@ -141,6 +138,6 @@ class SourceGiberCommand extends ContainerAwareCommand
 
         $categoryProgressBar->finish();
 
-        $this->io->success( 'Categories : ' . count($categories) . ' - SubCategories : '  . count($subCategories) . ' - Books : ' . count($books) );
+        $this->io->success('Categories : ' . count($categories) . ' - SubCategories : '  . count($subCategories) . ' - Books : ' . count($books));
     }
 }

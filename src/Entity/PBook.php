@@ -8,8 +8,16 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\PBookRepository")
+ *
+ * @ApiResource(
+ *     itemOperations={
+ *          "get",
+ *          "generate"={
+ *              "route_name"="card_generate"
+ *          },
+ *      }
+ * )
  */
 class PBook
 {
@@ -17,11 +25,12 @@ class PBook
     public const STATUS_OUTSIDE = 'outside';
     public const STATUS_RESERVED = 'reserved';
     public const STATUS_NOT_AVAILABLE = 'no_available';
-    public const STATUS = [ 'inside', 'outside', 'reserved', 'not_available' ];
+    public const STATUS = ['inside', 'outside', 'reserved', 'not_available'];
 
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     *
+     * @ORM\GeneratedValue ()
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -87,7 +96,7 @@ class PBook
         return $this;
     }
 
-    public function addStatus( string $status): self
+    public function addStatus(string $status): self
     {
         if (!$this->bookings->contains($status) && count($this->status) < 2) {
             $this->status[] = $status;

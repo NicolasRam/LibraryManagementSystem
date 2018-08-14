@@ -8,7 +8,6 @@
 
 namespace App\Service\Provider;
 
-
 use App\Entity\Book;
 use App\Entity\Booking;
 use App\Entity\Category;
@@ -112,22 +111,21 @@ class LibrarianProvider
      * @param Firebase               $firebase
      * @param TokenStorageInterface  $tokenStorage
      */
-    public function __construct (
-        LibraryRepository $libraryRepository
-        , BookRepository $bookRepository
-        , PBookRepository $pbookRepository
-        , BookingRepository $bookingRepository
-        , MemberRepository $memberRepository
-        , LibrarianRepository $librarianRepository
-        , ReservationRepository $reservationRepository
-        , CategoryRepository $categoryRepository
-        , SubCategoryRepository $subCategoryRepository
-        , LocationRepository $locationRepositoryRepository
-        , SubscriptionRepository $subscriptionRepository
-        , Firebase $firebase
-        , TokenStorageInterface $tokenStorage
+    public function __construct(
+        LibraryRepository $libraryRepository,
+        BookRepository $bookRepository,
+        PBookRepository $pbookRepository,
+        BookingRepository $bookingRepository,
+        MemberRepository $memberRepository,
+        LibrarianRepository $librarianRepository,
+        ReservationRepository $reservationRepository,
+        CategoryRepository $categoryRepository,
+        SubCategoryRepository $subCategoryRepository,
+        LocationRepository $locationRepositoryRepository,
+        SubscriptionRepository $subscriptionRepository,
+        Firebase $firebase,
+        TokenStorageInterface $tokenStorage
     ) {
-
         $this->libraryRepository = $libraryRepository;
         $this->bookRepository = $bookRepository;
         $this->pbookRepository = $pbookRepository;
@@ -149,94 +147,105 @@ class LibrarianProvider
      * @param Library $library
      * @return Book[]
      */
-    public function getBooks(Library $library ) : array {
-        return $this->bookRepository->findByLibrary( $library->getId() );
+    public function getBooks(Library $library) : array
+    {
+        return $this->bookRepository->findByLibrary($library->getId());
     }
 
     /**
      * @param Library $library
      * @return Library[]
      */
-    public function getLibraries(Library $library ) : array {
-        return $this->libraryRepository->findBy( $library->getId() );
+    public function getLibraries(Library $library) : array
+    {
+        return $this->libraryRepository->findBy($library->getId());
     }
 
     /**
      * @param Library $library
      * @return Librarian[]
      */
-    public function getLibrarians( Library $library ) : array {
-        return $this->librarianRepository->findBy( ['library' => $library] );
+    public function getLibrarians(Library $library) : array
+    {
+        return $this->librarianRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
      * @return PBook[]
      */
-    public function getPBooks( Library $library ) : array {
-        return $this->pbookRepository->findBy( ['library' => $library] );
+    public function getPBooks(Library $library) : array
+    {
+        return $this->pbookRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
      * @return Booking[]
      */
-    public function getBookings( Library $library ) : array {
-        return $this->bookingRepository->findBy( ['library' => $library] );
+    public function getBookings(Library $library) : array
+    {
+        return $this->bookingRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
      * @return Member[]
      */
-    public function getMembers( Library $library ) : array {
-        return $this->memberRepository->findBy( ['library' => $library] );
+    public function getMembers(Library $library) : array
+    {
+        return $this->memberRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
      * @return Reservation[]
      */
-    public function getReservations( Library $library ) : array {
-        return $this->memberRepository->findBy( ['library' => $library] );
+    public function getReservations(Library $library) : array
+    {
+        return $this->memberRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
      * @return Category[]
      */
-    public function getCategories( Library $library ) : array {
-        return $this->memberRepository->findBy( ['library' => $library] );
+    public function getCategories(Library $library) : array
+    {
+        return $this->memberRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
      * @return SubCategory[]
      */
-    public function getSubCategories( Library $library ) : array {
-        return $this->subCategoryRepository->findBy( ['library' => $library] );
+    public function getSubCategories(Library $library) : array
+    {
+        return $this->subCategoryRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
      * @return Location[]
      */
-    public function getLocations( Library $library ) : array {
-        return $this->memberRepository->findBy( ['library' => $library] );
+    public function getLocations(Library $library) : array
+    {
+        return $this->memberRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
      * @return Subscription[]
      */
-    public function getSubscriptions( Library $library ) : array {
-        return $this->subscriptionRepository->findBy( ['library' => $library] );
+    public function getSubscriptions(Library $library) : array
+    {
+        return $this->subscriptionRepository->findBy(['library' => $library]);
     }
 
     /**
      * @return Librarian
      */
-    public function getLibrarian( ) : Librarian
+    public function getLibrarian() : Librarian
     {
         /**
          * @var Librarian $librarian
@@ -248,12 +257,12 @@ class LibrarianProvider
     /**
      * @return \App\Service\Source\Entity\Book
      */
-    public function getGetBooksFromFirebase( ) : array
+    public function getGetBooksFromFirebase() : array
     {
         return $this->firebase->getBooks();
     }
 
-    public function getLibrary( $librarian = null )
+    public function getLibrary($librarian = null)
     {
         $librarian = $librarian ?? $this->getLibrarian();
 

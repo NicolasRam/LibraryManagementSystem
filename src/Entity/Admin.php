@@ -12,7 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Admin extends User
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->roles = [ self::ROLE_ADMIN ];
     }
 }

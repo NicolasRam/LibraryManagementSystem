@@ -28,11 +28,11 @@ class PBookRepository extends ServiceEntityRepository
      */
     public function countLibraryPbook($libraryId) : int
     {
-        try{
+        try {
             return $this->createQueryBuilder('pbook')
-                ->select( 'COUNT(pbook)' )
-                ->join( PBook::class, 'pbook' )
-                ->join( Library::class, 'library' )
+                ->select('COUNT(pbook)')
+                ->join(PBook::class, 'pbook')
+                ->join(Library::class, 'library')
 
                 ->andWhere('library.id = :library_id')
                 ->setParameter('library_id', $libraryId)
@@ -44,8 +44,8 @@ class PBookRepository extends ServiceEntityRepository
         }
     }
 
-    public function findMostRentedByLibrary($libraryId, $limit = 10, $offset = 0) {
-        return $this->findBy( [ 'library' => $libraryId ], ['id' => 'ASC'], $limit, $offset );
+    public function findMostRentedByLibrary($libraryId, $limit = 10, $offset = 0)
+    {
+        return $this->findBy([ 'library' => $libraryId ], ['id' => 'ASC'], $limit, $offset);
     }
-
 }

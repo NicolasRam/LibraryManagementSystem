@@ -46,5 +46,4 @@ class UserLoginType extends AbstractType
     {
         return 'backend_user_login';
     }
-
 }

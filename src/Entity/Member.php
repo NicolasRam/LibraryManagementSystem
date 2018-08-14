@@ -35,7 +35,8 @@ class Member extends User
      */
     private $memberType;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->roles = [ self::ROLE_MEMBER ];
         $this->bookings = new ArrayCollection();
         $this->memberEBooks = new ArrayCollection();

@@ -25,22 +25,22 @@ class HomeController extends Controller
      * @return Response
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function index( LibrarianProvider $librarianProvider )
+    public function index(LibrarianProvider $librarianProvider)
     {
         $user = $this->getUser();
         $response = new Response();
 
-        switch ( TRUE ) {
-            case $this->isGranted([User::ROLE_SUPER_ADMIN], $user) :
+        switch (true) {
+            case $this->isGranted([User::ROLE_SUPER_ADMIN], $user):
                 $response = $this->superAdminIndex();
                 break;
 
-            case $this->isGranted([User::ROLE_ADMIN], $user) :
+            case $this->isGranted([User::ROLE_ADMIN], $user):
                 $response = $this->adminIndex();
                 break;
 
-            case $this->isGranted([User::ROLE_LIBRARIAN], $user) :
-                $response = $this->librarianIndex( $librarianProvider );
+            case $this->isGranted([User::ROLE_LIBRARIAN], $user):
+                $response = $this->librarianIndex($librarianProvider);
                 break;
         }
 
@@ -50,7 +50,7 @@ class HomeController extends Controller
     /**
      * @return Response
      */
-    private function superAdminIndex( ) : Response
+    private function superAdminIndex() : Response
     {
         return $this->render(
             'backend/home/super_admin.html.twig',
@@ -61,7 +61,7 @@ class HomeController extends Controller
     /**
      * @return Response
      */
-    private function adminIndex( ) : Response
+    private function adminIndex() : Response
     {
         return $this->render(
             'backend/home/admin.html.twig',
@@ -75,7 +75,7 @@ class HomeController extends Controller
      * @return Response
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    private function librarianIndex( LibrarianProvider $librarianProvider ) : Response
+    private function librarianIndex(LibrarianProvider $librarianProvider) : Response
     {
         /**
          * @var Librarian $librarian
@@ -94,14 +94,14 @@ class HomeController extends Controller
                 'bookCount' => count($librarianProvider->getBooks($library)),
 
                 'pbooks' => $this->getDoctrine()->getRepository(PBook::class)->findAll(),
-                'mostRentedPBooks' => $this->getDoctrine()->getRepository(PBook::class)->findMostRentedByLibrary( $library->getId() ),
+                'mostRentedPBooks' => $this->getDoctrine()->getRepository(PBook::class)->findMostRentedByLibrary($library->getId()),
 
-                'bookings' => $this->getDoctrine()->getRepository(Booking::class)->findByLibrary( $library->getId() ),
-                'lateBookings' => $this->getDoctrine()->getRepository(Booking::class)->findLateByLibrary( $library->getId() ),
-                'lateBookingCount' => $this->getDoctrine()->getRepository(Booking::class)->countLateByLibrary( $library->getId() ),
-                'bookingCount' => $this->getDoctrine()->getRepository(Booking::class)->countByLibrary( $library->getId() ),
+                'bookings' => $this->getDoctrine()->getRepository(Booking::class)->findByLibrary($library->getId()),
+                'lateBookings' => $this->getDoctrine()->getRepository(Booking::class)->findLateByLibrary($library->getId()),
+                'lateBookingCount' => $this->getDoctrine()->getRepository(Booking::class)->countLateByLibrary($library->getId()),
+                'bookingCount' => $this->getDoctrine()->getRepository(Booking::class)->countByLibrary($library->getId()),
 
-                'lateMembers' => $this->getDoctrine()->getRepository(Member::class)->findLateByLibrary( $library->getId() ),
+                'lateMembers' => $this->getDoctrine()->getRepository(Member::class)->findLateByLibrary($library->getId()),
             ]
         );
     }
