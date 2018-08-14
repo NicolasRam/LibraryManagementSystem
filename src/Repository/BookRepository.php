@@ -14,7 +14,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class BookRepository extends ServiceEntityRepository
 {
-
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Book::class);
@@ -171,5 +170,4 @@ class BookRepository extends ServiceEntityRepository
             return 0;
         }
     }
-
 }

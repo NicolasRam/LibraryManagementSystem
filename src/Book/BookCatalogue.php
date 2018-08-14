@@ -11,7 +11,6 @@ use Tightenco\Collect\Support\Collection;
 
 class BookCatalogue implements BookCatalogueInterface
 {
-
     private $sources;
 
     public function addSource(BookAbstractSource $source): void
@@ -38,7 +37,6 @@ class BookCatalogue implements BookCatalogueInterface
      */
     public function find($id): ?Book
     {
-
         $books = new Collection();
 
         # Je parcours mes sources à la recherche de mon livre
@@ -76,7 +74,6 @@ class BookCatalogue implements BookCatalogueInterface
      */
     public function findAll(): ?iterable
     {
-
         return $this->iterateOverSources('findAll');
 //            ->sortBy('createdDate');
     }
@@ -107,19 +104,18 @@ class BookCatalogue implements BookCatalogueInterface
     private function iterateOverSources(string $functionToCall): Collection
     {
         $books = new Collection();
-            //dd(($this->sources));
+        //dd(($this->sources));
 
-        if (($this->sources))
-            {
-                /* @var $source BookAbstractSource */
-                /* @var $book Book */
-                    foreach ($this->sources as $source) {
-                        //dd($this->sources);
-                        foreach ($source->$functionToCall() as $book) {
-                            $books[] = $book;
-                        }
-                    }
+        if (($this->sources)) {
+            /* @var $source BookAbstractSource */
+            /* @var $book Book */
+            foreach ($this->sources as $source) {
+                //dd($this->sources);
+                foreach ($source->$functionToCall() as $book) {
+                    $books[] = $book;
+                }
             }
+        }
 
         return $books;
     }

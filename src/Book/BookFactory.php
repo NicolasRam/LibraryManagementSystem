@@ -8,7 +8,6 @@
 
 namespace App\Book;
 
-
 use App\Entity\Book;
 
 class BookFactory

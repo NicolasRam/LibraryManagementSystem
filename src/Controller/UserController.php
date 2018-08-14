@@ -157,7 +157,8 @@ class UserController extends Controller
          */
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        return $this->render('backend/user/login.html.twig',
+        return $this->render(
+            'backend/user/login.html.twig',
             [
                 'form' => $form->createView(),
                 'error' => $error,

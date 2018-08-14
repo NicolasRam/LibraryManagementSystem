@@ -20,7 +20,7 @@ class CategoryType extends AbstractType
                 [
                     'entry_type' => SubCategoryType::class,
                     'entry_options' => [
-                        'label' => FALSE,
+                        'label' => false,
                         'attr' => [
                             'class' => 'form-control m-input',
                             'autocomplete' => 'off',

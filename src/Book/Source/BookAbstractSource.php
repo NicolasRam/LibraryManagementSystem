@@ -2,7 +2,6 @@
 
 namespace App\Book\Source;
 
-
 use App\Book\BookCatalogue;
 use App\Book\BookRepositoryInterface;
 use App\Entity\Book;
@@ -25,5 +24,4 @@ abstract class BookAbstractSource implements BookRepositoryInterface
      * @return Book|null
      */
     abstract protected function createFromArray(iterable $Book): ?Book;
-
 }

@@ -8,7 +8,6 @@
 
 namespace App\Book;
 
-
 use App\Controller\HelperTrait;
 use App\Entity\Book;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -16,14 +15,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class BookRequestUpdateHandler
 {
-
     use HelperTrait;
 
-    private $em, $assetsDirectory;
+    private $em;
+    private $assetsDirectory;
 
-    public function __construct(ObjectManager $manager,
-                                string $assetsDirectory)
-    {
+    public function __construct(
+        ObjectManager $manager,
+                                string $assetsDirectory
+    ) {
         $this->em = $manager;
         $this->assetsDirectory = $assetsDirectory;
     }
@@ -71,5 +71,4 @@ class BookRequestUpdateHandler
         # On retourne notre Book
         return $book;
     }
-
 }

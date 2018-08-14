@@ -29,16 +29,15 @@ class LibraryFixtures extends Fixture implements OrderedFixtureInterface
     {
         $fakerFactory = Factory::create('fr_FR');
 
-        for ( $i = 0; $i < self::LIBRARIES_COUNT_REFERENCE; $i++ )
-        {
+        for ($i = 0; $i < self::LIBRARIES_COUNT_REFERENCE; $i++) {
             $library = new Library();
 
-            $library->setName( $fakerFactory->company );
-            $library->setEmail( $fakerFactory->email );
-            $library->setAddress( $fakerFactory->address );
-            $library->setOpeningDate( DateTime::createFromFormat("H:i:s", "09:30:00") );
-            $library->setClosingTime( DateTime::createFromFormat("H:i:s", "19:30:00") );
-            $library->setPhone( $fakerFactory->phoneNumber );
+            $library->setName($fakerFactory->company);
+            $library->setEmail($fakerFactory->email);
+            $library->setAddress($fakerFactory->address);
+            $library->setOpeningDate(DateTime::createFromFormat("H:i:s", "09:30:00"));
+            $library->setClosingTime(DateTime::createFromFormat("H:i:s", "19:30:00"));
+            $library->setPhone($fakerFactory->phoneNumber);
 
             $manager->persist($library);
 

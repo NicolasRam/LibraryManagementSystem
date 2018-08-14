@@ -2,7 +2,6 @@
 
 namespace App\Book;
 
-
 use App\Book\Source\BookAbstractSource;
 
 interface BookCatalogueInterface extends BookRepositoryInterface

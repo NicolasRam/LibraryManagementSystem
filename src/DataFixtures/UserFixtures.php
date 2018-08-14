@@ -8,7 +8,6 @@
 
 namespace App\DataFixtures;
 
-
 use App\Entity\Admin;
 use App\Entity\Librarian;
 use App\Entity\Member;
@@ -32,8 +31,8 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
      */
     private $encoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder ) {
-
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
         $this->encoder = $encoder;
     }
 
@@ -46,72 +45,74 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
     {
         $user = new User();
 
-        $user->setFirstName( 'Moulaye' );
-        $user->setLastName( 'Cissé' );
-        $user->setEmail( 'moulaye.c@gmail.com' );
-        $user->setRoles( [User::ROLE_SUPER_ADMIN, User::ROLE_ADMIN, User::ROLE_LIBRARIAN, User::ROLE_MEMBER] );
+        $user->setFirstName('Moulaye');
+        $user->setLastName('Cissé');
+        $user->setEmail('moulaye.c@gmail.com');
+        $user->setRoles([User::ROLE_SUPER_ADMIN, User::ROLE_ADMIN, User::ROLE_LIBRARIAN, User::ROLE_MEMBER]);
         $encoded = $this->encoder->encodePassword($user, '123456789');
-        $user->setPassword( $encoded );
+        $user->setPassword($encoded);
 
         $manager->persist($user);
 
-        $this->addReference( self::USER_REFERENCE, $user );
+        $this->addReference(self::USER_REFERENCE, $user);
 
         $superAdmin = new SuperAdmin();
 
-        $superAdmin->setFirstName( 'SuperAdmin' );
-        $superAdmin->setLastName( 'SuperAdmin' );
-        $superAdmin->setEmail( 'superadmin@superadmin.com' );
+        $superAdmin->setFirstName('SuperAdmin');
+        $superAdmin->setLastName('SuperAdmin');
+        $superAdmin->setEmail('superadmin@superadmin.com');
         $encoded = $this->encoder->encodePassword($superAdmin, '123456789');
-        $superAdmin->setPassword( $encoded );
+        $superAdmin->setPassword($encoded);
 
         $manager->persist($superAdmin);
 
-        $this->addReference( self::SUPER_ADMIN_REFERENCE, $superAdmin );
+        $this->addReference(self::SUPER_ADMIN_REFERENCE, $superAdmin);
 
         $admin = new Admin();
 
-        $admin->setFirstName( 'Admin' );
-        $admin->setLastName( 'Admin' );
-        $admin->setEmail( 'admin@admin.com' );
+        $admin->setFirstName('Admin');
+        $admin->setLastName('Admin');
+        $admin->setEmail('admin@admin.com');
         $encoded = $this->encoder->encodePassword($admin, '123456789');
-        $admin->setPassword( $encoded );
+        $admin->setPassword($encoded);
 
         $manager->persist($admin);
 
-        $this->addReference( self::ADMIN_REFERENCE, $admin );
+        $this->addReference(self::ADMIN_REFERENCE, $admin);
 
         $i = 0;
         $libraries = [];
-        while ( $this->hasReference( LibraryFixtures::LIBRARIES_REFERENCE . $i) ) {
-            if( $this->hasReference( LibraryFixtures::LIBRARIES_REFERENCE . $i)) $libraries[] = $this->getReference( LibraryFixtures::LIBRARIES_REFERENCE . $i++);
+        while ($this->hasReference(LibraryFixtures::LIBRARIES_REFERENCE . $i)) {
+            if ($this->hasReference(LibraryFixtures::LIBRARIES_REFERENCE . $i)) {
+                $libraries[] = $this->getReference(LibraryFixtures::LIBRARIES_REFERENCE . $i++);
+            }
         }
 
         $librarian = new Librarian();
 
-        $librarian->setFirstName( 'Librarian' );
-        $librarian->setLastName( 'Librarian' );
-        $librarian->setEmail( 'librarian@librarian.com' );
+        $librarian->setFirstName('Librarian');
+        $librarian->setLastName('Librarian');
+        $librarian->setEmail('librarian@librarian.com');
         $encoded = $this->encoder->encodePassword($librarian, '123456789');
-        $librarian->setLibrary( $libraries[rand(0, count($libraries) - 1) ] );
-        $librarian->setPassword( $encoded );
+        $librarian->setLibrary($libraries[rand(0, count($libraries) - 1) ]);
+        $librarian->setPassword($encoded);
 
         $manager->persist($librarian);
 
-        $this->addReference( self::LIBRARIAN_REFERENCE, $librarian );
+        $this->addReference(self::LIBRARIAN_REFERENCE, $librarian);
 
         $member = new Member();
 
-        $member->setFirstName( 'Member' );
-        $member->setLastName( 'Member' );
-        $member->setEmail( 'member@member.com' );
+        $member->setFirstName('Member');
+        $member->setLastName('Member');
+        $member->setEmail('member@member.com');
         $encoded = $this->encoder->encodePassword($member, '123456789');
-        $member->setPassword( $encoded );
-        $member->setMemberType( $this->getReference( MemberTypeFixtures::MEMBERS_REFERENCE . rand(0, MemberTypeFixtures::MEMBERS_COUNT_REFERENCE - 1) ) );
+        $member->setPassword($encoded);
+        $member->setMemberType($this->getReference(MemberTypeFixtures::MEMBERS_REFERENCE . rand(0, MemberTypeFixtures::MEMBERS_COUNT_REFERENCE - 1)));
 
         $manager->persist($member);
 
-        $this->addReference( self::MEMBER_REFERENCE, $member );
+        $this->addReference(self::MEMBER_REFERENCE, $member);
 
         $manager->flush();
     }

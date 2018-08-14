@@ -36,9 +36,6 @@ class PBookController extends Controller
      */
     public function list(PBookRepository $pbookRepository, Book $book): Response
     {
-
-
-
         $pbooks = $book->getPBooks();
 
 
@@ -89,7 +86,6 @@ class PBookController extends Controller
      */
     public function edit(Request $request, PBook $pbook): Response
     {
-
         $form = $this->createForm(PBookEType::class, $pbook);
         $form->handleRequest($request);
 

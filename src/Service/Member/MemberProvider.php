@@ -9,7 +9,6 @@ use PhpParser\Node\Expr\Cast\Bool_;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
 class MemberProvider extends AbstractController
 {
 //    /*
@@ -43,15 +42,18 @@ class MemberProvider extends AbstractController
             //Ici on log le message envoyé ainsi que le numéro pour le suivi
             $this->logger->info('We have contacted the logger: ' . $member . ' would like to make a new reservation ');
 
-            if ($numberOfBooking < 3) { return true; }
-            if ($numberOfBooking = 3) { return false; }
-
-
+            if ($numberOfBooking < 3) {
+                return true;
+            }
+            if ($numberOfBooking = 3) {
+                return false;
+            }
         } catch (\Exception $e) {
             echo "erreur";
             if (null !== $this->logger) {
                 $this->logger->critical(
-                    sprintf("erreur critique"));
+                    sprintf("erreur critique")
+                );
             }
 
             $result = false;
@@ -59,7 +61,4 @@ class MemberProvider extends AbstractController
 
         return $result;
     }
-
-
-
 }

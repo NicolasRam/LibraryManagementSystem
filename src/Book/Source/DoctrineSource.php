@@ -2,14 +2,12 @@
 
 namespace App\Book\Source;
 
-
 use App\Book\Source\BookAbstractSource;
 use App\Entity\Book;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class DoctrineSource extends BookAbstractSource
 {
-
     private $repository;
     private $entity = Book::class;
 

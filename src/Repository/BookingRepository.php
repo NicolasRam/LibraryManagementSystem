@@ -29,7 +29,6 @@ class BookingRepository extends ServiceEntityRepository
      */
     public function findValueOfBookingForOneMember($value)
     {
-
         try {
             $count = $this->createQueryBuilder('a')
                 ->select('COUNT(a)')
@@ -38,7 +37,6 @@ class BookingRepository extends ServiceEntityRepository
                 ->andWhere('a.endDate > CURRENT_DATE()')
                 ->getQuery()
                 ->getSingleScalarResult();
-
         } catch (NonUniqueResultException $e) {
             return 0;
         }
@@ -54,7 +52,6 @@ class BookingRepository extends ServiceEntityRepository
      */
     public function findPbooktop($topNumber): array
     {
-
         try {
 
 //            dump('Entering sql task');
@@ -71,15 +68,15 @@ class BookingRepository extends ServiceEntityRepository
 //
 //            $stmt = $conn->prepare($sql);
 //
-////            dump('Executing');
+            ////            dump('Executing');
 //            $stmt->execute();
-////            dd($stmt);
+            ////            dd($stmt);
 //            dump('Everything goes well');
 //            return $stmt->fetchAll();
 
 
 //        dump('Just before myquery');
-        $myQuery = $this
+            $myQuery = $this
             ->createQueryBuilder('booking')
             ->join('booking.pBook', 'pbook')
 //            ->addSelect('pbook')
@@ -95,15 +92,12 @@ class BookingRepository extends ServiceEntityRepository
 
 //        dump('---> After query Result');
 
-        return $myQuery
+            return $myQuery
             ->getQuery()
             ->getResult();
-
         } catch (NonUniqueResultException $e) {
             echo "erreur Repo";
             return [0];
         }
-
-
     }
 }

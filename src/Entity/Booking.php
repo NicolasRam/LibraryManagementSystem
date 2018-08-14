@@ -119,5 +119,4 @@ class Booking
     {
         $this->id = $id;
     }
-
 }

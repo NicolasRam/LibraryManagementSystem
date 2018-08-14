@@ -83,7 +83,6 @@ class EBook /*extends Book*/
         }
 
         return $this;
-
     }
 
 
@@ -98,7 +97,6 @@ class EBook /*extends Book*/
         $this->book = $book;
 
         return $this;
-
     }
 
 
@@ -136,6 +134,4 @@ class EBook /*extends Book*/
     {
         $this->file = $file;
     }
-
-
 }

@@ -2,14 +2,12 @@
 
 namespace App\Service\Book;
 
-
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
 class YamlProvider
 {
-
     private $kernel;
 
     /**
@@ -28,9 +26,9 @@ class YamlProvider
      */
     public function getBooks(): iterable
     {
-        $book = unserialize( file_get_contents(
+        $book = unserialize(file_get_contents(
             $this->kernel->getCacheDir() . '/yaml-book.php'
-        ) );
+        ));
 
         return $book['data'];
     }

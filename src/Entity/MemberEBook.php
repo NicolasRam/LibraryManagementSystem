@@ -71,7 +71,6 @@ class MemberEBook
 
     public function getEBook(): ?EBook
     {
-
         return $this->eBook;
     }
 

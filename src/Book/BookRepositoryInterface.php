@@ -2,7 +2,6 @@
 
 namespace App\Book;
 
-
 use App\Entity\Book;
 
 interface BookRepositoryInterface
@@ -37,5 +36,4 @@ interface BookRepositoryInterface
 
     # public function findBy();
     # public function findOneBy();
-
 }

@@ -8,7 +8,6 @@
 
 namespace App\Book;
 
-
 use App\Controller\HelperTrait;
 use App\Entity\Book;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,10 +18,13 @@ use Symfony\Component\Workflow\Registry;
 
 class BookRequestHandler
 {
-
     use HelperTrait;
 
-    private $em, $assetsDirectory, $bookFactory, $packages, $workflows;
+    private $em;
+    private $assetsDirectory;
+    private $bookFactory;
+    private $packages;
+    private $workflows;
 
     /**
      * BookRequestHandler constructor.
@@ -34,12 +36,13 @@ class BookRequestHandler
      * @internal param Package $package
      * @internal param $em
      */
-    public function __construct(EntityManagerInterface $entityManager,
+    public function __construct(
+        EntityManagerInterface $entityManager,
                                 BookFactory $bookFactory,
                                 string $assetsDirectory,
                                 Registry $workflows,
-                                Packages $packages)
-    {
+                                Packages $packages
+    ) {
         $this->em = $entityManager;
         $this->bookFactory = $bookFactory;
         $this->assetsDirectory = $assetsDirectory;
@@ -88,14 +91,11 @@ class BookRequestHandler
             $this->em->flush();
 
             return $book;
-
         } catch (LogicException $e) {
 
             # Transition non autorisé
             return null;
-
         }
-
     }
 
 //    public function prepareBookFromRequest(Book $book): BookRequest

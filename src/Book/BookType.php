@@ -15,10 +15,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $this->image_url = $options['image_url'];
         $this->slug      = $options['slug'];
 
@@ -45,7 +43,6 @@ class BookType extends AbstractType
         ;
 
         if ($this->slug) {
-
             $builder
                 ->add('slug', TextType::class, [
                     'required' => true,
@@ -55,7 +52,6 @@ class BookType extends AbstractType
                     ]
                 ])
             ;
-
         }
 
         $builder
@@ -104,7 +100,6 @@ class BookType extends AbstractType
                 'label' => 'Publier mon livre'
             ])
         ;
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -116,5 +111,4 @@ class BookType extends AbstractType
             'slug' => null
         ]);
     }
-
 }

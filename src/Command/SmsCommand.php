@@ -16,7 +16,6 @@ use Psr\Log\LogLevel;
  */
 class SmsCommand extends Command
 {
-
     private $smsProvider;
 
     public function __construct(SmsProvider $smsProvider)
@@ -63,8 +62,7 @@ class SmsCommand extends Command
 
                 $message = $input->getOption('message');
 
-                if (!$input->getOption('message'))
-                {
+                if (!$input->getOption('message')) {
                     echo "Message non spécifié, valeur par défaut";
                     $message = "No text input spécified, just sending some text instead";
                 }
@@ -81,8 +79,7 @@ class SmsCommand extends Command
 //                $this->log('info', sprintf('Error to send an SMS to %s : %s', $input->getOption('blacklist'), $e->getMessage()));
             }
         } else {
-            if (!$input->getOption('send'))
-            {
+            if (!$input->getOption('send')) {
                 echo "You're strange, how do you expect me to send some message if you don't specify the phone number? \n";
 //                die;
             }
@@ -109,5 +106,4 @@ class SmsCommand extends Command
 //            }
 //        }
     }
-
 }

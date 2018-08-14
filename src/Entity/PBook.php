@@ -13,7 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PBook
 {
-
     public const STATUS = [ 'inside', 'outside', 'reserved', 'not_available' ];
 
 
@@ -111,7 +110,6 @@ class PBook
         $this->library = $library;
 
         return $this;
-
     }
 
     public function getBook(): ?Book
@@ -128,6 +126,5 @@ class PBook
         $this->book = $book;
 
         return $this;
-
     }
 }

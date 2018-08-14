@@ -2,7 +2,6 @@
 
 namespace App\Booking;
 
-
 use App\Controller\HelperTrait;
 use App\Entity\Booking;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,7 +15,8 @@ class BookingRequestHandler
     /**
      * @var BookingFactory $bookingFactory
      */
-    private $bookingFactory, $em;
+    private $bookingFactory;
+    private $em;
 
 //    private $em, $assetsDirectory, $bookingFactory, $packages, $workflows;
 
@@ -56,14 +56,11 @@ class BookingRequestHandler
             $this->em->flush();
 
             return $booking;
-
         } catch (LogicException $e) {
 
             # Transition non autorisé
             return null;
-
         }
-
     }
 
 //    public function prepareBookingFromRequest(Booking $booking): BookingRequest

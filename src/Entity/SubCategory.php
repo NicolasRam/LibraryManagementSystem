@@ -129,5 +129,4 @@ class SubCategory
     {
         $this->id = $id;
     }
-
 }

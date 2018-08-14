@@ -2,6 +2,9 @@
     "behat/transliterator": {
         "version": "v1.2.0"
     },
+    "composer/xdebug-handler": {
+        "version": "1.1.0"
+    },
     "egulias/email-validator": {
         "version": "2.1.4"
     },
@@ -14,8 +17,38 @@
     "guzzlehttp/psr7": {
         "version": "1.4.2"
     },
+    "jean85/pretty-package-versions": {
+        "version": "1.2"
+    },
+    "nette/bootstrap": {
+        "version": "v2.4.6"
+    },
+    "nette/di": {
+        "version": "v2.4.13"
+    },
+    "nette/finder": {
+        "version": "v2.4.2"
+    },
+    "nette/neon": {
+        "version": "v2.4.3"
+    },
+    "nette/php-generator": {
+        "version": "v3.0.5"
+    },
+    "nette/robot-loader": {
+        "version": "v3.0.4"
+    },
+    "nette/utils": {
+        "version": "v2.5.2"
+    },
     "ovh/ovh": {
         "version": "dev-master"
+    },
+    "phpstan/phpdoc-parser": {
+        "version": "0.3"
+    },
+    "phpstan/phpstan": {
+        "version": "0.10.3"
     },
     "psr/http-message": {
         "version": "1.0.1"

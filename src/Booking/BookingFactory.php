@@ -8,7 +8,6 @@
 
 namespace App\Booking;
 
-
 use App\Entity\Booking;
 
 class BookingFactory

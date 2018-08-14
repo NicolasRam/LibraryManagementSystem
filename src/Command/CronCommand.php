@@ -7,9 +7,10 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CronCommand extends Command {
-
-    protected function configure () {
+class CronCommand extends Command
+{
+    protected function configure()
+    {
         // On set le nom de la commande
         $this->setName('app:cron');
 
@@ -25,7 +26,8 @@ class CronCommand extends Command {
 //            ->addArgument('last_name', InputArgument::OPTIONAL, "Quel est ton nom ?");
     }
 
-    public function execute (InputInterface $input, OutputInterface $output) {
+    public function execute(InputInterface $input, OutputInterface $output)
+    {
 //        $text = 'Hi '.$input->getArgument('name');
 //
 //        $lastName = $input->getArgument('last_name');

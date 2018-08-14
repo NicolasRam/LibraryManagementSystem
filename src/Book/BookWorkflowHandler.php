@@ -9,7 +9,8 @@ use Symfony\Component\Workflow\Registry;
 
 class BookWorkflowHandler
 {
-    private $workflows, $manager;
+    private $workflows;
+    private $manager;
 
     public function __construct(Registry $workflows, ObjectManager $manager)
     {

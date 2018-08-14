@@ -2,7 +2,6 @@
 
 namespace App\Booking;
 
-
 use App\Entity\Booking;
 use App\Entity\Member;
 use App\Entity\PBook;
@@ -10,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class BookingRequest
 {
-
     private $id;
 
     /**
@@ -171,7 +169,4 @@ class BookingRequest
         $this->returnDate = $returnDate;
         return $this;
     }
-
-
-
 }

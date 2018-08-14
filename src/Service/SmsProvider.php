@@ -6,7 +6,6 @@ use Ovh\Exceptions\InvalidParameterException;
 use Psr\Log\LoggerInterface;
 use Ovh\Api;
 
-
 class SmsProvider
 {
 
@@ -41,10 +40,12 @@ class SmsProvider
 
         try {
             //On instancie l'api
-            $ovh = new Api($applicationKey,
+            $ovh = new Api(
+                $applicationKey,
                 $applicationSecret,
                 $endpoint,
-                $consumer_key);
+                $consumer_key
+            );
 
             //On récupère le nom du service (le premier)
             $smsServices = $ovh->get('/sms/');
@@ -82,13 +83,12 @@ class SmsProvider
             //print_r($resultPostJob);
             //$smsJobs = $ovh->get('/sms/' . $smsServices[0] . '/jobs/');
             //print_r($smsJobs);
-
-
         } catch (\Exception $e) {
             echo "erreur";
             if (null !== $this->logger) {
                 $this->logger->critical(
-                    sprintf("Erreur lors de l'envoi SMS : %s . Trace : %s", $e->getMessage(), $e->getTraceAsString()), [
+                    sprintf("Erreur lors de l'envoi SMS : %s . Trace : %s", $e->getMessage(), $e->getTraceAsString()),
+                    [
                         'paramsOvh' => $content
                     ]
                 );
@@ -113,7 +113,6 @@ class SmsProvider
         try {
             $smsServices = $conn->get('/sms/');
             $result = $conn->delete(sprintf('/sms/%s/blacklists/%s', $smsServices[0], $phoneNumber));
-
         } catch (\Exception $e) {
             if (null !== $this->logger) {
                 $this->logger->critical(
@@ -139,7 +138,6 @@ class SmsProvider
         try {
             $smsServices = $conn->get('/sms/');
             $result = $conn->get(sprintf('/sms/%s/blacklists', $smsServices[0]));
-
         } catch (\Exception $e) {
             if (null !== $this->logger) {
                 $this->logger->critical(
@@ -160,7 +158,6 @@ class SmsProvider
      */
     private function connectToApi()
     {
-
         $config['application_key'] = getenv('APP_KEY');
         $config['application_secret'] = getenv('APPSMS_SECRET');
         $config['consumer_key'] = getenv('CONSUMER_KEY');
@@ -183,14 +180,12 @@ class SmsProvider
         $endPoint = $config['end_point'];
 
         try {
-
             $conn = new Api(
                 $applicationKey,
                 $applicationSecret,
                 $endPoint,
                 $consumerKey
             );
-
         } catch (InvalidParameterException $e) {
             $this->logger->critical(
                 sprintf("Erreur lors de la connexion à l'API OVH : %s . Trace : %s", $e->getMessage(), $e->getTraceAsString())

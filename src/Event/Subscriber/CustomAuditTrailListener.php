@@ -3,6 +3,7 @@
 // /src/AppBundle/Event/Subscriber/CustomAuditTrailListener.php
 
 namespace App\Event\Subscriber;
+
 use Psr\Log\LoggerInterface;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

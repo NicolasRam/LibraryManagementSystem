@@ -50,8 +50,6 @@ class BookingController extends Controller
      */
     public function rent(Request $request, BookingRequestHandler $bookingRequestHandler, PBook $pbook, MemberProvider $memberProvider): Response
     {
-
-
         $bookingRequest = new BookingRequest($pbook);
 
         $form = $this->createForm(BookingRequestType::class, $bookingRequest);
@@ -78,24 +76,24 @@ class BookingController extends Controller
 //                $workflow = $registry->get($bookingRequest);
 
 //                if ($workflow->can($bookingRequest, 'publish'))
-////                    $workflow->get
+                ////                    $workflow->get
 //
-////                $workflow->can($bookingRequest, 'publish'); // False
-////                $workflow->can($bookingRequest, 'to_review'); // True
+                ////                $workflow->can($bookingRequest, 'publish'); // False
+                ////                $workflow->can($bookingRequest, 'to_review'); // True
 //
 //                // Update the currentState on the post
 //                try {
-////                    $workflow->apply($bookingRequest, 'to_review');
+                ////                    $workflow->apply($bookingRequest, 'to_review');
 //                } catch (TransitionException $exception) {
 //                    // ... if the transition is not allowed
 //                }
-            $this->addFlash('notice', 'La réservation est effective.');
+                $this->addFlash('notice', 'La réservation est effective.');
 
-            $this->getDoctrine()->getManager()->flush();
+                $this->getDoctrine()->getManager()->flush();
 
-            $booking = $bookingRequestHandler->handle($bookingRequest);
+                $booking = $bookingRequestHandler->handle($bookingRequest);
 
-            return $this->redirectToRoute('backend_booking_rent', ['id' => $pbook->getId()]);
+                return $this->redirectToRoute('backend_booking_rent', ['id' => $pbook->getId()]);
             } else {
                 $this->addFlash('error', 'Ce membre a déjà 3 livres en location');
             }

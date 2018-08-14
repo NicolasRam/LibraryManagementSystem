@@ -19,7 +19,8 @@ class LocationFixtures extends Fixture implements OrderedFixtureInterface
     public const LOCATIONS_REFERENCE = 'locations';
     public const LOCATIONS_COUNT_REFERENCE = 10;
 
-    public function __construct() {
+    public function __construct()
+    {
     }
 
     /**
@@ -32,14 +33,13 @@ class LocationFixtures extends Fixture implements OrderedFixtureInterface
         $fakerFactory = Factory::create('fr_FR');
         $locations = [];
 
-        for ( $i = 0; $i < self::LOCATIONS_COUNT_REFERENCE; $i++ )
-        {
+        for ($i = 0; $i < self::LOCATIONS_COUNT_REFERENCE; $i++) {
             $location = new Location();
 
-            $location->setName( $fakerFactory->name );
-            $location->setFloor( rand(1, 3) );
+            $location->setName($fakerFactory->name);
+            $location->setFloor(rand(1, 3));
 
-            $manager->persist( $location );
+            $manager->persist($location);
 
             $locations[] = $location;
 

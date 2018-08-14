@@ -2,7 +2,6 @@
 
 namespace App\DataCollector;
 
-
 use App\Book\BookCatalogue;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,7 +9,6 @@ use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 
 class SourcesCollector extends DataCollector
 {
-
     private $catalogue;
 
     /**
@@ -51,7 +49,8 @@ class SourcesCollector extends DataCollector
         $this->data = [];
     }
 
-    public function getStats() {
+    public function getStats()
+    {
         return $this->data;
     }
 }

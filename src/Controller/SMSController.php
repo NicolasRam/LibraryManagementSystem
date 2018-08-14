@@ -6,10 +6,8 @@ use App\Service\SmsProvider;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
 class SMSController extends Controller
 {
-
     public function new(SmsProvider $smsGenerator)
     {
         // thanks to the type-hint, the container will instantiate a

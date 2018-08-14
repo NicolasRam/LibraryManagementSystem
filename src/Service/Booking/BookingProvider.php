@@ -2,14 +2,12 @@
 
 namespace App\Service\Booking;
 
-
 use App\Entity\Booking;
 use App\Entity\PBook;
 use Ovh\Exceptions\InvalidParameterException;
 use PhpParser\Node\Expr\Cast\Bool_;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 
 class BookingProvider extends AbstractController
 {
@@ -20,7 +18,6 @@ class BookingProvider extends AbstractController
     public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
-
     }
 
     /**
@@ -39,19 +36,13 @@ class BookingProvider extends AbstractController
             $this->logger->info('We have contacted the logger: TOP '.$topNumber.' of pbooks requested. ');
 
             return $topBookings;
-
         } catch (\Exception $e) {
             echo "erreur";
             if (null !== $this->logger) {
                 $this->logger->critical(
-                    sprintf("erreur critique"));
+                    sprintf("erreur critique")
+                );
             }
-
-
         }
-
-
     }
-
-
 }

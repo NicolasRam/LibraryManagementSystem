@@ -16,12 +16,10 @@ class LoggerDependency
 
     public function send()
     {
-
         $this->logger->info('Im sending the message.');
     }
     public function ready()
     {
-
         $this->logger->info('Ready to send.');
     }
 }

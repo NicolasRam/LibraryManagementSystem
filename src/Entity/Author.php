@@ -171,6 +171,4 @@ class Author
     {
         $this->id = $id;
     }
-
-
 }

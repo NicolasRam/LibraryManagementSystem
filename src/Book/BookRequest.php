@@ -10,7 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class BookRequest
 {
-
     private $id;
 
     /**

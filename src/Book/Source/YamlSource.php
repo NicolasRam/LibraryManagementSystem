@@ -2,7 +2,6 @@
 
 namespace App\Book\Source;
 
-
 use App\Controller\HelperTrait;
 use App\Entity\Author;
 use App\Entity\Book;
@@ -14,7 +13,6 @@ use Tightenco\Collect\Support\Collection;
 
 class YamlSource extends BookAbstractSource
 {
-
     use HelperTrait;
 
     private $books;
@@ -26,7 +24,6 @@ class YamlSource extends BookAbstractSource
     public function __construct(YamlProvider $yamlProvider)
     {
         $this->books = new Collection($yamlProvider->getBooks());
-
     }
 
     /**
@@ -133,6 +130,5 @@ class YamlSource extends BookAbstractSource
 
         # Construire l'objet Book
         return $myNewBook;
-
     }
 }

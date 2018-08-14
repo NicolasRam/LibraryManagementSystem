@@ -33,7 +33,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * )
  */
-class User implements UserInterface
+class User implements
+    UserInterface
 //class User implements UserInterface
 {
     const ROLE_MEMBER      = 'ROLE_MEMBER';
@@ -102,7 +103,7 @@ class User implements UserInterface
 
     public function getSalt()
     {
-        return NULL;
+        return null;
     }
 
     public function getUsername()
@@ -112,7 +113,6 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
-
     }
 
     /**

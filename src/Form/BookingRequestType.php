@@ -18,7 +18,8 @@ class BookingRequestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('member',
+            ->add(
+                'member',
                 EntityType::class,
                 array(
                 // looks for choices from this entity
@@ -33,12 +34,14 @@ class BookingRequestType extends AbstractType
                     /**
                      * @var Member $member
                      */
-                    return $member->getId() . ' ' . $member->getFirstName(). ' ' . $member->getLastName(); }
+                    return $member->getId() . ' ' . $member->getFirstName(). ' ' . $member->getLastName();
+                }
 
                 // used to render a select box, check boxes or radios
                 // 'multiple' => true,
                 // 'expanded' => true,
-            ))
+            )
+            )
             ->remove('pbook')
             ->remove('startDate')
             ->remove('endDate')

@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * @Route("/backend/book")
  */
@@ -54,7 +53,7 @@ class BookController extends Controller
 //
 //        $mailer->send($message);
 //
-////        $this->redirectToRoute("backend_home");
+    ////        $this->redirectToRoute("backend_home");
 //        return $this->render('backend/home/index.html.twig', []);
 //    }
 
@@ -67,7 +66,6 @@ class BookController extends Controller
 //    public function index(YamlProvider $yamlProvider, BookCatalogue $catalogue)
     public function index(BookCatalogue $catalogue)
     {
-
         $books = $catalogue->findAll();
 
         return $this->render('backend/book/index.html.twig', [
@@ -140,5 +138,4 @@ class BookController extends Controller
 
         return $this->redirectToRoute('backend_librarian_index');
     }
-
 }
