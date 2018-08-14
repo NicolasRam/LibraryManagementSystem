@@ -102,7 +102,7 @@ class Category
      */
     public function removeSubCategory($subCategory): Category
     {
-        if (false !== $key = array_search($subCategory, $this->subCategories, true)) {
+        if (FALSE !== $key = array_search($subCategory, $this->subCategories, TRUE)) {
             array_splice($this->subCategories, $key, 1);
         }
 

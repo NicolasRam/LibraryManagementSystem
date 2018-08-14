@@ -34,7 +34,8 @@ class FileManager
         Filesystem $fs,
         AutoloaderUtil $autoloaderUtil,
         string $rootDirectory = '/home/moulaye/www/html/lms'
-    ) {
+    )
+    {
         // move FileManagerTest stuff
         // update EntityRegeneratorTest to mock the autoloader
         $this->fs = $fs;

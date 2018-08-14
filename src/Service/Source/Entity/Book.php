@@ -316,7 +316,7 @@ class Book
      */
     public function removeDetail(BookContrib $detail)
     {
-        if (false !== $key = array_search($detail, $this->details, true)) {
+        if (FALSE !== $key = array_search($detail, $this->details, TRUE)) {
             array_splice($this->details, $key, 1);
         }
     }
@@ -334,7 +334,7 @@ class Book
      */
     public function removeContrib(BookDetail $contrib)
     {
-        if (false !== $key = array_search($contrib, $this->contribs, true)) {
+        if (FALSE !== $key = array_search($contrib, $this->contribs, TRUE)) {
             array_splice($this->contribs, $key, 1);
         }
     }

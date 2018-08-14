@@ -35,3 +35,6 @@ tests/Entity/.BookTest.php.swp
 tests/Entity/.SuperAdminTest.php.swp
 src/Entity/.Book.php.swp
 config/parameters.yml.dist
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
