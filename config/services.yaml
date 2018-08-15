@@ -118,3 +118,6 @@ services:
     App\Mailer\Mailer:
         arguments:
             $mailFrom: '%email_from%'
+    Elastica\Client:
+        $config:
+            host: '127.0.0.1' # ou elasticsearch

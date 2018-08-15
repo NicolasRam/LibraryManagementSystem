@@ -35,11 +35,14 @@ services:
 
   node:
     build: docker/node
+    working_dir: /var/www/frontend
     ports:
-      - 7000:7000
+      - 3333:3333
     volumes:
-      - .:/var/www/symfony
-    command: "yarn run dev-server --port 7000 --host 0.0.0.0"
+      - ./nuxt:/var/www/frontend
+    command: npm run dev
+#    command: "npm run dev-server --port 7000 --host 0.0.0.0"
+#    command: npm install && npm start
 
   elasticsearch:
     build: docker/elastic

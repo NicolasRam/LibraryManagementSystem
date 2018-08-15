@@ -4,10 +4,10 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
 #        in_memory: { memory: ~ }
-#        backend_user_provider:
-#            entity:
-#                class: App\Entity\User
-#                property: email
+        backend_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
         frontend_user_provider:
             entity:
                 class: App\Entity\User
@@ -39,22 +39,22 @@ security:
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
-#        dev:
-#            pattern: ^/(_(profiler|wdt)|css|images|js)/
-#            security: false
-#        backend:
-#            anonymous: ~
-#            pattern: ^/backend
-#            provider: backend_user_provider
-#            form_login:
-#                login_path: backend_user_login
-#                check_path: backend_user_login
-#                default_target_path: backend_home
-#                username_parameter: backend_user_login[email]
-#                password_parameter: backend_user_login[password]
-#            logout:
-#                path: backend_user_logout
-#                target: backend_user_login
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        backend:
+            anonymous: ~
+            pattern: ^/backend
+            provider: backend_user_provider
+            form_login:
+                login_path: backend_user_login
+                check_path: backend_user_login
+                default_target_path: backend_home
+                username_parameter: backend_user_login[email]
+                password_parameter: backend_user_login[password]
+            logout:
+                path: backend_user_logout
+                target: backend_user_login
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:

@@ -36,6 +36,8 @@
 
         <!--end::Base Styles -->
         <link rel="shortcut icon" href="{{ asset('backend/assets/demo/default/media/img/logo/favicon.ico') }}"/>
+        <!-- ... -->
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     </head>
 
     <!-- end::Head -->
@@ -43,6 +45,8 @@
     <!-- begin::Body -->
     <body class="{% block body_class %}m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default{% endblock %}">
     {% block body %}
+        <!-- ... -->
+        <script src="{{ asset('build/app.js') }}"></script>
         {% block page %}
             <!-- begin:: Page -->
             <div class="m-grid m-grid--hor m-grid--root m-page">

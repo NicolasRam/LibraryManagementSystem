@@ -1,16 +1,13 @@
 FROM node:10
+#MAINTAINER Name Here <username@localhost>
+#RUN rpm -Uvh http://mirror.pnl.gov/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
+#RUN yum install nodejs npm -y
+WORKDIR /var/www/frontend
+#COPY . /var/www/frontend
+RUN cd /var/www/frontend;
 
-RUN apt-get update && \
-	apt-get install -y \
-		curl \
-		apt-transport-https
+RUN npm install -g nodemon
 
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-	echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+EXPOSE 7000
 
-RUN apt-get update && apt-get install yarn
-
-
-RUN yarn install --ignore-engines
-
-WORKDIR /var/www/symfony
+CMD ["nodemon","-L","/var/www/frontend" ]

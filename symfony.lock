@@ -8,6 +8,9 @@
     "egulias/email-validator": {
         "version": "2.1.4"
     },
+    "elasticsearch/elasticsearch": {
+        "version": "v6.0.1"
+    },
     "guzzlehttp/guzzle": {
         "version": "6.3.3"
     },
@@ -16,6 +19,12 @@
     },
     "guzzlehttp/psr7": {
         "version": "1.4.2"
+    },
+    "guzzlehttp/ringphp": {
+        "version": "1.1.1"
+    },
+    "guzzlehttp/streams": {
+        "version": "3.0.0"
     },
     "jean85/pretty-package-versions": {
         "version": "1.2"
@@ -68,6 +77,12 @@
     "psr/http-message": {
         "version": "1.0.1"
     },
+    "react/promise": {
+        "version": "v2.7.0"
+    },
+    "ruflin/elastica": {
+        "version": "6.0.2"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.2"
     },
@@ -78,6 +93,15 @@
             "branch": "master",
             "version": "2.5",
             "ref": "3db029c03e452b4a23f7fc45cec7c922c2247eb8"
+        }
+    },
+    "symfony/webpack-encore-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "b87dfd249390a7b534caa137450277930901236e"
         }
     },
     "tightenco/collect": {
