@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource()
+ *
  * @ORM\Entity(repositoryClass="App\Repository\SubCategoryRepository")
  */
 class SubCategory
@@ -69,10 +72,9 @@ class SubCategory
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
         return $this;
     }
-
-
 
     public function getCategory(): ?Category
     {
@@ -119,6 +121,7 @@ class SubCategory
     public function setBooks($books)
     {
         $this->books = $books;
+
         return $this;
     }
 }

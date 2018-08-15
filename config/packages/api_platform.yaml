@@ -18,3 +18,5 @@ api_platform:
             apiKey:
                 name: Authorization
                 type: header
+framework:
+    serializer: { enable_annotations: true }

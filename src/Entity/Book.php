@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\MappedSuperclass
  * @ORM\InheritanceType("NONE")
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
- *
  */
 class Book
 {
@@ -61,6 +60,7 @@ class Book
      * @var Author[]
      * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="contributedBooks")
      * @ORM\JoinTable(name="book_author")
+     * @ORM\Column(type="object", nullable=true)
      */
     private $authors;
 
@@ -77,6 +77,7 @@ class Book
 
     /**
      * @ORM\OneToMany(targetEntity="PBook", mappedBy="book", cascade={"persist", "remove"})
+     * @ORM\Column(type="object", nullable=true)
      */
     private $pBook;
 
@@ -109,7 +110,6 @@ class Book
         return $this;
     }
 
-
     /**
      * @return mixed
      */
@@ -126,6 +126,7 @@ class Book
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -240,6 +241,7 @@ class Book
     public function setEBook($eBook)
     {
         $this->eBook = $eBook;
+
         return $this;
     }
 
@@ -259,6 +261,7 @@ class Book
     public function setSubCategory($subCategory)
     {
         $this->subCategory = $subCategory;
+
         return $this;
     }
 }
