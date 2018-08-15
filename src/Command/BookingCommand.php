@@ -133,7 +133,7 @@ class BookingCommand extends ContainerAwareCommand
                 if ($bookingCount >= 3) {
                     $memberBookings = $this->entityManager->getRepository(Booking::class)->findBooking(false, $member->getId(), true, false, $date);
 
-                    /**
+                    /*
                      * @var Booking
                      */
                     foreach ($memberBookings as $memberBooking) {
@@ -147,7 +147,7 @@ class BookingCommand extends ContainerAwareCommand
                     }
                 } else {
                     foreach ($pbooks as $pbook) {
-                        $workflow = $this->registry->get($pbook);
+//                        $workflow = $this->registry->get($pbook);
 
                         if (1 === mt_rand(0, 5) && $pbook->getStatus() === [PBook::STATUS_INSIDE]) {
                             $booking = new Booking();

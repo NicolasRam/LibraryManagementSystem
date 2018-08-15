@@ -47,7 +47,7 @@ class Book
     private $pageNumber;
 
     /**
-     * @ORM\Column(type="object", nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", mappedBy="book", cascade={"persist", "remove"})
      */
     private $cover;
 

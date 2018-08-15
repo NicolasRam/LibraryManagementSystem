@@ -13,4 +13,28 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Image extends File
 {
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Book", inversedBy="cover")
+     */
+    private $book;
+
+    /**
+     * @return mixed
+     */
+    public function getBook()
+    {
+        return $this->book;
+    }
+
+    /**
+     * @param mixed $book
+     *
+     * @return Image
+     */
+    public function setBook($book)
+    {
+        $this->book = $book;
+
+        return $this;
+    }
 }

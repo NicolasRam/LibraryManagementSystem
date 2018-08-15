@@ -24,21 +24,25 @@ class File
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ORM\Column(nullable=true)
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ORM\Column(nullable=true)
      */
     private $extension;
 
     /**
      * @ORM\Column(type="boolean")
+     * @ORM\Column(nullable=true)
      */
     private $isLocal;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ORM\Column(nullable=true)
      */
     private $path;
 
@@ -79,6 +83,26 @@ class File
     public function setPath(string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisLocal()
+    {
+        return $this->isLocal;
+    }
+
+    /**
+     * @param mixed $isLocal
+     *
+     * @return File
+     */
+    public function setIsLocal($isLocal)
+    {
+        $this->isLocal = $isLocal;
 
         return $this;
     }
