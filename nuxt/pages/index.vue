@@ -1,65 +1,58 @@
 <template>
-  <section class="container">
-    <div>
-      <app-logo/>
-      <h1 class="title">
-        lms-nuxt
-      </h1>
-      <h2 class="subtitle">
-        Library Management System
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
-    </div>
-  </section>
+  <div>
+    <TheAllStatus/>
+
+    <TheBestSelling/>
+
+    <TheFeaturedItem/>
+
+    <TheNewRelease/>
+
+    <TheCollectionCount/>
+
+    <ThePickedByAuthor/>
+
+    <TheTestimonials/>
+
+    <TheAuthors/>
+
+    <TheCallToAction/>
+
+    <TheLastestNews/>
+  </div>
 </template>
 
+
 <script>
-import AppLogo from '~/components/AppLogo.vue'
+  import TheAllStatus from '@/components/TheAllStatus.vue'
+  import TheBestSelling from '@/components/TheBestSelling.vue'
+  import TheFeaturedItem from '@/components/TheFeaturedItem.vue'
+  import TheNewRelease from '@/components/TheNewRelease.vue'
+  import TheCollectionCount from '@/components/TheCollectionCount.vue'
+  import ThePickedByAuthor from '@/components/ThePickedByAuthor.vue'
+  import TheTestimonials from '@/components/TheTestimonials.vue'
+  import TheAuthors from '@/components/TheAuthors.vue'
+  import TheCallToAction from '@/components/TheCallToAction.vue'
+  import TheLastestNews from '@/components/TheLastestNews.vue'
 
-export default {
-  components: {
-    AppLogo
+  export default {
+    // middleware: 'log',
+    components: {
+      TheAllStatus,
+      TheBestSelling,
+      TheFeaturedItem,
+      TheNewRelease,
+      TheCollectionCount,
+      ThePickedByAuthor,
+      TheTestimonials,
+      TheAuthors,
+      TheCallToAction,
+      TheLastestNews,
+    },
+    data() {
+      return {
+        // displaySidenav: false
+      }
+    }
   }
-}
 </script>
-
-<style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
-

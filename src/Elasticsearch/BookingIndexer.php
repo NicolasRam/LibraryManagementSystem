@@ -1,39 +1,39 @@
 <?php
 
-namespace App\Elasticsearch;
+namespace App\Command;
 
-use App\Entity\Post;
-use App\Repository\PostRepository;
+use App\Entity\Booking;
+use App\Repository\BookingRepository;
 use Elastica\Client;
 use Elastica\Document;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class ArticleIndexer
+class BookingIndexer
 {
     private $client;
-    private $postRepository;
+    private $bookingRepository;
     private $router;
 
-    public function __construct(Client $client, PostRepository $postRepository, UrlGeneratorInterface $router)
+    public function __construct(Client $client, BookingRepository $bookingRepository, UrlGeneratorInterface $router)
     {
         $this->client = $client;
-        $this->postRepository = $postRepository;
+        $this->bookingRepository = $bookingRepository;
         $this->router = $router;
     }
 
-    public function buildDocument(Post $post)
+    public function buildDocument(Booking $booking)
     {
         return new Document(
-            $post->getId(), // Manually defined ID
+            $booking->getId(), // Manually defined ID
             [
-                'title' => $post->getTitle(),
-                'summary' => $post->getSummary(),
-                'author' => $post->getAuthor()->getFullName(),
-                'content' => $post->getContent(),
+                'title' => $booking->getTitle(),
+                'summary' => $booking->getSummary(),
+                'author' => $booking->getAuthor()->getFullName(),
+                'content' => $booking->getContent(),
 
                 // Not indexed but needed for display
-                'url' => $this->router->generate('blog_post', ['slug' => $post->getSlug()], UrlGeneratorInterface::ABSOLUTE_PATH),
-                'date' => $post->getPublishedAt()->format('M d, Y'),
+                'url' => $this->router->generate('blog_post', ['slug' => $booking->getSlug()], UrlGeneratorInterface::ABSOLUTE_PATH),
+                'date' => $booking->getPublishedAt()->format('M d, Y'),
             ],
             'article' // Types are deprecated, to be removed in Elastic 7
         );
@@ -41,12 +41,12 @@ class ArticleIndexer
 
     public function indexAllDocuments($indexName)
     {
-        $allPosts = $this->postRepository->findAll();
+        $allBookings = $this->bookingRepository->findAll();
         $index = $this->client->getIndex($indexName);
 
         $documents = [];
-        foreach ($allPosts as $post) {
-            $documents[] = $this->buildDocument($post);
+        foreach ($allBookings as $booking) {
+            $documents[] = $this->buildDocument($booking);
         }
 
         $index->addDocuments($documents);

@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Elasticsearch\ArticleIndexer;
+use App\Elasticsearch\BookingIndexer;
 use App\Elasticsearch\IndexBuilder;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,12 +14,12 @@ class ElasticReindexCommand extends Command
     protected static $defaultName = 'elastic:reindex';
 
     private $indexBuilder;
-    private $articleIndexer;
+    private $bookingIndexer;
 
-    public function __construct(IndexBuilder $indexBuilder, ArticleIndexer $articleIndexer)
+    public function __construct(IndexBuilder $indexBuilder, BookingIndexer $bookingIndexer)
     {
         $this->indexBuilder = $indexBuilder;
-        $this->articleIndexer = $articleIndexer;
+        $this->bookingIndexer = $bookingIndexer;
 
         parent::__construct();
     }
@@ -39,7 +39,7 @@ class ElasticReindexCommand extends Command
 
         $io->success('Index created!');
 
-        $this->articleIndexer->indexAllDocuments($index->getName());
+        $this->bookingIndexer->indexAllDocuments($index->getName());
 
         $io->success('Index populated and ready!');
     }
