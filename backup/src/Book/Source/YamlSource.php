@@ -2,47 +2,48 @@
 
 namespace App\Book\Source;
 
-
 use App\Controller\HelperTrait;
 use App\Entity\Author;
 use App\Entity\Book;
 use App\Entity\SubCategory;
 use App\Entity\User;
 use App\Service\Book\YamlProvider;
-use Symfony\Component\Validator\Constraints\DateTime;
 use Tightenco\Collect\Support\Collection;
 
 class YamlSource extends BookAbstractSource
 {
-
     use HelperTrait;
 
     private $books;
 
     /**
      * YamlSource constructor.
+     *
      * @param $yamlProvider
      */
     public function __construct(YamlProvider $yamlProvider)
     {
         $this->books = new Collection($yamlProvider->getBooks());
-
     }
 
     /**
      * Permet de retourner un article sur la
      * base de son identifiant unique.
+     *
      * @param $id
+     *
      * @return Book|null
      */
     public function find($id): ?Book
     {
         $book = $this->books->firstWhere('id', $id);
-        return $book == null ? null : $this->createFromArray($book);
+
+        return null == $book ? null : $this->createFromArray($book);
     }
 
     /**
-     * Retourne la liste de tous les books
+     * Retourne la liste de tous les books.
+     *
      * @return iterable|null
      */
     public function findAll(): ?iterable
@@ -59,17 +60,20 @@ class YamlSource extends BookAbstractSource
     /**
      * Retourne les 5 derniers books depuis
      * l'ensemble de nos sources...
+     *
      * @return iterable|null
      */
     public function findLastFiveBooks(): ?iterable
     {
         /* @var $books Collection */
         $books = $this->findAll();
+
         return $books->sortBy('id')->slice(-5);
     }
 
     /**
      * Retourne le nombre d'éléments de chaque source.
+     *
      * @return int
      */
     public function count(): int
@@ -79,7 +83,9 @@ class YamlSource extends BookAbstractSource
 
     /**
      * Permet de convertir un tableau en Book.
+     *
      * @param iterable $book Un article sous forme de tableau
+     *
      * @return Book|null
      */
     protected function createFromArray(iterable $book): ?Book
@@ -88,14 +94,14 @@ class YamlSource extends BookAbstractSource
 
 //        dd($tmp);
 
-        # Construire l'objet SubCategory
+        // Construire l'objet SubCategory
         $subCategory = new SubCategory();
         $subCategory->setId($tmp->subcategory['id']);
         $subCategory->setName($tmp->subcategory['name']);
 
 //        $subCategory->setSlug($this->slugify($tmp->subCategory['name']));
 
-        # Construire l'objet Auteur
+        // Construire l'objet Auteur
         $user = new Author();
         $user->setId($tmp->author['id']);
         $user->setFirstName($tmp->author['firstName']);
@@ -111,7 +117,7 @@ class YamlSource extends BookAbstractSource
         $myNewBook->setSlug($this->slugify($tmp->title));
         $myNewBook->setResume($tmp->resume);
         $myNewBook->setPageNumber($tmp->pageNumber);
-        $myNewBook->setCover($tmp->featuredimage);
+        $myNewBook->setImage($tmp->featuredimage);
         $myNewBook->setAuthor($user);
         $myNewBook->setSubCategory($tmp->subcategory);
 
@@ -131,8 +137,7 @@ class YamlSource extends BookAbstractSource
 //                'published'
 //            );
 
-        # Construire l'objet Book
+        // Construire l'objet Book
         return $myNewBook;
-
     }
 }

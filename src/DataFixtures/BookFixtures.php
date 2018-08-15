@@ -66,15 +66,15 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
              */
             $book->setAuthor($this->getReference(AuthorFixtures::AUTHORS_REFERENCE.rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1)));
             $authorCounts = rand(0, 3);
-            $book->addAuthor($this->getReference(AuthorFixtures::AUTHORS_REFERENCE.rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1)));
-            $book->setAuthors($this->pickAuthors($authors));
+//            $book->addAuthor($this->getReference(AuthorFixtures::AUTHORS_REFERENCE.rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1)));
+//            $book->setAuthors($this->pickAuthors($authors));
             $book->setSubCategory($this->getReference(SubCategoryFixtures::SUB_CATEGORIES_REFERENCE.rand(0, SubCategoryFixtures::SUB_CATEGORIES_COUNT_REFERENCE - 1)));
             $book->setIsbn($firebaseBook->getIsbn());
             $book->setPageNumber(rand(100, 200));
             $book->setResume($fakerFactory->text($maxNbChars = 200));
             $book->setTitle($firebaseBook->getTitle());
             $book->setSlug(Transliterator::transliterate($book->getTitle()));
-            $book->setCover($cover);
+            $book->setImage($cover);
 
             $manager->persist($book);
 
@@ -84,18 +84,18 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
         $manager->flush();
     }
 
-    private function pickAuthors($authors = [], $number = 3)
-    {
-        $pickedAuthors = [];
-        for ($i = 0; $i < count($authors); ++$i) {
-            $index = mt_rand(0, count($authors));
-            $pickedAuthors[] = $authors[$index];
-
-            $authors = array_slice($authors, $index, 0);
-        }
-
-        return $pickedAuthors;
-    }
+//    private function pickAuthors($authors = [], $number = 3)
+//    {
+//        $pickedAuthors = [];
+//        for ($i = 0; $i < count($authors); ++$i) {
+//            $index = mt_rand(0, count($authors));
+//            $pickedAuthors[] = $authors[$index];
+//
+//            $authors = array_slice($authors, $index, 0);
+//        }
+//
+//        return $pickedAuthors;
+//    }
 
     /**
      * Get the order of this fixture.

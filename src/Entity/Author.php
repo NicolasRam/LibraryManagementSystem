@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -45,15 +43,16 @@ class Author
     private $birthday;
 
     /**
+     * @var Book[]
      * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="author", orphanRemoval=true)
      */
     private $books;
 
-    /**
-     * @var Book[]
-     * @ORM\ManyToMany(targetEntity="App\Entity\Book", mappedBy="authors")
-     */
-    private $contributedBooks;
+//    /**
+//     * @var Book[]
+//     * @ORM\ManyToMany(targetEntity="App\Entity\Book", mappedBy="authors")
+//     */
+//    private $contributedBooks;
 
     /**
      * @return Book[]
@@ -71,13 +70,14 @@ class Author
     public function setContributedBooks($contributedBooks)
     {
         $this->contributedBooks = $contributedBooks;
+
         return $this;
     }
 
     public function __construct()
     {
-        $this->books = new ArrayCollection();
-        $this->contributedBooks = new ArrayCollection();
+        $this->books = [];
+        $this->contributedBooks = [];
     }
 
     public function getId()
@@ -134,9 +134,9 @@ class Author
     }
 
     /**
-     * @return Collection|Book[]
+     * @return Book[]
      */
-    public function getBooks(): Collection
+    public function getBooks(): array
     {
         return $this->books;
     }

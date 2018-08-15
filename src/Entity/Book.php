@@ -47,22 +47,28 @@ class Book
     private $pageNumber;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Image", mappedBy="book", cascade={"persist", "remove"})
+     * @ORM\OneToOne(
+     *     targetEntity="App\Entity\Image",
+     *     mappedBy="book",
+     *     cascade={"persist", "remove"}
+     *     )
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
      */
-    private $cover;
+    private $image;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="books")
      */
     private $author;
 
-    /**
-     * @var Author[]
-     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="contributedBooks")
-     * @ORM\JoinTable(name="book_author")
-     * @ORM\Column(type="object", nullable=true)
-     */
-    private $authors;
+//    /**
+//     * @var Author[]
+//     *
+//     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="contributedBooks")
+//     * @ORM\JoinTable(name="book_author")
+//     * @ORM\Column(type="object", nullable=true)
+//     */
+//    private $authors;
 
     /**
      * @ORM\OneToOne(targetEntity="EBook", mappedBy="book", cascade={"persist", "remove"})
@@ -154,14 +160,14 @@ class Book
         return $this;
     }
 
-    public function getCover()
+    public function getImage()
     {
-        return $this->cover;
+        return $this->image;
     }
 
-    public function setCover($cover): self
+    public function setImage($image): self
     {
-        $this->cover = $cover;
+        $this->image = $image;
 
         return $this;
     }
@@ -178,17 +184,17 @@ class Book
         return $this;
     }
 
-    public function getAuthors(): ?array
-    {
-        return $this->authors;
-    }
-
-    public function setAuthors(?array $authors): self
-    {
-        $this->authors = $authors;
-
-        return $this;
-    }
+//    public function getAuthors(): ?array
+//    {
+//        return $this->authors;
+//    }
+//
+//    public function setAuthors(?array $authors): self
+//    {
+//        $this->authors = $authors;
+//
+//        return $this;
+//    }
 
     public function getPBook(): ?PBook
     {
@@ -207,23 +213,23 @@ class Book
         return $this;
     }
 
-    /**
-     * @param Author $author
-     */
-    public function addAuthor(Author $author)
-    {
-        $this->authors[] = $author;
-    }
-
-    /**
-     * @param Author $author
-     */
-    public function removeAuthor(Author $author)
-    {
-        if (false !== $key = array_search($author, $this->authors, true)) {
-            array_splice($this->authors, $key, 1);
-        }
-    }
+//    /**
+//     * @param Author $author
+//     */
+//    public function addAuthor(Author $author)
+//    {
+//        $this->authors[] = $author;
+//    }
+//
+//    /**
+//     * @param Author $author
+//     */
+//    public function removeAuthor(Author $author)
+//    {
+//        if (false !== $key = array_search($author, $this->authors, true)) {
+//            array_splice($this->authors, $key, 1);
+//        }
+//    }
 
     /**
      * @return mixed

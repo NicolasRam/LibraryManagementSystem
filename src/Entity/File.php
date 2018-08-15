@@ -23,26 +23,22 @@ class File
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $extension;
 
     /**
-     * @ORM\Column(type="boolean")
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $isLocal;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $path;
 
