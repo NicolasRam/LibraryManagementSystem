@@ -1,15 +1,16 @@
-const axios = require("axios");
+// const axios = require("axios");
 
 module.exports = {
   /*
   ** Headers of the page
   */
   head: {
-    title: 'lms-nuxt',
+    title: 'LMS',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Library Management System' }
+        { httpEquiv: "X-UA-Compatible"/*, content='IE=edge'*/ },
+        { hid: "description", name: "description", content: "Library Management System" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
