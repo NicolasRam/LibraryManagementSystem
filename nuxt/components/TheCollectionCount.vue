@@ -1,7 +1,4 @@
 <template>
-  <!--************************************
-          Collection Count Start
-  *************************************-->
   <section class="tg-parallax tg-bgcollectioncount tg-haslayout" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="images/parallax/bgparallax-04.jpg">
     <div class="tg-sectionspace tg-collectioncount tg-haslayout">
       <div class="container">
@@ -48,7 +45,4 @@
       </div>
     </div>
   </section>
-  <!--************************************
-          Collection Count End
-  *************************************-->
 </template>

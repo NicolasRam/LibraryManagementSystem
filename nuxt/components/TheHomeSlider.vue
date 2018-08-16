@@ -1,7 +1,4 @@
 <template>
-  <!--************************************
-          Home Slider Start
-  *************************************-->
   <div id="tg-homeslider" class="tg-homeslider tg-haslayout owl-carousel">
     <div class="item" data-vide-bg="poster: images/slider/img-01.jpg" data-vide-options="position: 0% 50%">
       <div class="container">
@@ -44,7 +41,4 @@
       </div>
     </div>
   </div>
-  <!--************************************
-          Home Slider End
-  *************************************-->
 </template>

@@ -1,7 +1,4 @@
 <template>
-  <!--************************************
-          Footer Start
-  *************************************-->
   <footer id="tg-footer" class="tg-footer tg-haslayout">
     <div class="tg-footerarea">
       <div class="container">
@@ -167,7 +164,4 @@
       </div>
     </div>
   </footer>
-  <!--************************************
-          Footer End
-  *************************************-->
 </template>

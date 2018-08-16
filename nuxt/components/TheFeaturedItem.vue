@@ -1,7 +1,4 @@
 <template>
-  <!--************************************
-          Featured Item Start
-  *************************************-->
   <section class="tg-bglight tg-haslayout">
     <div class="container">
       <div class="row">
@@ -33,7 +30,4 @@
       </div>
     </div>
   </section>
-  <!--************************************
-          Featured Item End
-  *************************************-->
 </template>

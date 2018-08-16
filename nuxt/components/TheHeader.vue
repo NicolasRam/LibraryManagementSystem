@@ -1,7 +1,4 @@
 <template>
-  <!--************************************
-          Header Start
-  *************************************-->
   <header id="tg-header" class="tg-header tg-haslayout">
     <div class="tg-topbar">
       <div class="container">
@@ -789,7 +786,4 @@
       </div>
     </div>
   </header>
-  <!--************************************
-          Header End
-  *************************************-->
 </template>

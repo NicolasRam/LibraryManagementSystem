@@ -1,7 +1,4 @@
 <template>
-  <!--************************************
-          New Release Start
-  *************************************-->
   <section class="tg-sectionspace tg-haslayout">
     <div class="container">
       <div class="row">
@@ -103,7 +100,4 @@
       </div>
     </div>
   </section>
-  <!--************************************
-          New Release End
-  *************************************-->
 </template>

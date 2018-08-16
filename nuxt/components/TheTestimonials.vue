@@ -1,7 +1,4 @@
 <template>
-  <!--************************************
-          Testimonials Start
-  *************************************-->
   <section class="tg-parallax tg-bgtestimonials tg-haslayout" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="images/parallax/bgparallax-05.jpg">
     <div class="tg-sectionspace tg-haslayout">
       <div class="container">
@@ -38,7 +35,4 @@
       </div>
     </div>
   </section>
-  <!--************************************
-          Testimonials End
-  *************************************-->
 </template>

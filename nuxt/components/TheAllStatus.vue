@@ -1,7 +1,4 @@
 <template>
-  <!--************************************
-          All Status Start
-  *************************************-->
   <section class="tg-haslayout">
     <div class="container">
       <div class="row">
@@ -40,7 +37,4 @@
       </div>
     </div>
   </section>
-  <!--************************************
-          All Status End
-  *************************************-->
 </template>

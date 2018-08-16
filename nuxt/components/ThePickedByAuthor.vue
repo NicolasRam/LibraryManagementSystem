@@ -1,7 +1,4 @@
 <template>
-  <!--************************************
-           Picked By Author Start
-   *************************************-->
   <section class="tg-sectionspace tg-haslayout">
     <div class="container">
       <div class="row">
@@ -156,7 +153,4 @@
       </div>
     </div>
   </section>
-  <!--************************************
-          Picked By Author End
-  *************************************-->
 </template>

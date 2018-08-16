@@ -1,7 +1,4 @@
 <template>
-  <!--************************************
-          Call to Action Start
-  *************************************-->
   <section class="tg-parallax tg-bgcalltoaction tg-haslayout" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="images/parallax/bgparallax-06.jpg">
     <div class="tg-sectionspace tg-haslayout">
       <div class="container">
@@ -17,7 +14,4 @@
       </div>
     </div>
   </section>
-  <!--************************************
-          Call to Action End
-  *************************************-->
 </template>
