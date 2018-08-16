@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- *
  * @ORM\MappedSuperclass()
  *
  * @ORM\Entity(repositoryClass="App\Repository\MemberRepository")
@@ -35,12 +34,33 @@ class Member extends User
      */
     private $memberType;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $town;
+
     public function __construct()
     {
-        $this->roles = [ self::ROLE_MEMBER ];
+        $this->roles = [self::ROLE_MEMBER];
         $this->bookings = new ArrayCollection();
         $this->memberEBooks = new ArrayCollection();
         $this->memberSubscriptions = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTown()
+    {
+        return $this->town;
+    }
+
+    /**
+     * @param mixed $town
+     */
+    public function setTown($town): void
+    {
+        $this->town = $town;
     }
 
     /**
@@ -150,6 +170,6 @@ class Member extends User
 
     public function __toString()
     {
-        return "" . $this->getId();
+        return ''.$this->getId();
     }
 }

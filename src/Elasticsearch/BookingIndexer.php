@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace App\Elasticsearch;
 
 use App\Entity\Booking;
 use App\Repository\BookingRepository;
@@ -26,16 +26,22 @@ class BookingIndexer
         return new Document(
             $booking->getId(), // Manually defined ID
             [
-                'title' => $booking->getTitle(),
-                'summary' => $booking->getSummary(),
-                'author' => $booking->getAuthor()->getFullName(),
-                'content' => $booking->getContent(),
-
-                // Not indexed but needed for display
-                'url' => $this->router->generate('blog_post', ['slug' => $booking->getSlug()], UrlGeneratorInterface::ABSOLUTE_PATH),
-                'date' => $booking->getPublishedAt()->format('M d, Y'),
+                'Book_id' => $booking->getPBook()->getBook()->getId(),
+                'Book_isbn' => $booking->getPBook()->getBook()->getIsbn(),
+                'Book_title' => $booking->getPBook()->getBook()->getTitle(),
+                'Book_author' => $booking->getPBook()->getBook()->getAuthor()->getLastName(),
+                'Subcategory_book' => $booking->getPBook()->getBook()->getSubCategory()->getName(),
+                'Member_id' => $booking->getMember()->getId(),
+                'Member_firstname' => $booking->getMember()->getFirstName(),
+                'Member_lastname' => $booking->getMember()->getLastName(),
+                'Member_email' => $booking->getMember()->getEmail(),
+                'Booking_startdate' => $booking->getStartDate()->format('Y-m-d'),
+                'Booking_enddate' => $booking->getEndDate()->format('Y-m-d'),
+                'PBook_id' => $booking->getPBook()->getId(),
+                'PBook_status' => $booking->getPBook()->getStatus(),
+                'Member_address' => $booking->getMember()->getTown(),
             ],
-            'article' // Types are deprecated, to be removed in Elastic 7
+            'biblio' // Types are deprecated, to be removed in Elastic 7
         );
     }
 

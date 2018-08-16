@@ -2,22 +2,22 @@
 
 namespace App\Elasticsearch;
 
-use App\Entity\Member;
+use Elastica\Client;
 use Symfony\Component\Yaml\Yaml;
 
 class IndexBuilder
 {
     private $client;
 
-    public function __construct(Member $client)
+    public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
     public function create()
     {
-        // We name our index "blog"
-        $index = $this->client->getBookings();
+        // We name our index "biblio"
+        $index = $this->client->getIndex('biblio');
 
         $settings = Yaml::parse(
             file_get_contents(

@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   # Lance un serveur web apache
@@ -15,6 +15,8 @@ services:
     # Récupére les volumes définis sur web
     volumes:
       - .:/usr/local/apache2/htdocs
+    links:
+        - elasticsearch
 
   # Lance un serveur MySQL
   db:
@@ -33,15 +35,20 @@ services:
     links:
       - db:db
 
-  node:
-    build: docker/node
-    working_dir: /var/www/frontend
-    ports:
-      - 3333:3333
-    volumes:
-      - ./nuxt:/var/www/frontend
-    command: npm run dev
-#    command: "npm run dev-server --port 7000 --host 0.0.0.0"
+#  node:
+##    build: docker/node
+#    image: "node:9"
+#    user: "node"
+#    working_dir: /var/www/frontend
+#    environment:
+#      - NODE_ENV=production
+#    expose:
+#      - "3000"
+#    volumes:
+#      - ./nuxt:/var/www/frontend
+#    command: npm run dev
+#    command: "npm start"
+#    command: "npm start --port 3333 --host 0.0.0.0"
 #    command: npm install && npm start
 
   elasticsearch:
@@ -82,7 +89,7 @@ services:
 #      - db:db
 #      - smtp:smtp
     ports:
-      - 3000:3000
+      - "3000:3000"
 
   jenkins:
     build: docker/jenkins

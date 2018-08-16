@@ -20,7 +20,8 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Récupère les 5 derniers livres
+     * Récupère les 5 derniers livres.
+     *
      * @return mixed
      */
     public function findLastFiveBooks()
@@ -33,28 +34,29 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Récupère les suggestions de livres
+     * Récupère les suggestions de livres.
      */
     public function findBooksSuggestions($idbook, $idcategorie)
     {
         return $this->createQueryBuilder('a')
-            # Where pour la catégorie
+            // Where pour la catégorie
             ->where('a.category = :category_id')
             ->setParameter('category_id', $idcategorie)
-            # Where pour l'article
+            // Where pour l'article
             ->andWhere('a.id != :book_id')
             ->setParameter('book_id', $idbook)
-            # Par ordre décroissant
+            // Par ordre décroissant
             ->orderBy('a.id', 'DESC')
-            # Maximum 3
+            // Maximum 3
             ->setMaxResults(3)
-            # On finalise
+            // On finalise
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * Récupère les livres en Spotlight
+     * Récupère les livres en Spotlight.
+     *
      * @return mixed
      */
     public function findSpotlightBooks()
@@ -68,7 +70,8 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Récupère les livres "special" de la sidebar
+     * Récupère les livres "special" de la sidebar.
+     *
      * @return mixed
      */
     public function findSpecialBooks()
@@ -82,7 +85,8 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Compte le nombre de livres dans la BDD
+     * Compte le nombre de livres dans la BDD.
+     *
      * @return int|mixed
      */
     public function findTotalBooks()
@@ -99,9 +103,12 @@ class BookRepository extends ServiceEntityRepository
 
     /**
      * Récupérer tous les livres d'un Auteur par Statut.
-     * @param int $idAuthor
-     * @param string $status Status du livre
+     *
+     * @param int    $idAuthor
+     * @param string $status   Status du livre
+     *
      * @return \Doctrine\ORM\QueryBuilder
+     *
      * @internal param int $idauteur ID de l'Auteur
      */
     public function findAuthorBooksByStatus(int $idAuthor, string $status)
@@ -117,8 +124,10 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Récupérer les livres par Statut
+     * Récupérer les livres par Statut.
+     *
      * @param string $status
+     *
      * @return mixed
      */
     public function findBooksByStatus(string $status)
@@ -132,9 +141,11 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * Compter le nombre de livres d'un Auteur par Statut
-     * @param int $idAuthor
+     * Compter le nombre de livres d'un Auteur par Statut.
+     *
+     * @param int    $idAuthor
      * @param string $status
+     *
      * @return mixed
      */
     public function countAuthorBooksByStatus(int $idAuthor, string $status)
@@ -155,6 +166,7 @@ class BookRepository extends ServiceEntityRepository
 
     /** Compter les livres par statut
      * @param string $status
+     *
      * @return int|mixed
      */
     public function countBooksByStatus(string $status)
@@ -170,4 +182,16 @@ class BookRepository extends ServiceEntityRepository
             return 0;
         }
     }
+
+//    public function findAll()
+//    {
+//        try {
+//            return $this->createQueryBuilder('a')
+//                ->select('a')
+//                ->getQuery()
+//                ->getResult();
+//        } catch (NonUniqueResultException $e) {
+//            return 0;
+//        }
+//    }
 }
