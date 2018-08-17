@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: moula
  * Date: 12/08/2018
- * Time: 09:55
+ * Time: 09:55.
  */
 
 namespace App\Service\Provider;
@@ -145,99 +145,110 @@ class LibrarianProvider
 
     /**
      * @param Library $library
+     *
      * @return Book[]
      */
-    public function getBooks(Library $library) : array
+    public function getBooks(Library $library): array
     {
         return $this->bookRepository->findByLibrary($library->getId());
     }
 
     /**
      * @param Library $library
+     *
      * @return Library[]
      */
-    public function getLibraries(Library $library) : array
+    public function getLibraries(Library $library): array
     {
         return $this->libraryRepository->findBy($library->getId());
     }
 
     /**
      * @param Library $library
+     *
      * @return Librarian[]
      */
-    public function getLibrarians(Library $library) : array
+    public function getLibrarians(Library $library): array
     {
         return $this->librarianRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
+     *
      * @return PBook[]
      */
-    public function getPBooks(Library $library) : array
+    public function getPBooks(Library $library): array
     {
         return $this->pbookRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
+     *
      * @return Booking[]
      */
-    public function getBookings(Library $library) : array
+    public function getBookings(Library $library): array
     {
         return $this->bookingRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
+     *
      * @return Member[]
      */
-    public function getMembers(Library $library) : array
+    public function getMembers(Library $library): array
     {
         return $this->memberRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
+     *
      * @return Reservation[]
      */
-    public function getReservations(Library $library) : array
+    public function getReservations(Library $library): array
     {
         return $this->memberRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
+     *
      * @return Category[]
      */
-    public function getCategories(Library $library) : array
+    public function getCategories(Library $library): array
     {
         return $this->memberRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
+     *
      * @return SubCategory[]
      */
-    public function getSubCategories(Library $library) : array
+    public function getSubCategories(Library $library): array
     {
         return $this->subCategoryRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
+     *
      * @return Location[]
      */
-    public function getLocations(Library $library) : array
+    public function getLocations(Library $library): array
     {
         return $this->memberRepository->findBy(['library' => $library]);
     }
 
     /**
      * @param Library $library
+     *
      * @return Subscription[]
      */
-    public function getSubscriptions(Library $library) : array
+    public function getSubscriptions(Library $library): array
     {
         return $this->subscriptionRepository->findBy(['library' => $library]);
     }
@@ -245,19 +256,20 @@ class LibrarianProvider
     /**
      * @return Librarian
      */
-    public function getLibrarian() : Librarian
+    public function getLibrarian(): Librarian
     {
         /**
-         * @var Librarian $librarian
+         * @var Librarian
          */
         $librarian = $this->user;
+
         return $librarian;
     }
 
     /**
      * @return \App\Service\Source\Entity\Book
      */
-    public function getGetBooksFromFirebase() : array
+    public function getGetBooksFromFirebase(): array
     {
         return $this->firebase->getBooks();
     }

@@ -114,8 +114,8 @@ class BookingCommand extends ContainerAwareCommand
         $date->format('Y-m-d');
         $startDate->format('Y-m-d');
 
-        $startDate = $startDate->modify('-'.$days.' day');
-        $date = $date->modify('-'.$days.' day');
+        $startDate->modify('-'.$days.' day');
+        $date->modify('-'.$days.' day');
 
         foreach ($pbooks as &$pbook) {
             $pbook->setStatus([PBook::STATUS_INSIDE]);
@@ -125,7 +125,7 @@ class BookingCommand extends ContainerAwareCommand
         $this->entityManager->flush();
 
         for ($i = 0; $i < $days; ++$i) {
-            $date = $date->modify('-1 day');
+            $date->modify('-1 day');
 
             foreach ($members as $member) {
                 $bookingCount = $this->entityManager->getRepository(Booking::class)->countBooking(false, $member->getId(), true, false, $date);
@@ -148,8 +148,9 @@ class BookingCommand extends ContainerAwareCommand
                 } else {
                     foreach ($pbooks as $pbook) {
 //                        $workflow = $this->registry->get($pbook);
+                        $bookingCount = $this->entityManager->getRepository(Booking::class)->countBooking(false, $member->getId(), true, false, $date);
 
-                        if (1 === mt_rand(0, 5) && $pbook->getStatus() === [PBook::STATUS_INSIDE]) {
+                        if ($bookingCount < 3 && 1 === mt_rand(0, 5) && $pbook->getStatus() === [PBook::STATUS_INSIDE]) {
                             $booking = new Booking();
                             $endDate = clone $date;
                             $endDate->modify('+15 day');
@@ -176,9 +177,6 @@ class BookingCommand extends ContainerAwareCommand
         }
 
         $daysProgressBar->finish();
-
-        //$this->io->newLine(2);
-        //$this->io->section('yo');
 
         $this->io->newLine(2);
         $this->io->success('Days : '.$days);

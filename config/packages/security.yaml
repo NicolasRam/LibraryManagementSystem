@@ -4,10 +4,10 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
 #        in_memory: { memory: ~ }
-#        backend_user_provider:
-#            entity:
-#                class: App\Entity\User
-#                property: email
+        backend_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
         frontend_user_provider:
             entity:
                 class: App\Entity\User
@@ -39,22 +39,22 @@ security:
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
-#        dev:
-#            pattern: ^/(_(profiler|wdt)|css|images|js)/
-#            security: false
-#        backend:
-#            anonymous: ~
-#            pattern: ^/backend
-#            provider: backend_user_provider
-#            form_login:
-#                login_path: backend_user_login
-#                check_path: backend_user_login
-#                default_target_path: backend_home
-#                username_parameter: backend_user_login[email]
-#                password_parameter: backend_user_login[password]
-#            logout:
-#                path: backend_user_logout
-#                target: backend_user_login
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        backend:
+            anonymous: ~
+            pattern: ^/backend
+            provider: backend_user_provider
+            form_login:
+                login_path: backend_user_login
+                check_path: backend_user_login
+                default_target_path: backend_home
+                username_parameter: backend_user_login[email]
+                password_parameter: backend_user_login[password]
+            logout:
+                path: backend_user_logout
+                target: backend_user_login
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
@@ -65,17 +65,17 @@ security:
         - { path: ^/backend, roles: [ROLE_LIBRARIAN] }
         - { path: ^/backend, roles: [ROLE_ADMIN] }
         - { path: ^/backend, roles: [ROLE_SUPER_ADMIN] }
-#        - { path: ^/backend, roles: [ROLE_LIBRARIAN, ROLE_ADMIN, ROLE_SUPER_ADMIN] }
-#        - { path: ^/backend, role: ROLE_LIBERIAN }
-#        - { path: ^/backend, role: ROLE_ADMIN }
-#        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/admin/, role: ROLE_ADMIN }
-#        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/, role: ROLE_USER }
+        - { path: ^/backend, roles: [ROLE_LIBRARIAN, ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/backend, role: ROLE_LIBERIAN }
+        - { path: ^/backend, role: ROLE_ADMIN }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: ROLE_USER }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-#        - { path: ^/frontend/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/frontend/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/cards$, roles: IS_AUTHENTICATED_ANONYMOUSLY }

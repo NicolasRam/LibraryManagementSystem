@@ -4,14 +4,10 @@ namespace App\Repository;
 
 use App\Entity\Booking;
 use App\Entity\Library;
-use App\Entity\Member;
 use App\Entity\PBook;
-use App\Entity\User;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\Query;
-use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,9 +43,10 @@ class BookingRepository extends ServiceEntityRepository
      * @param bool $currentOnly
      * @param bool $late
      * @param null $date
+     *
      * @return QueryBuilder
      */
-    private function queryBooking($libraryId = false, $memberId = false, $currentOnly = false, $late = false, $date = null) : QueryBuilder
+    private function queryBooking($libraryId = false, $memberId = false, $currentOnly = false, $late = false, $date = null): QueryBuilder
     {
         $queryBuilder = $this->createQueryBuilder('b');
 
@@ -70,8 +67,8 @@ class BookingRepository extends ServiceEntityRepository
 
         if ($currentOnly) {
             $queryBuilder->andWhere('b.returnDate IS NULL');
-            $queryBuilder->andWhere('b.endDate < :date');
-            $queryBuilder->setParameter('date', $date);
+//            $queryBuilder->andWhere('b.endDate < :date');
+//            $queryBuilder->setParameter('date', $date);
         }
 
         if ($late) {
@@ -87,9 +84,10 @@ class BookingRepository extends ServiceEntityRepository
      * @param bool $currentOnly
      * @param bool $late
      * @param null $date
+     *
      * @return Booking[]
      */
-    public function findBooking($libraryId = false, $memberId = false, $currentOnly = false, $late = false, $date = null) : array
+    public function findBooking($libraryId = false, $memberId = false, $currentOnly = false, $late = false, $date = null): array
     {
         $queryBuilder = $this->queryBooking($libraryId, $memberId, $currentOnly, $late, $date);
 
@@ -104,9 +102,10 @@ class BookingRepository extends ServiceEntityRepository
      * @param bool $currentOnly
      * @param bool $late
      * @param null $date
+     *
      * @return int
      */
-    public function countBooking($libraryId = false, $memberId = false, $currentOnly = false, $late = false, $date = null) : int
+    public function countBooking($libraryId = false, $memberId = false, $currentOnly = false, $late = false, $date = null): int
     {
         $queryBuilder = $this->queryBooking($libraryId, $memberId, $currentOnly, $late, $date);
         $queryBuilder = $queryBuilder->select('COUNT(b)');
@@ -158,9 +157,10 @@ class BookingRepository extends ServiceEntityRepository
      * @param $libraryId
      *
      * @return int
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function countByLibrary($libraryId) : int
+    public function countByLibrary($libraryId): int
     {
         try {
             return $this->createQueryBuilder('booking')
@@ -182,7 +182,7 @@ class BookingRepository extends ServiceEntityRepository
     public function truncate()
     {
         $connection = $this->getEntityManager()->getConnection();
-        $platform   = $connection->getDatabasePlatform();
+        $platform = $connection->getDatabasePlatform();
 
         $connection->executeUpdate($platform->getTruncateTableSQL('booking', true));
     }

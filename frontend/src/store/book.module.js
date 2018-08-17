@@ -9,8 +9,8 @@ import {
   FAVORITE_REMOVE,
   BOOK_PUBLISH,
   BOOK_EDIT,
-  BOOK_EDIT_ADD_TAG,
-  BOOK_EDIT_REMOVE_TAG,
+  BOOK_EDIT_ADD_AUTHOR,
+  BOOK_EDIT_REMOVE_AUTHOR,
   BOOK_DELETE,
   BOOK_RESET_STATE
 } from './actions.type'
@@ -18,8 +18,8 @@ import {
   RESET_STATE,
   SET_BOOK,
   SET_COMMENTS,
-  TAG_ADD,
-  TAG_REMOVE,
+  AUTHOR_ADD,
+  AUTHOR_REMOVE,
   UPDATE_BOOK_IN_LIST
 } from './mutations.type'
 
@@ -29,7 +29,7 @@ const initialState = {
     title: '',
     description: '',
     body: '',
-    tagList: []
+    authorList: []
   },
   comments: []
 }
@@ -101,11 +101,11 @@ export const actions = {
   [BOOK_EDIT] ({ state }) {
     return BooksService.update(state.book.slug, state.book)
   },
-  [BOOK_EDIT_ADD_TAG] (context, tag) {
-    context.commit(TAG_ADD, tag)
+  [BOOK_EDIT_ADD_AUTHOR] (context, author) {
+    context.commit(AUTHOR_ADD, author)
   },
-  [BOOK_EDIT_REMOVE_TAG] (context, tag) {
-    context.commit(TAG_REMOVE, tag)
+  [BOOK_EDIT_REMOVE_AUTHOR] (context, author) {
+    context.commit(AUTHOR_REMOVE, author)
   },
   [BOOK_RESET_STATE] ({ commit }) {
     commit(RESET_STATE)
@@ -120,11 +120,11 @@ export const mutations = {
   [SET_COMMENTS] (state, comments) {
     state.comments = comments
   },
-  [TAG_ADD] (state, tag) {
-    state.book.tagList = state.book.tagList.concat([tag])
+  [AUTHOR_ADD] (state, author) {
+    state.book.authorList = state.book.authorList.concat([author])
   },
-  [TAG_REMOVE] (state, tag) {
-    state.book.tagList = state.book.tagList.filter(t => t !== tag)
+  [AUTHOR_REMOVE] (state, author) {
+    state.book.authorList = state.book.authorList.filter(t => t !== author)
   },
   [RESET_STATE] () {
     for (let f in state) {

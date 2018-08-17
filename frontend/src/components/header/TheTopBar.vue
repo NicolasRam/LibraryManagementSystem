@@ -4,6 +4,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <strong class="tg-logo"><a href="index.html"><img src="static/images/logo.png" alt="company name here"></a></strong>
+
           <div class="tg-wishlistandcart">
             <div class="dropdown tg-themedropdown tg-wishlistdropdown">
               <a href="javascript:void(0);" id="tg-wishlisst" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,6 +69,7 @@
               </div>
             </div>
           </div>
+
           <div class="tg-searchbox">
             <form class="tg-formtheme tg-formsearch">
               <fieldset>

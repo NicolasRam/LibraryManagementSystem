@@ -9,12 +9,6 @@
           </div>
         </div>
         <div id="tg-pickedbyauthorslider" class="tg-pickedbyauthor tg-pickedbyauthorslider owl-carousel">
-          <RwvTag
-            v-for="(tag, index) in tags"
-            :name="tag"
-            :key="index">
-          </RwvTag>
-
           <div class="item">
             <div class="tg-postbook">
               <figure class="tg-featureimg">

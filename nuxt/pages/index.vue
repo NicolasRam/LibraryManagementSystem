@@ -1,58 +1,25 @@
 <template>
   <div>
-    <TheAllStatus/>
-
-    <TheBestSelling/>
-
-    <TheFeaturedItem/>
-
-    <TheNewRelease/>
-
-    <TheCollectionCount/>
-
-    <ThePickedByAuthor/>
-
-    <TheTestimonials/>
-
-    <TheAuthors/>
-
-    <TheCallToAction/>
-
-    <TheLastestNews/>
+    <ul>
+      <li v-for="category in categories" :key="category.id">{{category.name}}</li>
+    </ul>
   </div>
 </template>
 
-
 <script>
-  import TheAllStatus from '@/components/TheAllStatus.vue'
-  import TheBestSelling from '@/components/TheBestSelling.vue'
-  import TheFeaturedItem from '@/components/TheFeaturedItem.vue'
-  import TheNewRelease from '@/components/TheNewRelease.vue'
-  import TheCollectionCount from '@/components/TheCollectionCount.vue'
-  import ThePickedByAuthor from '@/components/ThePickedByAuthor.vue'
-  import TheTestimonials from '@/components/TheTestimonials.vue'
-  import TheAuthors from '@/components/TheAuthors.vue'
-  import TheCallToAction from '@/components/TheCallToAction.vue'
-  import TheLastestNews from '@/components/TheLastestNews.vue'
+  import axios from 'axios'
 
   export default {
-    // middleware: 'log',
-    components: {
-      TheAllStatus,
-      TheBestSelling,
-      TheFeaturedItem,
-      TheNewRelease,
-      TheCollectionCount,
-      ThePickedByAuthor,
-      TheTestimonials,
-      TheAuthors,
-      TheCallToAction,
-      TheLastestNews,
-    },
-    data() {
-      return {
-        // displaySidenav: false
-      }
+    asyncData(context) {
+      return axios
+        .get("http://54.36.182.3/lms/public/index.php/api/categories")
+        .then( res => {
+          return {
+            categories: res.data
+          }
+          }
+        )
+        .catch(e => context.error(e))
     }
   }
 </script>

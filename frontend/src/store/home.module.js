@@ -1,20 +1,20 @@
 import {
-  TagsService,
+  AuthorsService,
   BooksService
 } from '@/common/api.service'
 import {
   FETCH_BOOKS,
-  FETCH_TAGS
+  FETCH_AUTHORS
 } from './actions.type'
 import {
   FETCH_START,
   FETCH_END,
-  SET_TAGS,
+  SET_AUTHORS,
   UPDATE_BOOK_IN_LIST
 } from './mutations.type'
 
 const state = {
-  tags: [],
+  authors: [],
   books: [],
   isLoading: true,
   booksCount: 0
@@ -30,8 +30,8 @@ const getters = {
   isLoading (state) {
     return state.isLoading
   },
-  tags (state) {
-    return state.tags
+  authors (state) {
+    return state.authors
   }
 }
 
@@ -46,10 +46,10 @@ const actions = {
         throw new Error(error)
       })
   },
-  [FETCH_TAGS] ({ commit }) {
-    return TagsService.get()
+  [FETCH_AUTHORS] ({ commit }) {
+    return AuthorsService.get()
       .then(({ data }) => {
-        commit(SET_TAGS, data.tags)
+        commit(SET_AUTHORS, data.authors)
       })
       .catch((error) => {
         throw new Error(error)
@@ -67,8 +67,8 @@ const mutations = {
     state.booksCount = booksCount
     state.isLoading = false
   },
-  [SET_TAGS] (state, tags) {
-    state.tags = tags
+  [SET_AUTHORS] (state, authors) {
+    state.authors = authors
   },
   [UPDATE_BOOK_IN_LIST] (state, data) {
     state.books = state.books.map((book) => {

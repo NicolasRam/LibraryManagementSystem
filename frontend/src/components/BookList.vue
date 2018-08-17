@@ -22,7 +22,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import RwvTag from '@/components/VTag'
+  import RwvAuthor from '@/components/VAuthor'
   import RwvBookPreview from '@/components/VBookPreview'
   import VPagination from '@/components/VPagination'
   import { FETCH_BOOKS } from '@/store/actions.type'
@@ -30,7 +30,7 @@
   export default {
     name: 'rwv-book-list',
     components: {
-      RwvTag,
+      RwvAuthor,
       RwvBookPreview,
       VPagination
     },
@@ -41,10 +41,6 @@
         default: 'all'
       },
       author: {
-        type: String,
-        required: false
-      },
-      tag: {
         type: String,
         required: false
       },
@@ -73,8 +69,8 @@
         if (this.author) {
           filters.author = this.author
         }
-        if (this.tag) {
-          filters.tag = this.tag
+        if (this.author) {
+          filters.author = this.author
         }
         if (this.favorited) {
           filters.favorited = this.favorited
@@ -106,10 +102,6 @@
         this.fetchBooks()
       },
       author () {
-        this.resetPagination()
-        this.fetchBooks()
-      },
-      tag () {
         this.resetPagination()
         this.fetchBooks()
       },

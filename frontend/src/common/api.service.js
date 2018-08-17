@@ -54,9 +54,9 @@ const ApiService = {
 
 export default ApiService
 
-export const TagsService = {
+export const AuthorsService = {
   get () {
-    return ApiService.get('tags')
+    return ApiService.get('authors')
   }
 }
 

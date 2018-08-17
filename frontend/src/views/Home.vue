@@ -1,5 +1,6 @@
 <template>
   <main id="tg-main" class="tg-main tg-haslayout">
+    {{ authors }}
     <all-status/>
     <best-selling/>
     <featured-item/>
@@ -16,7 +17,7 @@
 <script>
 import {mapGetters} from 'vuex'
 
-import RwvTag from '@//components/VTag'
+import RwvAuthor from '@//components/VAuthor'
 
 import AllStatus from '@//modules/AllStatus'
 import BestSelling from '@//modules/BestSelling'
@@ -29,7 +30,7 @@ import Authors from '@//modules/Authors'
 import CallToAction from '@//modules/CallToAction'
 import LatestNews from '@//modules/LatestNews'
 
-import {FETCH_TAGS} from '@/store/actions.type'
+import {FETCH_AUTHORS} from '@/store/actions.type'
 
 export default {
   name: 'home',
@@ -44,18 +45,18 @@ export default {
     Authors,
     CallToAction,
     LatestNews,
-    RwvTag
+    RwvAuthor
   },
   mounted () {
-    this.$store.dispatch(FETCH_TAGS)
+    this.$store.dispatch(FETCH_AUTHORS)
   },
   computed: {
     ...mapGetters([
       'isAuthenticated',
-      'tags'
+      'authors'
     ]),
-    tag () {
-      return this.$route.params.tag
+    author () {
+      return this.$route.params.author
     }
   }
 }

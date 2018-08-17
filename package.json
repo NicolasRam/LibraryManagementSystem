@@ -4,6 +4,12 @@
     },
     "license": "UNLICENSED",
     "private": true,
+    "config": {
+        "nuxt": {
+            "host": "0.0.0.0",
+            "port": "4040"
+        }
+    },
     "scripts": {
         "dev-server": "encore dev-server",
         "dev": "encore dev",

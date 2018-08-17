@@ -1,19 +1,19 @@
 <template>
-  <div class="home-tag">
-    <RwvBookList :tag="tag"></RwvBookList>
+  <div class="home-author">
+    <RwvBookList :author="author"></RwvBookList>
   </div>
 </template>
 <script>
   import RwvBookList from '@/components/BookList'
 
   export default {
-    name: 'RwvHomeTag',
+    name: 'RwvHomeAuthor',
     components: {
       RwvBookList
     },
     computed: {
-      tag () {
-        return this.$route.params.tag
+      author () {
+        return this.$route.params.author
       }
     }
   }

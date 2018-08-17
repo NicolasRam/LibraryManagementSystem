@@ -13,11 +13,11 @@
       <div class="row book-content">
         <div class="col-xs-12">
           <div v-html="parseMarkdown(book.body)"></div>
-          <ul class="tag-list">
+          <ul class="author-list">
             <li
-              v-for="(tag, index) of book.tagList"
-              :key="tag + index">
-              <RwvTag :name="tag" className="tag-default tag-pill tag-outline"></RwvTag>
+              v-for="(author, index) of book.authorList"
+              :key="author + index">
+              <RwvAuthor :name="author" className="author-default author-pill author-outline"></RwvAuthor>
             </li>
           </ul>
         </div>
@@ -61,7 +61,7 @@
   import RwvBookMeta from '@/components/BookMeta'
   import RwvComment from '@/components/Comment'
   import RwvCommentEditor from '@/components/CommentEditor'
-  import RwvTag from '@/components/VTag'
+  import RwvAuthor from '@/components/VAuthor'
   import { FETCH_BOOK, FETCH_COMMENTS } from '@/store/actions.type'
 
   export default {
@@ -76,7 +76,7 @@
       RwvBookMeta,
       RwvComment,
       RwvCommentEditor,
-      RwvTag
+      RwvAuthor
     },
     beforeRouteEnter (to, from, next) {
       Promise.all([
