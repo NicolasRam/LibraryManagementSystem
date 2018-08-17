@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: moulaye
  * Date: 26/07/18
- * Time: 10:19
+ * Time: 10:19.
  */
 
 namespace App\Entity;
@@ -13,12 +13,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class EBook
+ * Class EBook.
  *
- * @package App\Entity
  *
  * @ORM\Entity( repositoryClass="App\Repository\EBookRepository" )
- *
  */
 class EBook /*extends Book*/
 {
@@ -37,15 +35,15 @@ class EBook /*extends Book*/
     private $file;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MemberEBook", mappedBy="eBook", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberEBook", mappedBy="eBook")
      */
     private $memberEBooks;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Book", inversedBy="eBook")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $book;
-
 
     public function __construct()
     {
@@ -60,7 +58,6 @@ class EBook /*extends Book*/
         return $this->memberEBooks;
     }
 
-
     public function addMemberEBook(MemberEBook $memberEBook): self
     {
         if (!$this->memberEBooks->contains($memberEBook)) {
@@ -70,7 +67,6 @@ class EBook /*extends Book*/
 
         return $this;
     }
-
 
     public function removeMemberEBook(MemberEBook $memberEBook): self
     {
@@ -85,12 +81,10 @@ class EBook /*extends Book*/
         return $this;
     }
 
-
     public function getBook(): ?Book
     {
         return $this->book;
     }
-
 
     public function setBook(?Book $book): self
     {
@@ -98,7 +92,6 @@ class EBook /*extends Book*/
 
         return $this;
     }
-
 
     /**
      * @return mixed
@@ -108,7 +101,6 @@ class EBook /*extends Book*/
         return $this->id;
     }
 
-
     /**
      * @param mixed $id
      */
@@ -117,7 +109,6 @@ class EBook /*extends Book*/
         $this->id = $id;
     }
 
-
     /**
      * @return Book
      */
@@ -125,7 +116,6 @@ class EBook /*extends Book*/
     {
         return $this->file;
     }
-
 
     /**
      * @param Book $file

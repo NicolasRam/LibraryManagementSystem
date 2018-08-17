@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/member_subscription")
+ * @Route("/member_subscription")
  */
 class MemberSubscriptionController extends Controller
 {

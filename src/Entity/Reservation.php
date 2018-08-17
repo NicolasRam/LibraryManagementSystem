@@ -20,7 +20,7 @@ class Reservation
 
     /**
      * @ORM\ManyToOne(targetEntity="PBook", inversedBy="reservations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $pBook;
 

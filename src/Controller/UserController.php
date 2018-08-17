@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: moulaye
  * Date: 24/07/18
- * Time: 11:22
+ * Time: 11:22.
  */
 
 namespace App\Controller;
@@ -18,17 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
- * Class UserController
+ * Class UserController.
  *
- * @package App\Controller
  *
- * @Route( path="/backend" )
- * Route( path="/backend/user" )
+ * @Route("/" )
+ * Route("/user" )
  */
 class UserController extends Controller
 {
     /**
      * @Route("/", name="backend_user_index", methods="GET")
+     *
      * @param UserRepository $userRepository
      *
      * @return Response
@@ -117,9 +117,8 @@ class UserController extends Controller
 //        return $this->redirectToRoute('backend_user_index');
 //    }
 
-
     /**
-     * connection
+     * connection.
      *
      * Route(
      *     {
@@ -128,6 +127,7 @@ class UserController extends Controller
      *      },
      *     name="backend_user_login"
      * )
+     *
      * @Route( path="/login", name="backend_user_login" )
      *
      * @param Request             $request
@@ -137,23 +137,21 @@ class UserController extends Controller
      */
     public function login(Request $request, AuthenticationUtils $authenticationUtils)
     {
-        /**
+        /*
          * If user is login and is granted permissions go to home page
          *
-         * @Todo add home controller
-         * @Todo add permission check
          */
-        if ($this->getUser()) {
-            return $this->redirectToRoute('backend_home');
-        }
+//        if ($this->getUser()) {
+//            return $this->redirectToRoute('backend_home');
+//        }
 
         /**
-         * Retrieve user login form
+         * Retrieve user login form.
          */
         $form = $this->createForm(UserLoginType::class, ['email' => $authenticationUtils->getLastUsername()]);
 
         /**
-         * Get error message
+         * Get error message.
          */
         $error = $authenticationUtils->getLastAuthenticationError();
 

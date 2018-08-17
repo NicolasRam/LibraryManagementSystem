@@ -15,26 +15,39 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Workflow\Registry;
 
+/**
+ * Class BookingCommand.
+ */
 class MoulayeCommand extends ContainerAwareCommand
 {
     /**
      * @var EntityManager
      */
     private $entityManager;
+
     /**
      * @var SymfonyStyle
      */
     private $io;
+
     /**
      * @var Registry
      */
     private $registry;
 
+    /**
+     * BookingCommand constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     * @param null                   $name
+     */
     public function __construct(
-        EntityManagerInterface $entityManager, $name = null
+        EntityManagerInterface $entityManager,
+        $name = null
     ) {
         parent::__construct($name);
         $this->entityManager = $entityManager;
+
 //        $this->registry = new Registry();
     }
 
@@ -47,49 +60,79 @@ class MoulayeCommand extends ContainerAwareCommand
         ;
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return int|null|void
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $libraries = $this->entityManager->getRepository(Library::class)->findAll();
+
         $this->io = new SymfonyStyle($input, $output);
+
         $this->io->title('Create booking');
+
         $purge = $this->io->choice('Purger la table booking?', ['Oui', 'Non']);
+
         if ('Oui' === $purge) {
             $this->entityManager->getRepository(Booking::class)->truncate();
         }
-        $libraryNames = array_map(function ($library) { return $library->getName(); }, $libraries);
+
+        $libraryNames = array_map(function ($library) {
+            return $library->getName();
+        }, $libraries);
         array_unshift($libraryNames, 'Tous');
+
         $libraryName = $this->io->choice('Librairie', $libraryNames);
+
         $pbooks = ('Tous' === $libraryName)
             ? $this->entityManager->getRepository(PBook::class)->findAll()
             : $this->entityManager->getRepository(PBook::class)
                 ->findBy(['library' => $this->entityManager->getRepository(Library::class)->findOneBy(['name' => $libraryName])])
         ;
         $members = $this->entityManager->getRepository(Member::class)->findAll();
+
         $days = intval($this->io->ask('From how many day(s) ?'));
+
         $daysProgressBar = $this->io->createProgressBar($days);
         $daysProgressBar->setMessage('SubCategories');
 //        $daysProgressBar->display();
 //        $daysProgressBar->start();
+
         $this->io->newLine(2);
+
         $today = new DateTime();
         $date = clone $today;
         $startDate = clone $today;
+
         $today->format('Y-m-d');
         $date->format('Y-m-d');
         $startDate->format('Y-m-d');
-        $startDate = $startDate->modify('-'.$days.' day');
-        $date = $date->modify('-'.$days.' day');
+
+        $startDate->modify('-'.$days.' day');
+        $date->modify('-'.$days.' day');
+
         foreach ($pbooks as &$pbook) {
             $pbook->setStatus([PBook::STATUS_INSIDE]);
             $this->entityManager->persist($pbook);
         }
+
         $this->entityManager->flush();
+
         for ($i = 0; $i < $days; ++$i) {
-            $date = $date->modify('-1 day');
+            $date->modify('-1 day');
+
             foreach ($members as $member) {
                 $bookingCount = $this->entityManager->getRepository(Booking::class)->countBooking(false, $member->getId(), true, false, $date);
+
                 if ($bookingCount >= 3) {
                     $memberBookings = $this->entityManager->getRepository(Booking::class)->findBooking(false, $member->getId(), true, false, $date);
+
                     /*
                      * @var Booking
                      */
@@ -97,6 +140,7 @@ class MoulayeCommand extends ContainerAwareCommand
                         if (1 === mt_rand(0, 5)) {
                             $memberBooking->setReturnDate($date);
                             $memberBooking->getPBook()->setStatus([PBook::STATUS_INSIDE]);
+
                             $this->entityManager->persist($memberBooking);
                             $this->entityManager->flush();
                         }
@@ -104,7 +148,9 @@ class MoulayeCommand extends ContainerAwareCommand
                 } else {
                     foreach ($pbooks as $pbook) {
 //                        $workflow = $this->registry->get($pbook);
-                        if (1 === mt_rand(0, 5) && $pbook->getStatus() === [PBook::STATUS_INSIDE]) {
+                        $bookingCount = $this->entityManager->getRepository(Booking::class)->countBooking(false, $member->getId(), true, false, $date);
+
+                        if ($bookingCount < 3 && 1 === mt_rand(0, 5) && $pbook->getStatus() === [PBook::STATUS_INSIDE]) {
                             $booking = new Booking();
                             $endDate = clone $date;
                             $endDate->modify('+15 day');
@@ -112,11 +158,15 @@ class MoulayeCommand extends ContainerAwareCommand
                             $booking->setEndDate($endDate);
                             $booking->setPBook($pbook);
                             $booking->setMember($member);
+
                             $pbook->setStatus([PBook::STATUS_OUTSIDE]);
+
                             $this->entityManager->persist($pbook);
                             $this->entityManager->persist($booking);
                             $this->entityManager->flush();
+
 //                            $workflow = $this->registry->get($pbook, 'pbook_status');
+
                             $this->io->text($pbook->getBook()->getTitle().' - '.$date->format('Y-m-d'));
 //                            $this->io->text($workflow->getEnabledTransitions($pbook));
                         }
@@ -125,14 +175,19 @@ class MoulayeCommand extends ContainerAwareCommand
             }
             $daysProgressBar->advance(1);
         }
+
         $daysProgressBar->finish();
-        //$this->io->newLine(2);
-        //$this->io->section('yo');
+
         $this->io->newLine(2);
         $this->io->success('Days : '.$days);
 //        $this->io->success( 'Categories : ' . count($categories) . ' - SubCategories : '  . count($subCategories) . ' - Books : ' . count($books) );
     }
 
+    /**
+     * @param $percent
+     *
+     * @return bool
+     */
     public function chance($percent)
     {
         return mt_rand(0, 99) < $percent;

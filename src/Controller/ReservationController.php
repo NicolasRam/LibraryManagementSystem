@@ -12,13 +12,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/reservation")
+ * @Route("/reservation")
  */
 class ReservationController extends Controller
 {
     /**
      * @Route("/", name="backend_reservation_index", methods="GET")
+     *
      * @param ReservationRepository $reservationRepository
+     *
      * @return Response
      */
     public function index(ReservationRepository $reservationRepository): Response
@@ -26,11 +28,12 @@ class ReservationController extends Controller
         return $this->render('backend/reservation/index.html.twig', ['reservations' => $reservationRepository->findAll()]);
     }
 
-
     /**
      * @Route("/reserve/{id}/", name="backend_reservation_reserve", methods="GET|POST|DELETE")
+     *
      * @param Request $request
-     * @param PBook $pbook
+     * @param PBook   $pbook
+     *
      * @return Response
      */
     public function rserve(Request $request, PBook $pbook): Response
@@ -56,7 +59,9 @@ class ReservationController extends Controller
 
     /**
      * @Route("/new", name="backend_reservation_new", methods="GET|POST")
+     *
      * @param Request $request
+     *
      * @return Response
      */
     public function new(Request $request): Response
@@ -108,10 +113,11 @@ class ReservationController extends Controller
     }
 
     /**
-     *
      * @Route("/{id}", name="backend_reservation_delete", methods="DELETE")
-     * @param Request $request
+     *
+     * @param Request     $request
      * @param Reservation $reservation
+     *
      * @return Response
      */
     public function delete(Request $request, Reservation $reservation): Response

@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ApiResource()
  *
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
- *
  */
 class Book
 {
@@ -65,6 +64,7 @@ class Book
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\PBook", mappedBy="book", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $pBooks;
 
@@ -95,13 +95,10 @@ class Book
         $this->subCategory = $subCategory;
     }
 
-
-
     public function __construct()
     {
         $this->pBooks = new ArrayCollection();
     }
-
 
     public function getId()
     {

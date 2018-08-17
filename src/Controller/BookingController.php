@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Booking\BookingRequest;
 use App\Booking\BookingRequestHandler;
 use App\Entity\Booking;
-use App\Entity\Member;
 use App\Entity\PBook;
 use App\Form\BookingRequestType;
 use App\Repository\BookingRepository;
@@ -15,23 +14,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\Registry;
-use Symfony\Component\Workflow\WorkflowInterface\InstanceOfSupportStrategy;
 
 /**
- * @Route("/backend/booking")
+ * @Route("/booking")
  */
 class BookingController extends Controller
 {
-
     /**
-     * @var MemberProvider $memberProvider
+     * @var MemberProvider
      */
     private $memberProvider;
 
-
     /**
      * @Route("/", name="backend_booking_index", methods="GET")
+     *
      * @param BookingRepository $bookingRepository
+     *
      * @return Response
      */
     public function index(BookingRepository $bookingRepository): Response
@@ -39,13 +37,14 @@ class BookingController extends Controller
         return $this->render('backend/booking/index.html.twig', ['bookings' => $bookingRepository->findAll()]);
     }
 
-
     /**
      * @Route("/rent/{id}/", name="backend_booking_rent", methods="GET|POST|DELETE")
-     * @param Request $request
+     *
+     * @param Request               $request
      * @param BookingRequestHandler $bookingRequestHandler
-     * @param PBook $pbook
-     * @param MemberProvider $memberProvider
+     * @param PBook                 $pbook
+     * @param MemberProvider        $memberProvider
+     *
      * @return Response
      */
     public function rent(Request $request, BookingRequestHandler $bookingRequestHandler, PBook $pbook, MemberProvider $memberProvider): Response
@@ -57,14 +56,10 @@ class BookingController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-
             //On vérifie que le membre peut souscrire à une nouvelle reservation
             $responseFromQuery = $memberProvider->verifyIfBookingCanBeValid($bookingRequest->getMember());
 
-
-            if ($responseFromQuery == true) {
-
+            if (true == $responseFromQuery) {
 //            $workflow = (new Registry())->get(new PBook());
 
                 $pbook = new PBook();
@@ -107,7 +102,9 @@ class BookingController extends Controller
 
     /**
      * @Route("/new", name="backend_booking_new", methods="GET|POST")
+     *
      * @param Request $request
+     *
      * @return Response
      */
     public function new(Request $request): Response
@@ -159,10 +156,11 @@ class BookingController extends Controller
     }
 
     /**
-     *
      * @Route("/{id}", name="backend_booking_delete", methods="DELETE")
+     *
      * @param Request $request
      * @param Booking $booking
+     *
      * @return Response
      */
     public function delete(Request $request, Booking $booking): Response

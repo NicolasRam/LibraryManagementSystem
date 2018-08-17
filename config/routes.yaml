@@ -1,6 +1,8 @@
-api_login_check:
-#    path: /frontend/login_check
-    path: /login_check
+login:
+  path: /login_check
+#    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#    defaults:
+#        template: static/empty.html.twig
 
 #index:
 #    path: /
@@ -13,12 +15,11 @@ api_login_check:
 #    defaults: { _locale: '%locale%' }
 #    requirements:
 #        _locale: en|fr
-
-frontend_home:
-    path: /
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: static/empty.html.twig
+#frontend_home:
+#    path: /
+#    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#    defaults:
+#        template: static/empty.html.twig
 
 #backend_home:
 #    path: /backend/
@@ -29,5 +30,5 @@ frontend_home:
 
 backend_user_logout:
     path:
-        fr: /backend/deconnexion
-        en: /backend/logout
+        fr: /deconnexion
+        en: /logout

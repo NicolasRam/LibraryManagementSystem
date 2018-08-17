@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/sub_category")
+ * @Route("/sub_category")
  */
 class SubCategoryController extends Controller
 {
@@ -29,7 +29,7 @@ class SubCategoryController extends Controller
     public function save(Request $request): Response
     {
         $subCategory = new SubCategory();
-        
+
         $form = $this->createForm(SubCategoryType::class, $subCategory);
         $form->handleRequest($request);
 

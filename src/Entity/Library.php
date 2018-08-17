@@ -52,12 +52,12 @@ class Library
     private $closingTime;
 
     /**
-     * @ORM\OneToMany(targetEntity="PBook", mappedBy="library")
+     * @ORM\OneToMany(targetEntity="PBook", mappedBy="library", cascade={"persist", "remove"})
      */
     private $pBooks;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Librarian", mappedBy="library")
+     * @ORM\OneToMany(targetEntity="App\Entity\Librarian", mappedBy="library", cascade={"persist", "remove"})
      */
     private $librarians;
 

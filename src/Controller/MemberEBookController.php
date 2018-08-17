@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/member_ebook")
+ * @Route("/member_ebook")
  */
 class MemberEBookController extends Controller
 {

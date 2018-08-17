@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/member_type")
+ * @Route("/member_type")
  */
 class MemberTypeController extends Controller
 {

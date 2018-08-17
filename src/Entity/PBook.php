@@ -18,17 +18,20 @@ class PBook
     public const STATUS_RESERVED = 'reserved';
     public const STATUS_NOT_AVAILABLE = 'no_available';
     public const STATUS = ['inside', 'outside', 'reserved', 'not_available'];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBook")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $book;
+
     /**
      * @ORM\Column(type="simple_array", nullable=true)
      *
@@ -36,18 +39,40 @@ class PBook
      */
     private $status;
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="pBook")
+     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="pBook", cascade={"persist", "remove"})
      */
     private $bookings;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Library", inversedBy="pBooks")
      */
     private $library;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="pBook", cascade={"persist", "remove"})
+     */
+    private $reservations;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
         $this->status = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
+
+    /**
+     * @param mixed $reservations
+     */
+    public function setReservations($reservations): void
+    {
+        $this->reservations = $reservations;
     }
 
     public function getId()
@@ -56,19 +81,35 @@ class PBook
     }
 
     /**
-     * @return Book|null
+     * @return mixed
      */
-    public function getBook(): ?Book
+    public function getBook()
     {
         return $this->book;
     }
 
-    public function setBook(Book $book): self
+    /**
+     * @param mixed $book
+     */
+    public function setBook($book): void
     {
         $this->book = $book;
-
-        return $this;
     }
+
+//    /**
+//     * @return Book|null
+//     */
+//    public function getBook(): ?Book
+//    {
+//        return $this->book;
+//    }
+//
+//    public function setBook(Book $book): self
+//    {
+//        $this->book = $book;
+//
+//        return $this;
+//    }
 
     public function getStatus(): array
     {
