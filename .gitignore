@@ -9,26 +9,16 @@
 /dependencies
 src/Service/Client/
 /lms-nuxt/.nuxt/
-/lms-nuxt/.gitignore
 /lms-nuxt/node_modules/
 /lms-nuxt/.idea/
 /lms-nuxt/backup/
 /metrics/
 lms-nuxt/.editorconfig
 lms-nuxt/README.md
-lms-nuxt/api/
-lms-nuxt/assets/
-lms-nuxt/components/
 lms-nuxt/how-to-use.txt
-lms-nuxt/layouts/
-lms-nuxt/middleware/
 lms-nuxt/nuxt.config.js
 lms-nuxt/package-lock.json
 lms-nuxt/package.json
-lms-nuxt/pages/
-lms-nuxt/plugins/
-lms-nuxt/static/
-lms-nuxt/store/
 lms-nuxt/yarn.lock
 
 ###> symfony/webpack-encore-pack ###

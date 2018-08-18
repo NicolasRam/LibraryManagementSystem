@@ -1,0 +1,18 @@
+<template>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    <div class="tg-parallax tg-bgtotalmembers" data-z-index="2" data-appear-bottom-offset="600" data-parallax="scroll" data-image-src="static/images/parallax/bgparallax-02.jpg">
+      <div class="tg-status">
+        <div class="tg-statuscontent">
+          <span class="tg-statusicon"><i class="icon-user"></i></span>
+          <h2>Total members<span>15,179,213</span></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'AllStatusItemPurple'
+  }
+</script>
