@@ -38,6 +38,7 @@ class PBook
      * @var array
      */
     private $status;
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="pBook", cascade={"persist", "remove"})
      */

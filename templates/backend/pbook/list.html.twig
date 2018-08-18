@@ -35,19 +35,20 @@
                 <td>{{ pbook.book.title }}</td>
                 <td>{{ pbook.library.name }}</td>
                 <td>
-                    {% if pbook.status == 'reserved' %}
+                    {% for status in pbook.status %}
+                    {% if status == 'reserved' %}
                     <span class="m-badge m-badge--primary m-badge--wide">reserved</span>
                     {% endif %}
-                    {% if pbook.status == 'inside' %}
+                    {% if status == 'inside' %}
                     <span class="m-badge m-badge--success m-badge--wide">inside</span>
                     {% endif %}
-                    {% if pbook.status == 'not_available' %}
+                    {% if status == 'not_available' %}
                     <span class="m-badge m-badge--danger m-badge--wide">not available</span>
                     {% endif %}
-                    {% if pbook.status == 'outside' %}
+                    {% if status == 'outside' %}
                         <span class="m-badge m-badge--info m-badge--wide">outside</span>
                     {% endif %}
-
+                    {% endfor %}
                     {#1: {title: "Pending", class: "m-badge--brand"},#}
                     {#2: {title: "Delivered", class: " m-badge--metal"},#}
                     {#3: {title: "Canceled", class: " m-badge--primary"},#}
