@@ -8,6 +8,7 @@
 /backup
 /dependencies
 src/Service/Client/
+/lms-nuxt/.gitignore
 /lms-nuxt/node_modules/
 /lms-nuxt/.idea/
 /lms-nuxt/backup/
