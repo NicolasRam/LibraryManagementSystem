@@ -78,6 +78,31 @@ class Book
      * @ORM\JoinColumn(nullable=false)
      */
     private $subCategory;
+    /**
+     * @ORM\OneToOne(
+     *     targetEntity="App\Entity\Image",
+     *     mappedBy="book",
+     *     cascade={"persist", "remove"}
+     *     )
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+     */
+    private $image;
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
 
     /**
      * @return mixed

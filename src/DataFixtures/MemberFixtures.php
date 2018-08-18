@@ -8,7 +8,6 @@
 
 namespace App\DataFixtures;
 
-
 use App\Entity\Admin;
 use App\Entity\Author;
 use App\Entity\Librarian;
@@ -37,8 +36,8 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
      */
     private $encoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder ) {
-
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
         $this->encoder = $encoder;
     }
 
@@ -55,17 +54,17 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
 //        $interval = DateInterval::createFromDateString('1 day');
 //        $period = new DatePeriod($startDate, $interval, $todayDate);
 
-        for ( $i = 0; $i < self::MEMBERS_COUNT_REFERENCE; $i++ ) {
-                $member = new Member();
+        for ($i = 0; $i < self::MEMBERS_COUNT_REFERENCE; $i++) {
+            $member = new Member();
 
-                $member->setFirstName( $fakerFactory->firstName );
-                $member->setLastName( $fakerFactory->lastName );
-                $member->setEmail( $fakerFactory->email );
-                $member->setMemberType( $this->getReference( MemberTypeFixtures::MEMBERS_REFERENCE . rand(0, MemberTypeFixtures::MEMBERS_COUNT_REFERENCE - 1) ) );
-                $encoded = $this->encoder->encodePassword($member, '123456789');
-                $member->setPassword( $encoded );
+            $member->setFirstName($fakerFactory->firstName);
+            $member->setLastName($fakerFactory->lastName);
+            $member->setEmail($fakerFactory->email);
+            $member->setMemberType($this->getReference(MemberTypeFixtures::MEMBERS_REFERENCE . rand(0, MemberTypeFixtures::MEMBERS_COUNT_REFERENCE - 1)));
+            $encoded = $this->encoder->encodePassword($member, '123456789');
+            $member->setPassword($encoded);
 
-                $manager->persist($member);
+            $manager->persist($member);
 
             $this->addReference(self::MEMBERS_REFERENCE . $i, $member);
         }

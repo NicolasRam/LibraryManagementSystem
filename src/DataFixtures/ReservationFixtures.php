@@ -19,7 +19,8 @@ class ReservationFixtures extends Fixture implements OrderedFixtureInterface
     public const RESERVATIONS_REFERENCE = 'reservations';
     public const RESERVATIONS_COUNT_REFERENCE = 10;
 
-    public function __construct() {
+    public function __construct()
+    {
     }
 
     /**
@@ -29,7 +30,7 @@ class ReservationFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $start = new DateTime( '2017-01-01' );
+        $start = new DateTime('2017-01-01');
 //        $todayDate = new DateTime('now');
         $end = new DateTime('2018-01-01');
 //        $interval = DateInterval::createFromDateString('1 day');
@@ -37,18 +38,20 @@ class ReservationFixtures extends Fixture implements OrderedFixtureInterface
 
         $i = 0;
         $pbooks = [];
-        while ( $this->hasReference( PBookFixtures::PBOOKS_REFERENCE . $i) ) {
-            if( $this->hasReference( PBookFixtures::PBOOKS_REFERENCE . $i)) $pbooks[] = $this->getReference( PBookFixtures::PBOOKS_REFERENCE . $i++);
+        while ($this->hasReference(PBookFixtures::PBOOKS_REFERENCE . $i)) {
+            if ($this->hasReference(PBookFixtures::PBOOKS_REFERENCE . $i)) {
+                $pbooks[] = $this->getReference(PBookFixtures::PBOOKS_REFERENCE . $i++);
+            }
         }
 
-        for ( $i = 0; $i < self::RESERVATIONS_COUNT_REFERENCE; $i++ ) {
+        for ($i = 0; $i < self::RESERVATIONS_COUNT_REFERENCE; $i++) {
             $reservation = new Reservation();
             $date = $this->randomDate($start, $end);
 //            $date = $date;
 
-            $reservation->setPBook( $pbooks[rand(0, count($pbooks) - 1) ] );
-            $reservation->setMember( $this->getReference( MemberFixtures::MEMBERS_REFERENCE . rand(0, MemberFixtures::MEMBERS_COUNT_REFERENCE - 1) ) );
-            $reservation->setDate( $date );
+            $reservation->setPBook($pbooks[rand(0, count($pbooks) - 1) ]);
+            $reservation->setMember($this->getReference(MemberFixtures::MEMBERS_REFERENCE . rand(0, MemberFixtures::MEMBERS_COUNT_REFERENCE - 1)));
+            $reservation->setDate($date);
 
             $manager->persist($reservation);
 
@@ -66,7 +69,7 @@ class ReservationFixtures extends Fixture implements OrderedFixtureInterface
      *
      * @return DateTime
      */
-    function randomDate($startDate, $endDate)
+    public function randomDate($startDate, $endDate)
     {
         $timestamp = mt_rand($startDate->getTimestamp(), $endDate->getTimestamp());
 

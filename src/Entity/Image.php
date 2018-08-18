@@ -1,16 +1,35 @@
 <?php
-
 namespace App\Entity;
-
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-
 /**
- * @ORM\MappedSuperclass()
- *
  * @ApiResource()
+ *
+ * @ORM\MappedSuperclass()
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  */
 class Image extends File
 {
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Book", mappedBy="image")
+     * @ORM\Column(nullable=true)
+     */
+    private $book;
+    /**
+     * @return mixed
+     */
+    public function getBook()
+    {
+        return $this->book;
+    }
+    /**
+     * @param mixed $book
+     *
+     * @return Image
+     */
+    public function setBook($book)
+    {
+        $this->book = $book;
+        return $this;
+    }
 }

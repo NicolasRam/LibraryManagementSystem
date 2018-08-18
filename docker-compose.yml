@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3'
 
 services:
   # Lance un serveur web apache
@@ -15,8 +15,8 @@ services:
     # Récupére les volumes définis sur web
     volumes:
       - .:/usr/local/apache2/htdocs
-    links:
-        - elasticsearch
+#    links:
+#        - elasticsearch
 
   # Lance un serveur MySQL
   db:
@@ -35,86 +35,88 @@ services:
     links:
       - db:db
 
-#  node:
-##    build: docker/node
+  node:
+    build: docker/node
 #    image: "node:9"
-#    user: "node"
-#    working_dir: /var/www/frontend
-#    environment:
-#      - NODE_ENV=production
+    user: "node"
+    working_dir: /var/www/frontend
+    environment:
+      - NODE_ENV=production
 #    expose:
 #      - "3000"
-#    volumes:
-#      - ./nuxt:/var/www/frontend
+    ports:
+      - 3000:3333
+    volumes:
+      - ./frontend:/var/www/frontend
 #    command: npm run dev
 #    command: "npm start"
 #    command: "npm start --port 3333 --host 0.0.0.0"
-#    command: npm install && npm start
+    command: npm run dev
 
-  elasticsearch:
-    build: docker/elastic
-    hostname: elasticsearch
-    ports:
-      - 9200:9200
-      - 9300:9300
-    volumes:
-      - ./docker/elastic/data:/usr/share/elasticsearch/data
-      - ./docker/elastic/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
+#  elasticsearch:
+#    build: docker/elastic
+#    hostname: elasticsearch
+#    ports:
+#      - 9200:9200
+#      - 9300:9300
+#    volumes:
+#      - ./docker/elastic/data:/usr/share/elasticsearch/data
+#      - ./docker/elastic/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#      nofile:
+#        soft: 65536
+#        hard: 65536
 
-  kibana:
-    build: docker/kibana
-    hostname: kibana
-    links:
-      - elasticsearch
-    ports:
-      - 5601:5601
-    volumes:
-      - ./docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
-
-  redmine:
-    build: docker/redmine
-    restart: always
-    networks:
-      - redmine
-    volumes:
-      - ./docker/redmine/data:/usr/src/redmine/sqlite
+#  kibana:
+#    build: docker/kibana
+#    hostname: kibana
 #    links:
-#      - db:db
-#      - smtp:smtp
-    ports:
-      - "3000:3000"
+#      - elasticsearch
+#    ports:
+#      - 5601:5601
+#    volumes:
+#      - ./docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
 
-  jenkins:
-    build: docker/jenkins
-    ports:
-      - 8082:8080
-      - 50000:50000
-    volumes:
-      - ./docker/jenkins/data:/var/jenkins_home
-#      - /usr/bin/docker:/usr/bin/docker
-    environment:
-      - DOCKER_HOST=tcp://socat:2375
-    restart: always
+#  redmine:
+#    build: docker/redmine
+#    restart: always
+#    networks:
+#      - redmine
+#    volumes:
+#      - ./docker/redmine/data:/usr/src/redmine/sqlite
+##    links:
+##      - db:db
+##      - smtp:smtp
+#    ports:
+#      - "3000:3000"
 
-  socat:
-    build: docker/socat
-    command: TCP4-LISTEN:2375,fork,reuseaddr UNIX-CONNECT:/var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-#    expose:
-#      - "2375"
+#  jenkins:
+#    build: docker/jenkins
+#    ports:
+#      - 8082:8080
+#      - 50000:50000
+#    volumes:
+#      - ./docker/jenkins/data:/var/jenkins_home
+##      - /usr/bin/docker:/usr/bin/docker
+#    environment:
+#      - DOCKER_HOST=tcp://socat:2375
+#    restart: always
+
+#  socat:
+#    build: docker/socat
+#    command: TCP4-LISTEN:2375,fork,reuseaddr UNIX-CONNECT:/var/run/docker.sock
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+##    expose:
+##      - "2375"
 
 #volumes:
 #  postgres-data:
 #  jenkins_home:
 #    external: true
-networks:
-  redmine:
-    driver: bridge
+#networks:
+#  redmine:
+#    driver: bridge

@@ -3,53 +3,50 @@
  * Created by PhpStorm.
  * User: moulaye
  * Date: 07/08/18
- * Time: 11:39
+ * Time: 11:39.
  */
 
 namespace App\Service\Source\Entity;
 
-use App\Service\Source\Entity\BookContrib;
-use App\Service\Source\Entity\BookDetail;
-
 class Book
 {
     /**
-     * @var String
+     * @var string
      */
     private $title = '';
 
     /**
-     * @var String
+     * @var string
      */
     private $image = '';
 
     /**
-     * @var String
+     * @var string
      */
     private $url = '';
 
     /**
-     * @var String
+     * @var string
      */
     private $resume = '';
 
     /**
-     * @var String
+     * @var string
      */
     private $author = '';
 
     /**
-     * @var String
+     * @var string
      */
     private $priceNew = '';
 
     /**
-     * @var String
+     * @var string
      */
     private $priceUsed = '';
 
     /**
-     * @var String
+     * @var string
      */
     private $state = '';
 
@@ -79,6 +76,7 @@ class Book
     public function setSubCategory(SubCategory $subCategory): Book
     {
         $this->subCategory = $subCategory;
+
         return $this;
     }
 
@@ -93,7 +91,7 @@ class Book
     private $contribs = [];
 
     /**
-     * @return String
+     * @return string
      */
     public function getTitle(): String
     {
@@ -116,24 +114,24 @@ class Book
     public function setIsbn(string $isbn): Book
     {
         $this->isbn = $isbn;
+
         return $this;
     }
 
-
-
     /**
-     * @param String $title
+     * @param string $title
      *
      * @return Book
      */
     public function setTitle(String $title): Book
     {
         $this->title = $title;
+
         return $this;
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getImage(): String
     {
@@ -141,18 +139,19 @@ class Book
     }
 
     /**
-     * @param String $image
+     * @param string $image
      *
      * @return Book
      */
     public function setImage(String $image): Book
     {
         $this->image = $image;
+
         return $this;
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getUrl(): String
     {
@@ -160,18 +159,19 @@ class Book
     }
 
     /**
-     * @param String $url
+     * @param string $url
      *
      * @return Book
      */
     public function setUrl(String $url): Book
     {
         $this->url = $url;
+
         return $this;
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getResume(): String
     {
@@ -179,18 +179,19 @@ class Book
     }
 
     /**
-     * @param String $resume
+     * @param string $resume
      *
      * @return Book
      */
     public function setResume(String $resume): Book
     {
         $this->resume = $resume;
+
         return $this;
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getAuthor(): String
     {
@@ -198,18 +199,19 @@ class Book
     }
 
     /**
-     * @param String $author
+     * @param string $author
      *
      * @return Book
      */
     public function setAuthor(String $author): Book
     {
         $this->author = $author;
+
         return $this;
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getPriceNew(): String
     {
@@ -217,18 +219,19 @@ class Book
     }
 
     /**
-     * @param String $priceNew
+     * @param string $priceNew
      *
      * @return Book
      */
     public function setPriceNew(String $priceNew): Book
     {
         $this->priceNew = $priceNew;
+
         return $this;
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getPriceUsed(): String
     {
@@ -236,18 +239,19 @@ class Book
     }
 
     /**
-     * @param String $priceUsed
+     * @param string $priceUsed
      *
      * @return Book
      */
     public function setPriceUsed(String $priceUsed): Book
     {
         $this->priceUsed = $priceUsed;
+
         return $this;
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getState(): String
     {
@@ -255,13 +259,14 @@ class Book
     }
 
     /**
-     * @param String $state
+     * @param string $state
      *
      * @return Book
      */
     public function setState(String $state): Book
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -281,6 +286,7 @@ class Book
     public function setDetails(array $details): Book
     {
         $this->details = $details;
+
         return $this;
     }
 
@@ -300,6 +306,7 @@ class Book
     public function setContribs(array $contribs): Book
     {
         $this->contribs = $contribs;
+
         return $this;
     }
 
@@ -316,7 +323,7 @@ class Book
      */
     public function removeDetail(BookContrib $detail)
     {
-        if (FALSE !== $key = array_search($detail, $this->details, TRUE)) {
+        if (false !== $key = array_search($detail, $this->details, true)) {
             array_splice($this->details, $key, 1);
         }
     }
@@ -334,7 +341,7 @@ class Book
      */
     public function removeContrib(BookDetail $contrib)
     {
-        if (FALSE !== $key = array_search($contrib, $this->contribs, TRUE)) {
+        if (false !== $key = array_search($contrib, $this->contribs, true)) {
             array_splice($this->contribs, $key, 1);
         }
     }

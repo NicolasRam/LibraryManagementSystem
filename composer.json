@@ -3,7 +3,10 @@
     "license": "proprietary",
     "require": {
         "php": "^7.2.7",
+        "ext-curl": "^7.2",
+        "ext-dom": "*",
         "ext-iconv": "*",
+        "ext-json": "^1.6",
         "api-platform/api-pack": "^1.1",
         "behat/transliterator": "^1.2",
         "fzaninotto/faker": "^1.8",
@@ -30,7 +33,6 @@
         "symfony/validator": "^4.1",
         "symfony/var-dumper": "^4.1",
         "symfony/web-link": "^4.1",
-        "symfony/webpack-encore-pack": "^1.0",
         "symfony/workflow": "^4.1",
         "symfony/yaml": "^4.1",
         "tightenco/collect": "^5.6"

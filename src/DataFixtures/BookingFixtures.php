@@ -31,16 +31,16 @@ class BookingFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        for ( $i = 0; $i < self::BOOKINGS_COUNT_REFERENCE; $i++ ) {
+        for ($i = 0; $i < self::BOOKINGS_COUNT_REFERENCE; $i++) {
             $booking = new Booking();
 
-            $booking->setMember( $this->getReference( MemberFixtures::MEMBERS_REFERENCE . $i ) );
-            $booking->setPBook( $this->getReference( PBookFixtures::PBOOKS_REFERENCE . $i) );
-            $booking->setReturnDate( new DateTime() );
-            $booking->setStartDate( new DateTime() );
-            $booking->setEndDate( new DateTime() );
+            $booking->setMember($this->getReference(MemberFixtures::MEMBERS_REFERENCE . $i));
+            $booking->setPBook($this->getReference(PBookFixtures::PBOOKS_REFERENCE . $i));
+            $booking->setReturnDate(new DateTime());
+            $booking->setStartDate(new DateTime());
+            $booking->setEndDate(new DateTime());
 
-            $manager->persist( $booking );
+            $manager->persist($booking);
         }
 
         $manager->flush();
@@ -54,7 +54,7 @@ class BookingFixtures extends Fixture implements OrderedFixtureInterface
      *
      * @return DateTime
      */
-    function randomDate($startDate, $endDate)
+    public function randomDate($startDate, $endDate)
     {
         $timestamp = mt_rand($startDate->getTimestamp(), $endDate->getTimestamp());
 

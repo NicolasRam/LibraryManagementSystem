@@ -6,16 +6,19 @@
  * Time: 17:31
  */
 namespace App\Service\Source\Entity;
+
 use Behat\Transliterator\Transliterator;
+
 class Firebase
 {
     private $url;
     private $authentication;
-    public function __construct() {
+    public function __construct()
+    {
         $this->url = getenv('FIREBASE_DATABASE_URL');
         $this->authentication = getenv('FIREBASE_AUTHENTICATION_KEY');
     }
-    public function saveCategory(Category $category = null, $path = '/category/' )
+    public function saveCategory(Category $category = null, $path = '/category/')
     {
         // Data for PATCH
         // Matching nodes updated
@@ -42,14 +45,14 @@ class Firebase
         // curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_DELETE );
         // curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
         // Get return value
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // Make request
         // Close connection
         $response = curl_exec($curl);
         curl_close($curl);
         return $response;
     }
-    public function saveSubCategory(SubCategory $subCategory = null, $path = '/sub_category/' )
+    public function saveSubCategory(SubCategory $subCategory = null, $path = '/sub_category/')
     {
         // Data for PATCH
         // Matching nodes updated
@@ -77,7 +80,7 @@ class Firebase
         // curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_DELETE );
         // curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, "DELETE" );
         // Get return value
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // Make request
         // Close connection
         $response = curl_exec($curl);
@@ -89,7 +92,7 @@ class Firebase
      *
      * @return array
      */
-    public function getBooks( $path = '/book' ) : array
+    public function getBooks($path = '/book') : array
     {
         // Data for PATCH
         // Matching nodes updated
@@ -107,28 +110,26 @@ class Firebase
         // curl_setopt( $curl, CURLOPT_URL, $FIREBASE . $NODE_GET );
         // Update
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_POST, FALSE);
-        curl_setopt($curl, CURLOPT_HEADER, FALSE);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($curl, CURLOPT_POST, false);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         // Make request
         // Close connection
         $response = curl_exec($curl);
         curl_close($curl);
         $response = json_decode($response, true);
         $books = [];
-        foreach ( $response as $isbn => $value )
-        {
-            if(
+        foreach ($response as $isbn => $value) {
+            if (
                 isset($value['author'])         && !empty($value['author'])
                 &&  isset($value['title'])          && !empty($value['title'])
                 &&  isset($value['image'])
                 &&  isset($value['price_new'])
                 &&  isset($value['price_used'])
                 &&  isset($value['url'])
-            )
-            {
+            ) {
                 $books[] = ( new Book() )
                     ->setAuthor($value['author'])
                     ->setImage($value['image'])

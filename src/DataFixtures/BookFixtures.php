@@ -3,13 +3,14 @@
  * Created by PhpStorm.
  * User: moulaye
  * Date: 24/07/18
- * Time: 16:50
+ * Time: 16:50.
  */
 
 namespace App\DataFixtures;
 
 use App\Entity\Author;
 use App\Entity\Book;
+use App\Entity\Image;
 use App\Service\Source\Entity\Firebase;
 use Behat\Transliterator\Transliterator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -26,12 +27,13 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
      */
     private $firebase;
 
-    public function __construct( Firebase $firebase ) {
+    public function __construct(Firebase $firebase)
+    {
         $this->firebase = $firebase;
     }
 
     /**
-     * Load data fixtures with the passed EntityManager
+     * Load data fixtures with the passed EntityManager.
      *
      * @param ObjectManager $manager
      */
@@ -41,59 +43,64 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
         $authors = [];
         $firebaseBooks = $this->firebase->getBooks();
 
-        $offset = mt_rand( 0,  count($firebaseBooks) - self::BOOKS_COUNT_REFERENCE );
+        $offset = mt_rand(0, count($firebaseBooks) - self::BOOKS_COUNT_REFERENCE);
 
-        for( $i = $offset; $i < AuthorFixtures::AUTHORS_COUNT_REFERENCE; $i++ ) {
-            $authors[] = $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . $i );
+        for ($i = $offset; $i < AuthorFixtures::AUTHORS_COUNT_REFERENCE; ++$i) {
+            $authors[] = $this->getReference(AuthorFixtures::AUTHORS_REFERENCE.$i);
         }
 
-        for ( $i = 0; $i < self::BOOKS_COUNT_REFERENCE && $authors >= 3; $i++ ) {
+        for ($i = 0; $i < self::BOOKS_COUNT_REFERENCE && $authors >= 3; ++$i) {
             $book = new Book();
+            $cover = new Image();
+
             /**
-             * @var \App\Service\Source\Entity\Book $firebaseBook
+             * @var \App\Service\Source\Entity\Book
              */
             $firebaseBook = $firebaseBooks[$i];
 
-            /**
+            $cover->setPath($firebaseBook->getImage());
+            $cover->setIsLocal(false);
+
+            /*
              * @var Author
              */
-            $book->setAuthor( $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1) ) );
+            $book->setAuthor($this->getReference(AuthorFixtures::AUTHORS_REFERENCE.rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1)));
             $authorCounts = rand(0, 3);
-            $book->addAuthor( $this->getReference( AuthorFixtures::AUTHORS_REFERENCE . rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1) ) );
-            $book->setAuthors($this->pickAuthors($authors));
-            $book->setSubCategory( $this->getReference( SubCategoryFixtures::SUB_CATEGORIES_REFERENCE . rand(0, SubCategoryFixtures::SUB_CATEGORIES_COUNT_REFERENCE - 1) ) );
+//            $book->addAuthor($this->getReference(AuthorFixtures::AUTHORS_REFERENCE.rand(0, AuthorFixtures::AUTHORS_COUNT_REFERENCE - 1)));
+//            $book->setAuthors($this->pickAuthors($authors));
+            $book->setSubCategory($this->getReference(SubCategoryFixtures::SUB_CATEGORIES_REFERENCE.rand(0, SubCategoryFixtures::SUB_CATEGORIES_COUNT_REFERENCE - 1)));
             $book->setIsbn($firebaseBook->getIsbn());
-            $book->setPageNumber( rand(100, 200) );
-            $book->setResume( $fakerFactory->text($maxNbChars = 200) );
-            $book->setTitle( $firebaseBook->getTitle() );
-            $book->setSlug( Transliterator::transliterate($book->getTitle()) );
+            $book->setPageNumber(rand(100, 200));
+            $book->setResume($fakerFactory->text($maxNbChars = 200));
+            $book->setTitle($firebaseBook->getTitle());
+            $book->setSlug(Transliterator::transliterate($book->getTitle()));
+            $book->setImage($cover);
 
             $manager->persist($book);
 
-            $this->addReference( self::BOOKS_REFERENCE . $i, $book );
+            $this->addReference(self::BOOKS_REFERENCE.$i, $book);
         }
 
         $manager->flush();
     }
 
-    private function pickAuthors($authors = [], $number = 3  )
-    {
-        $pickedAuthors = [];
-        for ($i = 0; $i < count($authors); $i++ )
-        {
-            $index = mt_rand(0, count($authors));
-            $pickedAuthors[] = $authors[$index];
-
-            $authors = array_slice($authors, $index, 0);
-        }
-
-        return $pickedAuthors;
-    }
+//    private function pickAuthors($authors = [], $number = 3)
+//    {
+//        $pickedAuthors = [];
+//        for ($i = 0; $i < count($authors); ++$i) {
+//            $index = mt_rand(0, count($authors));
+//            $pickedAuthors[] = $authors[$index];
+//
+//            $authors = array_slice($authors, $index, 0);
+//        }
+//
+//        return $pickedAuthors;
+//    }
 
     /**
-     * Get the order of this fixture
+     * Get the order of this fixture.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
