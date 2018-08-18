@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
 use App\Entity\Library;
 use DateInterval;
 use DateTime;
@@ -46,10 +47,14 @@ class HomeController extends Controller
             }
         }
 
+        //We cope topbooking
+        $topbookings = $this->getDoctrine()->getRepository(Booking::class)->findPbooktop(10);
+
         return $this->render('backend/home/index.html.twig', [
             'books' => $books,
             'libraries' => $libraries,
-            'latepBooks' => $latepBooks
+            'latepBooks' => $latepBooks,
+            'topbookings' => $topbookings
         ]);
     }
 }
