@@ -62,11 +62,11 @@ class BookingController extends Controller
             if (true == $responseFromQuery) {
 //            $workflow = (new Registry())->get(new PBook());
 
-                $pbook = new PBook();
-                $workflow = $registry->get($pbook);
-
-                dump($workflow->can($pbook, 'publish')); // False
-                dump($workflow->can($pbook, 'to_review')); // True
+//                $pbook = new PBook();
+//                $workflow = $registry->get($pbook);
+//
+//                dump($workflow->can($pbook, 'publish')); // False
+//                dump($workflow->can($pbook, 'to_review')); // True
 
 //                $workflow = $registry->get($bookingRequest);
 

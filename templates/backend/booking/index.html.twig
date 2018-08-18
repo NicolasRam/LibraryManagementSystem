@@ -45,6 +45,7 @@
         <th>Record ID</th>
 
                 <th>{{ 'datatable.id' | trans({}, 'datatable') }}</th>
+                <th>{{ 'datatable.title' | trans({}, 'datatable') }}</th>
                 <th>{{ 'datatable.startDate' | trans({}, 'datatable') }}</th>
                 <th>{{ 'datatable.endDate' | trans({}, 'datatable') }}</th>
                 <th>{{ 'datatable.returnDate' | trans({}, 'datatable') }}</th>
@@ -59,6 +60,7 @@
             <td>{{ booking.id }}</td>
 
                         <td>{{ booking.id }}</td>
+                        <td>{{ booking.pBook.book.title }}</td>
                         <td>{{ booking.startDate ? booking.startDate|date('Y-m-d') : '' }}</td>
                         <td>{{ booking.endDate ? booking.endDate|date('Y-m-d') : '' }}</td>
                         <td>{{ booking.returnDate ? booking.returnDate|date('Y-m-d') : '' }}</td>
