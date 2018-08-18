@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Library;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +17,20 @@ class HomeController extends Controller
      */
     public function index(): Response
     {
-        return $this->render('backend/home/index.html.twig', []);
+        $libraries = $this->getDoctrine()->getManager()->getRepository(Library::class)->findAll();
+        $library = $this->getUser()->getLibrary();
+        $books = [];
+
+        /*
+         * @var PBook
+         */
+        foreach ($library->getPBooks() as $pbook) {
+            $books[] = $pbook->getBook();
+        }
+
+        return $this->render('backend/home/index.html.twig', [
+            'books' => $books,
+            'libraries' => $libraries
+        ]);
     }
 }
