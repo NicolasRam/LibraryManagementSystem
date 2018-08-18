@@ -2,207 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ae356c9-68ca-4db4-8856-b6efe988657b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../assets/js/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assets/js/components/Hello.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assets/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../public/js/components/temp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../assets/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../config/packages/framework.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/common/api.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/common/api.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/BookList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/BookList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/VTag.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/VTag.vue.back" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/header/TheTopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/header/TheTopBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/slider/Slide.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/slider/Slide.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/modules/AllStatus.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/modules/AllStatus.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/modules/PickedByAuthors.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/modules/PickedByAuthors.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/store/actions.type.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/actions.type.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/store/book.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/book.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/store/home.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/home.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/store/mutations.type.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/mutations.type.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Book.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Book.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/HomeTag.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/HomeAuthor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/color-purple.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/color.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/customtemplate.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/font-awesome.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/icomoon.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/jquery-ui.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/normalize.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/owl.carousel.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/responsive.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/transitions.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/typeahead.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/icomoon.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/icomoon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/icomoon.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/icomoon.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/ajax-loader.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-08.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-17.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-18.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-19.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-20.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-21.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-22.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-23.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-24.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-25.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/author/imag-26.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-08.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/blog/img-15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/bookpattren.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-08.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/books/img-12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/comingsoon-bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/flogo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/img-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/img-01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/img-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/img-02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/img-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/img-03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/img-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/img-04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/img-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/instagram/img-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/instagram/img-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/instagram/img-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/instagram/img-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/instagram/img-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/instagram/img-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/instagram/img-07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/instagram/img-08.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/instagram/img-09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/logo-02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/owl.video.play.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/parallax/bgparallax-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/parallax/bgparallax-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/parallax/bgparallax-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/parallax/bgparallax-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/parallax/bgparallax-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/parallax/bgparallax-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/parallax/bgparallax-07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/paymenticon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/placeholder.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/placeholdervtwo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/products/img-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/products/img-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/products/img-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/products/img-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/products/img-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/products/img-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/products/img-07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/slider/img-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/slider/img-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/slider/img-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/slider/img-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/slider/img-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/slider/img-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/team/img-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/team/img-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/team/img-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/team/img-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/team/img-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/team/img-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/users/img-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/appear.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/countTo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/countdown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/gmap3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery-ui.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery.vide.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/owl.carousel.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/parallax.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/vendor/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/vendor/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/vendor/jquery-library.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/vendor/npm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheAllStatus.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheAuthors.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheBestSelling.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheCallToAction.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheCollectionCount.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheFeaturedItem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheFooter.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheHeader.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheHomeSlider.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheLastestNews.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheMain.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheNewRelease.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ThePickedByAuthor.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TheTestimonials.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/Command/BookingCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Command/BookingCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/Repository/BookingRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Repository/BookingRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/Repository/EBookRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Repository/EBookRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/Service/Provider/LibrarianProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Service/Provider/LibrarianProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../templates/backend/home/librarian.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/../templates/backend/home/librarian.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/../templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -260,6 +60,20 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="125268411">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts">
+        <counts>
+          <entry key="ESLintLanguageService" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -287,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/header/the-navigation-area/navigation/TheNavigationAllCategories.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
+            <state relative-caret-position="46">
               <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#li#0;n#template#0;n#!!top" />
@@ -296,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nuxt.config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2093">
-              <caret line="91" column="11" lean-forward="true" selection-start-line="83" selection-start-column="8" selection-end-line="91" selection-end-column="11" />
+            <state relative-caret-position="-874">
+              <caret line="13" column="64" selection-start-line="13" selection-start-column="61" selection-end-line="13" selection-end-column="86" />
             </state>
           </provider>
         </entry>
@@ -326,11 +140,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" selection-start-line="6" selection-end-line="12" />
+            <state relative-caret-position="437">
+              <caret line="19" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -419,10 +233,10 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="-1" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1909" />
+    <option name="width" value="1940" />
+    <option name="height" value="2111" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -432,7 +246,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -443,38 +256,27 @@
             <path>
               <item name="nuxt" type="b2602c69:ProjectViewProjectNode" />
               <item name="nuxt" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="nuxt" type="b2602c69:ProjectViewProjectNode" />
               <item name="nuxt" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="header" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="nuxt" type="b2602c69:ProjectViewProjectNode" />
               <item name="nuxt" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="header" type="462c0819:PsiDirectoryNode" />
-              <item name="the-navigation-area" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="nuxt" type="b2602c69:ProjectViewProjectNode" />
               <item name="nuxt" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="header" type="462c0819:PsiDirectoryNode" />
-              <item name="the-navigation-area" type="462c0819:PsiDirectoryNode" />
-              <item name="navigation" type="462c0819:PsiDirectoryNode" />
+              <item name="middleware" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="nuxt" type="b2602c69:ProjectViewProjectNode" />
               <item name="nuxt" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nuxt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nuxt" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="nuxt" type="b2602c69:ProjectViewProjectNode" />
@@ -490,6 +292,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -500,7 +303,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="editorconfig.notification" value="null" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/deployment-finished/deployment-finished" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
@@ -547,17 +350,17 @@
       <workItem from="1534508167512" duration="1385000" />
       <workItem from="1534511735637" duration="11729000" />
       <workItem from="1534526757313" duration="12000" />
+      <workItem from="1534534624898" duration="1755000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13126000" />
+    <option name="totallyTimeSpent" value="14881000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-1" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
+    <frame x="1273" y="0" width="1293" height="1407" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18356457" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37712896" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -690,9 +493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-          <folding>
-            <element signature="e#235#316#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -741,10 +541,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nuxt.config.js">
+    <entry file="file://$PROJECT_DIR$/components/header/the-navigation-area/navigation/TheNavigationAllCategories.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2093">
-          <caret line="91" column="11" lean-forward="true" selection-start-line="83" selection-start-column="8" selection-end-line="91" selection-end-column="11" />
+        <state relative-caret-position="46">
+          <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#li#0;n#template#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -765,20 +568,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/header/the-navigation-area/navigation/TheNavigationAllCategories.vue">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#li#0;n#template#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="437">
+          <caret line="19" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/nuxt.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" selection-start-line="6" selection-end-line="12" />
+        <state relative-caret-position="-874">
+          <caret line="13" column="64" selection-start-line="13" selection-start-column="61" selection-end-line="13" selection-end-column="86" />
         </state>
       </provider>
     </entry>

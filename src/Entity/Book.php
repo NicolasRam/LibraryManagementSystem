@@ -6,7 +6,16 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ *
+ * @ApiResource(
+ *     itemOperations={
+ *          "get",
+ *          "generate"={
+ *              "route_name"="count"
+ *          },
+ *      }
+ * )
+
  *
  * @ORM\MappedSuperclass
  * @ORM\InheritanceType("NONE")
