@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Library;
+use DateInterval;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,8 +21,9 @@ class HomeController extends Controller
     {
         $libraries = $this->getDoctrine()->getManager()->getRepository(Library::class)->findAll();
         $library = $this->getUser()->getLibrary();
-        $books = [];
 
+        $books = [];
+        $latepBooks = [];
         /*
          * @var PBook
          */
@@ -28,9 +31,25 @@ class HomeController extends Controller
             $books[] = $pbook->getBook();
         }
 
+        $datePlusOneDay = new DateTime('NOW');
+        $datePlusOneDay->add(new DateInterval('P1D'));
+//        echo $date->format('Y-m-d') . "\n";
+
+        foreach ($library->getPBooks() as $pbook) {
+            foreach ($pbook->getBookings() as $booking)
+                //dd($booking);
+            if (
+                (($booking->getEndDate()) < $datePlusOneDay) && (($booking->getReturnDate()) === NULL)
+        )
+            {
+            $latepBooks[] = $booking;
+            }
+        }
+
         return $this->render('backend/home/index.html.twig', [
             'books' => $books,
-            'libraries' => $libraries
+            'libraries' => $libraries,
+            'latepBooks' => $latepBooks
         ]);
     }
 }
