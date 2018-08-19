@@ -2,19 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use App\Filter\RegexpFilter;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+
 
 /**
- *
- * @ApiResource(
- *     itemOperations={
- *          "get",
- *          "generate"={
- *              "route_name"="api_book_count"
- *          },
- *      }
- * )
  *
  * @ORM\MappedSuperclass
  * @ORM\InheritanceType("NONE")

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Book;
+use App\Entity\EBook;
 use App\Entity\Library;
 use App\Entity\PBook;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -41,6 +42,25 @@ class BookRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * @param int $limit
+     * @return array
+     */
+    public function findBestSellers( $limit = 10 ) : array
+    {
+        return $this->createQueryBuilder('b')
+            #->join(EBook::class, 'eb')
+            #->where('eb.book_id = b.id')
+            #->groupBy('eb.book_id')
+            #->orderBy('eb.book_id')
+
+            ->setMaxResults( $limit )
+
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     /**
