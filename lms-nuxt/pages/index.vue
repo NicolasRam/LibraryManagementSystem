@@ -3,7 +3,7 @@
         <all-status
                 :booksCount="loadedBooksCount"
                 :membersCount="loadedMembersCount"
-                :librariesCount="loadedLibrariessCount"
+                :librariesCount="loadedLibrariesCount"
         />
 
         <best-selling/>
@@ -51,7 +51,7 @@
             loadedMembersCount() {
                 return this.$store.getters.loadedMembersCount
             },
-            loadedLibrariessCount() {
+            loadedLibrariesCount() {
                 return this.$store.getters.loadedLibrariesCount
             },
         }
