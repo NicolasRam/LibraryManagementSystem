@@ -8,40 +8,34 @@
 
 namespace App\Controller\API;
 
-use App\Repository\BookRepository;
+use App\Repository\MemberRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class BookController
+ * Class MemberController
  * @package App\Controller\API
  *
- * @Route("/api/books")
+ * @Route("/api/members")
  */
-class BookController extends Controller
+class MemberController extends Controller
 {
     /**
-     * Count action
-     *
      * @Route(
      *     "/count",
-     *     name="api_book_count",
+     *     name="api_member_count",
      *     defaults={
-     *          "#_api_resource_class"=Book::class,
+     *          "#_api_resource_class"=Member::class,
      *          "_api_item_operation_name"="count",
      *          "_api_receive"=false
      *      }
      * )
-     *
-     * @param BookRepository $bookRepository
-     * @return JsonResponse
-     *
      */
-    public function count( BookRepository $bookRepository )
+    public function count( MemberRepository $memberRepository )
     {
-        $booksCount = $bookRepository->count([]);
+        $membersCount = $memberRepository->count([]);
 
-        return new JsonResponse( [ 'booksCount' => $booksCount ] );
+        return new JsonResponse( [ 'membersCount' => $membersCount ] );
     }
 }

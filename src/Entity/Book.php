@@ -11,11 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  *     itemOperations={
  *          "get",
  *          "generate"={
- *              "route_name"="count"
+ *              "route_name"="api_book_count"
  *          },
  *      }
  * )
-
  *
  * @ORM\MappedSuperclass
  * @ORM\InheritanceType("NONE")
