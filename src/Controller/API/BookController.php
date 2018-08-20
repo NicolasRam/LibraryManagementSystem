@@ -3,21 +3,18 @@
  * Created by PhpStorm.
  * User: moula
  * Date: 18/08/2018
- * Time: 18:27
+ * Time: 18:27.
  */
 
 namespace App\Controller\API;
 
 use App\Entity\Book;
 use App\Repository\BookRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class BookController
- * @package App\Controller\API
+ * Class BookController.
  *
  * @Route("/api/books")
  */
@@ -26,7 +23,7 @@ class BookController
     private $bookRepository;
 
     /**
-     * Count action
+     * Count action.
      *
      * @Route(
      *     name="api_book_count",
@@ -38,18 +35,17 @@ class BookController
      * )
      *
      * @param BookRepository $bookRepository
-     * @return JsonResponse
      *
+     * @return JsonResponse
      */
-    public function count( BookRepository $bookRepository )
+    public function count(BookRepository $bookRepository)
     {
         $booksCount = $bookRepository->count([]);
 
-        return new JsonResponse( [ 'booksCount' => $booksCount ] );
+        return new JsonResponse(['booksCount' => $booksCount]);
     }
 
-
-    public function __construct( BookRepository $bookRepository )
+    public function __construct(BookRepository $bookRepository)
     {
         $this->bookRepository = $bookRepository;
     }
@@ -68,7 +64,6 @@ class BookController
      * @return array
      */
     public function bestSellers()
-//    public function __invoke()
     {
         return $this->bookRepository->findBestSellers(5);
     }
@@ -107,7 +102,6 @@ class BookController
     {
         return new JsonResponse(['book' => $this->bookRepository->findAll()[0]]);
     }
-
 
     /**
      * @Route(

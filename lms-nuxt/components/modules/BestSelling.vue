@@ -11,13 +11,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div id="tg-bestsellingbooksslider"
                          class="tg-bestsellingbooksslider tg-bestsellingbooks owl-carousel">
-                        <div class="item" v-for="(bestSellingBook, index) in bestSellingBooks" :key="index">
+                        <div class="item" v-for="(book, index) in bestSellingBooks" :key="index">
                             <div class="tg-postbook">
                                 <figure class="tg-featureimg">
                                     <div class="tg-bookimg">
-                                        <div class="tg-frontcover"><img src="~assets/images/books/img-01.jpg"
+                                        <div class="tg-frontcover"><img :src="book.image.path"
                                                                         alt="image description"></div>
-                                        <div class="tg-backcover"><img src="~assets/images/books/img-01.jpg"
+                                        <div class="tg-backcover"><img :src="book.image.path"
                                                                        alt="image description"></div>
                                     </div>
 
@@ -36,18 +36,18 @@
                                     <div class="tg-themetagbox"><span class="tg-themetag">sale</span></div>
 
                                     <div class="tg-booktitle">
-                                        <h3><a href="javascript:void(0);">Help Me Find My Stomach</a></h3>
+                                        <h3><a href="javascript:void(0);">{{book.title}}</a></h3>
                                     </div>
 
-                                    <span class="tg-bookwriter">By: <a
-                                            href="javascript:void(0);">Angela Gunning</a></span>
+                                    <span class="tg-bookwriter">Par: <a href="javascript:void(0);">{{ book.author.firstName }}</a></span>
 
                                     <span class="tg-stars"><span></span></span>
 
                                     <span class="tg-bookprice">
-                                                        <ins>$25.18</ins>
-                                                        <del>$27.20</del>
-                                                    </span>
+                                        <ins>$25.18</ins>
+                                        <del>$27.20</del>
+                                    </span>
+
                                     <a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
                                         <i class="fa fa-shopping-basket"></i>
                                         <em>Add To Basket</em>
@@ -64,6 +64,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import axios from 'axios'
 
     export default {
         name: 'BestSelling',
@@ -75,6 +76,24 @@
             ])
         },
 
+        data: {
+            author : null
+        },
+
+        methods: {
+            getAuthor: function (url) {
+                return axios.get('http://54.36.182.3' + url)
+                    .then((response) => {
+                        alert(response.data);
+                        return response.data;
+                    })
+                    .catch(error => {
+                        alert('http://54.36.182.3' + url);
+                        alert(error);
+                        console.log(error)
+                    });
+            }
+        },
 
         props: {
             bestSellingBooks: {

@@ -2,13 +2,11 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource()
- *
  * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
  */
 class Author
@@ -21,12 +19,16 @@ class Author
     private $id;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     private $firstName;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
@@ -44,7 +46,7 @@ class Author
 
     /**
      * @var Book[]
-     * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="author", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="author")
      */
     private $books;
 
@@ -54,25 +56,25 @@ class Author
 //     */
 //    private $contributedBooks;
 
-    /**
-     * @return Book[]
-     */
-    public function getContributedBooks()
-    {
-        return $this->contributedBooks;
-    }
-
-    /**
-     * @param mixed $contributedBooks
-     *
-     * @return Author
-     */
-    public function setContributedBooks($contributedBooks)
-    {
-        $this->contributedBooks = $contributedBooks;
-
-        return $this;
-    }
+//    /**
+//     * @return Book[]
+//     */
+//    public function getContributedBooks()
+//    {
+//        return $this->contributedBookscontributedBooks;
+//    }
+//
+//    /**
+//     * @param mixed $contributedBooks
+//     *
+//     * @return Author
+//     */
+//    public function setContributedBooks($contributedBooks)
+//    {
+//        $this->contributedBooks = $contributedBooks;
+//
+//        return $this;
+//    }
 
     public function __construct()
     {
@@ -138,7 +140,8 @@ class Author
      */
     public function getBooks(): array
     {
-        return $this->books;
+//        return $this->books;
+        return [];
     }
 
     public function addBook(Book $book): self

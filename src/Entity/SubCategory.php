@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -13,10 +11,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class SubCategory
 {
     /**
-     * @Groups(
-     *     "category"
-     * )
-     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -29,7 +23,6 @@ class SubCategory
      * )
      *
      * @ORM\Column(type="string", length=255)
-     *
      */
     private $name;
 

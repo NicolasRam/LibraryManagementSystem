@@ -40,3 +40,6 @@ src/MakerBundle/
 =======
 /docker/jenkins/data
 >>>>>>> 1450bec079f89606ed634de36c87c4c1c8e9193e
+
+/nuxt
+/frontend

@@ -273,7 +273,6 @@ const createStore = () => {
                     })
                     .catch(e => context.error(e));
 
-                /*
                 context.app.$axios
                     .$get( "/books/call-to-action" )
                     .then(data => {
@@ -294,7 +293,6 @@ const createStore = () => {
                         vuexContext.commit("setBestSellingAuthors", data['hydra:member']);
                     })
                     .catch(e => context.error(e));
-                */
 
                 context.app.$axios
                     .$get("/categories", [], { headers: { 'Content-Type': 'application/json'} })

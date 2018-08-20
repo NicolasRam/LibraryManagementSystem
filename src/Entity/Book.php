@@ -2,15 +2,10 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use App\Filter\RegexpFilter;
-use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- *
  * @ORM\MappedSuperclass
  * @ORM\InheritanceType("NONE")
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
@@ -18,6 +13,8 @@ use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
 class Book
 {
     /**
+     * @Groups( "book" )
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -25,31 +22,43 @@ class Book
     private $id;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $isbn;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $resume;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\Column(type="integer", nullable=true)
      */
     private $pageNumber;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\OneToOne(
      *     targetEntity="App\Entity\Image",
      *     mappedBy="book",
@@ -60,6 +69,8 @@ class Book
     private $image;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="books")
      */
     private $author;
@@ -74,17 +85,23 @@ class Book
 //    private $authors;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\OneToOne(targetEntity="EBook", mappedBy="book", cascade={"persist", "remove"})
      */
     private $eBook;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\SubCategory", inversedBy="books")
      * @ORM\JoinColumn(nullable=false)
      */
     private $subCategory;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\OneToMany(targetEntity="PBook", mappedBy="book", cascade={"persist", "remove"})
      * @ORM\Column(type="object", nullable=true)
      */

@@ -2,12 +2,10 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
- *
  * @ORM\Entity(repositoryClass="App\Repository\FileRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="file_type", type="string")
@@ -38,6 +36,8 @@ class File
     private $isLocal;
 
     /**
+     * @Groups( "book" )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $path;
