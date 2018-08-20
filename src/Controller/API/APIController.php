@@ -27,7 +27,7 @@ class APIController extends Controller
     /**
      * @Route(
      *     "/books/call-to-action",
-     *     name="api_api_call_to_action",
+     *     name="api_call_to_action",
      *     defaults={
      *          "_api_item_operation_name"="count",
      *          "_api_receive"=false
@@ -39,12 +39,32 @@ class APIController extends Controller
     {
         return new JsonResponse(
             [
-                'callToAction' =>
+                'actions' =>
                     [
                         'title' => 'Open Discount For All',
                         'content' => 'Consectetur Adipisicing Elit Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore.',
                         'link' => '',
                     ]
+            ]
+        );
+    }
+
+    /**
+     * @Route(
+     *     "/books/latest-posts",
+     *     name="api_latest_posts",
+     *     defaults={
+     *          "_api_item_operation_name"="latest_posts",
+     *          "_api_receive"=false
+     *      }
+     * )
+     * @return JsonResponse
+     */
+    public function latestPosts()
+    {
+        return new JsonResponse(
+            [
+                'posts' => []
             ]
         );
     }

@@ -238,7 +238,6 @@ const createStore = () => {
                     })
                     .catch(e => context.error(e));
 
-
                 context.app.$axios
                     .$get("/books/featured")
                     .then(data => {
@@ -250,13 +249,6 @@ const createStore = () => {
                     .$get("/books/new-releases", [], { headers: { 'Content-Type': 'application/json'} })
                     .then(data => {
                         vuexContext.commit("setNewReleaseBooks", data['hydra:member']);
-                    })
-                    .catch(e => context.error(e));
-
-                context.app.$axios
-                    .$get("/sub-categories/counts")
-                    .then(data => {
-                        vuexContext.commit("setCollectionCounts", data.counts);
                     })
                     .catch(e => context.error(e));
 
@@ -273,7 +265,7 @@ const createStore = () => {
                         vuexContext.commit("setTestimonials", data['hydra:member']);
                     })
                     .catch(e => context.error(e));
-                
+
                 context.app.$axios
                     .$get("/authors/most-populars", [], { headers: { 'Content-Type': 'application/json'} })
                     .then(data => {
@@ -281,17 +273,18 @@ const createStore = () => {
                     })
                     .catch(e => context.error(e));
 
+                /*
                 context.app.$axios
-                    .$get( "/call-to-action" )
+                    .$get( "/books/call-to-action" )
                     .then(data => {
-                        vuexContext.commit("setCallToAction", data.callToAction);
+                        vuexContext.commit("setCallToAction", data.actions);
                     })
                     .catch(e => context.error(e));
 
                 context.app.$axios
-                    .$get("/posts/latest", [], { headers: { 'Content-Type': 'application/json'} })
+                    .$get("/books/latest-posts")
                     .then(data => {
-                        vuexContext.commit("setLatestPosts", data['hydra:member']);
+                        vuexContext.commit("setLatestPosts", data.posts);
                     })
                     .catch(e => context.error(e));
 
@@ -301,6 +294,7 @@ const createStore = () => {
                         vuexContext.commit("setBestSellingAuthors", data['hydra:member']);
                     })
                     .catch(e => context.error(e));
+                */
 
                 context.app.$axios
                     .$get("/categories", [], { headers: { 'Content-Type': 'application/json'} })

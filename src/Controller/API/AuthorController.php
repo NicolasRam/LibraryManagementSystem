@@ -8,6 +8,7 @@
 
 namespace App\Controller\API;
 
+use App\Entity\Author;
 use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -47,7 +48,6 @@ class AuthorController extends Controller
         return new JsonResponse(['authorsCount' => $authorsCount]);
     }
 
-
     /**
      * @Route(
      *     name="api_author_most_populars",
@@ -61,7 +61,25 @@ class AuthorController extends Controller
      *
      * @return array
      */
-    public function newReleases()
+    public function mostPopulars()
+    {
+        return $this->authorRepository->findBy([],[],10);
+    }
+
+    /**
+     * @Route(
+     *     name="api_author_best_selling",
+     *     path="/best-selling",
+     *     methods={"GET"},
+     *     defaults={
+     *         "_api_resource_class"=Author::class,
+     *         "_api_collection_operation_name"="best_selling"
+     *     }
+     * )
+     *
+     * @return array
+     */
+    public function bestSelling()
     {
         return $this->authorRepository->findBy([],[],10);
     }
