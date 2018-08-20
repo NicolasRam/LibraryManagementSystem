@@ -1,6 +1,4 @@
 resources:
-  App\Entity\Author: ~
-
   App\Entity\Category:
     shortName: 'Category'
     description: 'An category from our library'
@@ -23,7 +21,44 @@ resources:
         swagger_context:
           summary: "Best Sellers"
           description: "Book that have been bye more"
+      api_book_new_releases:
+        swagger_context:
+          summary: "Best Sellers"
+          description: "Book that have been bye more"
+      api_book_picked_by_author:
+        swagger_context:
+          summary: "Best Sellers"
+          description: "Book that have been bye more"
     itemOperations:
       get: ~
       api_book_count:
         route_name: 'api_book_count'
+      featured:
+        route_name: 'api_book_featured'
+      api_api_call_to_action:
+        route_name: 'api_book_featured'
+
+  App\Entity\SubCategory:
+    itemOperations:
+      get: ~
+      api_sub_category_count:
+        route_name: 'api_sub_category_count'
+      api_sub_category_counts:
+
+  App\Entity\Testimonial:
+    itemOperations:
+      get: ~
+      api_testimonial_count:
+        route_name: 'api_testimonial_count'
+        
+  App\Entity\Author:
+    collectionOperations:
+      get: ~
+      api_author_most_populars:
+        swagger_context:
+          summary: "Best Sellers"
+          description: "Book that have been bye more"
+    itemOperations:
+      get: ~
+      api_author_count:
+        route_name: 'api_author_count'

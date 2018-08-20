@@ -1046,7 +1046,7 @@ var classes = [
         "violations": {}
     },
     {
-        "name": "App\\Repository\\SubscriptionTypeRepository",
+        "name": "App\\Repository\\SubscriptionRepository",
         "interface": false,
         "abstract": false,
         "methods": [

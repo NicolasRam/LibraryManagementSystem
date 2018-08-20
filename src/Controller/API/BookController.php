@@ -23,6 +23,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class BookController
 {
+    private $bookRepository;
+
     /**
      * Count action
      *
@@ -31,7 +33,6 @@ class BookController
      *     path="/count",
      *     methods={"GET"},
      *     defaults={
-     *         "_api_resource_class"=Book::class,
      *         "_api_item_operation_name"="count"
      *     }
      * )
@@ -64,12 +65,65 @@ class BookController
      *     }
      * )
      *
-     * @return BookRepository
+     * @return array
      */
-    public function __invoke()
+    public function bestSellers()
+//    public function __invoke()
     {
-        # Ta logique
+        return $this->bookRepository->findBestSellers(5);
+    }
 
+    /**
+     * @Route(
+     *     name="api_book_new_releases",
+     *     path="/new-releases",
+     *     methods={"GET"},
+     *     defaults={
+     *         "_api_resource_class"=Book::class,
+     *         "_api_collection_operation_name"="new_releases"
+     *     }
+     * )
+     *
+     * @return array
+     */
+    public function newReleases()
+    {
+        return $this->bookRepository->findBestSellers(5);
+    }
+
+    /**
+     * @Route(
+     *     name="api_book_featured",
+     *     path="/featured",
+     *     methods={"GET"},
+     *     defaults={
+     *         "_api_item_operation_name"="featured"
+     *     }
+     * )
+     *
+     * @return JsonResponse
+     */
+    public function featured()
+    {
+        return new JsonResponse(['book' => $this->bookRepository->findAll()[0]]);
+    }
+
+
+    /**
+     * @Route(
+     *     name="api_book_picked_by_author",
+     *     path="/picked-by-author",
+     *     methods={"GET"},
+     *     defaults={
+     *         "_api_resource_class"=Book::class,
+     *         "_api_collection_operation_name"="picked_by_author"
+     *     }
+     * )
+     *
+     * @return array
+     */
+    public function pickedByAuthor()
+    {
         return $this->bookRepository->findBestSellers(5);
     }
 }

@@ -8,8 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
- *
  * @ORM\Entity(repositoryClass="App\Repository\SubCategoryRepository")
  */
 class SubCategory

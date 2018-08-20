@@ -65,10 +65,13 @@
             },
         },
 
-        computed: {
+        methods:{
             subCategoryGroups (category) {
                 return category ? Array.from(Array(Math.ceil(category.subCategories.length / this.itemsPerRow)).keys()) : 0;
             }
+        },
+
+        computed: {
         },
     }
 </script>

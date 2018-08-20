@@ -240,9 +240,9 @@ const createStore = () => {
 
 
                 context.app.$axios
-                    .$get("/books/featured", [], { headers: { 'Content-Type': 'application/json'} })
+                    .$get("/books/featured")
                     .then(data => {
-                        vuexContext.commit("setFeaturedBook", data['hydra:member']);
+                        vuexContext.commit("setFeaturedBook", data.book);
                     })
                     .catch(e => context.error(e));
 
@@ -254,9 +254,9 @@ const createStore = () => {
                     .catch(e => context.error(e));
 
                 context.app.$axios
-                    .$get("/sub-categories/counts", [], { headers: { 'Content-Type': 'application/json'} })
+                    .$get("/sub-categories/counts")
                     .then(data => {
-                        vuexContext.commit("setCollectionCounts", data['hydra:member']);
+                        vuexContext.commit("setCollectionCounts", data.counts);
                     })
                     .catch(e => context.error(e));
 
@@ -282,9 +282,9 @@ const createStore = () => {
                     .catch(e => context.error(e));
 
                 context.app.$axios
-                    .$get("/call-to-action", [], { headers: { 'Content-Type': 'application/json'} })
+                    .$get( "/call-to-action" )
                     .then(data => {
-                        vuexContext.commit("setCallToAction", data['hydra:member']);
+                        vuexContext.commit("setCallToAction", data.callToAction);
                     })
                     .catch(e => context.error(e));
 

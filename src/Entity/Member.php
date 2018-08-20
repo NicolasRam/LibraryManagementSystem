@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
@@ -44,12 +45,23 @@ class Member extends User
      */
     private $memberType;
 
+    /**
+     * @Groups(
+     *     "member"
+     * )
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Testimonial", mappedBy="member")
+     */
+    private $testimonials;
+
+
     public function __construct()
     {
         $this->roles = [ self::ROLE_MEMBER ];
         $this->bookings = new ArrayCollection();
         $this->memberEBooks = new ArrayCollection();
         $this->memberSubscriptions = new ArrayCollection();
+        $this->testimonials = new ArrayCollection();
     }
 
     /**
@@ -153,6 +165,38 @@ class Member extends User
     public function setMemberType(?MemberType $memberType): self
     {
         $this->memberType = $memberType;
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection|Testimonial[]
+     */
+    public function getTestimonials(): Collection
+    {
+        return $this->testimonials;
+    }
+
+    public function addTestimonial(Testimonial $testimonial): self
+    {
+        if (!$this->testimonials->contains($testimonial)) {
+            $this->testimonials[] = $testimonial;
+            $testimonial->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTestimonial(Testimonial $testimonial): self
+    {
+        if ($this->testimonials->contains($testimonial)) {
+            $this->testimonials->removeElement($testimonial);
+            // set the owning side to null (unless already changed)
+            if ($testimonial->getMember() === $this) {
+                $testimonial->setMember(null);
+            }
+        }
 
         return $this;
     }
