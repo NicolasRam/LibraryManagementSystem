@@ -3,16 +3,21 @@
     <div class="container">
       <div class="row">
         <div class="tg-featureditm">
-          <div
-            class="col-xs-12 col-sm-12 col-md-4 col-lg-4 hidden-sm hidden-xs"
-            v-if="bestFeaturedBook.hasOwnProperty('image') && bestFeaturedBook.image.hasOwnProperty('path')"
-          >
-            <figure><img :src="bestFeaturedBook.image.path" alt="image description"></figure>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 hidden-sm hidden-xs" >
+            <figure v-if="false && bestFeaturedBook.hasOwnProperty('image') && bestFeaturedBook.image.hasOwnProperty('path')" >
+              <img :src="bestFeaturedBook.image.path" alt="image description">
+            </figure>
+
+            <figure v-else >
+              <img src="http://exprostudio.com/html/book_library/images/img-02.png" alt="image description">
+            </figure>
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="tg-featureditmcontent">
-              <div class="tg-themetagbox"><span class="tg-themetag">à la une</span></div>
+              <div class="tg-themetagbox">
+                <span class="tg-themetag">à la une</span>
+              </div>
 
               <div class="tg-booktitle">
                 <h3><a href="javascript:void(0);">{{bestFeaturedBook.title}}</a></h3>
@@ -21,7 +26,10 @@
               <span class="tg-bookwriter"
                     v-if="bestFeaturedBook.hasOwnProperty('author') && bestFeaturedBook.author.hasOwnProperty('firstName') && bestFeaturedBook.author.hasOwnProperty('lastName')"
               >
-                Par: <a href="javascript:void(0);">{{bestFeaturedBook.author.firstName + ' ' + bestFeaturedBook.author.lastName}}</a></span>
+                Par: <a href="javascript:void(0);">
+                  {{bestFeaturedBook.author.firstName + ' ' + bestFeaturedBook.author.lastName}}
+              </a>
+              </span>
 
               <span class="tg-stars"><span></span></span>
 

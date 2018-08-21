@@ -14,9 +14,10 @@
 
 <script>
     import TheSlideItem from "@/components/slider/slide/TheSlideItem";
+
     export default {
         name: "TheSlide",
-      components: {TheSlideItem},
+        components: {TheSlideItem},
     }
 </script>
 

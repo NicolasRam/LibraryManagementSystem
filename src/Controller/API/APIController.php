@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: moula
  * Date: 18/08/2018
- * Time: 18:27
+ * Time: 18:27.
  */
 
 namespace App\Controller\API;
@@ -13,8 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class ApiController
- * @package App\Controller\API
+ * Class ApiController.
  *
  * @Route("/api")
  */
@@ -33,18 +32,18 @@ class APIController extends Controller
      *          "_api_receive"=false
      *      }
      * )
+     *
      * @return JsonResponse
      */
     public function callToAction()
     {
         return new JsonResponse(
             [
-                'actions' =>
-                    [
-                        'title' => 'Open Discount For All',
-                        'content' => 'Consectetur Adipisicing Elit Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore.',
-                        'link' => '',
-                    ]
+                'actions' => [
+                        'title' => 'Ouverture d\'une Nouvelle librairie',
+                        'content' => 'Nous sommes heureux de vous annoncer l\'ouverture de notre nouvelle librairie.',
+                        'link' => 'j\'y vais',
+                    ],
             ]
         );
     }
@@ -58,13 +57,14 @@ class APIController extends Controller
      *          "_api_receive"=false
      *      }
      * )
+     *
      * @return JsonResponse
      */
     public function latestPosts()
     {
         return new JsonResponse(
             [
-                'posts' => []
+                'posts' => [],
             ]
         );
     }

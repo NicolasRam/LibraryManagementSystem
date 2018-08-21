@@ -9,7 +9,7 @@
         <best-selling :bestSellingBooks="loadedBestSellingBooks"/>
         <featured-item :bestFeaturedBook="loadedFeaturedBook"/>
         <new-release :newReleaseBooks="loadedNewReleaseBooks"/>
-        <collection-count :collectionCount="loadedCollectionCounts"/>
+        <collection-counts :collectionCounts="loadedCollectionCounts"/>
         <picked-by-authors :pickedByAuthors="loadedPickedByAuthorBooks"/>
         <testimonials :testimonials="loadedTestimonials"/>
         <authors :mostPopularAuthors="loadedMostPopularAuthors"/>
@@ -23,7 +23,7 @@
     import BestSelling from "../components/modules/BestSelling";
     import FeaturedItem from "../components/modules/FeaturedItem";
     import NewRelease from "../components/modules/NewRelease";
-    import CollectionCount from "../components/modules/CollectionCount";
+    import CollectionCounts from "../components/modules/CollectionCounts";
     import PickedByAuthors from "../components/modules/PickedByAuthors";
     import Testimonials from "../components/modules/Testimonials";
     import Authors from "../components/modules/Authors";
@@ -37,7 +37,7 @@
             Authors,
             Testimonials,
             PickedByAuthors,
-            CollectionCount,
+            CollectionCounts,
             NewRelease,
             FeaturedItem,
             BestSelling,

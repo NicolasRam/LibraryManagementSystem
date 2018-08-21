@@ -4,7 +4,7 @@
       <div class="tg-status">
         <div class="tg-statuscontent">
           <span class="tg-statusicon"><i class="icon-book"></i></span>
-          <h2>Books we have<span>{{booksCount}}</span></h2>
+          <h2>Nombre de Livres<span>{{booksCount}}</span></h2>
         </div>
       </div>
     </div>

@@ -4,12 +4,11 @@
         <div class="mega-menu">
             <ul class="tg-themetabnav" role="tablist">
 
-                <li role="presentation" :class="{ 'active': index === 0 }" v-for="(category, index ) in categories" :key="category.id">
-                    <a :href="'#' + category.slug" :aria-controls="key" role="tab"
+                <li role="presentation" :class="{ 'active': index === 0 }" v-for="(category, index ) in categories" :key="index">
+                    <a :href="'#' + category.slug" :aria-controls="category.slug" role="tab"
                        data-toggle="tab">{{ category.name }}</a>
                 </li>
             </ul>
-
 
             <div class="tab-content tg-themetabcontent">
                 <div role="tabpanel" :class="[index === 0 ? 'active' : '', 'tab-pane']" :id="category.slug" v-for="(category, index) in categories" :key="category.id">
@@ -20,12 +19,12 @@
                             </div>
 
                             <ul>
-                                <li v-for="(subCategory, index) in category.subCategories.slice(i * itemsPerRow, (i + 1) * itemsPerRow)" :key="subCategory.id">
+                                <li v-for="(subCategory, index) in subCategoryGroup" :key="index">
                                     <a href="products.html">{{subCategory.name}}</a>
                                 </li>
                             </ul>
 
-                            <a class="tg-btnviewall" href="products.html">View All</a>
+                            <nuxt-link class="tg-btnviewall" to="/book">Voir tout</nuxt-link>
                         </li>
                     </ul>
 
@@ -38,7 +37,8 @@
                                     <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna
                                         aliqua enim.</p>
                                 </div>
-                                <a class="tg-btn" href="products.html">view all</a>
+
+                                <nuxt-link class="tg-btn" to="/book">Voir tout</nuxt-link>
                             </div>
                         </li>
                     </ul>

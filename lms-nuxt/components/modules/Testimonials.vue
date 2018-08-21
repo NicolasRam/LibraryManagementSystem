@@ -6,13 +6,22 @@
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-lg-push-2">
             <div id="tg-testimonialsslider" class="tg-testimonialsslider tg-testimonials owl-carousel">
               <div class="item tg-testimonial" v-for="(testimonial, index) in testimonials">
-                <figure><img src="http://exprostudio.com/html/book_library/images/author/imag-02.jpg" alt="image description"></figure>
+                <figure>
+                  <img
+                    :src="'http://exprostudio.com/html/book_library/images/author/imag-0' + getRandomInt(1,10) + '.jpg'"
+                    alt="image description">
+                </figure>
 
-                <blockquote><q>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore tolore magna aliqua enim ad minim veniam, quis nostrud exercitation ullamcoiars nisi ut aliquip commodo.</q></blockquote>
+                <blockquote>
+                  <q>{{testimonial.message}}</q>
+                </blockquote>
 
-                <div class="tg-testimonialauthor">
-                  <h3>Holli Fenstermacher</h3>
-                  <span>Manager @ CIFP</span>
+                <div class="tg-testimonialauthor" v-if="testimonial.hasOwnProperty(member) && testimonial.member">
+                  <h3 v-if="testimonial.member.hasOwnProperty('firstName') && testimonial.member.hasOwnProperty('lastName')">
+                    {{testimonial.member.firstName + " " + testimonial.member.lastName}}
+                  </h3>
+
+                  <span v-if="false">Manager @ CIFP</span>
                 </div>
 
               </div>
@@ -34,5 +43,12 @@
         default: []
       },
     },
+
+
+    methods: {
+      getRandomInt( min, max ){
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      },
+    }
   }
 </script>

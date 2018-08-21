@@ -5,7 +5,7 @@
             <div class="tg-status">
                 <div class="tg-statuscontent">
                     <span class="tg-statusicon"><i class="icon-user"></i></span>
-                    <h2>Total members<span>{{ membersCount }}</span></h2>
+                    <h2>Membres inscrits<span>{{ membersCount }}</span></h2>
                 </div>
             </div>
         </div>

@@ -2,9 +2,7 @@
     <div class="tg-home tg-homeone">
         <div id="tg-wrapper" class="tg-wrapper tg-haslayout">
             <the-header :categories="loadedCategories"/>
-            <the-slider/>
             <nuxt/>
-            <!--<the-footer/>-->
         </div>
     </div>
 </template>

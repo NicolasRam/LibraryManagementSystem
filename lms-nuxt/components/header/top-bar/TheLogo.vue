@@ -1,8 +1,8 @@
 <template>
   <strong class="tg-logo">
-    <a href="#">
+    <nuxt-link to="/">
       <img src="http://exprostudio.com/html/book_library/images/logo.png" alt="LMS | Library Management System">
-    </a>
+    </nuxt-link>
   </strong>
 </template>
 

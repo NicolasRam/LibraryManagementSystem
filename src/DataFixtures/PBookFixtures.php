@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: moulaye
  * Date: 24/07/18
- * Time: 16:50
+ * Time: 16:50.
  */
 
 namespace App\DataFixtures;
@@ -18,7 +18,7 @@ class PBookFixtures extends Fixture implements OrderedFixtureInterface
     public const PBOOKS_REFERENCE = 'pbooks';
 
     /**
-     * Load data fixtures with the passed EntityManager
+     * Load data fixtures with the passed EntityManager.
      *
      * @param ObjectManager $manager
      */
@@ -27,20 +27,21 @@ class PBookFixtures extends Fixture implements OrderedFixtureInterface
         $status = PBook::STATUS;
 
         $j = 0;
-        for ($i = 0; $i < BookFixtures::BOOKS_COUNT_REFERENCE; $i++) {
-            for ($k = 0; $k < LibraryFixtures::LIBRARIES_COUNT_REFERENCE - 1; $k++) {
+        for ($i = 0; $i < BookFixtures::BOOKS_COUNT_REFERENCE; ++$i) {
+            for ($k = 0; $k < LibraryFixtures::LIBRARIES_COUNT_REFERENCE; ++$k) {
                 if (2 !== rand(0, 5)) {
                     $pBookCount = mt_rand(0, 5);
 
-                    for ($m = 0; $m < $pBookCount; $m++) {
+                    for ($m = 0; $m < $pBookCount; ++$m) {
                         $pBook = new PBook();
 
-                        $manager->persist($pBook);
-                        $pBook->setBook($this->getReference(BookFixtures::BOOKS_REFERENCE . $i));
-                        $pBook->setLibrary($this->getReference(LibraryFixtures::LIBRARIES_REFERENCE . $k));
+                        $pBook->setBook($this->getReference(BookFixtures::BOOKS_REFERENCE.$i));
+                        $pBook->setLibrary($this->getReference(LibraryFixtures::LIBRARIES_REFERENCE.$k));
                         $pBook->setStatus([PBook::STATUS_INSIDE]);
 
-                        $this->addReference(self::PBOOKS_REFERENCE . $j++, $pBook);
+                        $manager->persist($pBook);
+
+                        $this->addReference(self::PBOOKS_REFERENCE.$j++, $pBook);
                     }
                 }
             }
@@ -50,9 +51,9 @@ class PBookFixtures extends Fixture implements OrderedFixtureInterface
     }
 
     /**
-     * Get the order of this fixture
+     * Get the order of this fixture.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {

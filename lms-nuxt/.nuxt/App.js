@@ -24,7 +24,9 @@ import '../assets/css/responsive.css'
 
 let layouts = {
 
-  "_default": () => import('../layouts/default.vue'  /* webpackChunkName: "layouts/default" */).then(m => m.default || m)
+  "_default": () => import('../layouts/default.vue'  /* webpackChunkName: "layouts/default" */).then(m => m.default || m),
+
+  "_login": () => import('../layouts/login.vue'  /* webpackChunkName: "layouts/login" */).then(m => m.default || m)
 
 }
 

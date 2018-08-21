@@ -3,6 +3,9 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+const _45bf7e3a = () => import('../pages/member/index.vue' /* webpackChunkName: "pages/member/index" */).then(m => m.default || m)
+const _ae322136 = () => import('../pages/member/subscription.vue' /* webpackChunkName: "pages/member/subscription" */).then(m => m.default || m)
+const _0f672151 = () => import('../pages/member/login.vue' /* webpackChunkName: "pages/member/login" */).then(m => m.default || m)
 const _1900edf6 = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
 
 
@@ -63,6 +66,21 @@ export function createRouter () {
     linkExactActiveClass: 'nuxt-link-exact-active',
     scrollBehavior,
     routes: [
+		{
+			path: "/member",
+			component: _45bf7e3a,
+			name: "member"
+		},
+		{
+			path: "/member/subscription",
+			component: _ae322136,
+			name: "member-subscription"
+		},
+		{
+			path: "/member/login",
+			component: _0f672151,
+			name: "member-login"
+		},
 		{
 			path: "/",
 			component: _1900edf6,

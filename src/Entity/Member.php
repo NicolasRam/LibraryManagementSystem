@@ -2,22 +2,13 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource(
- *     itemOperations={
- *          "get",
- *          "generate"={
- *              "route_name"="api_member_count"
- *          },
- *      }
- * )
- *
  * @ORM\MappedSuperclass()
  *
  * @ORM\Entity(repositoryClass="App\Repository\MemberRepository")
@@ -54,10 +45,16 @@ class Member extends User
      */
     private $testimonials;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank()
+     * @Assert\Length(min="10", max="10")
+     */
+    private $phone;
 
     public function __construct()
     {
-        $this->roles = [ self::ROLE_MEMBER ];
+        $this->roles = [self::ROLE_MEMBER];
         $this->bookings = new ArrayCollection();
         $this->memberEBooks = new ArrayCollection();
         $this->memberSubscriptions = new ArrayCollection();
@@ -169,7 +166,6 @@ class Member extends User
         return $this;
     }
 
-
     /**
      * @return Collection|Testimonial[]
      */
@@ -197,6 +193,26 @@ class Member extends User
                 $testimonial->setMember(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $phone
+     *
+     * @return Member
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
 
         return $this;
     }

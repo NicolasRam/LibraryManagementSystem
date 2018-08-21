@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="tg-sectionhead">
-            <h2><span>Choix des membres</span>Meilleur ventes</h2>
+            <h2><span>Choix des membres</span>Meilleures ventes</h2>
 
             <a class="tg-btn" href="javascript:void(0);">Voir tout</a>
           </div>

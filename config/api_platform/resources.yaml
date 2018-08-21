@@ -84,3 +84,10 @@ resources:
             get: ~
             api_testimonial_count:
                 route_name: 'api_testimonial_count'
+
+    App\Entity\Member:
+        itemOperations:
+            get: ~
+            api_member_count:
+            api_member_current:
+            api_member_suscribe:

@@ -3,26 +3,24 @@
  * Created by PhpStorm.
  * User: moula
  * Date: 18/08/2018
- * Time: 18:27
+ * Time: 18:27.
  */
 
 namespace App\Controller\API;
 
-use App\Entity\SubCategory;
 use App\Repository\SubCategoryRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class SubCategoryController
- * @package App\Controller\API
+ * Class SubCategoryController.
  *
  * @Route("/api/sub-categories")
  */
 class SubCategoryController
 {
     /**
-     * Count action
+     * Count action.
      *
      * @Route(
      *     name="api_sub_category_count",
@@ -34,18 +32,18 @@ class SubCategoryController
      * )
      *
      * @param SubCategoryRepository $subCategoryRepository
-     * @return JsonResponse
      *
+     * @return JsonResponse
      */
-    public function count( SubCategoryRepository $subCategoryRepository )
+    public function count(SubCategoryRepository $subCategoryRepository)
     {
         $subCategoriesCount = $subCategoryRepository->count([]);
 
-        return new JsonResponse( [ 'subCategoriesCount' => $subCategoriesCount ] );
+        return new JsonResponse(['subCategoriesCount' => $subCategoriesCount]);
     }
 
     /**
-     * Count action
+     * Count action.
      *
      * @Route(
      *     name="api_sub_category_counts",
@@ -57,19 +55,19 @@ class SubCategoryController
      * )
      *
      * @param SubCategoryRepository $subCategoryRepository
-     * @return JsonResponse
      *
+     * @return JsonResponse
      */
-    public function counts( SubCategoryRepository $subCategoryRepository )
+    public function counts(SubCategoryRepository $subCategoryRepository)
     {
-        $subCategories = $subCategoryRepository->findBy([],[],4);
+        $subCategories = $subCategoryRepository->findBy([], [], 4);
 
         $subCategoryCounts = [];
 
-        foreach ( $subCategories as $subCategory ){
-            $subCategoryCounts[] = [ 'name' => $subCategory->getName(), 'count' => count($subCategory->getBooks()) ];
+        foreach ($subCategories as $subCategory) {
+            $subCategoryCounts[] = ['name' => $subCategory->getName(), 'count' => count($subCategory->getBooks())];
         }
 
-        return new JsonResponse( [ 'counts' => $subCategoryCounts ] );
+        return new JsonResponse($subCategoryCounts);
     }
 }

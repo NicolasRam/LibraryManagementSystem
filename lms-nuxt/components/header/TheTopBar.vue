@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <ul class="tg-addnav">
+          <ul class="tg-addnav" v-if="false">
             <li>
               <a href="javascript:void(0);">
                 <i class="icon-envelope"></i>
@@ -17,7 +17,8 @@
               </a>
             </li>
           </ul>
-          <div class="dropdown tg-themedropdown tg-currencydropdown">
+
+          <div class="dropdown tg-themedropdown tg-currencydropdown" v-if="false">
             <a href="javascript:void(0);" id="tg-currenty" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="icon-earth"></i>
               <span>Currency</span>
@@ -43,9 +44,18 @@
               </li>
             </ul>
           </div>
-          <div class="tg-userlogin">
-            <figure><a href="javascript:void(0);"><img src="http://exprostudio.com/html/book_library/images/users/img-01.jpg" alt="image description"></a></figure>
-            <span>Hi, Melonie</span>
+
+          <div class="tg-userlogin" v-if="member !== null">
+            <figure>
+              <nuxt-link to="/member" v-if="member.hasOwnProperty(image) && member.image.hasOwnProperty('path')">
+                <img :src="member.image.path" alt="image description">
+              </nuxt-link>
+              <nuxt-link to="/member" v-else>
+                <img src="http://exprostudio.com/html/book_library/images/users/img-01.jpg" alt="image description">
+              </nuxt-link>
+            </figure>
+
+            <span>Salut, {{member.firstName}}</span>
           </div>
         </div>
       </div>
@@ -55,6 +65,13 @@
 
 <script>
     export default {
-        name: "TheTopBar"
+      name: "TheTopBar",
+
+      props: {
+        member: {
+          type: Object,
+          default: null
+        },
+      },
     }
 </script>
