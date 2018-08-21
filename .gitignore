@@ -8,18 +8,22 @@
 /backup
 /dependencies
 src/Service/Client/
-/lms-nuxt/.nuxt/
-/lms-nuxt/node_modules/
-/lms-nuxt/.idea/
-/lms-nuxt/backup/
 /metrics/
+
+
+###> LMS-NUXT ###
 lms-nuxt/.editorconfig
-lms-nuxt/README.md
+#lms-nuxt/README.md
 lms-nuxt/how-to-use.txt
-lms-nuxt/nuxt.config.js
-lms-nuxt/package-lock.json
-lms-nuxt/package.json
-lms-nuxt/yarn.lock
+#lms-nuxt/nuxt.config.js
+#lms-nuxt/package-lock.json
+#lms-nuxt/package.json
+#lms-nuxt/yarn.lock
+lms-nuxt/.nuxt/
+lms-nuxt/node_modules/
+lms-nuxt/.idea/
+lms-nuxt/backup/
+###< LMS-NUXT ###
 
 ###> symfony/webpack-encore-pack ###
 /node_modules/
@@ -43,3 +47,6 @@ src/MakerBundle/
 
 /nuxt
 /frontend
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###

@@ -1,5 +1,5 @@
 <template>
-  <section class="tg-parallax tg-bgcollectioncount tg-haslayout" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="~assets/images/parallax/bgparallax-04.jpg">
+  <section class="tg-parallax tg-bgcollectioncount tg-haslayout" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="http://exprostudio.com/html/book_library/images/parallax/bgparallax-04.jpg">
     <div class="tg-sectionspace tg-collectioncount tg-haslayout">
       <div class="container">
         <div class="row">

@@ -1,7 +1,7 @@
 <template>
   <strong class="tg-logo">
     <a href="#">
-      <img src="~assets/images/logo.png" alt="LMS | Library Management System">
+      <img src="http://exprostudio.com/html/book_library/images/logo.png" alt="LMS | Library Management System">
     </a>
   </strong>
 </template>

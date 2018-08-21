@@ -18,18 +18,14 @@ class SubCategory
     private $id;
 
     /**
-     * @Groups(
-     *     "category"
-     * )
+     * @Groups( { "category", "draft" } )
      *
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @Groups(
-     *     "category"
-     * )
+     * @Groups( { "category" } )
      *
      * @ORM\Column(type="string", length=255)
      */

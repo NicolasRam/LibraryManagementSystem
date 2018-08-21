@@ -1,5 +1,5 @@
 <template>
-  <figure class="tg-authorimg"><a href="javascript:void(0);"><img src="~assets/images/author/imag-01.jpg" alt="image description"></a></figure>
+  <figure class="tg-authorimg"><a href="javascript:void(0);"><img src="http://exprostudio.com/html/book_library/images/author/imag-01.jpg" alt="image description"></a></figure>
 </template>
 
 <script>

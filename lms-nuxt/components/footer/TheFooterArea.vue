@@ -37,7 +37,7 @@
         <div class="tg-threecolumns">
           <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <div class="tg-footercol">
-              <strong class="tg-logo"><a href="javascript:void(0);"><img src="~assets/images/flogo.png" alt="image description"></a></strong>
+              <strong class="tg-logo"><a href="javascript:void(0);"><img src="http://exprostudio.com/html/book_library/images/flogo.png" alt="image description"></a></strong>
               <ul class="tg-contactinfo">
                 <li>
                   <i class="icon-apartment"></i>
@@ -105,21 +105,21 @@
               <div class="tg-widgetcontent">
                 <ul>
                   <li>
-                    <figure><a href="javascript:void(0);"><img src="~assets/images/author/imag-09.jpg" alt="image description"></a></figure>
+                    <figure><a href="javascript:void(0);"><img src="http://exprostudio.com/html/book_library/images/author/imag-09.jpg" alt="image description"></a></figure>
                     <div class="tg-authornamebooks">
                       <h4><a href="javascript:void(0);">Jude Morphew</a></h4>
                       <p>21,658 Published Books</p>
                     </div>
                   </li>
                   <li>
-                    <figure><a href="javascript:void(0);"><img src="~assets/images/author/imag-10.jpg" alt="image description"></a></figure>
+                    <figure><a href="javascript:void(0);"><img src="http://exprostudio.com/html/book_library/images/author/imag-10.jpg" alt="image description"></a></figure>
                     <div class="tg-authornamebooks">
                       <h4><a href="javascript:void(0);">Shaun Humes</a></h4>
                       <p>20,257 Published Books</p>
                     </div>
                   </li>
                   <li>
-                    <figure><a href="javascript:void(0);"><img src="~assets/images/author/imag-11.jpg" alt="image description"></a></figure>
+                    <figure><a href="javascript:void(0);"><img src="http://exprostudio.com/html/book_library/images/author/imag-11.jpg" alt="image description"></a></figure>
                     <div class="tg-authornamebooks">
                       <h4><a href="javascript:void(0);">Kathrine Culbertson</a></h4>
                       <p>15,686 Published Books</p>

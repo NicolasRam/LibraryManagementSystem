@@ -9,142 +9,46 @@
           </div>
         </div>
         <div id="tg-pickedbyauthorslider" class="tg-pickedbyauthor tg-pickedbyauthorslider owl-carousel">
-          <div class="item">
+          <div class="item" v-for="(book, index) in pickedByAuthors" :key="index">
             <div class="tg-postbook">
               <figure class="tg-featureimg">
-                <div class="tg-bookimg">
-                  <div class="tg-frontcover"><img src="~assets/images/books/img-10.jpg" alt="image description"></div>
-                </div>
-                <div class="tg-hovercontent">
-                  <div class="tg-description">
-                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua enim adia minim veniam, quis nostrud.</p>
+                <div class="tg-bookimg" >
+                  <div class="tg-frontcover" v-if="book.hasOwnProperty('image') && book.image.hasOwnProperty('path')">
+                    <img :src="book.image.path" alt="image description">
                   </div>
-                  <strong class="tg-bookpage">Book Pages: 206</strong>
-                  <strong class="tg-bookcategory">Category: Adventure, Fun</strong>
-                  <strong class="tg-bookprice">Price: $23.18</strong>
-                  <div class="tg-ratingbox"><span class="tg-stars"><span></span></span></div>
+
+                  <div class="tg-bookimg" v-else>
+                    <div class="tg-frontcover"><img src="http://exprostudio.com/html/book_library/images/books/img-10.jpg" alt="image description"></div>
+                  </div>
+                </div>
+
+                <div class="tg-hovercontent">
+                  <div class="tg-description" v-if="book.hasOwnProperty('resume')">
+                    <p>{{book.resume}}</p>
+                  </div>
+
+                  <strong class="tg-bookpage" v-if="book.hasOwnProperty('pageNumber')">Pages: {{book.pageNumber}}</strong>
+
+                  <strong class="tg-bookcategory" v-if="book.hasOwnProperty('subCategory') && book.subCategory.hasOwnProperty('name')">Catégory: {{book.subCategory.name}}</strong>
+
+                  <strong class="tg-bookprice" v-if="book.hasOwnProperty('price')">Prix: {{book.price}}</strong>
+
+                  <div class="tg-ratingbox" v-if="false"><span class="tg-stars"><span></span></span></div>
                 </div>
               </figure>
+
               <div class="tg-postbookcontent">
-                <div class="tg-booktitle">
-                  <h3><a href="javascript:void(0);">Seven Minutes In Heaven</a></h3>
+                <div class="tg-booktitle" v-if="book.hasOwnProperty('title')">
+                  <h3><a href="javascript:void(0);">{{book.title}}</a></h3>
                 </div>
-                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Sunshine Orlando</a></span>
+
+                <span class="tg-bookwriter" v-if="book.hasOwnProperty('author') && book.author.hasOwnProperty('firstName') && book.author.hasOwnProperty('lastName')">
+                  Par: <a href="javascript:void(0);">{{book.author.firstName + ' ' + book.author.lastName}}</a>
+                </span>
+
                 <a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
                   <i class="fa fa-shopping-basket"></i>
-                  <em>Add To Basket</em>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="tg-postbook">
-              <figure class="tg-featureimg">
-                <div class="tg-bookimg">
-                  <div class="tg-frontcover"><img src="~assets/images/books/img-11.jpg" alt="image description"></div>
-                </div>
-                <div class="tg-hovercontent">
-                  <div class="tg-description">
-                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua enim adia minim veniam, quis nostrud.</p>
-                  </div>
-                  <strong class="tg-bookpage">Book Pages: 206</strong>
-                  <strong class="tg-bookcategory">Category: Adventure, Fun</strong>
-                  <strong class="tg-bookprice">Price: $23.18</strong>
-                  <div class="tg-ratingbox"><span class="tg-stars"><span></span></span></div>
-                </div>
-              </figure>
-              <div class="tg-postbookcontent">
-                <div class="tg-booktitle">
-                  <h3><a href="javascript:void(0);">Slow And Steady Wins The Race</a></h3>
-                </div>
-                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Drusilla Glandon</a></span>
-                <a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
-                  <i class="fa fa-shopping-basket"></i>
-                  <em>Add To Basket</em>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="tg-postbook">
-              <figure class="tg-featureimg">
-                <div class="tg-bookimg">
-                  <div class="tg-frontcover"><img src="~assets/images/books/img-12.jpg" alt="image description"></div>
-                </div>
-                <div class="tg-hovercontent">
-                  <div class="tg-description">
-                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua enim adia minim veniam, quis nostrud.</p>
-                  </div>
-                  <strong class="tg-bookpage">Book Pages: 206</strong>
-                  <strong class="tg-bookcategory">Category: Adventure, Fun</strong>
-                  <strong class="tg-bookprice">Price: $23.18</strong>
-                  <div class="tg-ratingbox"><span class="tg-stars"><span></span></span></div>
-                </div>
-              </figure>
-              <div class="tg-postbookcontent">
-                <div class="tg-booktitle">
-                  <h3><a href="javascript:void(0);">There’s No Time Like The Present</a></h3>
-                </div>
-                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Patrick Seller</a></span>
-                <a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
-                  <i class="fa fa-shopping-basket"></i>
-                  <em>Add To Basket</em>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="tg-postbook">
-              <figure class="tg-featureimg">
-                <div class="tg-bookimg">
-                  <div class="tg-frontcover"><img src="~assets/images/books/img-10.jpg" alt="image description"></div>
-                </div>
-                <div class="tg-hovercontent">
-                  <div class="tg-description">
-                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua enim adia minim veniam, quis nostrud.</p>
-                  </div>
-                  <strong class="tg-bookpage">Book Pages: 206</strong>
-                  <strong class="tg-bookcategory">Category: Adventure, Fun</strong>
-                  <strong class="tg-bookprice">Price: $23.18</strong>
-                  <div class="tg-ratingbox"><span class="tg-stars"><span></span></span></div>
-                </div>
-              </figure>
-              <div class="tg-postbookcontent">
-                <div class="tg-booktitle">
-                  <h3><a href="javascript:void(0);">Seven Minutes In Heaven</a></h3>
-                </div>
-                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Sunshine Orlando</a></span>
-                <a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
-                  <i class="fa fa-shopping-basket"></i>
-                  <em>Add To Basket</em>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="tg-postbook">
-              <figure class="tg-featureimg">
-                <div class="tg-bookimg">
-                  <div class="tg-frontcover"><img src="~assets/images/books/img-11.jpg" alt="image description"></div>
-                </div>
-                <div class="tg-hovercontent">
-                  <div class="tg-description">
-                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua enim adia minim veniam, quis nostrud.</p>
-                  </div>
-                  <strong class="tg-bookpage">Book Pages: 206</strong>
-                  <strong class="tg-bookcategory">Category: Adventure, Fun</strong>
-                  <strong class="tg-bookprice">Price: $23.18</strong>
-                  <div class="tg-ratingbox"><span class="tg-stars"><span></span></span></div>
-                </div>
-              </figure>
-              <div class="tg-postbookcontent">
-                <div class="tg-booktitle">
-                  <h3><a href="javascript:void(0);">Slow And Steady Wins The Race</a></h3>
-                </div>
-                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Drusilla Glandon</a></span>
-                <a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
-                  <i class="fa fa-shopping-basket"></i>
-                  <em>Add To Basket</em>
+                  <em>Ajouter au Panier</em>
                 </a>
               </div>
             </div>
@@ -156,15 +60,15 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-
   export default {
     name: 'PickedByAuthors',
-    computed: {
-      ...mapGetters([
-        'currentUser',
-        'isAuthenticated'
-      ])
-    }
+
+    props: {
+      pickedByAuthors: {
+        type: Array,
+        default: []
+      },
+    },
+
   }
 </script>

@@ -21,7 +21,7 @@ use Faker\Factory;
 class BookFixtures extends Fixture implements OrderedFixtureInterface
 {
     public const BOOKS_REFERENCE = 'books';
-    public const BOOKS_COUNT_REFERENCE = 10;
+    public const BOOKS_COUNT_REFERENCE = 100;
     /**
      * @var Firebase
      */

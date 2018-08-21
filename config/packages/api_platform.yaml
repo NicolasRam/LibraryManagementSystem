@@ -189,3 +189,6 @@ api_platform:
 
         jsonld:
             mime_types: ['application/ld+json']
+
+framework:
+    serializer: { enable_annotations: true }

@@ -12,6 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Author
 {
     /**
+     * @Groups( "details" )
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -19,7 +21,7 @@ class Author
     private $id;
 
     /**
-     * @Groups( "book" )
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
@@ -27,7 +29,7 @@ class Author
     private $firstName;
 
     /**
-     * @Groups( "book" )
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
@@ -35,11 +37,15 @@ class Author
     private $lastName;
 
     /**
+     * @Groups( "details" )
+     *
      * @ORM\Column(type="text", nullable=true)
      */
     private $biography;
 
     /**
+     * @Groups( "details" )
+     *
      * @ORM\Column(type="date", nullable=true)
      */
     private $birthday;

@@ -44,7 +44,7 @@
             </ul>
           </div>
           <div class="tg-userlogin">
-            <figure><a href="javascript:void(0);"><img src="~assets/images/users/img-01.jpg" alt="image description"></a></figure>
+            <figure><a href="javascript:void(0);"><img src="http://exprostudio.com/html/book_library/images/users/img-01.jpg" alt="image description"></a></figure>
             <span>Hi, Melonie</span>
           </div>
         </div>

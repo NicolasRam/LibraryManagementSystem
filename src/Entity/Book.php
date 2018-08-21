@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * @ORM\MappedSuperclass
@@ -13,7 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Book
 {
     /**
-     * @Groups( "book" )
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -22,42 +23,44 @@ class Book
     private $id;
 
     /**
-     * @Groups( "book" )
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\Column(type="string", length=255)
      */
     private $isbn;
 
     /**
-     * @Groups( "book" )
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
-     * @Groups( "book" )
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
 
     /**
-     * @Groups( "book" )
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $resume;
 
     /**
-     * @Groups( "book" )
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\Column(type="integer", nullable=true)
      */
     private $pageNumber;
 
     /**
-     * @Groups( "book" )
+     * @MaxDepth(2)
+     *
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\OneToOne(
      *     targetEntity="App\Entity\Image",
@@ -69,7 +72,7 @@ class Book
     private $image;
 
     /**
-     * @Groups( "book" )
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="books")
      */
@@ -85,14 +88,18 @@ class Book
 //    private $authors;
 
     /**
-     * @Groups( "book" )
+     * @MaxDepth(2)
+     *
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\OneToOne(targetEntity="EBook", mappedBy="book", cascade={"persist", "remove"})
      */
     private $eBook;
 
     /**
-     * @Groups( "book" )
+     * @MaxDepth(2)
+     *
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\SubCategory", inversedBy="books")
      * @ORM\JoinColumn(nullable=false)
@@ -100,7 +107,9 @@ class Book
     private $subCategory;
 
     /**
-     * @Groups( "book" )
+     * @MaxDepth(2)
+     *
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\OneToMany(targetEntity="PBook", mappedBy="book", cascade={"persist", "remove"})
      * @ORM\Column(type="object", nullable=true)

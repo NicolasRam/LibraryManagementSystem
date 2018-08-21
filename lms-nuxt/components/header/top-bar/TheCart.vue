@@ -9,7 +9,7 @@
       <div class="tg-minicartbody">
         <div class="tg-minicarproduct">
           <figure>
-            <img src="~assets/images/products/img-01.jpg" alt="image description">
+            <img src="http://exprostudio.com/html/book_library/images/products/img-01.jpg" alt="image description">
 
           </figure>
           <div class="tg-minicarproductdata">
@@ -19,7 +19,7 @@
         </div>
         <div class="tg-minicarproduct">
           <figure>
-            <img src="~assets/images/products/img-02.jpg" alt="image description">
+            <img src="http://exprostudio.com/html/book_library/images/products/img-02.jpg" alt="image description">
 
           </figure>
           <div class="tg-minicarproductdata">
@@ -29,7 +29,7 @@
         </div>
         <div class="tg-minicarproduct">
           <figure>
-            <img src="~assets/images/products/img-03.jpg" alt="image description">
+            <img src="http://exprostudio.com/html/book_library/images/products/img-03.jpg" alt="image description">
 
           </figure>
           <div class="tg-minicarproductdata">

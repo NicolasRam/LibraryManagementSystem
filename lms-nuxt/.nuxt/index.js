@@ -12,9 +12,9 @@ import { setContext, getLocation, getRouteData } from './utils'
 import { createStore } from './store.js'
 
 /* Plugins */
-import nuxt_plugin_axios_61a983be from 'nuxt_plugin_axios_61a983be' // Source: ./axios.js
-import nuxt_plugin_corecomponents_4963358a from 'nuxt_plugin_corecomponents_4963358a' // Source: ..\\plugins\\core-components.js
-import nuxt_plugin_datefilter_f4b26092 from 'nuxt_plugin_datefilter_f4b26092' // Source: ..\\plugins\\date-filter.js
+import nuxt_plugin_axios_3997c5f9 from 'nuxt_plugin_axios_3997c5f9' // Source: ./axios.js
+import nuxt_plugin_corecomponents_4963358a from 'nuxt_plugin_corecomponents_4963358a' // Source: ../plugins/core-components.js
+import nuxt_plugin_datefilter_f4b26092 from 'nuxt_plugin_datefilter_f4b26092' // Source: ../plugins/date-filter.js
 
 
 // Component: <no-ssr>
@@ -153,7 +153,7 @@ async function createApp (ssrContext) {
 
   // Plugin execution
   
-  if (typeof nuxt_plugin_axios_61a983be === 'function') await nuxt_plugin_axios_61a983be(app.context, inject)
+  if (typeof nuxt_plugin_axios_3997c5f9 === 'function') await nuxt_plugin_axios_3997c5f9(app.context, inject)
   if (typeof nuxt_plugin_corecomponents_4963358a === 'function') await nuxt_plugin_corecomponents_4963358a(app.context, inject)
   if (typeof nuxt_plugin_datefilter_f4b26092 === 'function') await nuxt_plugin_datefilter_f4b26092(app.context, inject)
   

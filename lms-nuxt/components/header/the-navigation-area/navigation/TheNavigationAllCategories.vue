@@ -31,7 +31,7 @@
 
                     <ul>
                         <li>
-                            <figure><img src="~assets/images/img-01.png" alt="image description"></figure>
+                            <figure><img src="http://exprostudio.com/html/book_library/images/img-01.png" alt="image description"></figure>
                             <div class="tg-textbox">
                                 <h3>More Than<span>12,0657,53</span>Books Collection</h3>
                                 <div class="tg-description">

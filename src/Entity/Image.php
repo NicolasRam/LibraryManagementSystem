@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Image extends File
 {
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Book", mappedBy="image")
+     * @ORM\OneToOne(targetEntity="App\Entity\Book", inversedBy="image")
      * @ORM\Column(nullable=true)
      */
     private $book;

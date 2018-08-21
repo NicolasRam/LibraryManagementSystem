@@ -83,7 +83,7 @@ class BookController
      */
     public function newReleases()
     {
-        return $this->bookRepository->findBestSellers(5);
+        return $this->bookRepository->findBestSellers(3);
     }
 
     /**

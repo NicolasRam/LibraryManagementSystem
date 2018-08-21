@@ -113,8 +113,8 @@ export default (ctx, inject) => {
   const axiosOptions = {
     // baseURL
     baseURL : process.browser
-      ? 'http://54.36.182.3/lms/public/index.php/api'
-      : (process.env._AXIOS_BASE_URL_ || 'http://54.36.182.3/lms/public/index.php/api'),
+      ? 'http://localhost:8000/api'
+      : (process.env._AXIOS_BASE_URL_ || 'http://localhost:8000/api'),
 
     // Create fresh objects for all default header scopes
     // Axios creates only one which is shared across SSR requests!

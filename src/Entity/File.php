@@ -14,6 +14,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class File
 {
     /**
+     * @Groups( "details" )
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -21,22 +23,28 @@ class File
     private $id;
 
     /**
+     * @Groups( "details" )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
+     * @Groups( "details" )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $extension;
 
     /**
+     * @Groups( { "details", "draft" } )
+     *
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $isLocal;
 
     /**
-     * @Groups( "book" )
+     * @Groups( { "details", "draft" } )
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */

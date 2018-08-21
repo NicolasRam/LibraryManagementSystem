@@ -120,7 +120,7 @@ export async function setContext(app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"baseUrl":"http://54.36.182.3/lms/public/index.php/api","fbAPIKey":"AIzaSyB4uttLQU61vyIppX2Tqgh447CNFuW7Vjo"}
+      env: {"baseUrl":"http://localhost:8000/api","fbAPIKey":""}
     }
     // Only set once
     if (context.req) app.context.req = context.req

@@ -1,30 +1,30 @@
 import Vue from 'vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
-import '..\\assets\\css\\bootstrap.min.css'
+import '../assets/css/bootstrap.min.css'
 
-import '..\\assets\\css\\normalize.css'
+import '../assets/css/normalize.css'
 
-import '..\\assets\\css\\font-awesome.min.css'
+import '../assets/css/font-awesome.min.css'
 
-import '..\\assets\\css\\icomoon.css'
+import '../assets/css/icomoon.css'
 
-import '..\\assets\\css\\jquery-ui.css'
+import '../assets/css/jquery-ui.css'
 
-import '..\\assets\\css\\owl.carousel.css'
+import '../assets/css/owl.carousel.css'
 
-import '..\\assets\\css\\transitions.css'
+import '../assets/css/transitions.css'
 
-import '..\\assets\\css\\main.css'
+import '../assets/css/main.css'
 
-import '..\\assets\\css\\color.css'
+import '../assets/css/color.css'
 
-import '..\\assets\\css\\responsive.css'
+import '../assets/css/responsive.css'
 
 
 let layouts = {
 
-  "_default": () => import('..\\layouts\\default.vue'  /* webpackChunkName: "layouts_default" */).then(m => m.default || m)
+  "_default": () => import('../layouts/default.vue'  /* webpackChunkName: "layouts/default" */).then(m => m.default || m)
 
 }
 
