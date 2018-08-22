@@ -81,9 +81,16 @@
 
     methods: {
       onSubmit() {
-        alert( "Before" );
+        alert( this.firstName );
 
-        if( firstName !== "" && lastName !== "" && phone !== "" && email !== "" && password !== "" && password === passwordConfirm ) {
+        if(
+          this.firstName !== ""
+          && this.lastName !== ""
+          && this.phone !== ""
+          && this.email !== ""
+          && this.password !== ""
+          && this.password === this.passwordConfirm
+        ) {
           alert( "After" );
 
           this.$store.dispatch("memberSubscribe", {
