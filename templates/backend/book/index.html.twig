@@ -99,11 +99,11 @@
     <tr>
         <th>Record ID</th>
         <th>{{ 'datatable.id' | trans({}, 'datatable') }}</th>
+        <th>{{ 'datatable.cover' | trans({}, 'datatable') }}</th>
         <th>{{ 'datatable.isbn' | trans({}, 'datatable') }}</th>
         <th>{{ 'datatable.title' | trans({}, 'datatable') }}</th>
         <th>{{ 'datatable.resume' | trans({}, 'datatable') }}</th>
         <th>{{ 'datatable.pageNumber' | trans({}, 'datatable') }}</th>
-        <th>{{ 'datatable.cover' | trans({}, 'datatable') }}</th>
         <th>ACTIONS</th>
     </tr>
     </thead>
@@ -114,11 +114,11 @@
         <tr>
             <td>{{ book.id }}</td>
             <td>{{ book.id }}</td>
+            <td><img src="{{ book.image.path }}" width="100px" /></td>
             <td>{{ book.isbn }}</td>
             <td>{{ book.title }}</td>
             <td>{{ book.resume }}</td>
             <td>{{ book.pageNumber }}</td>
-            <td>{{ book.cover }}</td>
             <td nowrap>
                 {% if false %}
                 <span class="dropdown">

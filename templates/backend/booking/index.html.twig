@@ -48,6 +48,7 @@
                             <th>Record ID</th>
 
                             <th>{{ 'datatable.id' | trans({}, 'datatable') }}</th>
+                            <th>{{ 'datatable.cover' | trans({}, 'datatable') }}</th>
                             <th>{{ 'datatable.title' | trans({}, 'datatable') }}</th>
                             <th>{{ 'datatable.startDate' | trans({}, 'datatable') }}</th>
                             <th>{{ 'datatable.endDate' | trans({}, 'datatable') }}</th>
@@ -61,8 +62,8 @@
                         {% for booking in bookings %}
                             <tr>
                                 <td>{{ booking.id }}</td>
-
                                 <td>{{ booking.id }}</td>
+                                <td><img src="{{ booking.pBook.book.image.path }}" width="100px" /></td>
                                 <td>{{ booking.pBook.book.title }}</td>
                                 <td>{{ booking.startDate ? booking.startDate|date('Y-m-d') : '' }}</td>
                                 <td>{{ booking.endDate ? booking.endDate|date('Y-m-d') : '' }}</td>
