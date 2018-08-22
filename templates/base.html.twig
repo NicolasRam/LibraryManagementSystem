@@ -27,6 +27,8 @@
 
         <!--begin::Base Styles -->
         {% block stylesheets %}
+            <!-- ... -->
+            <link rel="stylesheet" href="{{ asset('build/app.css') }}">
             <link href="{{ asset('backend/assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css"/>
             <link href="{{ asset('backend/assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css"/>
         {% endblock %}

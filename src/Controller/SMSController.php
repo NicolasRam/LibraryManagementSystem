@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Service\SmsProvider;
+
+use App\Service\Sms\SmsProvider;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

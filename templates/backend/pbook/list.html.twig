@@ -23,10 +23,8 @@
         </thead>
 
 
-
         <tbody>
 
-        {#{{  dump(pbooks)  }}#}
 
         {% for pbook in pbooks %}
             <tr>
@@ -35,19 +33,21 @@
                 <td>{{ pbook.book.title }}</td>
                 <td>{{ pbook.library.name }}</td>
                 <td>
-                    {% for status in pbook.status %}
-                    {% if status == 'reserved' %}
-                    <span class="m-badge m-badge--primary m-badge--wide">reserved</span>
-                    {% endif %}
-                    {% if status == 'inside' %}
-                    <span class="m-badge m-badge--success m-badge--wide">inside</span>
-                    {% endif %}
-                    {% if status == 'not_available' %}
-                    <span class="m-badge m-badge--danger m-badge--wide">not available</span>
-                    {% endif %}
-                    {% if status == 'outside' %}
-                        <span class="m-badge m-badge--info m-badge--wide">outside</span>
-                    {% endif %}
+
+                    {% for status in pbook.status|keys %}
+                            {% if status == 'reserved' %}
+                                <span class="m-badge m-badge--primary m-badge--wide">reserved</span>
+                            {% endif %}
+                            {% if status == 'inside' %}
+                                <span class="m-badge m-badge--success m-badge--wide">inside</span>
+                            {% endif %}
+                            {% if status == 'not_available' %}
+                                <span class="m-badge m-badge--danger m-badge--wide">not available</span>
+                            {% endif %}
+                            {% if status == 'outside' %}
+                                <span class="m-badge m-badge--info m-badge--wide">outside</span>
+                            {% endif %}
+                        {#{% endfor %}#}
                     {% endfor %}
                     {#1: {title: "Pending", class: "m-badge--brand"},#}
                     {#2: {title: "Delivered", class: " m-badge--metal"},#}
@@ -58,23 +58,22 @@
                     {#7: {title: "Warning", class: " m-badge--warning"}#}
 
 
-
                 </td>
 
-                    <td>
-                       {#{{  dump(pbook.booking)  }}#}
-                        {% for booking in pbook.bookings %}
-                            <a href="{{ path('backend_booking_delete', {'id': booking.id}) }}">
+                <td>
+                    {% for booking in pbook.bookings %}
+                        <a href="{{ path('backend_booking_delete', {'id': booking.id}) }}">
                             {{ '[' ~ booking.startDate|date('d-m-Y') ~ '  ->   ' ~ booking.EndDate|date('d-m-Y') ~ ']' }}
-                            </a>
-                        {% endfor %}</td>
-
+                        </a>
+                    {% endfor %}</td>
 
 
                 <td nowrap>
                     {% if false %}
                         <span class="dropdown">
-                                <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
+                                <a href="#"
+                                   class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
+                                   data-toggle="dropdown" aria-expanded="true">
                                     <i class="la la-ellipsis-h"></i>
                                 </a>
 
@@ -93,17 +92,26 @@
                     >
                         <i class="la la-eye"></i>
                     </a>
-                    {% if pbook.status != 'not_available' and pbook.status != 'outside' %}
-                    <a
-                            href="{{ path('backend_booking_rent', {'id': pbook.id}) }}"
-                            class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
-                            title="Ajouter une location"
-                    >
-                        <i class="la la-edit"></i>
-                    </a>
-                    {% endif %}
 
-                    <form style="display: inline" method="post" action="{{ path('backend_pbook_delete', {'id': pbook.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
+                    {% for status in pbook.status|keys %}
+                        {% if status != 'outside' and status != 'not_available' %}
+                        <a
+                                href="{{ path('backend_booking_rent', {'id': pbook.id}) }}"
+                                class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
+                                title="Ajouter une location"
+                        >
+                            <i class="la la-edit"></i>
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {#{% if pbook.status != 'not_available' and pbook.status != 'outside' %}#}
+
+
+
+                    <form style="display: inline" method="post"
+                          action="{{ path('backend_pbook_delete', {'id': pbook.id}) }}"
+                          onsubmit="return confirm('Are you sure you want to delete this item?');" class="inline-flex">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pbook.id) }}">
 

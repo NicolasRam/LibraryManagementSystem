@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Etudiant
- * Date: 02/07/2018
- * Time: 18:05
- */
 
 namespace App\Book;
 

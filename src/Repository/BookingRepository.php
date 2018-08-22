@@ -232,13 +232,7 @@ class BookingRepository extends ServiceEntityRepository
 //            $conn = $this->getEntityManager()->getConnection();
 //            dump('Contact has been made with database');
 
-//             $sql = 'SELECT COUNT(pbook.book_id) as c, book.title
-//              FROM booking
-//              JOIN pbook ON pbook.id = booking.p_book_id
-//              JOIN book ON book.id = pbook.book_id
-//              GROUP BY pbook.book_id
-//              ORDER BY c DESC
-//             ';
+//             $sql = 'SELECT book.title, COUNT(book.id) FROM booking JOIN pbook ON pbook.id = booking.p_book_id JOIN book ON book.id = pbook.book_id GROUP BY book.id ORDER BY COUNT(pbook.book_id) DESC
 //
 //            $stmt = $conn->prepare($sql);
 //
@@ -249,17 +243,21 @@ class BookingRepository extends ServiceEntityRepository
 //            return $stmt->fetchAll();
 
 //        dump('Just before myquery');
-            $myQuery = $this
-            ->createQueryBuilder('booking')
-            ->join('booking.pBook', 'pbook')
-//            ->addSelect('pbook')
-            ->join('pbook.book', 'book')
+            $myQuery =         $this->_em->createQueryBuilder()
+                ->select('book')
+                ->from(Book::class, 'book')
+                ->join('book.pbook', 'pbook')
+            ->join('pbook.booking', 'booking')
+////            ->addSelect('pbook')
+
 //            ->addSelect('book')
             ->groupBy('book.id')
-            ->orderBy('book.id')
-            ->setMaxResults($topNumber)
+            ->orderBy('COUNT(book.id)')
+            ->setMaxResults(10)
         ;
-
+            dd($myQuery->getQuery()->getSQL());
+//            dd($myQuery);
+//dd($myQuery->getQuery()->getSQL());
 //        dump($myQuery->getQuery()->getSQL());
 //        dump($myQuery->getQuery()->getResult());
 

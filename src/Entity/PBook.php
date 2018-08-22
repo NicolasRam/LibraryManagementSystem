@@ -27,13 +27,13 @@ class PBook
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBook")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBooks")
      * @ORM\JoinColumn(nullable=true)
      */
     private $book;
 
     /**
-     * @ORM\Column(type="simple_array", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      *
      * @var array
      */
@@ -57,7 +57,7 @@ class PBook
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
-        $this->status = new ArrayCollection();
+        $this->status = ['inside' => 1];
     }
 
     /**
@@ -114,7 +114,7 @@ class PBook
 
     public function getStatus(): array
     {
-        return is_array($this->status) ? $this->status : explode(',', $this->status);
+        return $this->status;
     }
 
     public function setStatus(array $status): self
@@ -127,16 +127,8 @@ class PBook
     public function addStatus(string $status): self
     {
         if (!$this->bookings->contains($status) && count($this->status) < 2) {
-            $this->status[] = $status;
-        }
-
-        return $this;
-    }
-
-    public function removeStatus(string $status): self
-    {
-        if ($this->status->contains($status)) {
-            $this->status->removeElement($status);
+            $key = count($this->status);
+            $this->status[$status] = $key;
         }
 
         return $this;

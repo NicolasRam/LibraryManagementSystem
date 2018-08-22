@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Booking;
 use App\Entity\Library;
+use App\Service\Book\BookProvider;
+use App\Service\Booking\BookingProvider;
 use DateInterval;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,8 +19,11 @@ class HomeController extends Controller
 {
     /**
      * @Route("/", name="backend_home", methods="GET")
+     * @param BookProvider $bookprovider
+     * @return Response
+     * @throws \Exception
      */
-    public function index(): Response
+    public function index(BookProvider $bookprovider): Response
     {
         $libraries = $this->getDoctrine()->getManager()->getRepository(Library::class)->findAll();
         $library = $this->getUser()->getLibrary();
@@ -47,14 +52,15 @@ class HomeController extends Controller
             }
         }
 
-        //We cope topbooking
-        $topbookings = $this->getDoctrine()->getRepository(Booking::class)->findPbooktop(10);
+        //We cope topbooks
+        $topBooks = $bookprovider->topBooks(10);
+
 
         return $this->render('backend/home/index.html.twig', [
             'books' => $books,
             'libraries' => $libraries,
             'latepBooks' => $latepBooks,
-            'topbookings' => $topbookings
+            'topBooks' => $topBooks
         ]);
     }
 }

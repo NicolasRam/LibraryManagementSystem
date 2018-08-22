@@ -2,6 +2,7 @@
 
 namespace App\Service\Booking;
 
+use App\Entity\Book;
 use App\Entity\Booking;
 use App\Entity\PBook;
 use Ovh\Exceptions\InvalidParameterException;
@@ -26,23 +27,16 @@ class BookingProvider extends AbstractController
      */
     public function topBookings($topNumber)
     {
-        try {
             $em = $this->getDoctrine()->getManager();
-//            dump('before');
-            $topBookings = $em->getRepository(Booking::class)
-                ->findPbooktop($topNumber);
-//            dump('after');
 
-            $this->logger->info('We have contacted the logger: TOP '.$topNumber.' of pbooks requested. ');
+            $topBookings = $em->getRepository(Book::class)
+                ->findPbooktop(10);
+
+
+            $this->logger->info('We have contacted the logger: TOP ' . $topNumber . ' of pbooks requested. ');
 
             return $topBookings;
-        } catch (\Exception $e) {
-            echo "erreur";
-            if (null !== $this->logger) {
-                $this->logger->critical(
-                    sprintf("erreur critique")
-                );
-            }
-        }
+
     }
+
 }

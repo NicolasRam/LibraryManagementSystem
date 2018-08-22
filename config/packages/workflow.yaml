@@ -53,3 +53,9 @@ framework:
                 repaired:
                     from: not_available
                     to: inside
+                rm_reserv_out:
+                    from: [outside, reserved]
+                    to:   outside
+                rm_reserv_in:
+                    from: [inside, reserved]
+                    to:   inside
