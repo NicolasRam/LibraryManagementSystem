@@ -770,29 +770,36 @@ const createStore = () => {
             vuexContext.commit("setToken", result.token);
             localStorage.setItem("token", result.token);
             Cookie.set("jwt", result.token);
-            return this.$axios.$get('http://localhost:3000/api/member/current', {'token': result.token})
+            return this.$axios.$get('http://localhost:3000/api/members/current', {'token': result.token})
           })
           .catch(e => console.log(e));
       },
 
       memberSubscribe(vuexContext, data) {
+        alert(data);
         return this.$axios
           .$post(
-              "http://localhost:8000/api/member/subscribe", {
+              "http://localhost:8000/api/members/subscribe", {
               firstName: data.firstName,
               lastName: data.lastName,
-              username: data.email,
+              email: data.email,
+              phone: data.phone,
               password: data.password
             }
           )
-          .then(result => {
-            alert(result);
-            vuexContext.commit("setToken", result.token);
-            localStorage.setItem("token", result.token);
-            Cookie.set("jwt", result.token);
-            return this.$axios.$post('http://localhost:3000/api/track-data', {data: 'Authenticated!'})
+          .then(response => {
+            if (response.status === 201) {
+              alert('Created')
+            } else {
+              alert('Not created')
+            }
           })
-          .catch(e => console.log(e));
+          .catch(error => {
+            alert('error');
+            alert(error.response);
+          })
+          .finally(
+            () => this.isLoading = false)
       },
       initAuth(vuexContext, req) {
         let token;

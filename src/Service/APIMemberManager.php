@@ -55,15 +55,15 @@ class APIMemberManager
     public function subscribe(
         Request $request
     ): ? Member {
-        $this->request = $request;
+        $object = json_decode($request->getContent(), false);
 
         $member = null;
 
-        $phone = $this->request->get('phone', false);
-        $email = $this->request->get('email', false);
-        $firstName = $this->request->get('firstName', false);
-        $lastName = $this->request->get('lastName', false);
-        $password = $this->request->get('password', false);
+        $phone = $object->phone;
+        $email = $object->email;
+        $firstName = $object->firstName;
+        $lastName = $object->lastName;
+        $password = $object->password;
 
         if ($phone && $email && $firstName && $lastName && $password) {
             $member = new Member();

@@ -81,7 +81,6 @@
 
     methods: {
       onSubmit() {
-        alert( this.firstName );
 
         if(
           this.firstName !== ""
@@ -91,17 +90,17 @@
           && this.password !== ""
           && this.password === this.passwordConfirm
         ) {
-          alert( "After" );
-
           this.$store.dispatch("memberSubscribe", {
             email: this.email,
             password: this.password
           })
-            .then(() => {
-              this.$router.push('/');
+            .then((response) => {
+              alert( 'yup' );
+              alert( response.data );
+              // this.$router.push('/');
             });
         } else {
-          alert( "Le formulaire est incorrect" )
+          alert( "Le formulaire est incorrect" );
         }
       }
     }

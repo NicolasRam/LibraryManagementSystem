@@ -1,7 +1,7 @@
 <template>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <div class="tg-parallax tg-bghappyusers" data-z-index="2" data-appear-top-offset="600" data-parallax="scroll"
-             data-image-src="static/images/parallax/bgparallax-03.jpg">
+             data-image-src="http://exprostudio.com/html/book_library/images/parallax/bgparallax-03.jpg">
             <div class="tg-status">
                 <div class="tg-statuscontent">
                     <span class="tg-statusicon"><i class="icon-home"></i></span>

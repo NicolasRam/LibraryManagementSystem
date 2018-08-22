@@ -180,7 +180,10 @@ class Book
         return $this;
     }
 
-    public function getImage()
+    /**
+     * @return Image
+     */
+    public function getImage(): Image
     {
         return $this->image;
     }

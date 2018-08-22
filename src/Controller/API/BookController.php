@@ -100,7 +100,23 @@ class BookController
      */
     public function featured()
     {
-        return new JsonResponse(['book' => $this->bookRepository->findAll()[0]]);
+        $book = $this->bookRepository->findOneBy([]);
+
+        return new JsonResponse(
+            [
+                'book' => [
+                    'title' => $book->getTitle(),
+                    'image' => $book->getImage()->getPath(),
+                    'isbn' => $book->getIsbn(),
+                    'subCategory' => $book->getSubCategory()->getName(),
+                    'author' => $book->getAuthor()->getFirstName().' '.$book->getAuthor()->getLastName(),
+                    'resume' => $book->getResume(),
+//                    'pbooks' => $book->getPBooks(),
+                    'pageNumber' => $book->getPageNumber(),
+                    'slug' => $book->getSlug(),
+                ],
+            ]
+        );
     }
 
     /**
