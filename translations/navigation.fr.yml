@@ -3,7 +3,7 @@ navigation.label.authors: Auteurs
 navigation.label.categories: Catégories
 navigation.label.admins: Administrateurs
 navigation.label.books: Liste des livres
-navigation.label.bookings: Réservations en cours
+navigation.label.bookings: Locations en cours
 navigation.label.ebooks: 'Livres Eléctronique'
 navigation.label.editors: Editeurs
 navigation.label.files: Fichiers
