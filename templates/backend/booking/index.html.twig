@@ -101,7 +101,7 @@
                                         <button
                                                 href="{{ path('backend_booking_delete', {'id' : booking.id}) }}"
                                                 class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
-                                                title="DELETE"
+                                                title="{% block titledelete 'page.title.booking.delete' | trans({}, 'page') %}"
                                         >
                                             <i class="la la-trash"></i>
                                         </button>

@@ -106,6 +106,6 @@ class BookController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('backend_librarian_index');
+        return $this->redirectToRoute('backend_book_index');
     }
 }
