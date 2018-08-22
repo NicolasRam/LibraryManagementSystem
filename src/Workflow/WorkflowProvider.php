@@ -52,8 +52,10 @@ class WorkflowProvider extends AbstractController
                 }
                 break;
             case "return":
-                if ($workflow->can($pbook, 'return')) {
-                    $workflow->apply($pbook, 'return');
+                if ($workflow->can($pbook, 'return_reserv')) {
+                    $workflow->apply($pbook, 'return_reserv');
+                } elseif ($workflow->can($pbook, 'return')) {
+                $workflow->apply($pbook, 'return');
                 }
                 break;
             case "return_reserv":
@@ -64,6 +66,8 @@ class WorkflowProvider extends AbstractController
             case "return_ko":
                 if ($workflow->can($pbook, 'return_ko')) {
                     $workflow->apply($pbook, 'return_ko');
+                } elseif ($workflow->can($pbook, 'return_res_ko')) {
+                    $workflow->apply($pbook, 'return_res_ko');
                 }
                 break;
             case "return_res_ko":

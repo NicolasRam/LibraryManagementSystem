@@ -55,27 +55,46 @@
                             <th>{{ 'datatable.startDate' | trans({}, 'datatable') }}</th>
                             <th>{{ 'datatable.endDate' | trans({}, 'datatable') }}</th>
                             <th>{{ 'datatable.returnDate' | trans({}, 'datatable') }}</th>
+                            <th>{{ 'datatable.status' | trans({}, 'datatable') }}</th>
 
                             <th>ACTIONS</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        {% for booking in bookings %}
-                            <tr>
-                                <td>{{ booking.id }}</td>
-                                <td>{{ booking.id }}</td>
-                                <td><img src="{{ booking.pBook.book.image.path }}" width="100px" /></td>
-                                <td>{{ booking.pBook.book.title }}</td>
-                                <td>{{ booking.member.firstName }}</td>
-                                <td>{{ booking.member.lastName }}</td>
-                                <td>{{ booking.startDate ? booking.startDate|date('Y-m-d') : '' }}</td>
-                                <td>{{ booking.endDate ? booking.endDate|date('Y-m-d') : '' }}</td>
-                                <td>{{ booking.returnDate ? booking.returnDate|date('Y-m-d') : '' }}</td>
-
-                                <td nowrap>
-                                    {% if false %}
-                                        <span class="dropdown">
+                        {% if bookings is defined %}
+                            {% for booking in bookings %}
+                                {#{{ dump(booking) }}#}
+                                <tr>
+                                    <td>{{ booking.id }}</td>
+                                    <td>{{ booking.id }}</td>
+                                    <td><img src="{{ booking.pBook.book.image.path }}" width="100px"/></td>
+                                    <td>{{ booking.pBook.book.title }}</td>
+                                    <td>{{ booking.member.firstName }}</td>
+                                    <td>{{ booking.member.lastName }}</td>
+                                    <td>{{ booking.startDate ? booking.startDate|date('Y-m-d') : '' }}</td>
+                                    <td>{{ booking.endDate ? booking.endDate|date('Y-m-d') : '' }}</td>
+                                    <td>{{ booking.returnDate ? booking.returnDate|date('Y-m-d') : '' }}</td>
+                                    <td>
+                                        {% for status in booking.pbook.status|keys %}
+                                            {% if status == 'reserved' %}
+                                                <span class="m-badge m-badge--primary m-badge--wide">reserved</span>
+                                            {% endif %}
+                                            {% if status == 'inside' %}
+                                                <span class="m-badge m-badge--success m-badge--wide">inside</span>
+                                            {% endif %}
+                                            {% if status == 'not_available' %}
+                                                <span class="m-badge m-badge--danger m-badge--wide">not available</span>
+                                            {% endif %}
+                                            {% if status == 'outside' %}
+                                                <span class="m-badge m-badge--info m-badge--wide">outside</span>
+                                            {% endif %}
+                                            {#{% endfor %}#}
+                                        {% endfor %}
+                                    </td>
+                                    <td nowrap>
+                                        {% if false %}
+                                            <span class="dropdown">
                                 <a href="#"
                                    class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
                                    data-toggle="dropdown" aria-expanded="true">
@@ -88,31 +107,54 @@
                                     <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>
                                 </div>
                             </span>
-                                    {% endif %}
+                                        {% endif %}
 
-                                    <form style="display: inline" method="post"
-                                          action="{{ path('backend_booking_delete', {'id': booking.id}) }}"
-                                          onsubmit="return confirm('Are you sure you want to delete this item?');"
-                                          class="inline-flex">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token"
-                                               value="{{ csrf_token('delete' ~ booking.id) }}">
 
-                                        <button
-                                                href="{{ path('backend_booking_delete', {'id' : booking.id}) }}"
-                                                class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
-                                                title="{% block titledelete 'page.title.booking.delete' | trans({}, 'page') %}"
-                                        >
-                                            <i class="la la-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="2">{{ 'datatable.no_records_found' | trans({}, 'datatable') }}</td>
-                            </tr>
-                        {% endfor %}
+                                        {% for status in booking.pbook.status|keys %}
+                                            {% if status == 'outside' %}
+                                                <form style="display: inline" method="post"
+                                                      action="{{ path('backend_booking_return', {'id': booking.id}) }}"
+                                                      onsubmit="return confirm('Are you sure you want to return this item?');"
+                                                      class="inline-flex">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token"
+                                                           value="{{ csrf_token('delete' ~ booking.id) }}">
+
+                                                    <button
+                                                            href="{{ path('backend_booking_return', {'id' : booking.id}) }}"
+                                                            class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
+                                                            title="{% block titlereturn 'page.title.booking.return' | trans({}, 'page') %}"
+                                                    >
+                                                        <i class="la la-eye"></i>
+                                                    </button>
+                                                </form>
+                                                <form style="display: inline" method="post"
+                                                      action="{{ path('backend_booking_problem', {'id': booking.id}) }}"
+                                                      onsubmit="return confirm('Are you sure you want to put a problem on this item?');"
+                                                      class="inline-flex">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token"
+                                                           value="{{ csrf_token('delete' ~ booking.id) }}">
+
+                                                    <button
+                                                            href="{{ path('backend_booking_problem', {'id' : booking.id}) }}"
+                                                            class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
+                                                            title="{% block titleproblem 'page.title.booking.problem' | trans({}, 'page') %}"
+                                                    >
+                                                        <i class="la la-trash"></i>
+                                                    </button>
+                                                </form>
+
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="2">{{ 'datatable.no_records_found' | trans({}, 'datatable') }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
                         </tbody>
                     </table>
                 {% endblock datable %}

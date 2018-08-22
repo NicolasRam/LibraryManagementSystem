@@ -31,6 +31,7 @@ class BookController extends Controller
          * @var PBook
          */
         foreach ($library->getPBooks() as $pbook) {
+            if (!in_array($pbook->getBook(),$books, TRUE))
             $books[] = $pbook->getBook();
         }
 
@@ -49,12 +50,23 @@ class BookController extends Controller
      */
     public function show(Book $book): Response
     {
-        $pbook = $book->getPBooks();
 
-        $count = count($pbook);
+
+        //list all books from Library
+        /*
+        * @var Library $library
+        */
+        $library = $this->getUser()->getLibrary();
+        foreach ($library->getPBooks() as $pbook) {
+            $bookFromLibrary = $pbook->getBook();
+            if ($bookFromLibrary == $book)
+                $pbooks[] = $book->getPBooks();
+        }
+
+        $count = count($pbooks);
 
         return $this->render('backend/book/show.html.twig', [
-            'book' => $book, 'pbook' => $pbook, 'count' => $count,
+            'book' => $book, 'pbooks' => $pbooks, 'count' => $count,
         ]);
     }
 
@@ -94,13 +106,13 @@ class BookController extends Controller
      * @Route("/{id}/delete", name="backend_book_delete", methods="DELETE")
      *
      * @param Request $request
-     * @param Book    $book
+     * @param Book $book
      *
      * @return Response
      */
     public function delete(Request $request, Book $book): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$book->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $book->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($book);
             $em->flush();

@@ -6,10 +6,12 @@ use App\Entity\Book;
 use App\Entity\PBook;
 use App\Form\PBookType;
 use App\Repository\PBookRepository;
+use App\Workflow\WorkflowProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Workflow\Registry;
 
 /**
  * @Route("/pbook")
@@ -38,8 +40,19 @@ class PBookController extends Controller
      */
     public function list(PBookRepository $pbookRepository, Book $book): Response
     {
-        $pbooks = $book->getPBooks();
+        //list all books from Library
+        /*
+        * @var Library $library
+        */
+        $library = $this->getUser()->getLibrary();
 
+        foreach ($library->getPBooks() as $pbook) {
+            $bookFromLibrary = $pbook->getBook();
+            if ($bookFromLibrary == $book)
+                $pbooks[] = $pbook;
+        }
+//        $pbooks = $book->getPBooks();
+//dd($pbooks);
         return $this->render('backend/pbook/list.html.twig', ['pbooks' => $pbooks]);
     }
 
@@ -116,4 +129,27 @@ class PBookController extends Controller
 
         return $this->redirectToRoute('backend_pbook_index');
     }
+
+    /**
+     * @Route("/{id}/repaired", name="backend_pbook_repaired", methods="GET|POST")
+     * @param Request $request
+     * @param PBook $pbook
+     * @param Registry $workflows
+     * @param WorkflowProvider $workflowProvider
+     * @return Response
+     */
+    public function repaire(Request $request, PBook $pbook, Registry $workflows, WorkflowProvider $workflowProvider): Response
+    {
+//        $em = $this->getDoctrine()->getManager();
+
+
+        $workflowProvider->changingState($workflows, $pbook, 'repaired');
+
+//        $this->addFlash('notice', 'Le livre est bien retourné.');
+
+//        $smsbuilder = new SmsBuilder($bookingRequest, 'return');
+
+        return $this->redirectToRoute('backend/home/index.html.twig');
+    }
+
 }

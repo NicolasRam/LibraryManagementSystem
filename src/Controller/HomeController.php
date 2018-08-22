@@ -30,12 +30,15 @@ class HomeController extends Controller
 
         $books = [];
         $latepBooks = [];
+        $problemPbooks = $library->getPBooks();
+
         /*
-         * @var PBook
+         * @var PBook $pbook
          */
         foreach ($library->getPBooks() as $pbook) {
             $books[] = $pbook->getBook();
         }
+
 
         $datePlusOneDay = new DateTime('NOW');
         $datePlusOneDay->add(new DateInterval('P1D'));
@@ -60,7 +63,8 @@ class HomeController extends Controller
             'books' => $books,
             'libraries' => $libraries,
             'latepBooks' => $latepBooks,
-            'topBooks' => $topBooks
+            'topBooks' => $topBooks,
+            'problemPbooks' => $problemPbooks
         ]);
     }
 }

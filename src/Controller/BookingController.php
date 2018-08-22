@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Booking\BookingRequest;
 use App\Booking\BookingRequestHandler;
 use App\Entity\Booking;
+use App\Entity\Library;
 use App\Entity\PBook;
 use App\Form\BookingRequestType;
 use App\Repository\BookingRepository;
@@ -37,7 +38,21 @@ class BookingController extends Controller
      */
     public function index(BookingRepository $bookingRepository): Response
     {
-        return $this->render('backend/booking/index.html.twig', ['bookings' => $bookingRepository->findAll()]);
+//        $libraries = $this->getDoctrine()->getManager()->getRepository(Library::class)->findAll();
+        /*
+         * @var Library $library
+         */
+        $library = $this->getUser()->getLibrary();
+
+        foreach ($library->getPBooks() as $pbook) {
+            foreach ($pbook->getBookings() as $booking)
+                //dd($booking);
+                {
+                    $bookings[] = $booking;
+                }
+        }
+//        dd($bookings);
+        return $this->render('backend/booking/index.html.twig', ['bookings' => $bookings]);
     }
 
     /**
@@ -54,7 +69,14 @@ class BookingController extends Controller
      * @return Response
      * @throws \Ovh\Exceptions\InvalidParameterException
      */
-    public function rent(Request $request, BookingRequestHandler $bookingRequestHandler, PBook $pbook, MemberProvider $memberProvider, SmsProvider $smsProvider, Registry $workflows, WorkflowProvider $workflowProvider): Response
+    public function rent(
+        Request $request,
+        BookingRequestHandler $bookingRequestHandler,
+        PBook $pbook,
+        MemberProvider $memberProvider,
+        Registry $workflows,
+        WorkflowProvider $workflowProvider
+    ): Response
     {
         $bookingRequest = new BookingRequest($pbook);
 
@@ -76,7 +98,6 @@ class BookingController extends Controller
                 $workflowProvider->changingState($workflows, $pbook, 'rent');
 
                 $this->addFlash('notice', 'L\'emprunt est effectif.');
-
 
                 $smsbuilder = new SmsBuilder($bookingRequest, 'rent');
 
@@ -167,4 +188,61 @@ class BookingController extends Controller
 
         return $this->redirectToRoute('backend_booking_index');
     }
+
+    /**
+     * @Route("/return/{id}/", name="backend_booking_return", methods="GET|POST|DELETE")
+     *
+     * @param Request $request
+     * @param Booking $booking
+     * @param Registry $workflows
+     * @param WorkflowProvider $workflowProvider
+     * @return Response
+     */
+    public function return(Request $request, Booking $booking, Registry $workflows, WorkflowProvider $workflowProvider): Response
+    {
+//        $em = $this->getDoctrine()->getManager();
+
+        $pbook = $booking->getPBook();
+
+        $workflowProvider->changingState($workflows, $pbook, 'return');
+
+        $this->addFlash('notice', 'Le livre est bien retourné.');
+
+//        $smsbuilder = new SmsBuilder($bookingRequest, 'return');
+
+        return $this->render('backend/booking/index.html.twig');
+    }
+
+    /**
+     * @Route("/problem/{id}/", name="backend_booking_problem", methods="GET|POST|DELETE")
+     *
+     * @param Request $request
+     * @param Booking $booking
+     * @param Registry $workflows
+     * @param WorkflowProvider $workflowProvider
+     * @return Response
+     */
+    public function problem(Request $request, Booking $booking, Registry $workflows, WorkflowProvider $workflowProvider): Response
+    {
+//        $em = $this->getDoctrine()->getManager();
+
+        $pbook = $booking->getPBook();
+        $bookings = $pbook->getBookings();
+
+//        dd($bookings);
+
+        if ($bookings) {
+            foreach ($booking as $bookings) {
+                dd($bookings);
+            }
+
+            $workflowProvider->changingState($workflows, $pbook, 'return_ko');
+
+            $this->addFlash('notice', 'Le livre a un problème.');
+        }
+//        $smsbuilder = new SmsBuilder($bookingRequest, 'return');
+
+        return $this->render('backend/booking/index.html.twig');
+    }
+
 }

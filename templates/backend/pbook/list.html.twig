@@ -13,6 +13,7 @@
         <tr>
             <th>Record ID</th>
             <th>{{ 'datatable.id' | trans({}, 'datatable') }}</th>
+            <th>{{ 'datatable.image' | trans({}, 'datatable') }}</th>
             <th>{{ 'datatable.title' | trans({}, 'datatable') }}</th>
             <th>{{ 'datatable.library' | trans({}, 'datatable') }}</th>
             <th>{{ 'datatable.status' | trans({}, 'datatable') }}</th>
@@ -30,6 +31,7 @@
             <tr>
                 <td>{{ pbook.id }}</td>
                 <td>{{ pbook.id }}</td>
+                <td><img src="{{ pbook.book.image.path }}" width="100px"/></td>
                 <td>{{ pbook.book.title }}</td>
                 <td>{{ pbook.library.name }}</td>
                 <td>
