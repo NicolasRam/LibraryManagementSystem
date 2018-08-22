@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: moula
  * Date: 12/08/2018
- * Time: 12:58
+ * Time: 12:58.
  */
 
 namespace App\Event\Subscriber;
@@ -12,6 +12,9 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Workflow\Event\Event;
 
+/**
+ * Class WorkflowLogger.
+ */
 class WorkflowLogger implements EventSubscriberInterface
 {
     /**
@@ -21,6 +24,7 @@ class WorkflowLogger implements EventSubscriberInterface
 
     /**
      * WorkflowLogger constructor.
+     *
      * @param LoggerInterface $logger
      */
     public function __construct(LoggerInterface $logger)

@@ -27,6 +27,8 @@
 
         <!--begin::Base Styles -->
         {% block stylesheets %}
+            <!-- ... -->
+            <link rel="stylesheet" href="{{ asset('build/app.css') }}">
             <link href="{{ asset('backend/assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css"/>
             <link href="{{ asset('backend/assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css"/>
         {% endblock %}
@@ -36,6 +38,8 @@
 
         <!--end::Base Styles -->
         <link rel="shortcut icon" href="{{ asset('backend/assets/demo/default/media/img/logo/favicon.ico') }}"/>
+        <!-- ... -->
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     </head>
 
     <!-- end::Head -->
@@ -43,24 +47,22 @@
     <!-- begin::Body -->
     <body class="{% block body_class %}m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default{% endblock %}">
     {% block body %}
+        <!-- ... -->
+        <script src="{{ asset('build/app.js') }}"></script>
         {% block page %}
             <!-- begin:: Page -->
             <div class="m-grid m-grid--hor m-grid--root m-page">
-                {% include 'backend/_components/_header.html.twig' %}
+                {% include '_components/_header.html.twig' %}
 
 
                 {% block page_body %}
                     <!-- begin::Body -->
                     <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 
-                        {% block left_sidebar %}
-                        {% include 'backend/_components/_left_sidebar.html.twig' %}
-                        {% endblock left_sidebar %}
+                        {% include '_components/_left_sidebar.html.twig' %}
 
                         <div class="m-grid__item m-grid__item--fluid m-wrapper">
-                            {% block subheader %}
-                            {% include 'backend/_components/_subheader.html.twig' %}
-                            {% endblock subheader %}
+                            {% include '_components/_subheader.html.twig' %}
 
                             {% block page_content %}
                             <div class="m-content">
@@ -2954,16 +2956,12 @@
                     <!-- end:: Body -->
                 {% endblock page_body %}
 
-                {% block footer %}
-                {% include 'backend/_components/_footer.html.twig' %}
-                {% endblock footer %}
+                {% include '_components/_footer.html.twig' %}
             </div>
             <!-- end:: Page -->
         {% endblock page %}
 
-        {% block quick_sidebar %}
-        {% include 'backend/_components/_quick_sidebar.html.twig' %}
-        {% endblock quick_sidebar %}
+        {% include '_components/_quick_sidebar.html.twig' %}
 
         <!-- begin::Scroll Top -->
         <div id="m_scroll_top" class="m-scroll-top">
@@ -2971,15 +2969,11 @@
         </div>
         <!-- end::Scroll Top -->
 
-        {% block quick_nav %}
-        {% include 'backend/_components/_quick_nav.html.twig' %}
-        {% endblock quick_nav %}
+        {% include '_components/_quick_nav.html.twig' %}
 
 
 
         {% block javascripts %}
-            <script src="{{ asset('build/app.js') }}"></script>
-
             <!--begin::Base Scripts -->
             <script src="{{ asset('backend/assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
             <script src="{{ asset('backend/assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
@@ -2990,7 +2984,6 @@
             <!--begin::Page Vendors -->
             <script src="{{ asset('backend/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
             <!--end::Page Vendors -->
-
         {% endblock page_vendors_scripts %}
 
         {% block page_javascripts %}

@@ -67,11 +67,11 @@ fixtures:
 	@./FIXTURES/commandServer1.sh
 
 	@$(call cyan, "Step 3: We will drop the database library if already in base")
-	@sleep 10
+	@sleep 15
 	@./FIXTURES/commandServer2.sh
 
 	@$(call cyan, "Step 4: We will create the database library")
-	@sleep 10
+	@sleep 15
 	@docker-compose exec php php /usr/local/apache2/htdocs/bin/console doctrine:database:create
 
 	@$(call cyan, "Step 5: We will create all tables")

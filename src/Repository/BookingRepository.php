@@ -29,7 +29,6 @@ class BookingRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('booking')
             ->join(PBook::class, 'pbook')
             ->join(Library::class, 'library')
-
             ->andWhere('library.id = :library_id')
             ->setParameter('library_id', $libraryId)
 
@@ -185,5 +184,58 @@ class BookingRepository extends ServiceEntityRepository
         $platform = $connection->getDatabasePlatform();
 
         $connection->executeUpdate($platform->getTruncateTableSQL('booking', true));
+    }
+
+    /**
+     * @param $value
+     *
+     * @return mixed
+     */
+    public function findValueOfBookingForOneMember($value)
+    {
+        try {
+            $count = $this->createQueryBuilder('a')
+                ->select('COUNT(a)')
+                ->where('a.member = :member_id')
+                ->setParameter('member_id', $value)
+                ->andWhere('a.endDate > CURRENT_DATE()')
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NonUniqueResultException $e) {
+            return 0;
+        }
+
+        return $count;
+    }
+
+    /**
+     * @param $topNumber
+     *
+     * @return array
+     *
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function findPbooktop($topNumber): array
+    {
+        try {
+            $myQuery = $this->_em->createQueryBuilder()
+                ->select('book')
+                ->from(Book::class, 'book')
+                ->join('book.pbook', 'pbook')
+                ->join('pbook.booking', 'booking')
+                ->groupBy('book.id')
+                ->orderBy('COUNT(book.id)')
+                ->setMaxResults(10)
+            ;
+            dd($myQuery->getQuery()->getSQL());
+
+            return $myQuery
+                ->getQuery()
+                ->getResult();
+        } catch (NonUniqueResultException $e) {
+            echo 'erreur Repo';
+
+            return [0];
+        }
     }
 }

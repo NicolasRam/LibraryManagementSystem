@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: moulaye
  * Date: 24/07/18
- * Time: 16:50
+ * Time: 16:50.
  */
 
 namespace App\DataFixtures;
@@ -17,14 +17,10 @@ use Faker\Factory;
 class AuthorFixtures extends Fixture implements OrderedFixtureInterface
 {
     public const AUTHORS_REFERENCE = 'authors';
-    public const AUTHORS_COUNT_REFERENCE = 300;
-
-    public function __construct()
-    {
-    }
+    public const AUTHORS_COUNT_REFERENCE = 50;
 
     /**
-     * Load data fixtures with the passed EntityManager
+     * Load data fixtures with the passed EntityManager.
      *
      * @param ObjectManager $manager
      */
@@ -32,7 +28,7 @@ class AuthorFixtures extends Fixture implements OrderedFixtureInterface
     {
         $fakerFactory = Factory::create('fr_FR');
 
-        for ($i = 0; $i < self::AUTHORS_COUNT_REFERENCE; $i++) {
+        for ($i = 0; $i < self::AUTHORS_COUNT_REFERENCE; ++$i) {
             $author = new Author();
 
             $author->setFirstName($fakerFactory->firstName);
@@ -41,16 +37,16 @@ class AuthorFixtures extends Fixture implements OrderedFixtureInterface
 
             $manager->persist($author);
 
-            $this->addReference(self::AUTHORS_REFERENCE . $i, $author);
+            $this->addReference(self::AUTHORS_REFERENCE.$i, $author);
         }
 
         $manager->flush();
     }
 
     /**
-     * Get the order of this fixture
+     * Get the order of this fixture.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {

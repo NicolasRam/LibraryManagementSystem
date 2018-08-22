@@ -2,22 +2,12 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PBookRepository")
- *
- * @ApiResource(
- *     itemOperations={
- *          "get",
- *          "generate"={
- *              "route_name"="card_generate"
- *          },
- *      }
- * )
  */
 class PBook
 {
@@ -36,20 +26,20 @@ class PBook
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBook")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="pBooks")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $book;
 
     /**
-     * @ORM\Column(type="simple_array", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      *
      * @var array
      */
     private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="pBook")
+     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="pBook", cascade={"remove"})
      */
     private $bookings;
 
@@ -58,10 +48,32 @@ class PBook
      */
     private $library;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="pBook", cascade={"persist", "remove"})
+     */
+    private $reservations;
+
+    /**
+     * @return mixed
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
+
+    /**
+     * @param mixed $reservations
+     */
+    public function setReservations($reservations): void
+    {
+        $this->reservations = $reservations;
+    }
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
-        $this->status = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
+        $this->status = ['inside' => 1];
     }
 
     public function getId()
@@ -86,7 +98,7 @@ class PBook
 
     public function getStatus(): array
     {
-        return is_array($this->status) ? $this->status : explode(',', $this->status);
+        return $this->status;
     }
 
     public function setStatus(array $status): self
@@ -99,7 +111,8 @@ class PBook
     public function addStatus(string $status): self
     {
         if (!$this->bookings->contains($status) && count($this->status) < 2) {
-            $this->status[] = $status;
+            $key = count($this->status);
+            $this->status[$status] = $key;
         }
 
         return $this;

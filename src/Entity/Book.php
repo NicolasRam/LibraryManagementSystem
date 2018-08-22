@@ -78,21 +78,12 @@ class Book
      */
     private $author;
 
-//    /**
-//     * @var Author[]
-//     *
-//     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="contributedBooks")
-//     * @ORM\JoinTable(name="book_author")
-//     * @ORM\Column(type="object", nullable=true)
-//     */
-//    private $authors;
-
     /**
      * @MaxDepth(2)
      *
      * @Groups( { "details", "draft" } )
      *
-     * @ORM\OneToOne(targetEntity="EBook", mappedBy="book", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="EBook", mappedBy="book", cascade={"remove"})
      */
     private $eBook;
 
@@ -111,10 +102,10 @@ class Book
      *
      * @Groups( { "details", "draft" } )
      *
-     * @ORM\OneToMany(targetEntity="PBook", mappedBy="book", cascade={"persist", "remove"})
-     * @ORM\Column(type="object", nullable=true)
+     * @ORM\OneToMany(targetEntity="PBook", mappedBy="book", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $pBook;
+    private $pBooks;
 
     public function getId()
     {
@@ -213,52 +204,25 @@ class Book
         return $this;
     }
 
-//    public function getAuthors(): ?array
-//    {
-//        return $this->authors;
-//    }
-//
-//    public function setAuthors(?array $authors): self
-//    {
-//        $this->authors = $authors;
-//
-//        return $this;
-//    }
-
-    public function getPBook(): ?PBook
+    /**
+     * @return mixed
+     */
+    public function getPBooks()
     {
-        return $this->pBook;
+        return $this->pBooks;
     }
 
-    public function setPBook(PBook $pBook): self
+    /**
+     * @param mixed $pBooks
+     *
+     * @return Book
+     */
+    public function setPBooks($pBooks)
     {
-        $this->pBook = $pBook;
-
-        // set the owning side of the relation if necessary
-        if ($this !== $pBook->getBook()) {
-            $pBook->setBook($this);
-        }
+        $this->pBooks = $pBooks;
 
         return $this;
     }
-
-//    /**
-//     * @param Author $author
-//     */
-//    public function addAuthor(Author $author)
-//    {
-//        $this->authors[] = $author;
-//    }
-//
-//    /**
-//     * @param Author $author
-//     */
-//    public function removeAuthor(Author $author)
-//    {
-//        if (false !== $key = array_search($author, $this->authors, true)) {
-//            array_splice($this->authors, $key, 1);
-//        }
-//    }
 
     /**
      * @return mixed

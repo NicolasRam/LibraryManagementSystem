@@ -17,7 +17,7 @@ class BookType extends AbstractType
             ->add('title')
             ->add('resume')
             ->add('pageNumber')
-            ->add('cover')
+            ->add('image')
         ;
     }
 

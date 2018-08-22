@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: moulaye
  * Date: 24/07/18
- * Time: 11:33
+ * Time: 11:33.
  */
 
 namespace App\Form;
@@ -22,14 +22,14 @@ class UserLoginType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => false,
-                'attr'  => ['placeholder' => 'Email']
+                'attr' => ['placeholder' => 'Email'],
             ])
             ->add('password', PasswordType::class, [
                 'label' => false,
-                'attr'  => ['placeholder' => 'Mot de passe']
+                'attr' => ['placeholder' => 'Mot de passe'],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Connexion'
+                'label' => 'Connexion',
             ])
         ;
     }
@@ -38,12 +38,12 @@ class UserLoginType extends AbstractType
     {
         $resolver
             ->setDefaults([
-                'data_class' => null
+                'data_class' => null,
             ]);
     }
 
     public function getBlockPrefix()
     {
-        return 'backend_user_login';
+        return 'user_login';
     }
 }

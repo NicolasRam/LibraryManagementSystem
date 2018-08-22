@@ -2,34 +2,17 @@
 
 namespace App\Command;
 
-use App\Service\Maker\View\DoctrineHelper;
-use App\Service\Maker\View\Generator;
-use App\Service\Maker\View\Str;
-use App\Service\Maker\View\Validator;
 use App\Service\Source\BookGiberSource;
-use App\Service\Source\Entity\Category;
-use App\Service\Source\Entity\Firebase;
-use App\Service\Source\Entity\Menu;
-use App\Service\Source\Entity\SubCategory;
-use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
-use Doctrine\Common\Inflector\Inflector;
+use App\Model\Source\Firebase\Category;
+use App\Service\Source\Firebase\Firebase;
+use App\Model\Source\Firebase\Menu;
+use App\Model\Source\Firebase\SubCategory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\ORMException;
-use GuzzleHttp\Psr7\Uri;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Bundle\MakerBundle\DependencyBuilder;
-use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Question\Question;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Security\Csrf\CsrfTokenManager;
-use Symfony\Component\Validator\Validation;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Tightenco\Collect\Support\Collection;
 
 class SourceGiberCommand extends ContainerAwareCommand
 {
@@ -84,7 +67,7 @@ class SourceGiberCommand extends ContainerAwareCommand
         $books = [];
 
         /**
-         * @var Menu $menu
+         * @var Menu
          */
         $menu = $this->bookGiberSource->getMenu();
 
@@ -95,12 +78,12 @@ class SourceGiberCommand extends ContainerAwareCommand
         $categoryProgressBar->start();
 //        $this->io->text("\n\n");
 
-        /**
-         * @var Category $category
+        /*
+         * @var Category
          */
         foreach ($menu->getCategories() as $category) {
             /**
-             * @var SubCategory $subCategory
+             * @var SubCategory
              */
 
 //            $this->io->text('Categories : ');
@@ -117,27 +100,27 @@ class SourceGiberCommand extends ContainerAwareCommand
 
                 foreach ($this->bookGiberSource->getBooks($subCategory->getLink(), $subCategory) as $book) {
                     $books[] = $book;
-                    $this->firebase->saveBook($book) ;
+                    $this->firebase->saveBook($book);
 
                     $bookProgressBar->advance(1);
                 }
 
                 $bookProgressBar->finish();
 
-                $this->firebase->saveSubCategory($subCategory) ;
+                $this->firebase->saveSubCategory($subCategory);
 
                 $subCategoryProgressBar->advance(1);
             }
 
             $subCategoryProgressBar->finish();
 
-            $this->firebase->saveCategory($category) ;
+            $this->firebase->saveCategory($category);
 
             $categoryProgressBar->advance(1);
         }
 
         $categoryProgressBar->finish();
 
-        $this->io->success('Categories : ' . count($categories) . ' - SubCategories : '  . count($subCategories) . ' - Books : ' . count($books));
+        $this->io->success('Categories : '.count($categories).' - SubCategories : '.count($subCategories).' - Books : '.count($books));
     }
 }

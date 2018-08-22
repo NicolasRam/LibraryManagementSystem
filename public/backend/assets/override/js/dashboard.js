@@ -842,10 +842,10 @@ var Dashboard = function () {
                     var o = "", n = "";
                     a - t < 100 || "Today" == r ? (o = "Today:", n = t.format("MMM D")) : "Yesterday" == r ? (o = "Yesterday:", n = t.format("MMM D")) : n = t.format("MMM D") + " - " + a.format("MMM D"), e.find(".m-subheader__daterange-date").html(n), e.find(".m-subheader__daterange-title").html(o)
                 }
-            }(), 0 !== $("#m_datatable_latest_orders").length && $(".m_datatable").mDatatable({
+            }(), /*0 !== $("#m_datatable_latest_orders").length && $(".m_datatable").mDatatable({
                 data: {
-                    type: "remote",
-                    source: {read: {url: "https://keenthemes.com/metronic/preview/inc/api/datatables/demos/default.php"}},
+                    // type: "remote",
+                    // source: {read: {url: "inc/api/datatables/demos/default.php"}},
                     pageSize: 10,
                     saveState: {cookie: !1, webstorage: !0},
                     serverPaging: !0,
@@ -856,7 +856,8 @@ var Dashboard = function () {
                 sortable: !0,
                 filterable: !1,
                 pagination: !0,
-                columns: [{
+                columns: [
+                    {
                     field: "RecordID",
                     title: "#",
                     sortable: !1,
@@ -909,8 +910,9 @@ var Dashboard = function () {
                     template: function (e, t, a) {
                         return '                        <div class="dropdown ' + (a.getPageSize() - t <= 4 ? "dropup" : "") + '">                            <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">                                <i class="la la-ellipsis-h"></i>                            </a>                            <div class="dropdown-menu dropdown-menu-right">                                <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>                                <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>                                <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>                            </div>                        </div>                        <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">                            <i class="la la-edit"></i>                        </a>                        <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">                            <i class="la la-trash"></i>                        </a>                    '
                     }
-                }]
-            }), function () {
+                }
+            ]
+            }),*/ function () {
                 if (0 !== $("#m_calendar").length) {
                     var e = moment().startOf("day");
                     e.format("YYYY-MM"), e.clone().subtract(1, "day").format("YYYY-MM-DD"), e.format("YYYY-MM-DD"), e.clone().add(1, "day").format("YYYY-MM-DD"), $("#m_calendar").fullCalendar({
@@ -1049,4 +1051,43 @@ var Dashboard = function () {
 }();
 jQuery(document).ready(function () {
     Dashboard.init()
+});
+
+
+var DatatablesBasicBasic = {
+    init: function () {
+        var e;
+        (e = $("#m_table_1")).DataTable({
+            responsive: !0,
+            dom: "<'row'<'col-sm-12'tr>>\n\t\t\t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>",
+            lengthMenu: [5, 10, 25, 50],
+            pageLength: 10,
+            language: {lengthMenu: "Display _MENU_"},
+            order: [[1, "desc"]],
+            headerCallback: function (e, a, t, n, s) {
+                e.getElementsByTagName("th")[0].innerHTML = '\n                    <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">\n                        <input type="checkbox" value="" class="m-group-checkable">\n                        <span></span>\n                    </label>'
+            },
+            columnDefs: [
+                {
+                    targets: 0,
+                    width: "30px",
+                    className: "dt-right",
+                    orderable: !1,
+                    render: function (e, a, t, n) {
+                        return '\n                        <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">\n                            <input type="checkbox" value="" class="m-checkable">\n                            <span></span>\n                        </label>'
+                    }
+                },
+            ]
+        }), e.on("change", ".m-group-checkable", function () {
+            var e = $(this).closest("table").find("td:first-child .m-checkable"), a = $(this).is(":checked");
+            $(e).each(function () {
+                a ? ($(this).prop("checked", !0), $(this).closest("tr").addClass("active")) : ($(this).prop("checked", !1), $(this).closest("tr").removeClass("active"))
+            })
+        }), e.on("change", "tbody tr .m-checkbox", function () {
+            $(this).parents("tr").toggleClass("active")
+        })
+    }
+};
+jQuery(document).ready(function () {
+    DatatablesBasicBasic.init()
 });

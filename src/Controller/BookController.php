@@ -2,80 +2,100 @@
 
 namespace App\Controller;
 
+use App\Book\BookCatalogue;
 use App\Entity\Book;
-use App\Form\BookType;
-use App\Repository\BookRepository;
+use App\Entity\PBook;
+use Symfony\Component\Workflow\Registry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/book")
+ * @Route("/book")
  */
 class BookController extends Controller
 {
     /**
-     * @Route("/", name="backend_book_index", methods="GET")
+     * @Route("/", name="book_index", methods="GET")
+     *
+     * @return Response
      */
-    public function index(BookRepository $bookRepository): Response
+    public function index(BookCatalogue $catalogue)
     {
-        return $this->render('backend/book/index.html.twig', ['books' => $bookRepository->findAll()]);
-    }
+        $library = $this->getUser()->getLibrary();
 
-    /**
-     * @Route("/new", name="book_new", methods="GET|POST")
-     */
-    public function new(Request $request): Response
-    {
-        $book = new Book();
-        $form = $this->createForm(BookType::class, $book);
-        $form->handleRequest($request);
+        $books = [];
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($book);
-            $em->flush();
-
-            return $this->redirectToRoute('backend_book_index');
+        /*
+         * @var PBook
+         */
+        foreach ($library->getPBooks() as $pbook) {
+            $books[] = $pbook->getBook();
         }
 
-        return $this->render('backend/book/new.html.twig', [
-            'book' => $book,
-            'form' => $form->createView(),
+        return $this->render('book/index.html.twig', [
+            'books' => $books,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="book_show", methods="GET")
+     * @Route("/{id}/show", name="book_show", methods="GET")
+     *
+     * @param Book $book
+     *
+     * @return Response
      */
     public function show(Book $book): Response
     {
-        return $this->render('backend/book/show.html.twig', ['book' => $book]);
-    }
+        $pbook = $book->getPBooks();
 
-    /**
-     * @Route("/{id}/edit", name="book_edit", methods="GET|POST")
-     */
-    public function edit(Request $request, Book $book): Response
-    {
-        $form = $this->createForm(BookType::class, $book);
-        $form->handleRequest($request);
+        $count = count($pbook);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('book_edit', ['id' => $book->getId()]);
-        }
-
-        return $this->render('backend/book/edit.html.twig', [
-            'book' => $book,
-            'form' => $form->createView(),
+        return $this->render('book/show.html.twig', [
+            'book' => $book, 'pbook' => $pbook, 'count' => $count,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="book_delete", methods="DELETE")
+     * @Route("/{id}/edit", name="book_edit", methods="GET")
+     *
+     * @param Registry $workflows
+     */
+    public function edit(Registry $workflows)
+    {
+        $pbook = new PBook();
+        $workflow = $workflows->get($pbook);
+
+        // if there are multiple workflows for the same class,
+        // pass the workflow name as the second argument
+        // $workflow = $workflows->get($pbook, 'blog_publishing');
+
+        // you can also get all workflows associated with an object, which is useful
+        // for example to show the status of all those workflows in a backend
+        $pbookWorkflows = $workflows->all($pbook);
+
+//        $workflow->can($pbook, 'publish'); // False
+//        $workflow->can($pbook, 'to_review'); // True
+
+        // Update the currentState on the post
+        try {
+            $workflow->apply($pbook, 'to_review');
+        } catch (TransitionException $exception) {
+            // ... if the transition is not allowed
+        }
+
+        // See all the available transitions for the post in the current state
+        $transitions = $workflow->getEnabledTransitions($pbook);
+    }
+
+    /**
+     * @Route("/{id}/delete", name="book_delete", methods="DELETE")
+     *
+     * @param Request $request
+     * @param Book    $book
+     *
+     * @return Response
      */
     public function delete(Request $request, Book $book): Response
     {
@@ -85,6 +105,6 @@ class BookController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('backend_book_index');
+        return $this->redirectToRoute('librarian_index');
     }
 }

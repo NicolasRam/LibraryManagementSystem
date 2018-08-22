@@ -8,8 +8,9 @@
 
 namespace App\Controller\API;
 
+use App\Entity\Member;
 use App\Repository\MemberRepository;
-use App\Service\Client\APIMemberManagement;
+use App\Service\APIMemberManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,26 +24,43 @@ use Symfony\Component\Routing\Annotation\Route;
 class MemberController extends Controller
 {
     /**
+     * An library management system subscribed member.
+     *
+     * @var Member
+     */
+    private $member;
+
+    /**
+     * Members repository.
+     *
      * @var MemberRepository
      */
     private $memberRepository;
+
     /**
-     * @var APIMemberManagement
+     * API Member Manager.
+     *
+     * @var APIMemberManager
      */
     private $apiMemberManagement;
 
     /**
      * MemberController constructor.
      *
-     * @param MemberRepository $memberRepository
+     * @param MemberRepository $memberRepository    Member's Repository
+     * @param APIMemberManager $apiMemberManagement API Member Manager
      */
-    public function __construct(MemberRepository $memberRepository, APIMemberManagement $apiMemberManagement)
-    {
+    public function __construct(
+        MemberRepository $memberRepository,
+        APIMemberManager $apiMemberManagement
+    ) {
         $this->memberRepository = $memberRepository;
         $this->apiMemberManagement = $apiMemberManagement;
     }
 
     /**
+     * Count all members.
+     *
      * @Route(
      *     "/count",
      *     name="api_member_count",
@@ -52,8 +70,10 @@ class MemberController extends Controller
      *          "_api_receive"=false
      *      }
      * )
+     *
+     * @return JsonResponse
      */
-    public function count()
+    public function count(): JsonResponse
     {
         $membersCount = $this->memberRepository->count([]);
 
@@ -61,6 +81,8 @@ class MemberController extends Controller
     }
 
     /**
+     * Return connected user.
+     *
      * @Route(
      *     "/current",
      *     name="api_member_current",
@@ -69,13 +91,23 @@ class MemberController extends Controller
      *          "_api_receive"=false
      *      }
      * )
+     *
+     * @return JsonResponse
      */
-    public function current(Request $request)
+    public function current()
     {
         return new JsonResponse($this->getUser());
     }
 
     /**
+     * Subscribe an giving user by adding him into database.
+     *
+     * @param Request          $request HTTP request
+     * @param APIMemberManager $manager API Member Manager
+     *
+     * @return JsonResponse
+     *
+     * @throws \Doctrine\ORM\ORMException
      * @Route(
      *     "/subscribe",
      *     name="api_member_subscribe",
@@ -85,10 +117,12 @@ class MemberController extends Controller
      *      }
      * )
      */
-    public function subscribe(Request $request)
-    {
-        $member = $this->apiMemberManagement->subscribe($request,);
+    public function subscribe(
+        Request $request,
+        APIMemberManager $manager
+    ) {
+        $this->member = $manager->subscribe($request);
 
-        return new JsonResponse($this->getUser());
+        return new JsonResponse($this->member);
     }
 }

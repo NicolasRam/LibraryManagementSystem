@@ -37,7 +37,7 @@ class PBookFixtures extends Fixture implements OrderedFixtureInterface
 
                         $pBook->setBook($this->getReference(BookFixtures::BOOKS_REFERENCE.$i));
                         $pBook->setLibrary($this->getReference(LibraryFixtures::LIBRARIES_REFERENCE.$k));
-                        $pBook->setStatus([PBook::STATUS_INSIDE]);
+                        $pBook->setStatus([PBook::STATUS_INSIDE => 1]);
 
                         $manager->persist($pBook);
 

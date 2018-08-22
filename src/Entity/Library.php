@@ -59,7 +59,7 @@ class Library
     private $closingTime;
 
     /**
-     * @ORM\OneToMany(targetEntity="PBook", mappedBy="library")
+     * @ORM\OneToMany(targetEntity="PBook", mappedBy="library", cascade={"remove"})
      */
     private $pBooks;
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use App\Entity\PBook;
 use App\Form\PBookType;
 use App\Repository\PBookRepository;
@@ -11,20 +12,43 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backend/pbook")
+ * @Route("/pbook")
  */
 class PBookController extends Controller
 {
     /**
-     * @Route("/", name="backend_pbook_index", methods="GET")
+     * @Route("/", name="pbook_index", methods="GET")
+     *
+     * @param PBookRepository $pbookRepository
+     *
+     * @return Response
      */
     public function index(PBookRepository $pbookRepository): Response
     {
-        return $this->render('backend/pbook/index.html.twig', ['pbooks' => $pbookRepository->findAll()]);
+        return $this->render('pbook/index.html.twig', ['pbooks' => $pbookRepository->findAll()]);
+    }
+
+    /**
+     * @Route("/list/{id}", name="pbook_list", methods="GET")
+     *
+     * @param PBookRepository $pbookRepository
+     * @param Book            $book
+     *
+     * @return Response
+     */
+    public function list(PBookRepository $pbookRepository, Book $book): Response
+    {
+        $pbooks = $book->getPBooks();
+
+        return $this->render('pbook/list.html.twig', ['pbooks' => $pbooks]);
     }
 
     /**
      * @Route("/new", name="pbook_new", methods="GET|POST")
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -37,10 +61,10 @@ class PBookController extends Controller
             $em->persist($pbook);
             $em->flush();
 
-            return $this->redirectToRoute('backend_pbook_index');
+            return $this->redirectToRoute('pbook_index');
         }
 
-        return $this->render('backend/pbook/new.html.twig', [
+        return $this->render('pbook/new.html.twig', [
             'pbook' => $pbook,
             'form' => $form->createView(),
         ]);
@@ -51,15 +75,20 @@ class PBookController extends Controller
      */
     public function show(PBook $pbook): Response
     {
-        return $this->render('backend/pbook/show.html.twig', ['pbook' => $pbook]);
+        return $this->render('pbook/show.html.twig', ['pbook' => $pbook]);
     }
 
     /**
      * @Route("/{id}/edit", name="pbook_edit", methods="GET|POST")
+     *
+     * @param Request $request
+     * @param PBook   $pbook
+     *
+     * @return Response
      */
     public function edit(Request $request, PBook $pbook): Response
     {
-        $form = $this->createForm(PBookType::class, $pbook);
+        $form = $this->createForm(PBookEType::class, $pbook);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,7 +97,7 @@ class PBookController extends Controller
             return $this->redirectToRoute('pbook_edit', ['id' => $pbook->getId()]);
         }
 
-        return $this->render('backend/pbook/edit.html.twig', [
+        return $this->render('pbook/edit.html.twig', [
             'pbook' => $pbook,
             'form' => $form->createView(),
         ]);
@@ -85,31 +114,6 @@ class PBookController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('backend_pbook_index');
-    }
-
-    /**
-     * @Route("/api/cards/generate", name="card_generate", defaults={
-     *   "#_api_resource_class"=Card::class,
-     *   "_api_item_operation_name"="generate",
-     *   "_api_receive"=false
-     * })
-     */
-    public function generate()
-    {
-        $user = ['user' => $this->getUser()->getUsername()];
-
-        $card = new Card();
-        $card->setCode(rand(12, 148));
-
-        $this->getDoctrine()->getManager()->persist($card);
-        $this->getDoctrine()->getManager()->flush();
-
-        $responseCard = [
-            'id' => $card->getId(),
-            'code' => $card->getCode(),
-        ];
-
-        return new JsonResponse($responseCard);
+        return $this->redirectToRoute('pbook_index');
     }
 }

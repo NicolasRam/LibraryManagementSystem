@@ -90,4 +90,4 @@ resources:
             get: ~
             api_member_count:
             api_member_current:
-            api_member_suscribe:
+            api_member_subscribe:

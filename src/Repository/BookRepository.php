@@ -28,7 +28,7 @@ class BookRepository extends ServiceEntityRepository
      *
      * @return array
      */
-    public function findByLibrary($libraryId) : array
+    public function findByLibrary($libraryId): array
     {
         return $this->createQueryBuilder('book')
             ->join(PBook::class, 'pbook')
@@ -46,17 +46,18 @@ class BookRepository extends ServiceEntityRepository
 
     /**
      * @param int $limit
+     *
      * @return array
      */
-    public function findBestSellers( $limit = 10 ) : array
+    public function findBestSellers($limit = 10): array
     {
         return $this->createQueryBuilder('b')
-            #->join(EBook::class, 'eb')
-            #->where('eb.book_id = b.id')
-            #->groupBy('eb.book_id')
-            #->orderBy('eb.book_id')
+            //->join(EBook::class, 'eb')
+            //->where('eb.book_id = b.id')
+            //->groupBy('eb.book_id')
+            //->orderBy('eb.book_id')
 
-            ->setMaxResults( $limit )
+            ->setMaxResults($limit)
 
             ->getQuery()
             ->getResult()
@@ -96,5 +97,38 @@ class BookRepository extends ServiceEntityRepository
         }
 
         return $count;
+    }
+
+    public function findTop($topNumber): array
+    {
+        $myQuery = $this->createQueryBuilder('book')
+            ->join('book.pBooks', 'pbook')
+            ->join('pbook.bookings', 'booking')
+            ->join('book.image', 'image')
+            ->addSelect('COUNT(book.id)')
+            ->addSelect('image')
+            ->groupBy('book.id')
+            ->orderBy('COUNT(book.id)')
+            ->setMaxResults($topNumber);
+
+        return $myQuery
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    /**
+     * Compte le nombre de livres dans la BDD.
+     *
+     * @return int|mixed
+     */
+    public function findTotalBooks()
+    {
+        try {
+            return $this->createQueryBuilder('a')
+                ->select('COUNT(a)')
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NonUniqueResultException $e) {
+        }
     }
 }

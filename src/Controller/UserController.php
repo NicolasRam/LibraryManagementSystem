@@ -21,13 +21,13 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  * Class UserController.
  *
  *
- * @Route( path="/backend" )
- * Route( path="/backend/user" )
+ * @Route( path="/" )
+ * Route( path="/user" )
  */
 class UserController extends Controller
 {
     /**
-     * @Route("/", name="backend_user_index", methods="GET")
+     * @Route("/", name="user_index", methods="GET")
      *
      * @param UserRepository $userRepository
      *
@@ -35,7 +35,7 @@ class UserController extends Controller
      */
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('backend/user/index.html.twig', ['users' => $userRepository->findAll()]);
+        return $this->render('user/index.html.twig', ['users' => $userRepository->findAll()]);
     }
 
 //    /**
@@ -55,10 +55,10 @@ class UserController extends Controller
 //            $em->persist($user);
 //            $em->flush();
 //
-//            return $this->redirectToRoute('backend_user_index');
+//            return $this->redirectToRoute('user_index');
 //        }
 //
-//        return $this->render('backend/user/new.html.twig', [
+//        return $this->render('user/new.html.twig', [
 //            'user' => $user,
 //            'form' => $form->createView(),
 //        ]);
@@ -72,7 +72,7 @@ class UserController extends Controller
 //     */
 //    public function show(User $user): Response
 //    {
-//        return $this->render('backend/user/show.html.twig', ['user' => $user]);
+//        return $this->render('user/show.html.twig', ['user' => $user]);
 //    }
 //
 //    /**
@@ -93,7 +93,7 @@ class UserController extends Controller
 //            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
 //        }
 //
-//        return $this->render('backend/user/edit.html.twig', [
+//        return $this->render('user/edit.html.twig', [
 //            'user' => $user,
 //            'form' => $form->createView(),
 //        ]);
@@ -114,7 +114,7 @@ class UserController extends Controller
 //            $em->flush();
 //        }
 //
-//        return $this->redirectToRoute('backend_user_index');
+//        return $this->redirectToRoute('user_index');
 //    }
 
     /**
@@ -125,10 +125,10 @@ class UserController extends Controller
      *          "fr": "/connexion",
      *          "en": "/login"
      *      },
-     *     name="backend_user_login"
+     *     name="user_login"
      * )
      *
-     * @Route( path="/login", name="backend_user_login" )
+     * @Route( path="/login", name="user_login" )
      *
      * @param Request             $request
      * @param AuthenticationUtils $authenticationUtils
@@ -144,7 +144,7 @@ class UserController extends Controller
          * @Todo add permission check
          */
         if ($this->getUser()) {
-            return $this->redirectToRoute('backend_home');
+            return $this->redirectToRoute('home');
         }
 
         /**
@@ -158,7 +158,7 @@ class UserController extends Controller
         $error = $authenticationUtils->getLastAuthenticationError();
 
         return $this->render(
-            'backend/user/login.html.twig',
+            'user/login.html.twig',
             [
                 'form' => $form->createView(),
                 'error' => $error,

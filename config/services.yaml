@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    books_assets_directory: '%kernel.project_dir%/public/upload'
     locale: 'fr'
     email_from: '%env(MAILER_FROM)%'
 
@@ -38,3 +39,79 @@ services:
     App\Mailer\Mailer:
         arguments:
             $mailFrom: '%email_from%'
+
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    App\Log\CustomLogger:
+        autowire: true
+        arguments: ['@logger']
+        tags:
+        - { name: monolog.logger, channel: ovh }
+
+    App\Service\Sms\SmsProvider:
+        autowire: true
+        arguments:
+            # the '@' symbol is important: that's what tells the container
+            # you want to pass the *service* whose id is 'monolog.logger.request',
+            # and not just the *string* 'monolog.logger.request'
+            $logger: '@monolog.logger.ovh'
+    #        tags:
+    #        - { name: monolog.processor }
+
+    App\Service\Member\MemberProvider:
+        autowire: true
+          #        arguments:
+          # the '@' symbol is important: that's what tells the container
+          # you want to pass the *service* whose id is 'monolog.logger.request',
+        # and not just the *string* 'monolog.logger.request'
+    #            $logger: '@monolog.logger.ovh'
+    #        tags:
+    #        - { name: monolog.processor }
+
+    monolog.formatter.session_request:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+        - "[%%datetime%%] [%%extra.token%%] %%channel%%.%%level_name%%: %%message%% %%context%% %%extra%%\n"
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    App\Book\BookRequestHandler:
+        arguments:
+            $assetsDirectory: '%books_assets_directory%'
+
+    App\Book\BookRequestUpdateHandler:
+        arguments:
+            $assetsDirectory: '%books_assets_directory%'
+
+
+    _instanceof:
+        App\Book\Source\BookAbstractSource:
+            tags:
+            - app.book_source
+
+    App\Book\BookCatalogue:
+        calls:
+        - ['setSources', [!tagged app.book_source]]
+
+    App\DataCollector\SourcesCollector:
+        tags:
+        -
+            name:     data_collector
+            template: 'collector/sources.html.twig'
+            # must match the value returned by the getName() method
+            id:       'app.sources_collector'
+            # optional priority
+            # priority: 300
+        public: false
+
+    audit_trail_listener:
+        class: App\Event\Subscriber\CustomAuditTrailListener
+        arguments:
+        - "@logger"
+        tags:
+        - { name: kernel.event_subscriber }
+
+    Elastica\Client:
+        $config:
+            host: 'elasticsearch' # ou 127.0.0.1

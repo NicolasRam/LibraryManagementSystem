@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: moulaye
  * Date: 26/07/18
- * Time: 10:19
+ * Time: 10:19.
  */
 
 namespace App\Entity;
@@ -13,12 +13,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class EBook
+ * Class EBook.
  *
- * @package App\Entity
  *
  * @ORM\Entity( repositoryClass="App\Repository\EBookRepository" )
- *
  */
 class EBook /*extends Book*/
 {
@@ -44,7 +42,8 @@ class EBook /*extends Book*/
     private $file;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MemberEBook", mappedBy="ebook", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberEBook", mappedBy="ebook")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $memberEBooks;
 
@@ -69,6 +68,7 @@ class EBook /*extends Book*/
     public function setBook(Book $book): EBook
     {
         $this->book = $book;
+
         return $this;
     }
 

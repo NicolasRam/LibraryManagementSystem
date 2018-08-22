@@ -11,7 +11,7 @@ namespace App\DataFixtures;
 use App\Entity\Author;
 use App\Entity\Book;
 use App\Entity\Image;
-use App\Service\Source\Entity\Firebase;
+use App\Service\Source\Firebase\Firebase;
 use Behat\Transliterator\Transliterator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -22,6 +22,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
 {
     public const BOOKS_REFERENCE = 'books';
     public const BOOKS_COUNT_REFERENCE = 100;
+
     /**
      * @var Firebase
      */
@@ -51,15 +52,15 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
 
         for ($i = 0; $i < self::BOOKS_COUNT_REFERENCE && $authors >= 3; ++$i) {
             $book = new Book();
-            $cover = new Image();
+            $image = new Image();
 
             /**
              * @var \App\Service\Source\Entity\Book
              */
             $firebaseBook = $firebaseBooks[$i];
 
-            $cover->setPath($firebaseBook->getImage());
-            $cover->setIsLocal(false);
+            $image->setPath($firebaseBook->getImage());
+            $image->setIsLocal(false);
 
             /*
              * @var Author
@@ -74,7 +75,7 @@ class BookFixtures extends Fixture implements OrderedFixtureInterface
             $book->setResume($fakerFactory->text($maxNbChars = 200));
             $book->setTitle($firebaseBook->getTitle());
             $book->setSlug(Transliterator::transliterate($book->getTitle()));
-            $book->setImage($cover);
+            $book->setImage($image);
 
             $manager->persist($book);
 
