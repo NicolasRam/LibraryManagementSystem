@@ -9,6 +9,9 @@ use App\Entity\PBook;
 use App\Form\BookingRequestType;
 use App\Repository\BookingRepository;
 use App\Service\Member\MemberProvider;
+use App\Service\Sms\SmsBuilder;
+use App\Service\Sms\SmsProvider;
+use App\Workflow\WorkflowProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,14 +43,18 @@ class BookingController extends Controller
     /**
      * @Route("/rent/{id}/", name="backend_booking_rent", methods="GET|POST|DELETE")
      *
-     * @param Request               $request
+     * @param Request $request
      * @param BookingRequestHandler $bookingRequestHandler
-     * @param PBook                 $pbook
-     * @param MemberProvider        $memberProvider
+     * @param PBook $pbook
+     * @param MemberProvider $memberProvider
      *
+     * @param SmsProvider $smsProvider
+     * @param Registry $workflows
+     * @param WorkflowProvider $workflowProvider
      * @return Response
+     * @throws \Ovh\Exceptions\InvalidParameterException
      */
-    public function rent(Request $request, BookingRequestHandler $bookingRequestHandler, PBook $pbook, MemberProvider $memberProvider): Response
+    public function rent(Request $request, BookingRequestHandler $bookingRequestHandler, PBook $pbook, MemberProvider $memberProvider, SmsProvider $smsProvider, Registry $workflows, WorkflowProvider $workflowProvider): Response
     {
         $bookingRequest = new BookingRequest($pbook);
 
@@ -57,36 +64,24 @@ class BookingController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             //On vérifie que le membre peut souscrire à une nouvelle reservation
-            $responseFromQuery = $memberProvider->verifyIfBookingCanBeValid($bookingRequest->getMember());
+            $verifyIfBookingValid = $memberProvider->verifyIfBookingCanBeValid($bookingRequest->getMember());
 
-            if (true == $responseFromQuery) {
-//            $workflow = (new Registry())->get(new PBook());
+            if (true == $verifyIfBookingValid) {
 
-                $pbook = new PBook();
-                $workflow = $registry->get($pbook);
-
-                dump($workflow->can($pbook, 'publish')); // False
-                dump($workflow->can($pbook, 'to_review')); // True
-
-//                $workflow = $registry->get($bookingRequest);
-
-//                if ($workflow->can($bookingRequest, 'publish'))
-                ////                    $workflow->get
-//
-                ////                $workflow->can($bookingRequest, 'publish'); // False
-                ////                $workflow->can($bookingRequest, 'to_review'); // True
-//
-//                // Update the currentState on the post
-//                try {
-                ////                    $workflow->apply($bookingRequest, 'to_review');
-//                } catch (TransitionException $exception) {
-//                    // ... if the transition is not allowed
-//                }
-                $this->addFlash('notice', 'La réservation est effective.');
 
                 $this->getDoctrine()->getManager()->flush();
 
                 $booking = $bookingRequestHandler->handle($bookingRequest);
+
+                $workflowProvider->changingState($workflows, $pbook, 'rent');
+
+                $this->addFlash('notice', 'L\'emprunt est effectif.');
+
+
+                $smsbuilder = new SmsBuilder($bookingRequest, 'rent');
+
+
+//                $smsProvider->sendMessage($phoneMember, $message);
 
                 return $this->redirectToRoute('backend_booking_rent', ['id' => $pbook->getId()]);
             } else {
@@ -95,7 +90,6 @@ class BookingController extends Controller
         }
 
         return $this->render('backend/booking/rent.html.twig', [
-//            'booking' => $booking,
             'form' => $form->createView(),
         ]);
     }

@@ -37,7 +37,7 @@ services:
         tags:
         - { name: monolog.logger, channel: ovh }
 
-    App\Service\SmsProvider:
+    App\Service\Sms\SmsProvider:
         autowire: true
         arguments:
             # the '@' symbol is important: that's what tells the container

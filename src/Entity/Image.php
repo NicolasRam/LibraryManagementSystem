@@ -11,10 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Image extends File
 {
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Book", mappedBy="image")
-     * @ORM\Column(nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Book", inversedBy="image")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $book;
+
     /**
      * @return mixed
      */

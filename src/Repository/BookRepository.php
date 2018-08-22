@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\Validator\Constraints\Count;
 
 /**
  * @method Book|null find($id, $lockMode = null, $lockVersion = null)
@@ -91,14 +92,10 @@ class BookRepository extends ServiceEntityRepository
      */
     public function findTotalBooks()
     {
-        try {
             return $this->createQueryBuilder('a')
                 ->select('COUNT(a)')
                 ->getQuery()
                 ->getSingleScalarResult();
-        } catch (NonUniqueResultException $e) {
-            return 0;
-        }
     }
 
     /**
@@ -150,7 +147,6 @@ class BookRepository extends ServiceEntityRepository
      */
     public function countAuthorBooksByStatus(int $idAuthor, string $status)
     {
-        try {
             return $this->createQueryBuilder('a')
                 ->select('COUNT(a)')
                 ->where('a.user = :author_id')
@@ -159,9 +155,6 @@ class BookRepository extends ServiceEntityRepository
                 ->setParameter('status', "%$status%")
                 ->getQuery()
                 ->getSingleScalarResult();
-        } catch (NonUniqueResultException $e) {
-            return 0;
-        }
     }
 
     /** Compter les livres par statut
@@ -171,27 +164,31 @@ class BookRepository extends ServiceEntityRepository
      */
     public function countBooksByStatus(string $status)
     {
-        try {
             return $this->createQueryBuilder('a')
                 ->select('COUNT(a)')
                 ->where('a.status LIKE :status')
                 ->setParameter('status', "%$status%")
                 ->getQuery()
                 ->getSingleScalarResult();
-        } catch (NonUniqueResultException $e) {
-            return 0;
-        }
     }
 
-//    public function findAll()
-//    {
-//        try {
-//            return $this->createQueryBuilder('a')
-//                ->select('a')
-//                ->getQuery()
-//                ->getResult();
-//        } catch (NonUniqueResultException $e) {
-//            return 0;
-//        }
-//    }
+    public function findTop($topNumber): array
+    {
+
+            $myQuery = $this->createQueryBuilder('book')
+                ->join('book.pBooks', 'pbook')
+                ->join('pbook.bookings', 'booking')
+                ->join('book.image', 'image')
+                ->addSelect('COUNT(book.id)')
+                ->addSelect('image')
+                ->groupBy('book.id')
+                ->orderBy('COUNT(book.id)')
+                ->setMaxResults($topNumber);
+            ;
+
+            return $myQuery
+                ->getQuery()
+                ->getArrayResult();
+
+    }
 }

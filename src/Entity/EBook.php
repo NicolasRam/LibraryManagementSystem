@@ -35,7 +35,8 @@ class EBook /*extends Book*/
     private $file;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MemberEBook", mappedBy="eBook")
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberEBook", mappedBy="ebook")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $memberEBooks;
 

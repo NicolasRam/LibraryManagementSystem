@@ -34,13 +34,14 @@ class BookController extends Controller
             $books[] = $pbook->getBook();
         }
 
+
         return $this->render('backend/book/index.html.twig', [
             'books' => $books,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="backend_book_show", methods="GET")
+     * @Route("/{id}/show", name="backend_book_show", methods="GET")
      *
      * @param Book $book
      *
@@ -58,7 +59,7 @@ class BookController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="backend_book_edit", methods="GET")
+     * @Route("/{id}/edit", name="backend_book_edit", methods="GET")
      *
      * @param Registry $workflows
      */
@@ -90,7 +91,7 @@ class BookController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="backend_book_delete", methods="DELETE")
+     * @Route("/{id}/delete", name="backend_book_delete", methods="DELETE")
      *
      * @param Request $request
      * @param Book    $book

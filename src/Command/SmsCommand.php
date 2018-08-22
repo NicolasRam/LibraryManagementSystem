@@ -8,7 +8,7 @@ use App\Service\LoggerDependency;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use App\Service\SmsProvider;
+use App\Service\Sms\SmsProvider;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 use Psr\Log\LogLevel;
 
@@ -81,29 +81,7 @@ class SmsCommand extends Command
         } else {
             if (!$input->getOption('send')) {
                 echo "You're strange, how do you expect me to send some message if you don't specify the phone number? \n";
-//                die;
             }
         }
-
-//        // Exécution de la commande avec l’option ‘list’
-//        if ($input->getOption('list')) {
-//            $output->writeln('List number from blacklist :');
-//            $results = $this->smsProvider->getHappyMessage();
-////            $results = $this->getContainer()->get('app.sms.provider')->getBlacklist();
-//            $output->writeln($results);
-//        }
-//
-//        // Exécution de la commande avec l’option ‘blacklist’
-//        // et son paramètre (numéro au format +336)
-//        if ($input->getOption('blacklist')) {
-////            $this->log('info', sprintf('Remove "%s" from blacklist', $input->getOption('blacklist')));
-//
-//            try {
-////                $this->getContainer()->get('app.sms.provider')->removeFromBlacklist($input->getOption('blacklist'));
-////                $this->log('info', sprintf('%s removed from blacklist', $input->getOption('blacklist')));
-//            } catch (\Exception $e) {
-////                $this->log('info', sprintf('Error to remove %s from blacklist : %s', $input->getOption('blacklist'), $e->getMessage()));
-//            }
-//        }
     }
 }

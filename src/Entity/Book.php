@@ -78,13 +78,14 @@ class Book
      * @ORM\JoinColumn(nullable=false)
      */
     private $subCategory;
+
     /**
      * @ORM\OneToOne(
      *     targetEntity="App\Entity\Image",
      *     mappedBy="book",
      *     cascade={"persist", "remove"}
      *     )
-     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+//     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
      */
     private $image;
 
