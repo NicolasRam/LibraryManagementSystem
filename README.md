@@ -18,18 +18,21 @@ LMS - Library Management System
 \____|__  (____  /__|_ \\___  >__|  |__|____/\___  >
         \/     \/     \/    \/                   \/ 
 
-Requirements for the makefile:
+Requirements for makefile docker procedure:
 
-- Works with Docker-compose version >= 1.21
-- xterm should be installed (apt xterm)
-- netstat shoud be installed (packages net-tools)
-- docker should be running as service
+- Need make, git, curl, xterm, net-tools (netstat), composer
+- php 7.2.x (with php-curl php-cli php-ext php-xml)
+- docker ce 18 should be running as service
+- docker-compose version >= 1.21 should be installed
+- port 3366 should be free on your host
+- sysctl -w vm.max_map_count=262144
 
-For accessing to fixtures "make" should be installed
+* env & composer update before first use.
+* First launch will take some times for containers to come up, please be patient
 
 Type "make help" for instructions
 
 #
-##
+######
 #
 ```
