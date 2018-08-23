@@ -63,10 +63,12 @@ resources:
         itemOperations:
             get: ~
             api_book_count:
-            api_featured:
+            api_book_featured:
             api_book_picked_by_author:
             api_call_to_action:
             api_latest_posts:
+            api_service_info:
+            api_featured_news:
 
     App\Entity\SubCategory:
         itemOperations:

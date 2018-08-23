@@ -1,35 +1,61 @@
 <?php
-
 namespace App\Book;
 
 use App\Book\Source\BookAbstractSource;
 use App\Entity\Book;
-use App\Exception\DuplicateCatalogueBookException;
 use Tightenco\Collect\Support\Collection;
 
+/**
+ * Class BookCatalogue
+ *
+ * @package App\Book
+ */
 class BookCatalogue implements BookCatalogueInterface
 {
+    /**
+     * Sources
+     *
+     * @var BookAbstractSource[] $sources
+     */
     private $sources;
 
+    /**
+     * Add a source to the catalogue
+     *
+     * @param BookAbstractSource $source
+     *
+     * @return void
+     */
     public function addSource(BookAbstractSource $source): void
     {
         // TODO: Vérifier que la source n'est pas déjà présente.
         $this->sources[] = $source;
     }
 
+    /**
+     * Set all sources
+     *
+     * @param iterable $sources
+     *
+     * @return void
+     */
     public function setSources(iterable $sources): void
     {
         $this->sources = $sources;
     }
 
+    /**
+     * Get all sources from catalogue
+     *
+     * @return iterable
+     */
     public function getSources(): iterable
     {
         return $this->sources;
     }
 
     /**
-     * Permet de retourner un book sur la
-     * base de son identifiant unique.
+     * Find à book from all sources by his id
      *
      * @param $id
      *

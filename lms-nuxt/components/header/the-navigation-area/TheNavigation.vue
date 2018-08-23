@@ -10,7 +10,19 @@
       <!--<the-navigation-items/>-->
 
       <li>
-        <nuxt-link to="/books">Livres</nuxt-link>
+        <nuxt-link to="/book">Livres</nuxt-link>
+      </li>
+
+      <li>
+        <nuxt-link to="/author">Auteur</nuxt-link>
+      </li>
+
+      <li>
+        <nuxt-link to="/bestSell">Meilleurs ventes</nuxt-link>
+      </li>
+
+      <li>
+        <nuxt-link to="/contact">Contact</nuxt-link>
       </li>
     </ul>
   </div>

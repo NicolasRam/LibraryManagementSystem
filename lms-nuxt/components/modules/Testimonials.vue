@@ -8,7 +8,7 @@
               <div class="item tg-testimonial" v-for="(testimonial, index) in testimonials">
                 <figure>
                   <img
-                    :src="'http://exprostudio.com/html/book_library/images/author/imag-0' + getRandomInt(1,10) + '.jpg'"
+                    :src="'http://exprostudio.com/html/book_library/images/author/imag-0' + getRandomInt(1,9) + '.jpg'"
                     alt="image description">
                 </figure>
 

@@ -13,7 +13,7 @@
           <div class="item tg-author" v-for="(author, index) in mostPopularAuthors" :key="index">
             <figure>
               <a href="javascript:void(0);">
-                <img :src="'http://exprostudio.com/html/book_library/images/author/imag-0' + getRandomInt(1, 10) + '.jpg'" alt="image description">
+                <img :src="'http://exprostudio.com/html/book_library/images/author/imag-0' + getRandomInt(1, 9) + '.jpg'" alt="image description">
               </a>
             </figure>
 
@@ -52,7 +52,7 @@
         return Math.floor(Math.random() * (max - min + 1) + min);
       },
       getAuthorImageIndex(){
-        return index < 9 ? index : this.getRandomInt(1,26);
+        return index < 9 ? index : this.getRandomInt(1,9);
       }
     }
 
