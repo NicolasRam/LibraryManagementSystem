@@ -33,7 +33,7 @@ mappings:
         format: 'yyyy-MM-dd'
       PBook_id:
         type: integer
-      PBook_status:
-        type: keyword
       Member_address:
         type: keyword
+#      PBook_status:
+#        type: keyword

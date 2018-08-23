@@ -38,7 +38,6 @@ class BookingIndexer
                 'Booking_startdate' => $booking->getStartDate()->format('Y-m-d'),
                 'Booking_enddate' => $booking->getEndDate()->format('Y-m-d'),
                 'PBook_id' => $booking->getPBook()->getId(),
-                'PBook_status' => $booking->getPBook()->getStatus(),
                 'Member_address' => $booking->getMember()->getTown(),
             ],
             'biblio' // Types are deprecated, to be removed in Elastic 7

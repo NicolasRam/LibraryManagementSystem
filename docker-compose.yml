@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-  # Lance un serveur web apache
   web:
     build: docker/apache2
     ports:
@@ -9,16 +8,12 @@ services:
     volumes:
       - .:/usr/local/apache2/htdocs
 
-  # Lance un serveur PHP FPM qui sera lié sur apache
   php:
     build: docker/php
     # Récupére les volumes définis sur web
     volumes:
       - .:/usr/local/apache2/htdocs
-#    links:
-#        - elasticsearch
 
-  # Lance un serveur MySQL
   db:
     build: docker/db
     ports:
@@ -100,9 +95,6 @@ services:
       - redmine
     volumes:
       - ./docker/redmine/data:/usr/src/redmine/sqlite
-#    links:
-#      - db:db
-#      - smtp:smtp
     ports:
       - "3000:3000"
 
