@@ -64,7 +64,9 @@
                         <tbody>
                         {% if bookings is defined %}
                             {% for booking in bookings %}
-                                {#{{ dump(booking) }}#}
+                                {% for status in booking.pbook.status|keys %}
+                                    {% if status == 'outside' and booking.returndate is null %}
+
                                 <tr>
                                     <td>{{ booking.id }}</td>
                                     <td>{{ booking.id }}</td>
@@ -77,15 +79,6 @@
                                     <td>{{ booking.returnDate ? booking.returnDate|date('Y-m-d') : '' }}</td>
                                     <td>
                                         {% for status in booking.pbook.status|keys %}
-                                            {% if status == 'reserved' %}
-                                                <span class="m-badge m-badge--primary m-badge--wide">reserved</span>
-                                            {% endif %}
-                                            {% if status == 'inside' %}
-                                                <span class="m-badge m-badge--success m-badge--wide">inside</span>
-                                            {% endif %}
-                                            {% if status == 'not_available' %}
-                                                <span class="m-badge m-badge--danger m-badge--wide">not available</span>
-                                            {% endif %}
                                             {% if status == 'outside' %}
                                                 <span class="m-badge m-badge--info m-badge--wide">outside</span>
                                             {% endif %}
@@ -149,11 +142,19 @@
                                         {% endfor %}
                                     </td>
                                 </tr>
+
+                                    {% endif %}
+                                    {#{% endfor %}#}
+                                {% endfor %}
                             {% else %}
                                 <tr>
                                     <td colspan="2">{{ 'datatable.no_records_found' | trans({}, 'datatable') }}</td>
                                 </tr>
                             {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="2">{{ 'datatable.no_records_found' | trans({}, 'datatable') }}</td>
+                            </tr>
                         {% endif %}
                         </tbody>
                     </table>

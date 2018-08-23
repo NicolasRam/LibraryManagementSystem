@@ -13,6 +13,7 @@ use App\Service\Member\MemberProvider;
 use App\Service\Sms\SmsBuilder;
 use App\Service\Sms\SmsProvider;
 use App\Workflow\WorkflowProvider;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +39,7 @@ class BookingController extends Controller
      */
     public function index(BookingRepository $bookingRepository): Response
     {
-//        $libraries = $this->getDoctrine()->getManager()->getRepository(Library::class)->findAll();
+        $bookings = [];
         /*
          * @var Library $library
          */
@@ -75,7 +76,8 @@ class BookingController extends Controller
         PBook $pbook,
         MemberProvider $memberProvider,
         Registry $workflows,
-        WorkflowProvider $workflowProvider
+        WorkflowProvider $workflowProvider,
+        SmsProvider $smsProvider
     ): Response
     {
         $bookingRequest = new BookingRequest($pbook);
@@ -99,10 +101,10 @@ class BookingController extends Controller
 
                 $this->addFlash('notice', 'L\'emprunt est effectif.');
 
-                $smsbuilder = new SmsBuilder($bookingRequest, 'rent');
+                $smsBuilder = new SmsBuilder($bookingRequest, $smsProvider);
 
 
-//                $smsProvider->sendMessage($phoneMember, $message);
+                $smsBuilder->smsBuilder($bookingRequest, 'rent');
 
                 return $this->redirectToRoute('backend_booking_rent', ['id' => $pbook->getId()]);
             } else {
@@ -200,17 +202,17 @@ class BookingController extends Controller
      */
     public function return(Request $request, Booking $booking, Registry $workflows, WorkflowProvider $workflowProvider): Response
     {
-//        $em = $this->getDoctrine()->getManager();
+
 
         $pbook = $booking->getPBook();
 
         $workflowProvider->changingState($workflows, $pbook, 'return');
 
-        $this->addFlash('notice', 'Le livre est bien retourné.');
+        $em = $this->getDoctrine()->getManager();
+        $booking->setReturnDate(new datetime('NOW'));
+        $em->flush();
 
-//        $smsbuilder = new SmsBuilder($bookingRequest, 'return');
-
-        return $this->render('backend/booking/index.html.twig');
+        return $this->redirectToRoute('backend_booking_index');
     }
 
     /**
@@ -229,7 +231,6 @@ class BookingController extends Controller
         $pbook = $booking->getPBook();
         $bookings = $pbook->getBookings();
 
-//        dd($bookings);
 
         if ($bookings) {
             foreach ($booking as $bookings) {
@@ -240,7 +241,6 @@ class BookingController extends Controller
 
             $this->addFlash('notice', 'Le livre a un problème.');
         }
-//        $smsbuilder = new SmsBuilder($bookingRequest, 'return');
 
         return $this->render('backend/booking/index.html.twig');
     }

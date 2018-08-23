@@ -140,16 +140,10 @@ class PBookController extends Controller
      */
     public function repaire(Request $request, PBook $pbook, Registry $workflows, WorkflowProvider $workflowProvider): Response
     {
-//        $em = $this->getDoctrine()->getManager();
-
 
         $workflowProvider->changingState($workflows, $pbook, 'repaired');
 
-//        $this->addFlash('notice', 'Le livre est bien retourné.');
-
-//        $smsbuilder = new SmsBuilder($bookingRequest, 'return');
-
-        return $this->redirectToRoute('backend/home/index.html.twig');
+        return $this->redirectToRoute('backend_home');
     }
 
 }

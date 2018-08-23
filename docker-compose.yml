@@ -35,76 +35,76 @@ services:
     links:
       - db:db
 
-  node:
-    build: docker/node
-#    image: "node:9"
-    user: "node"
-    working_dir: /var/www/api
-    environment:
-      - NODE_ENV=production
-#    expose:
-#      - "3000"
+#  node:
+#    build: docker/node
+##    image: "node:9"
+#    user: "node"
+#    working_dir: /var/www/api
+#    environment:
+#      - NODE_ENV=production
+##    expose:
+##      - "3000"
+#    ports:
+#      - 9000:9000
+#    volumes:
+#      - .:/var/www/api
+##    expose:
+##      - "3333"
+#    command: yarn encore dev-server --port 9000 --host 0.0.0.0 --disable-host-check
+
+
+  elasticsearch:
+    build: docker/elastic
+    hostname: elasticsearch
     ports:
-      - 9000:9000
+      - 9200:9200
+      - 9300:9300
     volumes:
-      - .:/var/www/api
-#    expose:
-#      - "3333"
-    command: yarn encore dev-server --port 9000 --host 0.0.0.0 --disable-host-check
+      - ./docker/elastic/data:/usr/share/elasticsearch/data
+      - ./docker/elastic/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
 
+  kibana:
+    build: docker/kibana
+    hostname: kibana
+    links:
+      - elasticsearch
+    ports:
+      - 5601:5601
+    volumes:
+      - ./docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
 
-#  elasticsearch:
-#    build: docker/elastic
-#    hostname: elasticsearch
-#    ports:
-#      - 9200:9200
-#      - 9300:9300
-#    volumes:
-#      - ./docker/elastic/data:/usr/share/elasticsearch/data
-#      - ./docker/elastic/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
-#      nofile:
-#        soft: 65536
-#        hard: 65536
-#
-#  kibana:
-#    build: docker/kibana
-#    hostname: kibana
+  logstash:
+    build: docker/logstash
+    links:
+      - elasticsearch
+    volumes:
+      - ./docker/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./docker/logstash/hero.log:/usr/share/logstash/hero.log
+      - ./docker/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./docker/logstash/GeoLite2-City.mmdb:/opt/geoip/GeoLite2-City.mmdb
+    command: logstash -f /usr/share/logstash/pipeline/logstash.conf
+    depends_on:
+      - elasticsearch
+
+  redmine:
+    build: docker/redmine
+    restart: always
+    networks:
+      - redmine
+    volumes:
+      - ./docker/redmine/data:/usr/src/redmine/sqlite
 #    links:
-#      - elasticsearch
-#    ports:
-#      - 5601:5601
-#    volumes:
-#      - ./docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
-#
-#  logstash:
-#    build: docker/logstash
-#    links:
-#      - elasticsearch
-#    volumes:
-#      - ./docker/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-#      - ./docker/logstash/hero.log:/usr/share/logstash/hero.log
-#      - ./docker/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-#      - ./docker/logstash/GeoLite2-City.mmdb:/opt/geoip/GeoLite2-City.mmdb
-#    command: logstash -f /usr/share/logstash/pipeline/logstash.conf
-#    depends_on:
-#      - elasticsearch
-
-#  redmine:
-#    build: docker/redmine
-#    restart: always
-#    networks:
-#      - redmine
-#    volumes:
-#      - ./docker/redmine/data:/usr/src/redmine/sqlite
-##    links:
-##      - db:db
-##      - smtp:smtp
-#    ports:
-#      - "3000:3000"
+#      - db:db
+#      - smtp:smtp
+    ports:
+      - "3000:3000"
 
 #  jenkins:
 #    build: docker/jenkins
@@ -130,6 +130,6 @@ services:
 #  postgres-data:
 #  jenkins_home:
 #    external: true
-#networks:
-#  redmine:
-#    driver: bridge
+networks:
+  redmine:
+    driver: bridge
